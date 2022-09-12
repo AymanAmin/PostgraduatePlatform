@@ -21,6 +21,7 @@ export class AddEmployeeComponent implements OnInit {
   lb_EmpSection:any;lb_JobTitle:any;
 
   GenderList :any;
+
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.lb_EmpInfo = "Employee Info";
