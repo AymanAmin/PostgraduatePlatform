@@ -32,6 +32,7 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_EmpSection = "Section";
       this.lb_JobTitle = "Job Title";
       this.GenderList = [{"Id":1,"Name":"Female"},{"Id":2,"Name":"Male"}];
+      //Ayman
     }
     else{
       this.lb_EmpInfo = "بيانات الموظف";
