@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEmployeeComponent implements OnInit {
   LangCode:string = "us-en";
+  // update omer
 
   constructor() { }
 
