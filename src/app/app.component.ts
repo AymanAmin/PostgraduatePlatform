@@ -14,11 +14,11 @@ export class AppComponent {
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
-        //this.CurrentPage =  val.snapshot.routeConfig?.component?.name.replace("Component","");
         this.CurrentPage = val.snapshot.url[val.snapshot.url.length - 1];
         this.CurrentParentPage = val.snapshot.url[val.snapshot.url.length - 2];
       }
   });
   }
+
 }
 

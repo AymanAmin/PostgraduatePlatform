@@ -15,9 +15,16 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
-
+  public loadJsFile(url:any) {
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(node);
+    console.log(url);
+  }
 
   // Label Data
   lb_EmpInfo:any;lb_EmpDetails:any;lb_EmpName:any;lb_EmpPhone:any;
