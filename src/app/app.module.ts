@@ -7,9 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AddEmployeeComponent } from './EmployeeManagement/AddEmployee/AddEmployee.component';
 import { AddStudentComponent } from './StudentManagement/AddStudent/AddStudent.component';
+import { EmployeeListComponent } from './EmployeeManagement/EmployeeList/EmployeeList.component';
 
 const appRoutes: Routes = [
   { path: 'Employee/add', component: AddEmployeeComponent },
+  { path: 'Employee/list', component: EmployeeListComponent },
   { path: 'Student/add', component: AddStudentComponent },
 ]
 
@@ -29,7 +31,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     routing
   ],
   providers: [
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    EmployeeListComponent
   ],
   bootstrap: [AppComponent]
 })

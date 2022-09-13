@@ -69,3 +69,19 @@ $( document ).ready(function() {
 
   }
 });
+
+if (document.getElementById('choices-language')) {
+  var language = document.getElementById('choices-language');
+  const example = new Choices(language);
+}
+
+
+var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+
+
