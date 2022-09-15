@@ -1,4 +1,4 @@
-<div class="container-fluid my-3 py-3">
+<div class="container-fluid my-3">
   <div class="row mb-5">
     <div class="col-lg-3">
       <div class="card position-sticky top-1">
@@ -215,39 +215,37 @@
           </div>
           <label class="form-label">{{lb_NewPassword}}</label>
           <div class="form-group">
-            <input class="form-control" type="password" placeholder="New password">
+            <input class="form-control" type="password" placeholder="New password" (change)="CheckPassword()" [(ngModel)]="n_password">
           </div>
           <label class="form-label">{{lb_EmpCPassword}}</label>
           <div class="form-group">
-            <input class="form-control" type="password" placeholder="Confirm password">
+            <input class="form-control" type="password" placeholder="Confirm password" (change)="CheckPassword()" [(ngModel)]="cn_password">
           </div>
           <h5 class="mt-5">{{lb_PasswordRequirements}}</h5>
           <p class="text-muted mb-2">
             {{lb_PasswordRequirementsD}}
           </p>
           <ul class="text-muted ps-4 mb-0 float-start main-list">
-            <li class="inside-list li-color-success">
+            <li class="{{nopassClass}}">
               <span class="text-sm">{{lb_ReqOne}}</span>
             </li>
-            <li class="inside-list li-color-success">
+            <li class="{{LowerCaseClass}}">
               <span class="text-sm">{{lb_ReqTwo}}</span>
             </li>
-            <li class="inside-list li-color-success">
+            <li class="{{UpperCaseClass}}">
               <span class="text-sm">{{lb_ReqThree}}</span>
             </li>
-            <li class="inside-list li-color-danger">
+            <li class="{{cpassClass}}">
               <span class="text-sm">{{lb_ReqFour}}</span>
             </li>
           </ul>
-          <button class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
+          <button *ngIf="IsValidPassword"  class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
         </div>
       </div>
       <!-- Card Notifications -->
       <div class="card mt-4" id="notifications">
         <div class="card-header">
           <h5>{{lb_GeneralSetting}}</h5>
-          <p class="text-sm">Choose how you receive notifications. These notification settings apply to the things
-            you’re watching.</p>
         </div>
         <div class="card-body pt-0">
           <div class="table-responsive">
@@ -261,9 +259,6 @@
                     <p class="mb-0">Email</p>
                   </th>
                   <th class="text-center">
-                    <p class="mb-0">Push</p>
-                  </th>
-                  <th class="text-center">
                     <p class="mb-0">SMS</p>
                   </th>
                 </tr>
@@ -274,11 +269,6 @@
                     <div class="my-auto">
                       <span class="text-dark d-block text-sm">Mentions</span>
                       <span class="text-xs font-weight-normal">Notify when another user mentions you in a comment</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
-                      <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault11">
                     </div>
                   </td>
                   <td>
@@ -297,11 +287,6 @@
                     <div class="my-auto">
                       <span class="text-dark d-block text-sm">Comments</span>
                       <span class="text-xs font-weight-normal">Notify when another user comments your item.</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
-                      <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault14">
                     </div>
                   </td>
                   <td>
@@ -329,11 +314,6 @@
                   </td>
                   <td>
                     <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
-                      <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault18">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
                       <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault19">
                     </div>
                   </td>
@@ -347,11 +327,6 @@
                   <td>
                     <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
                       <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault20">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
-                      <input class="form-check-input" checked type="checkbox" id="flexSwitchCheckDefault21">
                     </div>
                   </td>
                   <td>

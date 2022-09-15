@@ -15,16 +15,19 @@ import { FilterPipe } from './filter.pipe';
 import { ListOrderComponent } from './EmployeeManagement/OrdersManagement/ListOrder/ListOrder.component';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
 import { ProfileEmployeeComponent } from './EmployeeManagement/ProfileEmployee/ProfileEmployee.component';
+import { HomeComponent } from './Home/Home.component';
+import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
 
 const appRoutes: Routes = [
-  { path: 'Employee/add', component: AddEmployeeComponent,data: { title: 'Add Employee' } },
-  { path: 'Employee/add/:id', component: AddEmployeeComponent,data: { title: 'Update Employee' } },
-  { path: 'Employee/list', component: ListEmployeeComponent ,data: { title: 'List Employee' }},
-  { path: 'Employee/profile', component: ProfileEmployeeComponent ,data: { title: 'Profule Employee' }},
-  { path: 'Student/add', component: AddStudentComponent,data: { title: 'Add Student' } },
+  { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
+  { path: 'Employee/add', component: AddEmployeeComponent, data: { title: 'Add Employee' } },
+  { path: 'Employee/add/:id', component: AddEmployeeComponent, data: { title: 'Update Employee' } },
+  { path: 'Employee/list', component: ListEmployeeComponent, data: { title: 'List Employee' } },
+  { path: 'Employee/profile', component: ProfileEmployeeComponent, data: { title: 'Profule Employee' } },
+  { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
-  { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
+  { path: '**', component: NotFoundComponent, data: { title: 'Not Found' } }
 ]
 
 const routerOptions: ExtraOptions = {
@@ -42,8 +45,9 @@ const routerOptions: ExtraOptions = {
     FilterPipe,
     ListOrderComponent,
     ListSpecializationsComponent,
-    ProfileEmployeeComponent
-   ],
+    ProfileEmployeeComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -51,9 +55,9 @@ const routerOptions: ExtraOptions = {
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    RouterModule.forRoot(appRoutes,routerOptions)
+    RouterModule.forRoot(appRoutes, routerOptions)
   ],
-  providers: [],
+  providers: [ CkPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

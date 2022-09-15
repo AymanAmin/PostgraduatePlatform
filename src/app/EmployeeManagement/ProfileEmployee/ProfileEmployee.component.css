@@ -6,11 +6,22 @@
   list-style: none;
   padding: 0;
 }
-.inside-list {
+.inside-list-success {
   padding-left: 1.3em;
 }
-.inside-list:before {
+.inside-list-success:before {
   content: "\f00c"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
+
+.inside-list-danger {
+  padding-left: 1.3em;
+}
+.inside-list-danger:before {
+  content: "\f00d"; /* FontAwesome Unicode */
   font-family: FontAwesome;
   display: inline-block;
   margin-left: -1.3em; /* same as padding-left set on li */
@@ -21,5 +32,5 @@
   color: rgb(161, 229, 59);
 }
 .li-color-danger {
-  color: red;
+  color: rgb(221, 77, 77);
 }
