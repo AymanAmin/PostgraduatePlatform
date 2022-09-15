@@ -161,7 +161,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link " routerLinkActive="active" routerLink="Orders/list">
+              <a class="nav-link " routerLinkActive="active" routerLink="Order/list">
                 <span class="sidenav-mini-icon"> O </span>
                 <span class="sidenav-normal"> List Orders </span>
               </a>
@@ -755,9 +755,9 @@
         </div>
         <ul class="navbar-nav  justify-content-end">
           <li class="nav-item d-flex align-items-center">
-            <a href="../../../pages/authentication/signin/illustration.html" class="nav-link text-body font-weight-bold px-0" target="_blank">
+            <a routerLink="Employee/profile" class="nav-link text-body font-weight-bold px-0">
               <i class="fa fa-user me-sm-1"></i>
-              <span class="d-sm-inline d-none">Sign In</span>
+              <span class="d-sm-inline d-none"> {{ username }}</span>
             </a>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

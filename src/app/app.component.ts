@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'Postgraduate Platform - REU';
   CurrentPage:any = "";
   CurrentParentPage:any = "";
+  username:string = "ِAyman Amin";
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {

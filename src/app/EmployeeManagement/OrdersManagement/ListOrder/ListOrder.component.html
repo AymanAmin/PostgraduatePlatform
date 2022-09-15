@@ -74,6 +74,7 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_OrderType}}</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Date}}</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Status}}</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -103,10 +104,15 @@
                   <td class="align-middle text-end">
                     <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                       <p class="text-sm font-weight-bold mb-0">{{record.Date}}</p>
-                      <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other users">
-                        <i class="fas fa-info" aria-hidden="true"></i>
-                      </button>
                     </div>
+                  </td>
+                  <td class="align-middle text-end">
+                    <span class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
+                      <i class="fas fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="btn btn-icon-only btn-rounded btn-outline-warning mb-0 me-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
                   </td>
                 </tr>
               </tbody>
