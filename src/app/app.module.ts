@@ -13,13 +13,15 @@ import { CommonModule } from '@angular/common';
 import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmployee.component';
 import { FilterPipe } from './filter.pipe';
 import { ListOrderComponent } from './EmployeeManagement/OrdersManagement/ListOrder/ListOrder.component';
+import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
 
 const appRoutes: Routes = [
   { path: 'Employee/add', component: AddEmployeeComponent,data: { title: 'Add Employee' } },
   { path: 'Employee/add/:id', component: AddEmployeeComponent,data: { title: 'Update Employee' } },
   { path: 'Employee/list', component: ListEmployeeComponent ,data: { title: 'List Employee' }},
   { path: 'Student/add', component: AddStudentComponent,data: { title: 'Add Student' } },
-  { path: 'Order/list', component: ListOrderComponent,data: { title: 'List Order' } },
+  { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
+  { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
     NotFoundComponent,
     FilterPipe,
     ListOrderComponent,
+    ListSpecializationsComponent,
    ],
   imports: [
     BrowserModule,
