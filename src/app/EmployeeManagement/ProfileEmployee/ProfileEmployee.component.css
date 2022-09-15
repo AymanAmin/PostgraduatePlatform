@@ -1,3 +1,25 @@
 .clickable {
   cursor: pointer !important;
 }
+
+.main-list {
+  list-style: none;
+  padding: 0;
+}
+.inside-list {
+  padding-left: 1.3em;
+}
+.inside-list:before {
+  content: "\f00c"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+}
+
+.li-color-success {
+  color: rgb(161, 229, 59);
+}
+.li-color-danger {
+  color: red;
+}
