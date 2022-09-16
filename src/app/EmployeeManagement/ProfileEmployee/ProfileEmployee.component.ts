@@ -17,64 +17,6 @@ export class ProfileEmployeeComponent implements OnInit {
     this.GetLabelName(this.LangCode);
   }
 
-  //Password Validation
-  ck_right: string = "inside-list-success li-color-success";
-  ck_woring: string = "inside-list-danger li-color-danger";
-  n_password: string = ""; cn_password: string = ""; cpassClass: string = ""; isCPass: boolean = false; PassValidation: boolean = false;
-  no_password: boolean = false; nopassClass = ""; IsUpperCasePassword: boolean = false; UpperCaseClass = "";
-  LowerCaseClass = ""; IsLowerCasePassword: boolean = false; IsValidPassword: boolean = false;
-  CheckPassword() {
-    // if Valid Password
-    if (this.ck_Pass.CheckAllFunction(this.n_password, this.cn_password))
-      this.IsValidPassword = true;
-    else
-      this.IsValidPassword = false;
-
-    //if Confirm password
-    if (this.ck_Pass.Ck_Password_Confirm(this.n_password, this.cn_password)) {
-      this.cpassClass = this.ck_right;
-      this.isCPass = true;
-    }
-    else {
-      this.cpassClass = this.ck_woring;
-      this.isCPass = false;
-    }
-
-    //if hasNumber
-    let contentNo = this.n_password.match(/\d+/g);
-    if (contentNo != null) {
-      this.no_password = true;
-      this.nopassClass = this.ck_right;
-    }
-    else {
-      this.no_password = false;
-      this.nopassClass = this.ck_woring;
-    }
-
-    //if hasUppercase
-    if (this.ck_Pass.checkUppercase(this.n_password)) {
-      this.IsUpperCasePassword = true;
-      this.UpperCaseClass = this.ck_right;
-    }
-    else {
-      this.IsUpperCasePassword = false;
-      this.UpperCaseClass = this.ck_woring;
-    }
-
-    //if hasLowercase
-    if (this.ck_Pass.checkLowercase(this.n_password)) {
-      this.IsLowerCasePassword = true;
-      this.LowerCaseClass = this.ck_right;
-    }
-    else {
-      this.IsLowerCasePassword = false;
-      this.LowerCaseClass = this.ck_woring;
-    }
-
-  }
-
-
-
   goToDiv(DivID: string) {
     var div = document.getElementById(DivID);
     div?.scrollIntoView({
@@ -83,6 +25,62 @@ export class ProfileEmployeeComponent implements OnInit {
       inline: "nearest"
     });
   }
+
+
+    //Password Validation
+    ck_right: string = "inside-list-success li-color-success";
+    ck_woring: string = "inside-list-danger li-color-danger";
+    n_password: string = ""; cn_password: string = ""; cpassClass: string = ""; isCPass: boolean = false; PassValidation: boolean = false;
+    no_password: boolean = false; nopassClass = ""; IsUpperCasePassword: boolean = false; UpperCaseClass = "";
+    LowerCaseClass = ""; IsLowerCasePassword: boolean = false; IsValidPassword: boolean = false;
+    CheckPassword() {
+      // if Valid Password
+      if (this.ck_Pass.CheckAllFunction(this.n_password, this.cn_password))
+        this.IsValidPassword = true;
+      else
+        this.IsValidPassword = false;
+
+      //if Confirm password
+      if (this.ck_Pass.Ck_Password_Confirm(this.n_password, this.cn_password)) {
+        this.cpassClass = this.ck_right;
+        this.isCPass = true;
+      }
+      else {
+        this.cpassClass = this.ck_woring;
+        this.isCPass = false;
+      }
+
+      //if hasNumber
+      let contentNo = this.n_password.match(/\d+/g);
+      if (contentNo != null) {
+        this.no_password = true;
+        this.nopassClass = this.ck_right;
+      }
+      else {
+        this.no_password = false;
+        this.nopassClass = this.ck_woring;
+      }
+
+      //if hasUppercase
+      if (this.ck_Pass.checkUppercase(this.n_password)) {
+        this.IsUpperCasePassword = true;
+        this.UpperCaseClass = this.ck_right;
+      }
+      else {
+        this.IsUpperCasePassword = false;
+        this.UpperCaseClass = this.ck_woring;
+      }
+
+      //if hasLowercase
+      if (this.ck_Pass.checkLowercase(this.n_password)) {
+        this.IsLowerCasePassword = true;
+        this.LowerCaseClass = this.ck_right;
+      }
+      else {
+        this.IsLowerCasePassword = false;
+        this.LowerCaseClass = this.ck_woring;
+      }
+    }
 
   // Label Data
   lb_IsActive: any; lb_BasicInfo: any; lb_OldPassword: any;

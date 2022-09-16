@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ListOrder',
@@ -19,7 +18,7 @@ export class ListOrderComponent implements OnInit {
   searchedKeyword:string = "";
   //End Pangation and filter
 
-  constructor(private titleService:Title,private router: Router) {
+  constructor(private titleService:Title) {
     this.titleService.setTitle("List Employee");
   }
 

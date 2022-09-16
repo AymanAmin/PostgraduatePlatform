@@ -12,11 +12,12 @@ import { NotFoundComponent } from './SystemAdmin/NotFound/NotFound.component';
 import { CommonModule } from '@angular/common';
 import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmployee.component';
 import { FilterPipe } from './filter.pipe';
-import { ListOrderComponent } from './EmployeeManagement/OrdersManagement/ListOrder/ListOrder.component';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
 import { ProfileEmployeeComponent } from './EmployeeManagement/ProfileEmployee/ProfileEmployee.component';
 import { HomeComponent } from './Home/Home.component';
 import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
+import { StudentListComponent } from './StudentManagement/StudentList/StudentList.component';
+import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -25,6 +26,8 @@ const appRoutes: Routes = [
   { path: 'Employee/list', component: ListEmployeeComponent, data: { title: 'List Employee' } },
   { path: 'Employee/profile', component: ProfileEmployeeComponent, data: { title: 'Profule Employee' } },
   { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
+  { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
+  { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
   { path: '**', component: NotFoundComponent, data: { title: 'Not Found' } }
@@ -45,6 +48,7 @@ const routerOptions: ExtraOptions = {
     FilterPipe,
     ListOrderComponent,
     ListSpecializationsComponent,
+    StudentListComponent,
     ProfileEmployeeComponent,
     HomeComponent
   ],
