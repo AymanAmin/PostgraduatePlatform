@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -12,17 +12,25 @@ import { NotFoundComponent } from './SystemAdmin/NotFound/NotFound.component';
 import { CommonModule } from '@angular/common';
 import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmployee.component';
 import { FilterPipe } from './filter.pipe';
-import { ListOrderComponent } from './EmployeeManagement/OrdersManagement/ListOrder/ListOrder.component';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
 import { ListDepartmentComponent } from './SystemAdmin/ListDepartment/ListDepartment.component';
 import { ListProgramComponent } from './SystemAdmin/ListProgram/ListProgram.component';
 import { TypeLeaveComponent } from './SystemAdmin/TypeLeave/TypeLeave.component';
+import { ProfileEmployeeComponent } from './EmployeeManagement/ProfileEmployee/ProfileEmployee.component';
+import { HomeComponent } from './Home/Home.component';
+import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
+import { StudentListComponent } from './StudentManagement/StudentList/StudentList.component';
+import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
 
 const appRoutes: Routes = [
-  { path: 'Employee/add', component: AddEmployeeComponent,data: { title: 'Add Employee' } },
-  { path: 'Employee/add/:id', component: AddEmployeeComponent,data: { title: 'Update Employee' } },
-  { path: 'Employee/list', component: ListEmployeeComponent ,data: { title: 'List Employee' }},
-  { path: 'Student/add', component: AddStudentComponent,data: { title: 'Add Student' } },
+  { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
+  { path: 'Employee/add', component: AddEmployeeComponent, data: { title: 'Add Employee' } },
+  { path: 'Employee/add/:id', component: AddEmployeeComponent, data: { title: 'Update Employee' } },
+  { path: 'Employee/list', component: ListEmployeeComponent, data: { title: 'List Employee' } },
+  { path: 'Employee/profile', component: ProfileEmployeeComponent, data: { title: 'Profule Employee' } },
+  { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
+  { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
+  { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
@@ -30,6 +38,11 @@ const appRoutes: Routes = [
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
+
+const routerOptions: ExtraOptions = {
+  anchorScrolling: "enabled"
+  //scrollPositionRestoration: "enabled"
+};
 
 @NgModule({
   declarations: [
@@ -44,7 +57,10 @@ const appRoutes: Routes = [
     ListDepartmentComponent,
     ListProgramComponent,
     TypeLeaveComponent,
-   ],
+    StudentListComponent,
+    ProfileEmployeeComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -52,9 +68,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, routerOptions)
   ],
-  providers: [],
+  providers: [ CkPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

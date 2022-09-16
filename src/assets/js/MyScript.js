@@ -45,6 +45,9 @@ function toggleSidenav() {
 
 $( document ).ready(function() {
 
+  //Update color to info
+  document.getElementById("DarkColor").click();
+
   //datetimepicker
   if (document.querySelector('.datetimepicker')) {
     flatpickr('.datetimepicker', {

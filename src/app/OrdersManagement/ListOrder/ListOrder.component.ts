@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ListOrder',
@@ -19,7 +18,7 @@ export class ListOrderComponent implements OnInit {
   searchedKeyword:string = "";
   //End Pangation and filter
 
-  constructor(private titleService:Title,private router: Router) {
+  constructor(private titleService:Title) {
     this.titleService.setTitle("List Employee");
   }
 
@@ -40,7 +39,7 @@ export class ListOrderComponent implements OnInit {
 
   lb_OrderList:any;lb_OrderListD:any;lb_VacationRequests:any;lb_LetterRec:any;lb_AllRequest:any;
   lb_ReferenceLetter:any;lb_RequestCertificate:any;lb_ModelPGT1:any;lb_ModelPGT2:any;lb_ModelPGT3:any;
-  lb_OrderTable:any;lb_StudentInfo:any;lb_OrderType:any;lb_Date:any;lb_Status:any;lb_Email:any;
+  lb_OrderTable:any;lb_StudentInfo:any;lb_OrderType:any;lb_Date:any;lb_Status:any;lb_Email:any;lb_Action:any;
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.lb_OrderList = "Order List";
@@ -59,6 +58,7 @@ export class ListOrderComponent implements OnInit {
       this.lb_Date = "Request Date";
       this.lb_Status = "Status";
       this.lb_Email = "E-mail";
+      this.lb_Action = "Action";
     }
     else
     {
@@ -78,6 +78,7 @@ export class ListOrderComponent implements OnInit {
       this.lb_Date = "تاريخ الطلب";
       this.lb_Status = "حالة الطلب";
       this.lb_Email = "الإيميل";
+      this.lb_Action = "العمليات";
     }
   }
 
