@@ -14,6 +14,9 @@ import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmp
 import { FilterPipe } from './filter.pipe';
 import { ListOrderComponent } from './EmployeeManagement/OrdersManagement/ListOrder/ListOrder.component';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
+import { ListDepartmentComponent } from './SystemAdmin/ListDepartment/ListDepartment.component';
+import { ListProgramComponent } from './SystemAdmin/ListProgram/ListProgram.component';
+import { TypeLeaveComponent } from './SystemAdmin/TypeLeave/TypeLeave.component';
 
 const appRoutes: Routes = [
   { path: 'Employee/add', component: AddEmployeeComponent,data: { title: 'Add Employee' } },
@@ -21,7 +24,10 @@ const appRoutes: Routes = [
   { path: 'Employee/list', component: ListEmployeeComponent ,data: { title: 'List Employee' }},
   { path: 'Student/add', component: AddStudentComponent,data: { title: 'Add Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
-  { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
+  { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
+  { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
+  { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
+  { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -35,6 +41,9 @@ const appRoutes: Routes = [
     FilterPipe,
     ListOrderComponent,
     ListSpecializationsComponent,
+    ListDepartmentComponent,
+    ListProgramComponent,
+    TypeLeaveComponent,
    ],
   imports: [
     BrowserModule,
