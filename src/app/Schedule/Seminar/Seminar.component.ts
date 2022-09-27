@@ -32,10 +32,10 @@ export class SeminarComponent implements OnInit {
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
-      this.lb_Address ="Scheduling a defense Thesis";
-      this.lb_AddressD = "Procedures for scheduling a defense thesis after master's graduation";
-      this.lb_week = "week";
-      this.lb_date = "date";
+      this.lb_Address ="Seminar Scheduling";
+      this.lb_AddressD = "Procedures for scheduling a multidisciplinary postgraduate seminar";
+      this.lb_week = "Seminar Week";
+      this.lb_date = "Seminar Date";
       this.lb_Time = "Time";
       this.lb_Student = "Student";
       this.lb_Supervisor = "Supervisor";
@@ -50,8 +50,8 @@ export class SeminarComponent implements OnInit {
       this.ExaminerList = [{"key":1,"value":"Dr. Fahad Alshamary"},{"key":2,"value":"Dr. Raied"}];
     }
     else{
-      this.lb_Address =" جدولة أطروحة المناقشة";
-      this.lb_AddressD = "إجراءات جدولة أطروحة المناقشة بعد تخرج الماجستير";
+      this.lb_Address ="جدولة الندوات";
+      this.lb_AddressD = "إجراءات تحديد موعد ندوة الدراسات العليا متعددة التخصصات";
       this.lb_week = "الاسبوع";
       this.lb_date = "التاريخ";
       this.lb_Time = "الزمن";
