@@ -18,6 +18,12 @@ import { HomeComponent } from './Home/Home.component';
 import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
 import { StudentListComponent } from './StudentManagement/StudentList/StudentList.component';
 import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
+import { ApplicationFormComponent } from './StudentManagement/ApplicationForm/ApplicationForm.component';
+import { RecommendationLetterComponent } from './StudentManagement/RecommendationLetter/RecommendationLetter.component';
+import { ReferenceAndCertificatesComponent } from './StudentManagement/ReferenceAndCertificates/ReferenceAndCertificates.component';
+import { LeaveComponent } from './StudentManagement/Leave/Leave.component';
+import { StudentComponent } from './StudentManagement/Student/Student.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -28,6 +34,10 @@ const appRoutes: Routes = [
   { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
+  { path: 'Student/Student', component: StudentComponent, data: { title: 'Student' } },
+  {path: 'Student/ReLetter', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
+  {path: 'Student/ReferenceAndCertificates', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
+  {path: 'Student/Leave', component: LeaveComponent, data: { title: 'Leave' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
   { path: '**', component: NotFoundComponent, data: { title: 'Not Found' } }
