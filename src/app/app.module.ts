@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
-  { path: 'Student/Student', component: StudentComponent, data: { title: 'Student' } },
+  { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   {path: 'Student/ReLetter', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
   {path: 'Student/ReferenceAndCertificates', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
   {path: 'Student/Leave', component: LeaveComponent, data: { title: 'Leave' } },
@@ -80,7 +80,8 @@ const routerOptions: ExtraOptions = {
     HomeComponent,
     ThesisDefenseComponent,
     ShowCalendarComponent,
-    SeminarComponent
+    SeminarComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
