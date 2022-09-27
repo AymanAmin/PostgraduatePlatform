@@ -68,8 +68,6 @@ $( document ).ready(function() {
     const example = new Choices(element, {
       removeItemButton: true
     });
-
-
   }
 });
 

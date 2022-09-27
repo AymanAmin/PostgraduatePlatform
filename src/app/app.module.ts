@@ -21,6 +21,8 @@ import { HomeComponent } from './Home/Home.component';
 import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
 import { StudentListComponent } from './StudentManagement/StudentList/StudentList.component';
 import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
+import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
+import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -36,6 +38,8 @@ const appRoutes: Routes = [
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
+  { path: 'Schedule/ThesisDefense/Add', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -59,7 +63,9 @@ const routerOptions: ExtraOptions = {
     TypeLeaveComponent,
     StudentListComponent,
     ProfileEmployeeComponent,
-    HomeComponent
+    HomeComponent,
+    ThesisDefenseComponent,
+    ShowCalendarComponent
   ],
   imports: [
     BrowserModule,
