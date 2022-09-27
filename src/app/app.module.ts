@@ -81,7 +81,8 @@ const routerOptions: ExtraOptions = {
     ThesisDefenseComponent,
     ShowCalendarComponent,
     SeminarComponent,
-    StudentComponent
+    StudentComponent,
+    LeaveComponent
   ],
   imports: [
     BrowserModule,
