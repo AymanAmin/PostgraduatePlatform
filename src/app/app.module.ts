@@ -13,6 +13,9 @@ import { CommonModule } from '@angular/common';
 import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmployee.component';
 import { FilterPipe } from './filter.pipe';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
+import { ListDepartmentComponent } from './SystemAdmin/ListDepartment/ListDepartment.component';
+import { ListProgramComponent } from './SystemAdmin/ListProgram/ListProgram.component';
+import { TypeLeaveComponent } from './SystemAdmin/TypeLeave/TypeLeave.component';
 import { ProfileEmployeeComponent } from './EmployeeManagement/ProfileEmployee/ProfileEmployee.component';
 import { HomeComponent } from './Home/Home.component';
 import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
@@ -24,6 +27,9 @@ import { ReferenceAndCertificatesComponent } from './StudentManagement/Reference
 import { LeaveComponent } from './StudentManagement/Leave/Leave.component';
 import { StudentComponent } from './StudentManagement/Student/Student.component';
 
+import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
+import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
+import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -39,8 +45,16 @@ const appRoutes: Routes = [
   {path: 'Student/ReferenceAndCertificates', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
   {path: 'Student/Leave', component: LeaveComponent, data: { title: 'Leave' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
-  { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specialization' } },
-  { path: '**', component: NotFoundComponent, data: { title: 'Not Found' } }
+  { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
+  { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
+  { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
+  { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
+  { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/Seminar/info', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
+  { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
 const routerOptions: ExtraOptions = {
@@ -58,9 +72,15 @@ const routerOptions: ExtraOptions = {
     FilterPipe,
     ListOrderComponent,
     ListSpecializationsComponent,
+    ListDepartmentComponent,
+    ListProgramComponent,
+    TypeLeaveComponent,
     StudentListComponent,
     ProfileEmployeeComponent,
-    HomeComponent
+    HomeComponent,
+    ThesisDefenseComponent,
+    ShowCalendarComponent,
+    SeminarComponent
   ],
   imports: [
     BrowserModule,

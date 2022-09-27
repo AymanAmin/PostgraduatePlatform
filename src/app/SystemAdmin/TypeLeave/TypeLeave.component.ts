@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-ListSpecializations',
-  templateUrl: './ListSpecializations.component.html',
-  styleUrls: ['./ListSpecializations.component.css']
+  selector: 'app-TypeLeave',
+  templateUrl: './TypeLeave.component.html',
+  styleUrls: ['./TypeLeave.component.css']
 })
-export class ListSpecializationsComponent implements OnInit {
+export class TypeLeaveComponent implements OnInit {
 
   LangCode: string = "us-en";
   // Label Data
@@ -23,7 +23,7 @@ export class ListSpecializationsComponent implements OnInit {
   searchedKeyword: string = "";
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle("List Specializations");
+    this.titleService.setTitle("List Types Leave");
   }
 
   ngOnInit() {
@@ -33,9 +33,9 @@ export class ListSpecializationsComponent implements OnInit {
   }
 
   getSpeList() {
-    this.SpeList = [{ "Id": 1001, "ArName": "أيمن امين", "EngName": "Ayman Amin", "Status": "Active", "StatusColor": "bg-info", },
-      { "Id": 1002, "ArName": "أمجد امين", "EngName": "Amjed Amin", "Status": "Not Active", "StatusColor": "bg-warning"},
-      { "Id": 1003, "ArName": "مازن عوض", "EngName": "Mazin Awad", "Status": "Active", "StatusColor": "bg-info" }]
+    this.SpeList = [{ "Id": 1001, "ArName": "اجازة1", "EngName": "Leave1", "Status": "Active", "StatusColor": "bg-info", },
+      { "Id": 1002, "ArName": "اجازة2", "EngName": "Leave2", "Status": "Not Active", "StatusColor": "bg-warning" },
+      { "Id": 1003, "ArName": "اجازة3", "EngName": "Leave3", "Status": "Active", "StatusColor": "bg-info" }]
   }
 
   public loadJsFile(url: any) {
@@ -48,37 +48,37 @@ export class ListSpecializationsComponent implements OnInit {
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_Info = "Specialization Info";
-      this.lb_InfoD = "Please fill all details for the specialization";
+      this.lb_Info = "Type Leave Info";
+      this.lb_InfoD = "Please fill all details for the type leave";
       this.lb_EngName = "English Name";
       this.lb_ArName = "Arabic Name";
       this.lb_IsActive = "Is Active ?";
-      this.lb_IsActiveD = "If it is open, this means that the specialization's account works";
+      this.lb_IsActiveD = "If it is open, this means that the type leave account works";
       this.lb_Save_Change = "Save Change";
       this.lb_Cancel = "Cancel";
       this.lb_Active = "Active";
       this.lb_InActive = "InActive";
       this.lb_Status = "Status";
-      this.lb_Id = "Spe No";
-      this.lb_Search = "Specializations List";
+      this.lb_Id = "Dep No";
+      this.lb_Search = "Types Leave List";
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Action"
     }
     else {
-      this.lb_Info = "بيانات التخصص";
-      this.lb_InfoD = "الرجاء تعبئة جميع بيانات التخصص";
+      this.lb_Info = "بيانات نوع الإجازة";
+      this.lb_InfoD = "الرجاء تعبئة جميع بيانات نوع الإجازة";
       this.lb_EngName = "الإسم إنجليزي";
       this.lb_ArName = "الإسم عربي";
       this.lb_IsActive = "هل نشط ؟";
-      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه التخصص يعمل";
+      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه نوع الإجازة يعمل";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
       this.lb_Active = "نشط";
       this.lb_InActive = "غير نشط";
       this.lb_Status = "الحالة";
-      this.lb_Id = "رقم التخصص";
-      this.lb_Search = "قائمة بالتخصصات";
-      this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
+      this.lb_Id = "رقم القسم";
+      this.lb_Search = "قائمة بانواع الإجازات";
+      this.lb_SearchD = "يمكنك البحث بإي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "عملية";
     }
   }

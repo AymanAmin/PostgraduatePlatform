@@ -68,23 +68,46 @@ $( document ).ready(function() {
     const example = new Choices(element, {
       removeItemButton: true
     });
-
-
   }
 });
 
 if (document.getElementById('choices-language')) {
   var language = document.getElementById('choices-language');
+  //console.log(language);
   const example = new Choices(language);
 }
 
+if (document.getElementById('Student')) {
+  var Student = document.getElementById('Student');
+  const example = new Choices(Student);
+}
+
+if (document.getElementById('Specialty')) {
+  var Specialty = document.getElementById('Specialty');
+  const example = new Choices(Specialty);
+}
+
+if (document.getElementById('Supervisor')) {
+  var Supervisor = document.getElementById('Supervisor');
+  const example = new Choices(Supervisor);
+}
+
+if (document.getElementById('RoomNo')) {
+  var RoomNo = document.getElementById('RoomNo');
+  const example = new Choices(RoomNo);
+}
+
+if (document.getElementById('Examiner')) {
+  var Examiner = document.getElementById('Examiner');
+  const example = new Choices(Examiner);
+}
 
 var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
+if (win && document.querySelector('#sidenav-scrollbar')) {
+  var options = {
+    damping: '0.5'
+  }
+  Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+}
 
 

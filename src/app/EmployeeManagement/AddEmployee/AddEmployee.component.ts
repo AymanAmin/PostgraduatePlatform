@@ -15,12 +15,10 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
   public loadJsFile(url:any) {
-
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
