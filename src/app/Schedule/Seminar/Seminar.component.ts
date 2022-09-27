@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-ThesisDefense',
-  templateUrl: './ThesisDefense.component.html',
-  styleUrls: ['./ThesisDefense.component.css']
+  selector: 'app-Seminar',
+  templateUrl: './Seminar.component.html',
+  styleUrls: ['./Seminar.component.css']
 })
-export class ThesisDefenseComponent implements OnInit {
+export class SeminarComponent implements OnInit {
   LangCode:string = "us-en";
 
   constructor(private titleService:Title) {
     this.loadJsFile("assets/js/MyScript.js");
-    this.titleService.setTitle("Thesis Defense Info");
+    this.titleService.setTitle("Seminar Info");
   }
 
   public loadJsFile(url:any) {
@@ -26,7 +26,7 @@ export class ThesisDefenseComponent implements OnInit {
   }
 
   lb_Address:any;lb_AddressD:any;lb_Student:any;lb_Title:any;lb_Examiner:any;lb_Cancel:any;
-  lb_week:any;lb_date:any;lb_Specialty:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
+  lb_week:any;lb_date:any;lb_Time:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
 
   StudentList:any;RoomList:any;ExaminerList:any;SpecialtyList:any;
 
@@ -36,7 +36,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_AddressD = "Procedures for scheduling a defense thesis after master's graduation";
       this.lb_week = "week";
       this.lb_date = "date";
-      this.lb_Specialty = "Specialty";
+      this.lb_Time = "Time";
       this.lb_Student = "Student";
       this.lb_Supervisor = "Supervisor";
       this.lb_Title = "Title";
@@ -54,7 +54,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_AddressD = "إجراءات جدولة أطروحة المناقشة بعد تخرج الماجستير";
       this.lb_week = "الاسبوع";
       this.lb_date = "التاريخ";
-      this.lb_Specialty = "التخصص";
+      this.lb_Time = "الزمن";
       this.lb_Student = "الطالب";
       this.lb_Supervisor = "المشرف";
       this.lb_Title = "العنوان";

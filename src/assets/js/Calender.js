@@ -1,10 +1,12 @@
 $( document ).ready(function() {
+
+  if(document.getElementById("calendar")){
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
   today = yyyy+ '-' + mm + '-' +  dd;
-  console.log(today);
+  //console.log(today);
   var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
     initialView: "dayGridMonth",
     headerToolbar: {
@@ -111,5 +113,6 @@ $( document ).ready(function() {
   });
 
   calendar.render();
+}
 
 });

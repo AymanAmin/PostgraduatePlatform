@@ -23,6 +23,7 @@ import { StudentListComponent } from './StudentManagement/StudentList/StudentLis
 import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
 import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
 import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
+import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -38,7 +39,10 @@ const appRoutes: Routes = [
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
-  { path: 'Schedule/ThesisDefense/Add', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/Seminar/info', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Add Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
@@ -65,7 +69,8 @@ const routerOptions: ExtraOptions = {
     ProfileEmployeeComponent,
     HomeComponent,
     ThesisDefenseComponent,
-    ShowCalendarComponent
+    ShowCalendarComponent,
+    SeminarComponent
   ],
   imports: [
     BrowserModule,

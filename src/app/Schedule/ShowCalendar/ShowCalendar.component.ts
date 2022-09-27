@@ -12,7 +12,7 @@ export class ShowCalendarComponent implements OnInit {
 
   ngOnInit() {
     this.loadJsFile("assets/js/Calender.js");
-    this.getTranslate(this.LangCode);
+    this.GetLabelName(this.LangCode);
   }
 
   public loadJsFile(url: any) {
@@ -24,7 +24,7 @@ export class ShowCalendarComponent implements OnInit {
 
   ThisColor: any;Seminar:any;Defanse:any;
 
-  getTranslate(LangCode: any) {
+  GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.ThisColor = "This color represents";
       this.Seminar = "Seminar";

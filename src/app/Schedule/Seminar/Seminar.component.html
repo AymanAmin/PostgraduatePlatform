@@ -7,18 +7,16 @@
         <hr class="horizontal dark my-3">
         <div class="row">
           <div class="col-12 col-md-4">
-            <label for="va_week" class="form-label">{{lb_week}}</label>
-            <input type="week" class="form-control" id="Week">
+            <label for="va_EmpName" class="form-label">{{lb_week}}</label>
+            <input type="week" class="form-control" id="va_EmpName">
           </div>
           <div class="col-12 col-md-4">
             <label for="va_date" class="form-label">{{lb_date}}</label>
-            <input type="date" placeholder="9665xxxxxxxx" class="form-control" id="Date">
+            <input type="date" placeholder="9665xxxxxxxx" class="form-control" id="va_date">
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label">{{lb_Specialty}}</label>
-            <select class="form-control" name="choices-language" id="Specialty">
-              <option value="{{item.key}}" *ngFor="let item of SpecialtyList">{{item.value}}</option>
-            </select>
+            <label class="form-label">{{lb_Time}}</label>
+            <input type="time" class="form-control" id="va_Time">
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Student}}</label>
@@ -34,7 +32,7 @@
           </div>
           <div class="col-12 col-md-4">
             <label for="va_Title" class="form-label">{{lb_Title}}</label>
-            <input type="text" class="form-control" id="Title">
+            <input type="text" class="form-control" id="va_Title">
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Examiner}}</label>
