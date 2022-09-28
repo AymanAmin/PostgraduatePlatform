@@ -30,6 +30,7 @@ import { StudentComponent } from './StudentManagement/Student/Student.component'
 import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
 import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
 import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
+import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -82,7 +83,11 @@ const routerOptions: ExtraOptions = {
     ShowCalendarComponent,
     SeminarComponent,
     StudentComponent,
-    LeaveComponent
+    LeaveComponent,
+    ApplicationFormComponent,
+    RecommendationLetterComponent,
+    ReferenceAndCertificatesComponent,
+    PGTComponent
   ],
   imports: [
     BrowserModule,
