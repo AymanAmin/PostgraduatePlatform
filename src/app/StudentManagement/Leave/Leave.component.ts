@@ -9,7 +9,7 @@ export class LeaveComponent implements OnInit {
   LangCode: string = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
-
+  lb_FormTitle:string="Student Leave";
   ngOnInit() {
     this.GetLabelName(this.LangCode);
   }

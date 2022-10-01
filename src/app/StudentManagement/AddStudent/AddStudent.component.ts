@@ -12,6 +12,7 @@ export class AddStudentComponent implements OnInit {
   LangCode: string = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
+  lb_FormTitle:string="Student Information";
 
   constructor(private ck_Pass: CkPasswordService) { }
 

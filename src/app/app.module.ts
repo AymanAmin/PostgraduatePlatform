@@ -26,11 +26,11 @@ import { RecommendationLetterComponent } from './StudentManagement/Recommendatio
 import { ReferenceAndCertificatesComponent } from './StudentManagement/ReferenceAndCertificates/ReferenceAndCertificates.component';
 import { LeaveComponent } from './StudentManagement/Leave/Leave.component';
 import { StudentComponent } from './StudentManagement/Student/Student.component';
-
 import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
 import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
 import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
+import { StudentAttachmentComponent } from './StudentManagement/StudentAttachment/StudentAttachment.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -42,9 +42,6 @@ const appRoutes: Routes = [
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
-  {path: 'Student/ReLetter', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
-  {path: 'Student/ReferenceAndCertificates', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
-  {path: 'Student/Leave', component: LeaveComponent, data: { title: 'Leave' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
@@ -87,7 +84,8 @@ const routerOptions: ExtraOptions = {
     ApplicationFormComponent,
     RecommendationLetterComponent,
     ReferenceAndCertificatesComponent,
-    PGTComponent
+    PGTComponent,
+    StudentAttachmentComponent
   ],
   imports: [
     BrowserModule,

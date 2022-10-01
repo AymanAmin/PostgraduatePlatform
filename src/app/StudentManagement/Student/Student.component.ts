@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class StudentComponent implements OnInit {
   LangCode: string = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
+  username: string = "Mazin Awad";
+  JobTitle: string = "Computer Science";
 
   ngOnInit() {
     this.GetLabelName(this.LangCode);

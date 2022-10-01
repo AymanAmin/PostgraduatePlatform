@@ -1,8 +1,9 @@
         <div class="card-header">
-          <h5></h5>
+          <h5>{{lb_FormTitle}}</h5>
         </div>
         <div class="card-body pt-0">
           <div class="row">
+            <h6>{{lb_Partone}}</h6>
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_College}}</label>
               <div class="input-group">
@@ -47,6 +48,36 @@
                 <textarea name="thesis_Ar" id="thesis_Ar" class="form-control"></textarea>
               </div>
             </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-6"> <label class="form-label"></label> <div class="input-group"></div> </div>
+        </div>
+        <div class="row">
+          <h6>{{lb_PartTwo}}</h6>
+          <div class="col-sm-6 col-6">
+            <label class="form-label">{{lb_Date}}</label>
+            <div class="input-group">
+             <input name="supervisor-date" id="supervisor-date" type="date" class="form-control datepicker">
+            </div>
+          </div>
+          <div class="col-sm-6 col-6">
+            <label class="form-label">{{lb_Date}}</label>
+            <div class="input-group">
+             <input name="co-supervisor-date" id="co-supervisor-date" type="date" class="form-control datepicker">
+            </div>
+          </div>
+          <div class="col-sm-6 col-6">
+            <label class="form-label">{{lb_Supervisor}}</label>
+            <div class="input-group">
+             <input name="supervisor" id="supervisor" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-6 col-6">
+            <label class="form-label">{{lb_CO_Supervisor}}</label>
+            <div class="input-group">
+             <input name="co-supervisor" id="co-supervisor" type="text" class="form-control">
+            </div>
+          </div>
         </div>
           <button class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
         </div>

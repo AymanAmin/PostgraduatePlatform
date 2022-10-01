@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class RecommendationLetterComponent implements OnInit {
 
   LangCode: string = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
+  lb_FormTitle:string="Recommendation Letter";
 
   ngOnInit() {
     this.GetLabelName(this.LangCode);

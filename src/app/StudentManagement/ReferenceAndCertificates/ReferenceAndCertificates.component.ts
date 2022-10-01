@@ -9,6 +9,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   LangCode: string = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
+  lb_FormTitle:string="Reference And Certificates";
 
   ngOnInit() {
     this.GetLabelName(this.LangCode);

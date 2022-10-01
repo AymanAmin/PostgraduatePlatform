@@ -10,6 +10,7 @@ export class ApplicationFormComponent implements OnInit {
   LangCode: string = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
+  lb_FormTitle:string="Application Form";
 
   constructor(private ck_Pass: CkPasswordService) { }
 
