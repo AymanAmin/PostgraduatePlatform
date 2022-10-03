@@ -1,0 +1,62 @@
+        <div class="card-header">
+          <h5>{{lb_FormTitle}}</h5>
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_Program}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-program">
+                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_Speciality}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-speciality">
+                  <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{speciality.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_Type}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-type" id="choices-type">
+                  <option value="{{type.Id}}" *ngFor="let type of TypeList">{{type.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_From}}</label>
+              <div class="input-group">
+                <input  id="from" name="from" class="form-control datetimepicker" type="date" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_To}}</label>
+              <div class="input-group">
+                <input  id="to" name="to" class="form-control datetimepicker" type="date" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-4 col-6">
+              <label class="form-label">{{lb_NoOfDaysLeave}}</label>
+              <div class="input-group">
+                <input  id="NoOfDaysLeave" name="NoOfDaysLeave" class="form-control" type="text" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-6">
+              <label class="form-label">{{lb_Reason}}</label>
+                <div id="editor">
+
+                </div>
+            </div>
+        </div>
+          <button class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
+        </div>
+
+

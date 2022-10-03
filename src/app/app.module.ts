@@ -26,6 +26,17 @@ import { AddSequenceModelComponent } from './SystemAdmin/AddSequenceModel/AddSeq
 import { AddSquecneStatusComponent } from './SystemAdmin/AddSquecneStatus/AddSquecneStatus.component';
 import { CreateSequenceComponent } from './SystemAdmin/CreateSequence/CreateSequence.component';
 import { LoginComponent } from './Login/Login.component';
+import { ApplicationFormComponent } from './StudentManagement/ApplicationForm/ApplicationForm.component';
+import { RecommendationLetterComponent } from './StudentManagement/RecommendationLetter/RecommendationLetter.component';
+import { ReferenceAndCertificatesComponent } from './StudentManagement/ReferenceAndCertificates/ReferenceAndCertificates.component';
+import { LeaveComponent } from './StudentManagement/Leave/Leave.component';
+import { StudentComponent } from './StudentManagement/Student/Student.component';
+import { ThesisDefenseComponent } from './Schedule/ThesisDefense/ThesisDefense.component';
+import { ShowCalendarComponent } from './Schedule/ShowCalendar/ShowCalendar.component';
+import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
+import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
+import { StudentAttachmentComponent } from './StudentManagement/StudentAttachment/StudentAttachment.component';
+import { RegistrationStudentComponent } from './RegistrationStudent/RegistrationStudent.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -36,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
+  { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
@@ -46,6 +58,12 @@ const appRoutes: Routes = [
   { path: 'SequenceStatus/list', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
   { path: 'CreateSequence/list', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
   { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/Seminar/info', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
+  { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -76,6 +94,17 @@ const routerOptions: ExtraOptions = {
     CreateSequenceComponent,
     HomeComponent,
     LoginComponent,
+    ThesisDefenseComponent,
+    ShowCalendarComponent,
+    SeminarComponent,
+    StudentComponent,
+    LeaveComponent,
+    ApplicationFormComponent,
+    RecommendationLetterComponent,
+    ReferenceAndCertificatesComponent,
+    PGTComponent,
+    StudentAttachmentComponent,
+    RegistrationStudentComponent
    ],
   imports: [
     BrowserModule,

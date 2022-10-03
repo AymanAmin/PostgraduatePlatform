@@ -1,3 +1,95 @@
-<p>
-  AddStudent works!
-</p>
+      <div class="card-header">
+        <h5>{{lb_FormTitle}}</h5>
+      </div>
+       <div class="card-body pt-0">
+          <div class="row">
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Category}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-category">
+                  <option value="{{category.Id}}" *ngFor="let category of CategoryList">{{category.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Program}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-program">
+                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Speciality}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-speciality">
+                  <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{speciality.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Phone}}</label>
+              <div class="input-group">
+                <input id="phone" name="phone" class="form-control" type="phone" placeholder="966xxxxxxxxx"
+                  required="required">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_FristName}}</label>
+              <div class="input-group">
+                <input  id="fristname" name="fristname" class="form-control" type="text" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_FatherName}}</label>
+              <div class="input-group">
+                <input  id="fathername" name="fathername" class="form-control" type="text" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_GrandFatherName}}</label>
+              <div class="input-group">
+                <input  id="grandfathername" name="grandfathername" class="form-control" type="text" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_FamilyName}}</label>
+              <div class="input-group">
+                <input  id="familyname" name="familyname" class="form-control" type="text" placeholder=""
+                required="required" autocomplete="false">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Email}}</label>
+              <div class="input-group">
+                <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_RetypeEmail}}</label>
+              <div class="input-group">
+                <input type="retypeemail" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_Citizenship}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-citizenship">
+                  <option value="{{citizenship.Id}}" *ngFor="let citizenship of CitizenshipList">{{citizenship.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-6">
+              <label class="form-label">{{lb_NationalIdNo}}</label>
+              <div class="input-group">
+                <input  id="NationalIdNo" name="NationalIdNo" class="form-control" type="text" placeholder=""
+                  required="required" autocomplete="false">
+              </div>
+            </div>
+          </div>
+          <button class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
+        </div>
+
