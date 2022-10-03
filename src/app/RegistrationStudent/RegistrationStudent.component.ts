@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CkPasswordService } from 'src/app/EmployeeManagement/service/CkPassword.service';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-RegistrationStudent',
@@ -14,11 +15,12 @@ export class RegistrationStudentComponent implements OnInit {
   JobTitle: string = "Software Engineer";
   lb_FormTitle: string = "Student Information";
 
-  constructor(private titleService: Title, private ck_Pass: CkPasswordService) {
+  constructor(private titleService: Title, private ck_Pass: CkPasswordService, private router: Router) {
     this.titleService.setTitle("Registration Student");
   }
 
   ngOnInit() {
+    this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
 
@@ -29,6 +31,16 @@ export class RegistrationStudentComponent implements OnInit {
       block: "start",
       inline: "nearest"
     });
+  }
+  public loadJsFile(url: any) {
+
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(node);
+  }
+  routerEvent() {
+    this.router.navigateByUrl('Login/page');
   }
   // Label Data
 

@@ -14,13 +14,13 @@
       <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
         <div class="col-xl-10 col-lg-10 col-md-10 mx-auto">
           <div class="card z-index-0">
-            <div class="card-header text-center pt-4">
+            <div class="card-header text-center">
               <h5>{{lb_Registration}}</h5>
             </div>
             <div class="card-body">
               <form role="form" class="text-start">
                 <div class="row">
-                  <div class="col-sm-6 col-6">
+                  <div class="col-12 col-md-6">
                     <label class="form-label">{{lb_Category}}</label>
                     <div class="input-group">
                       <select class="form-control" name="choices-gender" id="choices-category">
@@ -28,7 +28,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-6">
+                  <div class="col-12 col-md-6">
                     <label class="form-label">{{lb_Program}}</label>
                     <div class="input-group">
                       <select class="form-control" name="choices-gender" id="choices-program">
@@ -36,7 +36,9 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-6">
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12 col-md-6">
                     <label class="form-label">{{lb_Speciality}}</label>
                     <div class="input-group">
                       <select class="form-control" name="choices-gender" id="choices-speciality">
@@ -51,6 +53,8 @@
                         required="required">
                     </div>
                   </div>
+                </div>
+                <div class="row mt-4">
                   <div class="col-sm-6 col-6">
                     <label class="form-label">{{lb_FristName}}</label>
                     <div class="input-group">
@@ -65,6 +69,8 @@
                         required="required" autocomplete="false">
                     </div>
                   </div>
+                </div>
+                <div class="row mt-4">
                   <div class="col-sm-6 col-6">
                     <label class="form-label">{{lb_GrandFatherName}}</label>
                     <div class="input-group">
@@ -79,6 +85,8 @@
                       required="required" autocomplete="false">
                     </div>
                   </div>
+                </div>
+                <div class="row mt-4">
                   <div class="col-sm-6 col-6">
                     <label class="form-label">{{lb_Email}}</label>
                     <div class="input-group">
@@ -91,6 +99,8 @@
                       <input type="retypeemail" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
                     </div>
                   </div>
+                </div>
+                <div class="row mt-4">
                   <div class="col-sm-6 col-6">
                     <label class="form-label">{{lb_Citizenship}}</label>
                     <div class="input-group">
@@ -102,21 +112,29 @@
                   <div class="col-sm-6 col-6">
                     <label class="form-label">{{lb_NationalIdNo}}</label>
                     <div class="input-group">
-                      <input  id="NationalIdNo" name="NationalIdNo" class="form-control" type="text" placeholder=""
+                      <input  id="NationalIdNo" name="NationalIdNo" class="form-control" type="text" placeholder="{{lb_NationalIdNo}}"
                         required="required" autocomplete="false">
                     </div>
                   </div>
                 </div>
-                <div class="text-center">
-                  <button type="button" class="btn bg-gradient-info w-100 my-4 mb-2">{{lb_Registration}}</button>
+                <div class="row">
+                  <div class="text-center col-sm-2 col-2"></div>
+                  <div class="text-center col-sm-8 col-8">
+                    <button type="button" class="btn bg-gradient-info w-100 my-4 mb-2">{{lb_Registration}}</button>
+                  </div>
+                  <div class="text-center col-sm-2 col-2"></div>
                 </div>
                 <div class="mb-2 position-relative text-center">
                   <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
                     or
                   </p>
                 </div>
-                <div class="text-center">
-                  <button type="button" class="btn bg-gradient-dark w-100 mt-2 mb-4" routerLink="Login/page">{{lb_Signin}}</button>
+                <div class="row">
+                  <div class="text-center col-sm-2 col-2"></div>
+                  <div class="text-center col-sm-8 col-8">
+                    <button type="button" class="btn bg-gradient-dark w-100 mt-2 mb-4" (click)="routerEvent()">{{lb_Signin}}</button>
+                  </div>
+                  <div class="text-center col-sm-2 col-2"></div>
                 </div>
               </form>
             </div>
