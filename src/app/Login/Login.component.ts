@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   LangCode: string = "us-en";
   // Label Data
   lb_Info: any; lb_InfoD: any; lb_Email: any; lb_Password: any; lb_Signup: any;
-  lb_IsActive: any;lb_Save_Change: any; lb_LoginD: any; lb_Active: any;
+  lb_IsActive: any; lb_Save_Change: any; lb_LoginD: any; lb_Active: any; lb_Registration: any;
 
   SeqStatusList: any;
   tatalRecords: any;
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   searchedKeyword: string = "";
 
   constructor(private titleService: Title, private router: Router) {
-    this.titleService.setTitle("List Sequences Status");
+    this.titleService.setTitle("Login Page");
   }
 
   ngOnInit() {
@@ -40,6 +41,10 @@ export class LoginComponent implements OnInit {
     //this.router.navigateByUrl(['']);
   }
 
+  routerEvent() {
+    this.router.navigateByUrl('Student/Registration');
+  }
+
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_Info = "Welcome back";
@@ -49,7 +54,7 @@ export class LoginComponent implements OnInit {
       this.lb_Save_Change = " Sign in";
       this.lb_Active = "Remember me";
       this.lb_LoginD = "Don't have an account?";
-      this.lb_Signup = "Sign up";
+      this.lb_Registration = "Registration";
     }
     else {
       this.lb_Info = "مرحبا بعودتك";
@@ -59,7 +64,7 @@ export class LoginComponent implements OnInit {
       this.lb_Save_Change = "تسجيل الدخول";
       this.lb_Active = "تذكير";
       this.lb_LoginD = "اذا لم يكن لديك حساب؟";
-      this.lb_Signup = "تسجيل الاشتراك";
+      this.lb_Signup = "تسجيل جديد";
     }
   }
 }

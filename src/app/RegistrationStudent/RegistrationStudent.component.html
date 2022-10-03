@@ -1,0 +1,127 @@
+<main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../../../assets/img/curved-images/curved9.jpg');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto">
+            <h1 class="text-white mb-2 mt-5">{{lb_Welcome}}</h1>
+            <p class="text-lead text-white">{{lb_WelcomeD}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+        <div class="col-xl-10 col-lg-10 col-md-10 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+              <h5>{{lb_Registration}}</h5>
+            </div>
+            <div class="card-body">
+              <form role="form" class="text-start">
+                <div class="row">
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Category}}</label>
+                    <div class="input-group">
+                      <select class="form-control" name="choices-gender" id="choices-category">
+                        <option value="{{category.Id}}" *ngFor="let category of CategoryList">{{category.Name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Program}}</label>
+                    <div class="input-group">
+                      <select class="form-control" name="choices-gender" id="choices-program">
+                        <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Speciality}}</label>
+                    <div class="input-group">
+                      <select class="form-control" name="choices-gender" id="choices-speciality">
+                        <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{speciality.Name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Phone}}</label>
+                    <div class="input-group">
+                      <input id="phone" name="phone" class="form-control" type="phone" placeholder="966xxxxxxxxx"
+                        required="required">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_FristName}}</label>
+                    <div class="input-group">
+                      <input  id="fristname" name="fristname" class="form-control" type="text" placeholder="{{lb_FristName}}"
+                        required="required" autocomplete="false">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_FatherName}}</label>
+                    <div class="input-group">
+                      <input  id="fathername" name="fathername" class="form-control" type="text" placeholder="{{lb_FatherName}}"
+                        required="required" autocomplete="false">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_GrandFatherName}}</label>
+                    <div class="input-group">
+                      <input  id="grandfathername" name="grandfathername" class="form-control" type="text" placeholder="{{lb_GrandFatherName}}"
+                        required="required" autocomplete="false">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_FamilyName}}</label>
+                    <div class="input-group">
+                      <input  id="familyname" name="familyname" class="form-control" type="text" placeholder="{{lb_FamilyName}}"
+                      required="required" autocomplete="false">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Email}}</label>
+                    <div class="input-group">
+                      <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_RetypeEmail}}</label>
+                    <div class="input-group">
+                      <input type="retypeemail" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_Citizenship}}</label>
+                    <div class="input-group">
+                      <select class="form-control" name="choices-gender" id="choices-citizenship">
+                        <option value="{{citizenship.Id}}" *ngFor="let citizenship of CitizenshipList">{{citizenship.Name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <label class="form-label">{{lb_NationalIdNo}}</label>
+                    <div class="input-group">
+                      <input  id="NationalIdNo" name="NationalIdNo" class="form-control" type="text" placeholder=""
+                        required="required" autocomplete="false">
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn bg-gradient-info w-100 my-4 mb-2">{{lb_Registration}}</button>
+                </div>
+                <div class="mb-2 position-relative text-center">
+                  <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+                    or
+                  </p>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn bg-gradient-dark w-100 mt-2 mb-4" routerLink="Login/page">{{lb_Signin}}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

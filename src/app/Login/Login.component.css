@@ -4,3 +4,6 @@
 .fixed-plugin-button{
   display: none !important;
 }
+a:hover {
+  cursor: pointer;
+}

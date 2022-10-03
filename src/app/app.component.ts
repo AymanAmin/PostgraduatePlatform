@@ -30,7 +30,7 @@ export class AppComponent {
           this.CurrentParentPage = val.snapshot.url[val.snapshot.url.length - 2];
       }
       if (val instanceof ActivationEnd) {
-        if (val.snapshot.url[0].path === "Login"){
+        if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration"){
           this.IsAdminPage = false;
         }
         else { this.IsAdminPage = true; }
