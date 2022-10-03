@@ -62,6 +62,13 @@ $( document ).ready(function() {
     });
   }
 
+  //editor2
+  if (document.getElementById('editor2')) {
+    var quill = new Quill('#editor2', {
+      theme: 'snow' // Specify theme in configuration
+    });
+  }
+
   //Multiple Choices
   if (document.getElementById('choices-multiple-remove-button')) {
     var element = document.getElementById('choices-multiple-remove-button');
@@ -75,6 +82,20 @@ $( document ).ready(function() {
 
 if (document.getElementById('choices-language')) {
   var language = document.getElementById('choices-language');
+  const example = new Choices(language);
+}
+if (document.getElementById('choices-language2')) {
+  var language = document.getElementById('choices-language2');
+  const example = new Choices(language);
+}
+
+if (document.getElementById('choices-language3')) {
+  var language = document.getElementById('choices-language3');
+  const example = new Choices(language);
+}
+
+if (document.getElementById('choices-language4')) {
+  var language = document.getElementById('choices-language4');
   const example = new Choices(language);
 }
 

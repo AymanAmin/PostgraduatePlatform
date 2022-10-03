@@ -21,6 +21,11 @@ import { HomeComponent } from './Home/Home.component';
 import { CkPasswordService } from './EmployeeManagement/service/CkPassword.service';
 import { StudentListComponent } from './StudentManagement/StudentList/StudentList.component';
 import { ListOrderComponent } from './OrdersManagement/ListOrder/ListOrder.component';
+import { EmailTemplateComponent } from './SystemAdmin/EmailTemplate/EmailTemplate.component';
+import { AddSequenceModelComponent } from './SystemAdmin/AddSequenceModel/AddSequenceModel.component';
+import { AddSquecneStatusComponent } from './SystemAdmin/AddSquecneStatus/AddSquecneStatus.component';
+import { CreateSequenceComponent } from './SystemAdmin/CreateSequence/CreateSequence.component';
+import { LoginComponent } from './Login/Login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -36,11 +41,17 @@ const appRoutes: Routes = [
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
+  { path: 'EmailTemplate/list', component: EmailTemplateComponent, data: { title: 'Email Template' } },
+  { path: 'Sequence/list', component: AddSequenceModelComponent, data: { title: 'Sequence Model' } },
+  { path: 'SequenceStatus/list', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
+  { path: 'CreateSequence/list', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
+  { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
 const routerOptions: ExtraOptions = {
-  anchorScrolling: "enabled"
+  anchorScrolling: "enabled",
+  // onSameUrlNavigation: 'reload'
   //scrollPositionRestoration: "enabled"
 };
 
@@ -59,8 +70,13 @@ const routerOptions: ExtraOptions = {
     TypeLeaveComponent,
     StudentListComponent,
     ProfileEmployeeComponent,
-    HomeComponent
-  ],
+    EmailTemplateComponent,
+    AddSequenceModelComponent,
+    AddSquecneStatusComponent,
+    CreateSequenceComponent,
+    HomeComponent,
+    LoginComponent,
+   ],
   imports: [
     BrowserModule,
     CommonModule,
