@@ -195,27 +195,27 @@
         <app-AddStudent></app-AddStudent>
      </div>
 <!-- Card Student Attachment -->
-     <div class="card mt-4" id="student-attachment">
+     <div *ngIf="IsStudentAttachment" class="card mt-4" id="student-attachment">
       <app-StudentAttachment></app-StudentAttachment>
    </div>
 <!-- Card Application-Form -->
-     <div class="card mt-4" id="application-form">
+     <div *ngIf="IsApplicationForm" class="card mt-4" id="application-form">
         <app-ApplicationForm></app-ApplicationForm>
      </div>
 <!-- Card Leave -->
-     <div class="card mt-4" id="student-leave">
+     <div *ngIf="IsStudentLeave" class="card mt-4" id="student-leave">
         <app-Leave></app-Leave>
      </div>
 <!-- Card Recommendation Letter -->
-     <div class="card mt-4" id="recommendation-letters">
+     <div *ngIf="IsRecommendationLetter" class="card mt-4" id="recommendation-letters">
       <app-RecommendationLetter></app-RecommendationLetter>
      </div>
 <!-- Card Reference And Certificates -->
-     <div class="card mt-4" id="reference-and-certificates">
+     <div *ngIf="IsReferenceAndCertificates" class="card mt-4" id="reference-and-certificates">
        <app-ReferenceAndCertificates></app-ReferenceAndCertificates>
      </div>
 <!-- PG-T -->
-     <div class="card mt-4" id="pg-t">
+     <div *ngIf="IsPGT" class="card mt-4" id="pg-t">
       <app-PG-T></app-PG-T>
      </div>
   </div>
