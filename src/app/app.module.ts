@@ -37,6 +37,7 @@ import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
 import { StudentAttachmentComponent } from './StudentManagement/StudentAttachment/StudentAttachment.component';
 import { RegistrationStudentComponent } from './RegistrationStudent/RegistrationStudent.component';
+import { ViewRequestComponent } from './OrdersManagement/ViewRequest/ViewRequest.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
+  { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
@@ -104,7 +106,8 @@ const routerOptions: ExtraOptions = {
     ReferenceAndCertificatesComponent,
     PGTComponent,
     StudentAttachmentComponent,
-    RegistrationStudentComponent
+    RegistrationStudentComponent,
+    ViewRequestComponent
    ],
   imports: [
     BrowserModule,
