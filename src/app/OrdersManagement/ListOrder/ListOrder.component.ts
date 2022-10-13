@@ -28,9 +28,9 @@ export class ListOrderComponent implements OnInit {
   }
 
   getOrderList(){
-    this.OrderList = [{"Id":1001,"StdName":"Ayman Amin","OrderType":"Vacation Requests","Status":"New","Email":"Ayman@softwarecornerit.com","Date":"13-9-2022","StatusColor":"success","img":"../../../assets/img/team-1.jpg"},
-    {"Id":1002,"StdName":"Amjed Amin","OrderType":"Recommendation Letter","Status":"rejected","Email":"Amjed@softwarecornerit.com","Date":"16-9-2022","StatusColor":"danger","img":"../../../assets/img/team-2.jpg"},
-    {"Id":1003,"StdName":"Mazin Awad","OrderType":"Vacation Requests","Status":"InProgress","Email":"Mazin@softwarecornerit.com","Date":"15-8-2022","StatusColor":"info","img":"../../../assets/img/team-3.jpg"}]
+    this.OrderList = [{ "Id": 1001, "StdName": "Ayman Amin", "OrderType": "Vacation Requests", "Status": "New", "Email": "Ayman@softwarecornerit.com", "Date": "13-9-2022", "StatusColor": "success", "img": "../../../assets/img/team-1.jpg", "routerLink": "/Order/view/" },
+      { "Id": 1002, "StdName": "Amjed Amin", "OrderType": "Recommendation Letter", "Status": "rejected", "Email": "Amjed@softwarecornerit.com", "Date": "16-9-2022", "StatusColor": "danger", "img": "../../../assets/img/team-2.jpg", "routerLink": "/ApplicationForm/View/" },
+      { "Id": 1003, "StdName": "Mazin Awad", "OrderType": "Vacation Requests", "Status": "InProgress", "Email": "Mazin@softwarecornerit.com", "Date": "15-8-2022", "StatusColor": "info", "img": "../../../assets/img/team-3.jpg", "routerLink" :"/Order/view/"}]
   }
 
   SearchForKeyword(Type:any){
