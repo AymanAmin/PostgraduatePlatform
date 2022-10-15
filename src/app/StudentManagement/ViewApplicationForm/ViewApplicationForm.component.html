@@ -10,7 +10,7 @@
                 {{lb_OrderNo}} <b>{{OrderNo}}</b>
               </p>
               <p class="text-sm mb-2">
-                {{lb_OrderType}}: <b>{{OrderType}}</b>
+                {{lb_OrderType}} <b>{{Type}}</b>
               </p>
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-center">
@@ -25,29 +25,29 @@
               <img src="../../assets/img/Profile.jpg" alt="kal" class="border-radius-lg shadow w-100">
             </div>
             <div class="col-5 my-auto mt-0">
-              <p class="h6">Omer Ahmed Ali Alharith</p>
-              <p class="mb-1"><b>omeralharith44@gmail.com</b></p>
-              <span class="badge badge-secondary ms-auto mt-2">+966 55 093 2548</span>
+              <p class="h6">{{StdName}}</p>
+              <p class="mb-1"><b>{{StdEmail}}</b></p>
+              <span class="badge badge-secondary ms-auto mt-2">{{StdPhone}}</span>
             </div>
             <div class="col-5">
               <ul class="list-unstyled mx-auto">
                 <li class="d-flex">
-                  <p class="mb-0">Category:</p>
-                  <p class="h6 ms-auto">Employed elsewhere</p>
+                  <p class="mb-0">{{lb_Category}}</p>
+                  <p class="h6 ms-auto">{{Category}}</p>
                 </li>
                 <li>
                   <hr class="horizontal dark">
                 </li>
                 <li class="d-flex">
-                  <p class="mb-0">Program:</p>
-                  <span class="badge badge-secondary ms-auto">Dentistry</span>
+                  <p class="mb-0">{{lb_Program}}</p>
+                  <span class="badge badge-secondary ms-auto">{{Program}}</span>
                 </li>
                 <li>
                   <hr class="horizontal dark">
                 </li>
                 <li class="d-flex">
-                  <p class="mb-0">Speciality:</p>
-                  <span class="badge badge-success ms-auto">Pedodontics</span>
+                  <p class="mb-0">{{lb_Speciality}}</p>
+                  <span class="badge badge-success ms-auto">{{Speciality}}</span>
                 </li>
               </ul>
             </div>
@@ -58,60 +58,60 @@
           <div class="row">
             <div class="d-flex">
               <h4>
-                <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> Person Information
+                <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_PersonInformation}}
               </h4>
             </div>
             <div class="container p-3">
               <div class="row">
                 <div class="col-6">
-                  <p class="mb-1"><b>Citizen Ship:</b> Saudi</p>
+                  <p class="mb-1"><b>{{lb_CitizenShip}} </b> {{CitizenShip}}</p>
                 </div>
                 <div class="col-6">
-                  <p class="mb-1"><b>National No:</b> 1832-398-349</p>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <div class="row">
-                <div class="col-6">
-                  <p class="mb-1"><b>Issue Date: </b> <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
-                  <small>{{Date}}</small></p>
-                </div>
-                <div class="col-6">
-                  <p class="mb-1"><b>Expiry Date: </b><i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
-                  <small>{{Date}}</small></p>
+                  <p class="mb-1"><b>{{lb_NationalNo}} </b> {{NationalNo}}</p>
                 </div>
               </div>
               <hr class="horizontal dark">
               <div class="row">
                 <div class="col-6">
-                  <p class="mb-1"><b>Date Of Birth: </b> <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
-                    <small>{{Date}}</small>
+                  <p class="mb-1"><b>{{lb_IssueDate}} </b> <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
+                  <small>{{IssueDate}}</small></p>
+                </div>
+                <div class="col-6">
+                  <p class="mb-1"><b>{{lb_ExpiryDate}} </b><i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
+                  <small>{{ExpiryDate}}</small></p>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+              <div class="row">
+                <div class="col-6">
+                  <p class="mb-1"><b>{{lb_DateOfBirth}} </b> <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
+                    <small>{{DateOfBirth}}</small>
                   </p>
                 </div>
                 <div class="col-6">
-                  <p class="mb-1"><b>Place Of Birth: </b> Mecca</p>
+                  <p class="mb-1"><b>{{lb_PlaceOfBirth}} </b> {{PlaceOfBirth}}</p>
                 </div>
               </div>
               <hr class="horizontal dark">
               <div class="row">
                 <div class="col-6">
-                  <p class="mb-1"><b>Marital Status:</b> Marital</p>
+                  <p class="mb-1"><b>{{lb_MaritalStatus}} </b> {{MaritalStatus}}</p>
                 </div>
               </div>
               <hr class="horizontal dark">
             </div>
             <div class="d-flex">
               <h6>
-                <i class="ni ni-square-pin text-dark text-gradient opacity-10 h6" aria-hidden="true"></i> Address
+                <i class="ni ni-square-pin text-dark text-gradient opacity-10 h6" aria-hidden="true"></i> {{lb_Address}}
               </h6>
             </div>
             <div class="d-flex">
               <figure>
                 <blockquote class="blockquote">
-                  <p class="ps-2"><b>Mecca</b>, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer erat a ante.</p>
+                  <p class="ps-2"><b>{{Address}}</b>, {{AddressD}}</p>
                 </blockquote>
                 <figcaption class="blockquote-footer ps-3">
-                  Zip Code <cite title="Source Title">387-3983 </cite>
+                  {{lb_ZipCode}} <cite title="Source Title">{{ZipCode}} </cite>
                 </figcaption>
               </figure>
             </div>
@@ -120,7 +120,7 @@
           <div class="row mt-3">
             <div class="d-flex">
               <h4>
-                <i class="ni ni-folder-17 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> Attachment
+                <i class="ni ni-folder-17 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_Attachment}}
               </h4>
             </div>
             <div class="col-lg-6">
@@ -129,7 +129,7 @@
                   <ul class="list-group">
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Curriculum Vitae</h6>
+                        <h6 class="mb-1 text-dark font-weight-bold text-sm">{{lb_CurriculumVitae}}</h6>
                         <span class="text-xs">30 March 2022</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -140,7 +140,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Personal Photo</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_PersonalPhoto}}</h6>
                         <span class="text-xs">10 February 2021</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -151,7 +151,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Graduation Certificate</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_GraduationCertificate}}</h6>
                         <span class="text-xs">05 April 2020</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -162,7 +162,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Official Academic Record</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_OfficialAcademicRecord}}</h6>
                         <span class="text-xs">24 June 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -173,7 +173,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Saudi Licensure Exam</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_SaudiLicensureExam}}</h6>
                         <span class="text-xs">13 June 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -184,7 +184,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">provisional registration at the saudi commission for health specialties</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_ProvisionalRegistration}}</h6>
                         <span class="text-xs">13 April 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -195,7 +195,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Name Page Of Your   Passport</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_NamePageOfYourPassport}}</h6>
                         <span class="text-xs">13 March 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -214,7 +214,7 @@
                   <ul class="list-group">
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Application Consent Form</h6>
+                        <h6 class="mb-1 text-dark font-weight-bold text-sm">{{lb_ApplicationConsentForm}}</h6>
                         <span class="text-xs">30 March 2022</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -225,7 +225,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">National ID</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_NationalID}}</h6>
                         <span class="text-xs">10 February 2021</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -236,7 +236,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Internship Training Certificate</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_InternshipTrainingCertificate}}</h6>
                         <span class="text-xs">05 April 2020</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -247,7 +247,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">English Proficiency Test Score</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_EnglishProficiencyTestScore}}</h6>
                         <span class="text-xs">24 June 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -258,7 +258,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Personal Statement</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_PersonalStatement}}</h6>
                         <span class="text-xs">13 June 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -269,7 +269,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Letter From Your Sponsor</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_LetterFromYourSponsor}}</h6>
                         <span class="text-xs">13 April 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -280,7 +280,7 @@
                     </li>
                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                       <div class="d-flex flex-column">
-                        <h6 class="text-dark mb-1 font-weight-bold text-sm">Recommendation Letter</h6>
+                        <h6 class="text-dark mb-1 font-weight-bold text-sm">{{lb_RecommendationLetter}}</h6>
                         <span class="text-xs">13 March 2019</span>
                       </div>
                       <div class="d-flex align-items-center text-sm">
@@ -298,7 +298,7 @@
             <hr class="horizontal dark">
             <div class="d-flex mt-2">
               <h4>
-                <i class="ni ni-send text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> Sequence
+                <i class="ni ni-send text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_Sequence}}
               </h4>
             </div>
             <div class="mb-1 pt-3">
@@ -307,11 +307,10 @@
                   <img alt="Image placeholder" class="avatar rounded-circle" src="../../../assets/img/Profile.jpg">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <h6 class="h5 mt-0">Michael Lewis</h6>
-                  <p class="text-sm">I always felt like I could do anything. That’s the main thing people are controlled by!
-                    Thoughts- their perception of themselves!</p>
+                  <h6 class="h5 mt-0">{{SequenceName1}}</h6>
+                  <p class="text-sm">{{SequenceD1}}</p>
                   <div class="d-flex">
-                    <span class="badge badge-success">Approve</span>
+                    <span class="badge badge-success">{{lb_Approve}}</span>
                   </div>
                 </div>
               </div>
@@ -320,11 +319,10 @@
                   <img alt="Image placeholder" class="avatar rounded-circle" src="../../../assets/img/Profile.jpg">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <h6 class="h5 mt-0">Jessica Stones</h6>
-                  <p class="text-sm">Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s
-                    almost impossible to get a pure thought out. It’s like a little kid, a little boy.</p>
+                  <h6 class="h5 mt-0">{{SequenceName2}}</h6>
+                  <p class="text-sm">{{SequenceD2}}</p>
                   <div class="d-flex">
-                    <span class="badge badge-danger">Reject</span>
+                    <span class="badge badge-danger">{{lb_Reject}}</span>
                   </div>
                 </div>
               </div>
@@ -339,8 +337,8 @@
                 </div>
               </div>
               <div class="col-lg-12 col-md-12 col-12 my-auto text-center mt-5 mb-4">
-                <input type="button" value="Approve" class="btn bg-gradient-success mb-0">
-                <input type="button" value="Reject" class="btn bg-gradient-danger mb-0 ms-3">
+                <input type="button" value="{{lb_Approve}}" class="btn bg-gradient-success mb-0">
+                <input type="button" value="{{lb_Reject}}" class="btn bg-gradient-danger mb-0 ms-3">
               </div>
             </div>
           </div>
@@ -352,7 +350,7 @@
       <div class="card mb-4">
         <div class="card-header p-3 pb-0">
           <div class="d-flex justify-content-between align-items-center">
-            <h6 class="mb-3">Track order</h6>
+            <h6 class="mb-3">{{lb_Trackorder}}</h6>
           </div>
           <div class="card-body p-3 pt-0">
             <div class="timeline timeline-one-side">
@@ -361,8 +359,8 @@
                   <i class="ni ni-bell-55 text-secondary"></i>
                 </span>
                 <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Request created</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 AM</p>
+                  <h6 class="text-dark text-sm font-weight-bold mb-0">{{Track1}}</h6>
+                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{TrackDate1}}</p>
                 </div>
               </div>
               <div class="timeline-block mb-3">
@@ -370,8 +368,8 @@
                   <i class="ni ni-ruler-pencil text-primary"></i>
                 </span>
                 <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Generate Request id #100023</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:21 AM</p>
+                  <h6 class="text-dark text-sm font-weight-bold mb-0">{{Track2}}</h6>
+                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{TrackDate2}}</p>
                 </div>
               </div>
               <div class="timeline-block mb-3">
@@ -379,8 +377,8 @@
                   <i class="ni ni-tv-2 text-info text-secondary"></i>
                 </span>
                 <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Request viewed</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 8:10 AM</p>
+                  <h6 class="text-dark text-sm font-weight-bold mb-0">{{Track3}}</h6>
+                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{TrackDate3}}</p>
                 </div>
               </div>
               <div class="timeline-block mb-3">
@@ -388,8 +386,8 @@
                   <i class="ni ni-check-bold text-success text-gradient"></i>
                 </span>
                 <div class="timeline-content">
-                  <h6 class="text-dark text-sm font-weight-bold mb-0">Request Approved</h6>
-                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 4:54 PM</p>
+                  <h6 class="text-dark text-sm font-weight-bold mb-0">{{Track4}}</h6>
+                  <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{TrackDate4}}</p>
                 </div>
               </div>
             </div>
