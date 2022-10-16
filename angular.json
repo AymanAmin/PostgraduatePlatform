@@ -39,6 +39,7 @@
             "scripts": [
               "src/assets/js/core/popper.min.js",
               "src/assets/js/MyScript.js",
+              "src/assets/js/Dir_style.js",
               "src/assets/js/Calender.js",
               "src/assets/js/plugins/perfect-scrollbar.min.js",
               "src/assets/js/plugins/smooth-scrollbar.min.js",

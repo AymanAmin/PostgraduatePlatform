@@ -1,5 +1,5 @@
 <div *ngIf="IsAdminPage">
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white" id="sidenav-main">
+<aside class="{{asideClass}}" id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" routerLink="/" style="text-align: center;">
@@ -13,7 +13,7 @@
         <a class="nav-link " routerLinkActive="active" routerLink="/" >
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center  me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>Dashboard </title>
+              <title>{{Dashboard}} </title>
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                   <g transform="translate(1716.000000, 291.000000)">
@@ -26,17 +26,17 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
+          <span class="{{MenuItem}}">{{Dashboard}}</span>
         </a>
       </li>
-      <li class="nav-item mt-3">
-        <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Employees</h6>
+      <li class="{{CatMainMenu}}">
+        <h6 class="{{CatMenuItem}}">{{Employees}}</h6>
       </li>
       <li class="nav-item">
         <a data-bs-toggle="collapse" href="#emoloyees" class="nav-link " routerLinkActive="active" aria-controls="pagesExamples" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>Employees</title>
+              <title>{{Employees}}</title>
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
                   <g transform="translate(1716.000000, 291.000000)">
@@ -49,7 +49,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Employees</span>
+          <span class="{{MenuItem}}">{{Employees}}</span>
         </a>
         <div class="collapse " routerLinkActive="show" id="emoloyees">
           <ul class="nav ms-4 ps-3">
@@ -85,7 +85,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Schedule</span>
+          <span class="{{MenuItem}}">Schedule</span>
         </a>
         <div class="collapse " routerLinkActive="show" id="Schedule">
           <ul class="nav ms-4 ps-3">
@@ -132,7 +132,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Orders</span>
+          <span class="{{MenuItem}}">Orders</span>
         </a>
         <div class="collapse "  routerLinkActive="show" id="orders">
           <ul class="nav ms-4 ps-3">
@@ -168,7 +168,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Students</span>
+          <span class="{{MenuItem}}">Students</span>
         </a>
         <div class="collapse "  routerLinkActive="show" id="Student">
           <ul class="nav ms-4 ps-3">
@@ -187,8 +187,8 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item mt-3">
-        <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">System Admin</h6>
+      <li class="{{CatMainMenu}}">
+        <h6 class="{{CatMenuItem}}">System Admin</h6>
       </li>
       <li class="nav-item">
         <a data-bs-toggle="collapse" href="#Specialization" class="nav-link" aria-controls="Specialization" role="button"
@@ -217,7 +217,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">System Admin</span>
+          <span class="{{MenuItem}}">System Admin</span>
         </a>
         <div class="collapse " routerLinkActive="show" id="Specialization">
           <ul class="nav ms-4 ps-3">
@@ -273,7 +273,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Sequence</span>
+          <span class="{{MenuItem}}">Sequence</span>
         </a>
         <div class="collapse "  routerLinkActive="show" id="Sequence">
           <ul class="nav ms-4 ps-3">
@@ -323,11 +323,11 @@
 </aside>
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
   <!-- Navbar -->
-  <nav class="navbar-custome navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white" id="navbarBlur" data-scroll="true">
+  <nav class="{{navClass}}" id="navbarBlur" data-scroll="true">
     <div class="container-fluid py-1 px-3">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-          <li class="breadcrumb-item text-sm">
+        <ol class="{{breadcrumbClass}}">
+          <li class="breadcrumb-item text-sm px-2">
             <a class="opacity-3 text-dark" href="javascript:;">
               <svg width="12px" height="12px" class="mb-1" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -349,7 +349,7 @@
         </ol>
         <h6 class="font-weight-bolder mb-0">{{CurrentPage + " "+ CurrentParentPage | uppercase}}</h6>
       </nav>
-      <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none " onclick="menuAction()">
+      <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none mx-5" onclick="menuAction()">
         <a href="javascript:;" class="nav-link text-body p-0">
           <div class="sidenav-toggler-inner">
             <i class="sidenav-toggler-line"></i>
@@ -358,21 +358,18 @@
           </div>
         </a>
       </div>
-      <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-          <div class="input-group">
-            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" placeholder="Type here...">
-          </div>
+      <div class="{{navbarClass}}" id="navbar">
+        <div class="me-md-auto pe-md-3 d-flex align-items-center">
+
         </div>
-        <ul class="navbar-nav  justify-content-end">
+        <ul class="{{loginClass}}">
           <li class="nav-item d-flex align-items-center">
             <a routerLink="Employee/profile" class="nav-link text-body font-weight-bold px-0">
               <i class="fa fa-user me-sm-1"></i>
               <span class="d-sm-inline d-none"> {{ username }}</span>
             </a>
           </li>
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+          <li class="nav-item d-xl-none px-2 d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav" onclick="toggleSidenav()">
               <div class="sidenav-toggler-inner">
                 <i class="sidenav-toggler-line"></i>
@@ -381,12 +378,19 @@
               </div>
             </a>
           </li>
-          <li class="nav-item px-3 d-flex align-items-center">
+          <li class="nav-item px-2 d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-body p-0" (click)="logoutEvent()">
               <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
             </a>
           </li>
-          <li class="nav-item dropdown pe-2 d-flex align-items-center">
+
+          <li class="nav-item px-2 d-flex align-items-center">
+            <a href="javascript:;" class="nav-link text-body p-0" (click)="UpdateLanguage()">
+              <i class="fa fa-globe fixed-plugin-button-nav cursor-pointer"></i>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown px-2 d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-bell cursor-pointer"></i>
             </a>

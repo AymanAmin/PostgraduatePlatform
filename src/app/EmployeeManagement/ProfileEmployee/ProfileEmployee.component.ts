@@ -7,7 +7,7 @@ import { CkPasswordService } from '../service/CkPassword.service';
   styleUrls: ['./ProfileEmployee.component.css']
 })
 export class ProfileEmployeeComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   BasicInfo:boolean = true;
@@ -17,6 +17,7 @@ export class ProfileEmployeeComponent implements OnInit {
   constructor(private ck_Pass: CkPasswordService) { }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem('LangCode');
     this.GetLabelName(this.LangCode);
   }
 
