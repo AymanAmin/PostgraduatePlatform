@@ -11,6 +11,7 @@ export class LeaveComponent implements OnInit {
   JobTitle: string = "Software Engineer";
   lb_FormTitle:string="Student Leave";
   ngOnInit() {
+    this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
 
@@ -21,6 +22,14 @@ export class LeaveComponent implements OnInit {
       block: "start",
       inline: "nearest"
     });
+  }
+
+  public loadJsFile(url: any) {
+
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(node);
   }
 
 

@@ -11,6 +11,7 @@ export class RecommendationLetterComponent implements OnInit {
   lb_FormTitle:string="Recommendation Letter";
 
   ngOnInit() {
+    this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
 
@@ -24,7 +25,13 @@ export class RecommendationLetterComponent implements OnInit {
   }
 
 
+  public loadJsFile(url: any) {
 
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(node);
+  }
 
   // Label Data
    lb_FacultyMember:any; FacultyMemberList:any;lb_Letter:any;lb_SaveChange:any;
