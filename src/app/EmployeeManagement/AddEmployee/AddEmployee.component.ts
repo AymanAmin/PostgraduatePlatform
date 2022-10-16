@@ -6,18 +6,20 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './AddEmployee.component.html',
   styleUrls: ['./AddEmployee.component.css']
 })
+
 export class AddEmployeeComponent implements OnInit {
-  LangCode:string = "us-en";
-  // update omer
+  LangCode:any = "us-en";
 
   constructor(private titleService:Title) {
     this.titleService.setTitle("Add Employee");
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
+
   public loadJsFile(url:any) {
     let node = document.createElement('script');
     node.src = url;
