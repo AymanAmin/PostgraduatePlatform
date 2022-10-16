@@ -69,6 +69,14 @@ $( document ).ready(function() {
     });
   }
 
+   //editor2
+   if (document.getElementById('editor3')) {
+    var quill = new Quill('#editor3', {
+      theme: 'snow' // Specify theme in configuration
+    });
+  }
+
+
   //Multiple Choices
   if (document.getElementById('choices-multiple-remove-button')) {
     var element = document.getElementById('choices-multiple-remove-button');
