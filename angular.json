@@ -49,7 +49,8 @@
               "src/assets/js/plugins/dropzone.min.js",
               "src/assets/js/core/bootstrap.min.js",
               "src/assets/js/soft-ui-dashboard.min.js",
-              "src/assets/js/plugins/fullcalendar.min.js"
+              "src/assets/js/plugins/fullcalendar.min.js",
+              "src/assets/js/plugins/chartjs.min.js"
             ]
           },
           "configurations": {

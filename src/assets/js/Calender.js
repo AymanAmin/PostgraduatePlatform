@@ -1,23 +1,23 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
-  if(document.getElementById("calendar")){
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yyyy = today.getFullYear();
-  today = yyyy+ '-' + mm + '-' +  dd;
-  //console.log(today);
-  var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
-    initialView: "dayGridMonth",
-    headerToolbar: {
-      start: 'title', // will normally be on the left. if RTL, will be on the right
-      center: '',
-      end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
-    },
-    selectable: true,
-    editable: true,
-    initialDate:today,
-    events: [{
+  if (document.getElementById("calendar")) {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    //console.log(today);
+    var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
+      initialView: "dayGridMonth",
+      headerToolbar: {
+        start: 'today prev,next',
+        center: 'title',
+        end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      },
+      selectable: true,
+      editable: true,
+      initialDate: today,
+      events: [{
         title: 'Ahmed Abdo',
         start: '2022-09-26',
         end: '2022-09-26',
@@ -87,32 +87,32 @@ $( document ).ready(function() {
         className: 'bg-gradient-warning'
       },
 
-    ],
-    views: {
-      month: {
-        titleFormat: {
-          month: "long",
-          year: "numeric"
+      ],
+      views: {
+        month: {
+          titleFormat: {
+            month: "long",
+            year: "numeric"
+          }
+        },
+        agendaWeek: {
+          titleFormat: {
+            month: "long",
+            year: "numeric",
+            day: "numeric"
+          }
+        },
+        agendaDay: {
+          titleFormat: {
+            month: "short",
+            year: "numeric",
+            day: "numeric"
+          }
         }
       },
-      agendaWeek: {
-        titleFormat: {
-          month: "long",
-          year: "numeric",
-          day: "numeric"
-        }
-      },
-      agendaDay: {
-        titleFormat: {
-          month: "short",
-          year: "numeric",
-          day: "numeric"
-        }
-      }
-    },
-  });
+    });
 
-  calendar.render();
-}
+    calendar.render();
+  }
 
 });
