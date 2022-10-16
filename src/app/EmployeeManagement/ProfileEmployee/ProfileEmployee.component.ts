@@ -10,6 +10,9 @@ export class ProfileEmployeeComponent implements OnInit {
   LangCode: string = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
+  BasicInfo:boolean = true;
+  ChangePassword:boolean = false;
+  Notification:boolean = false;
 
   constructor(private ck_Pass: CkPasswordService) { }
 
@@ -18,12 +21,31 @@ export class ProfileEmployeeComponent implements OnInit {
   }
 
   goToDiv(DivID: string) {
-    var div = document.getElementById(DivID);
+    if(DivID == "basic-info")
+    {
+      this.BasicInfo = true;
+      this.ChangePassword = false;
+      this.Notification = false;
+    }
+    else if(DivID == "password")
+    {
+      this.BasicInfo = false;
+      this.ChangePassword = true;
+      this.Notification = false;
+    }
+    else if(DivID == "notifications")
+    {
+      this.BasicInfo = false;
+      this.ChangePassword = false;
+      this.Notification = true;
+    }
+
+    /*var div = document.getElementById(DivID);
     div?.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "nearest"
-    });
+    });*/
   }
 
 
