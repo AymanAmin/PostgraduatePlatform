@@ -46,7 +46,7 @@ export class PGTComponent implements OnInit {
       this.lb_thesis_Ar="Thesis(Arabic)";
       this.lb_Supervisor="Supervisor";
       this.lb_CO_Supervisor="CO-Supervisor";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_College="الكلية";

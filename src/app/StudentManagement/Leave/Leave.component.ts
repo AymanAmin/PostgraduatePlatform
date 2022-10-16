@@ -42,7 +42,7 @@ export class LeaveComponent implements OnInit {
       this.lb_To="To";
       this.lb_NoOfDaysLeave="NO Of Days Leave";
       this.lb_Reason="Reason";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_Program = "البرنامج";

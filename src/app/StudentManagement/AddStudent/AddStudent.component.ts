@@ -57,7 +57,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_Citizenship = "Citizen Ship";
       this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
       this.lb_NationalIdNo="National Id No";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_Category = "Applicant Category";

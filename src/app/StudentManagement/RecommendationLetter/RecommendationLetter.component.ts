@@ -33,7 +33,7 @@ export class RecommendationLetterComponent implements OnInit {
       this.lb_FacultyMember="Faculty Member";
       this.FacultyMemberList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_FacultyMember="عضو هيئة التدريس";

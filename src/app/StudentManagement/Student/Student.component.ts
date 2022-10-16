@@ -17,7 +17,8 @@ export class StudentComponent implements OnInit {
   IsStudentLeave:boolean=false;
   IsRecommendationLetter:boolean = false;
   IsReferenceAndCertificates:boolean=false;
-  IsPGT:boolean=false;
+  IsPGT1:boolean=false;IsPGT2:boolean=false;
+  IsPGT3:boolean=false;
 
   ngOnInit() {
     this.GetLabelName(this.LangCode);
@@ -55,10 +56,20 @@ export class StudentComponent implements OnInit {
     else
       this. IsReferenceAndCertificates = false;
 
-    if(DivID == "pg-t")
-      this.IsPGT = true;
+    if(DivID == "pg-t1")
+      this.IsPGT1 = true;
     else
-      this. IsPGT = false;
+      this. IsPGT1 = false;
+
+    if(DivID == "pg-t2")
+      this.IsPGT2 = true;
+    else
+      this. IsPGT2 = false;
+
+    if(DivID == "pg-t3")
+      this.IsPGT3 = true;
+    else
+      this. IsPGT3 = false;
   }
     /*var div = document.getElementById(DivID);
     div?.scrollIntoView({

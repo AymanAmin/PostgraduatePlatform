@@ -34,7 +34,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_Receiver="Receiver";
       this.ReceiverList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_Receiver="الجهه المرسل الية";

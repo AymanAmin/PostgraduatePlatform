@@ -47,7 +47,7 @@ export class StudentAttachmentComponent implements OnInit {
       this.lb_Name_Page_of_Your_Passport="Name Page Of Your Passport";
       this.lb_Recommendation_Letter="Recommendation Letter";
       this.lb_Personal_Photo="Personal Photo";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
       this.lb_Graduation_Certificate="شهادة تخرج";

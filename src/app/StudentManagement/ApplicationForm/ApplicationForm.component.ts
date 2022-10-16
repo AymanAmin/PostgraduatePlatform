@@ -52,7 +52,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_City="City";
       this.lb_ZipCode="Zip Code";
       this.lb_Address="Address";
-      this.lb_SaveChange = "Save";
+      this.lb_SaveChange = "Save Change";
     }
     else {
 
