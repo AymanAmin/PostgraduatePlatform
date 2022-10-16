@@ -32,25 +32,25 @@
                 <h4 class="font-weight-bolder"><span class="small"> </span>48</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('')">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_RequestCertificate}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-T1')">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGT1}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-T2')">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGT2}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-T3')">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGT3}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
@@ -106,12 +106,9 @@
                       <p class="text-sm font-weight-bold mb-0">{{record.Date}}</p>
                     </div>
                   </td>
-                  <td class="align-middle text-end">
-                    <span class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
-                      <i class="fas fa-check" aria-hidden="true"></i>
-                    </span>
-                    <span class="btn btn-icon-only btn-rounded btn-outline-warning mb-0 me-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                  <td class="align-middle text-center">
+                    <span class="btn btn-icon-only mb-0 me-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
+                      <a routerLink="{{record.routerLink}}{{record.Id}}"><i style="font-size: 14px;" class="fa fa-eye" aria-hidden="true"></i></a>
                     </span>
                   </td>
                 </tr>

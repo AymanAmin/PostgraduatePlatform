@@ -37,6 +37,13 @@ import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
 import { StudentAttachmentComponent } from './StudentManagement/StudentAttachment/StudentAttachment.component';
 import { RegistrationStudentComponent } from './RegistrationStudent/RegistrationStudent.component';
+import { ViewRequestComponent } from './OrdersManagement/ViewRequest/ViewRequest.component';
+import { ViewApplicationFormComponent } from './StudentManagement/ViewApplicationForm/ViewApplicationForm.component';
+import { ViewStudentLeaveComponent } from './StudentManagement/ViewStudentLeave/ViewStudentLeave.component';
+import { ViewPGT1Component } from './StudentManagement/ViewPGT1/ViewPGT1.component';
+import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.component';
+import { ViewPGT3Component } from './StudentManagement/ViewPGT3/ViewPGT3.component';
+import { ViewClearanceFormComponent } from './StudentManagement/ViewClearanceForm/ViewClearanceForm.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -49,6 +56,7 @@ const appRoutes: Routes = [
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
+  { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
@@ -64,6 +72,12 @@ const appRoutes: Routes = [
   { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Add Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
+  { path: 'ApplicationForm/View/:id', component: ViewApplicationFormComponent, data: { title: 'View Application Form' } },
+  { path: 'StudentLeave/View/:id', component: ViewStudentLeaveComponent, data: { title: 'View Student Leave' } },
+  { path: 'ClearanceForm/View/:id', component: ViewClearanceFormComponent, data: { title: 'View Clearance Form' } },
+  { path: 'PGT1/View/:id', component: ViewPGT1Component, data: { title: 'PG-T1' } },
+  { path: 'PGT2/View/:id', component: ViewPGT2Component, data: { title: 'PG-T2' } },
+  { path: 'PGT3/View/:id', component: ViewPGT3Component, data: { title: 'PG-T3' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -104,7 +118,14 @@ const routerOptions: ExtraOptions = {
     ReferenceAndCertificatesComponent,
     PGTComponent,
     StudentAttachmentComponent,
-    RegistrationStudentComponent
+    RegistrationStudentComponent,
+    ViewRequestComponent,
+    ViewApplicationFormComponent,
+    ViewStudentLeaveComponent,
+    ViewClearanceFormComponent,
+    ViewPGT1Component,
+    ViewPGT2Component,
+    ViewPGT3Component
    ],
   imports: [
     BrowserModule,

@@ -150,7 +150,7 @@
         </div>
       </div>
       <!-- Card Basic Info -->
-      <div class="card mt-4" id="basic-info">
+      <div class="card mt-4" *ngIf="BasicInfo" id="basic-info">
         <div class="card-header">
           <h5>{{lb_EmpInfo}}</h5>
         </div>
@@ -204,7 +204,7 @@
         </div>
       </div>
       <!-- Card Change Password -->
-      <div class="card mt-4" id="password">
+      <div class="card mt-4" *ngIf="ChangePassword" id="password">
         <div class="card-header">
           <h5>{{lb_ChangePassword}}</h5>
         </div>
@@ -243,7 +243,7 @@
         </div>
       </div>
       <!-- Card Notifications -->
-      <div class="card mt-4" id="notifications">
+      <div class="card mt-4" *ngIf="Notification" id="notifications">
         <div class="card-header">
           <h5>{{lb_GeneralSetting}}</h5>
         </div>
