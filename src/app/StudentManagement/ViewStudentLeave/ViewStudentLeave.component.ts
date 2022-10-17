@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ViewStudentLeaveComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   Date: any;
   OrderNo: string = "";
   OrderTo: string = "";
@@ -47,6 +47,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetOrderInfo();
     this.GetLabelName(this.LangCode);
   }
@@ -88,7 +89,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   lb_Program: any; lb_Category: any; lb_Speciality: any; lb_LeaveDetails: any; lb_TypeLeave: any;
   lb_DayOfLeave: any; lb_DateFrom: any; lb_DateTo: any; lb_Reason: any; lb_Sequence: any; lb_Approve: any;
-  lb_Reject: any; lb_Trackorder: any;
+  lb_Reject: any; lb_Trackorder: any; top_class: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -109,6 +110,7 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Approve = "Approve";
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
+      this.top_class = "ms-auto"
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -116,9 +118,9 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_OrderNo = "رقم الطلب: ";
       this.lb_OrderDate = "تاريخ الطلب: ";
       this.lb_OrderType = "نوع الطلب: ";
-      this.lb_Category = "التصنيف: ";
-      this.lb_Program = "البرنامج: ";
-      this.lb_Speciality = "التخصص: ";
+      this.lb_Category = " التصنيف: ";
+      this.lb_Program = " البرنامج: ";
+      this.lb_Speciality = " التخصص: ";
       this.lb_LeaveDetails = "تفاصيل الإجازة"
       this.lb_TypeLeave = "نوع الاجازة: ";
       this.lb_DayOfLeave = "عدد أيام الاجازة: ";
@@ -129,6 +131,7 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Approve = "قبول";
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
+      this.top_class = "me-auto"
     }
   }
 

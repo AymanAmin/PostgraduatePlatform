@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class CreateSequenceComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   // Label Data
   lb_Info: any; lb_InfoD: any; lb_EngName: any; lb_ArName: any;
   lb_IsActive: any; lb_IsActiveD: any;
@@ -34,6 +34,7 @@ export class CreateSequenceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.getSpeList();
     this.getSeqModel();

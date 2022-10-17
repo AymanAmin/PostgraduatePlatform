@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class EmailTemplateComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   // Label Data
   lb_Info: any; lb_InfoD: any; lb_EngName: any; lb_ArName: any;
   lb_TemplateAr: any; lb_TemplateArD: any; lb_TemplateEn: any; lb_TemplateEnD: any;
@@ -28,6 +28,7 @@ export class EmailTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.getSpeList();
     this.GetLabelName(this.LangCode);

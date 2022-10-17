@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./ViewApplicationForm.component.css']
 })
 export class ViewApplicationFormComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   Date: any;
   OrderNo: string = "";
   OrderTo: string = "";
@@ -52,6 +52,7 @@ export class ViewApplicationFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetOrderInfo();
     this.GetLabelName(this.LangCode);
   }
@@ -102,7 +103,7 @@ export class ViewApplicationFormComponent implements OnInit {
   lb_PersonalPhoto: any; lb_GraduationCertificate: any; lb_OfficialAcademicRecord: any; lb_SaudiLicensureExam: any; lb_ProvisionalRegistration: any;
   lb_NamePageOfYourPassport: any; lb_ApplicationConsentForm: any; lb_NationalID: any; lb_InternshipTrainingCertificate: any; lb_EnglishProficiencyTestScore: any;
   lb_PersonalStatement: any; lb_LetterFromYourSponsor: any; lb_RecommendationLetter: any; lb_Sequence: any; lb_Approve: any;
-  lb_Reject: any; lb_Trackorder: any;
+  lb_Reject: any; lb_Trackorder: any; top_class: any;
   // lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -144,6 +145,7 @@ export class ViewApplicationFormComponent implements OnInit {
       this.lb_Approve = "Approve";
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
+      this.top_class = "ms-auto"
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -184,6 +186,7 @@ export class ViewApplicationFormComponent implements OnInit {
       this.lb_Approve = "قبول";
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
+      this.top_class = "me-auto"
     }
   }
 

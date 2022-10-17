@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class ViewPGT2Component implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   Date: any;
   OrderNo: string = "";
   OrderTo: string = "";
@@ -48,6 +48,7 @@ export class ViewPGT2Component implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetOrderInfo();
     this.GetLabelName(this.LangCode);
   }
@@ -90,7 +91,7 @@ export class ViewPGT2Component implements OnInit {
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   lb_Program: any; lb_Category: any; lb_Speciality: any; lb_PGTDetails: any; lb_COSupervisor: any;
   lb_Supervisor: any; lb_DateFrom: any; lb_DateTo: any; lb_ThesisEnglish: any; lb_ThesisArabic: any; lb_Sequence: any;
-  lb_Approve: any; lb_Reject: any; lb_Trackorder: any;
+  lb_Approve: any; lb_Reject: any; lb_Trackorder: any; top_class: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -112,6 +113,7 @@ export class ViewPGT2Component implements OnInit {
       this.lb_Approve = "Approve";
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
+      this.top_class = "ms-auto"
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -122,7 +124,7 @@ export class ViewPGT2Component implements OnInit {
       this.lb_Category = "التصنيف: ";
       this.lb_Program = "البرنامج: ";
       this.lb_Speciality = "التخصص: ";
-      this.lb_PGTDetails = "PG-T2 تفاصيل"
+      this.lb_PGTDetails = "تفاصيل PG-T2 "
       this.lb_COSupervisor = "مشرف مشارك: ";
       this.lb_Supervisor = "المشرف: ";
       this.lb_DateFrom = "تاريخ: ";
@@ -133,6 +135,7 @@ export class ViewPGT2Component implements OnInit {
       this.lb_Approve = "قبول";
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
+      this.top_class = "me-auto"
     }
   }
 
