@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./ThesisDefense.component.css']
 })
 export class ThesisDefenseComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode:any = "us-en";
   ThesisDefenseList:any;
 
   //Start Pangation and filter
@@ -23,6 +23,7 @@ export class ThesisDefenseComponent implements OnInit {
 
   ngOnInit() {
     this.loadJsFile("assets/js/MyScript.js");
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.LoadThesisDefense();
   }

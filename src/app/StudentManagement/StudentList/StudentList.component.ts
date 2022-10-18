@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./StudentList.component.css']
 })
 export class StudentListComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode: any = "us-en";
   StudentList:any;
 
   //Start Pangation and filter
@@ -24,6 +24,7 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.getStudentList();
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

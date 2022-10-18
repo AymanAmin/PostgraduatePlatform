@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class StudentComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Mazin Awad";
   JobTitle: string = "Computer Science";
 
@@ -21,6 +21,7 @@ export class StudentComponent implements OnInit {
   IsPGT3:boolean=false;
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
 
   }

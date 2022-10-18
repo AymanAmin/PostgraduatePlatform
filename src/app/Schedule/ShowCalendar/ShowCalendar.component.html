@@ -1,14 +1,21 @@
 <div class="container-fluid">
   <div class="row mt-4">
     <div class="col-md-5">
-      <div class="alert alert-warning" role="alert">
+      <div class="alert alert-warning p-2" role="alert">
         <span class="alert-text" style="color: white;"> {{ThisColor}} <strong>{{Seminar}}</strong></span>
       </div>
     </div>
     <div class="col-md-5">
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info p-2" role="alert">
         <span class="alert-text" style="color: white;"> {{ThisColor}} <strong>{{Defanse}}</strong> </span>
       </div>
+    </div>
+    <div class="col-md-2" >
+      <a routerLink="/Schedule/Show" style="margin-left: 75%;"
+        class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center"
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="See traffic channels">
+        <i class="fas fa-info" aria-hidden="true"></i>
+      </a>
     </div>
     <div class="col-md-12">
       <div class="card card-calendar">
@@ -17,6 +24,6 @@
         </div>
       </div>
     </div>
-    <div class="col-12"></div>
+    <div class="col-12 mt-4"></div>
   </div>
 </div>

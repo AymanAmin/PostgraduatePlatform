@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentAttachmentComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   lb_FormTitle:string="Student Attachment";
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Leave.component.css']
 })
 export class LeaveComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   lb_FormTitle:string="Student Leave";
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }

@@ -70,6 +70,11 @@ export class AppComponent {
   CatMainMenu:any = "nav-item mt-3";
   loginClass:any = "justify-content-end navbar-nav";
   Dashboard:any = "Dashboard";Employees:any = "Employees";
+  SystemAdmin:any;Specializations:any;Departments:any;Programs:any;TypesLeave:any;
+  EmailTemplate:any;Sequence:any;ListSequenceModel:any;ListSequenceStatus:any;CreateSequence:any;
+  Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
+  Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
+
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white";
@@ -82,6 +87,30 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "Dashboard";
       this.Employees = "Employees";
+      this.SystemAdmin = "System Admin";
+      this.Specializations = "Specializations";
+      this.Departments = "Departments";
+      this.Programs = "Programs";
+      this.TypesLeave = "Types Leave";
+      this.EmailTemplate = "Email Template";
+      this.Sequence = "Sequence";
+      this.ListSequenceModel = "List Sequence Model";
+      this.ListSequenceStatus = "List Sequence Status";
+      this.CreateSequence = "Create Sequence";
+      this.Needhelp = "Need help?";
+      this.PleaseSendEmail = "Please Send Email";
+      this.Students = "Students";
+      this.Orders = "Orders";
+      this.ShowSchedule = "Show Schedule";
+      this.AddSeminar = "Add Seminar";
+      this.AddDefense = "Add Defense";
+      this.Schedule = "Schedule";
+      this.AddEmployee = "Add Employee";
+      this.ListEmployee = "List Employee";
+      this.AddOrders = "Add Orders";
+      this.ListOrders = "List Orders";
+      this.Profile = "Profile";
+      this.ListStudents = "List Students";
     }
     else {
       this.username = "ايمن امين";
@@ -95,6 +124,30 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "لوحة المعلومات";
       this.Employees = "الموظفين";
+      this.SystemAdmin = "إدارة النظام";
+      this.Specializations = "التخصصات";
+      this.Departments = "الاقسام";
+      this.Programs = "البرامج";
+      this.TypesLeave = "نوع المغادرة";
+      this.EmailTemplate = "قوالب الايميلات";
+      this.Sequence = "التسلسل";
+      this.ListSequenceModel = "قائمة التسلسلات";
+      this.ListSequenceStatus = "حالات التسلسل";
+      this.CreateSequence = "إنشاء تسلسل";
+      this.Needhelp = "هل تحتاج مساعدة ؟";
+      this.PleaseSendEmail = "الرجاء إرسال ايميل";
+      this.Students = "الطلاب";
+      this.Orders = "الطلبات";
+      this.ShowSchedule = "عرض التقويم";
+      this.AddSeminar = "إضافة ندوة";
+      this.AddDefense = "إضافة مناقشة";
+      this.Schedule = "التقويم";
+      this.AddEmployee = "إضافة موظف";
+      this.ListEmployee = "قائمة الموظفين";
+      this.AddOrders= "إضافة طلب";
+      this.ListOrders = "عرض الطلبات";
+      this.Profile = "صفحتي الشخصية";
+      this.ListStudents = "قائمة الطلاب";
     }
   }
 

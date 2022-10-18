@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./PG-T.component.css']
 })
 export class PGTComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   lb_FormTitle:string="PG-T";
@@ -14,6 +14,7 @@ export class PGTComponent implements OnInit {
   lb_PartTwo :string="Part Two";
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

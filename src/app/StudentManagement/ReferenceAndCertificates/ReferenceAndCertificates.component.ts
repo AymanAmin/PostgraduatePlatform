@@ -6,13 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ReferenceAndCertificates.component.css']
 })
 export class ReferenceAndCertificatesComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   lb_FormTitle:string="Reference And Certificates";
 
   ngOnInit() {
     this.loadJsFile("assets/js/MyScript.js");
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./ListEmployee.component.css']
 })
 export class ListEmployeeComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode:any = "us-en";
   UserList:any;
 
   //Start Pangation and filter
@@ -24,6 +24,7 @@ export class ListEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.getUserList();
     this.GetLabelName(this.LangCode);
   }

@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./ViewRequest.component.css']
 })
 export class ViewRequestComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode:any = "us-en";
   Date:any;
   OrderNo:string = "";
   OrderTo:string = "";
@@ -23,6 +23,7 @@ export class ViewRequestComponent implements OnInit {
 
   ngOnInit() {
     this.GetOrderInfo();
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationStudentComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   lb_FormTitle: string = "Student Information";
@@ -21,6 +21,7 @@ export class RegistrationStudentComponent implements OnInit {
 
   ngOnInit() {
     this.loadJsFile("assets/js/MyScript.js");
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

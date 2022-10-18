@@ -7,7 +7,7 @@ import { CkPasswordService } from 'src/app/EmployeeManagement/service/CkPassword
   styleUrls: ['./ApplicationForm.component.css']
 })
 export class ApplicationFormComponent implements OnInit {
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   username: string = "Ayman Amin";
   JobTitle: string = "Software Engineer";
   lb_FormTitle:string="Application Form";
@@ -15,6 +15,7 @@ export class ApplicationFormComponent implements OnInit {
   constructor(private ck_Pass: CkPasswordService) { }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

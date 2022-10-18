@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowCalendarComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   constructor() { }
 
   ngOnInit() {
     this.loadJsFile("assets/js/Calender.js");
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 
@@ -26,12 +27,12 @@ export class ShowCalendarComponent implements OnInit {
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.ThisColor = "This color represents";
+      //this.ThisColor = "This color represents";
       this.Seminar = "Seminar";
       this.Defanse = "Defanse";
     }
     else {
-      this.ThisColor = "هذا اللون يمثل";
+      //this.ThisColor = "هذا اللون يمثل";
       this.Seminar = "سمنار";
       this.Defanse = "مناقشة";
     }

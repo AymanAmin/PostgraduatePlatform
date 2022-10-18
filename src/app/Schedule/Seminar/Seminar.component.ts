@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./Seminar.component.css']
 })
 export class SeminarComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode:any = "us-en";
 
   constructor(private titleService:Title) {
     this.loadJsFile("assets/js/MyScript.js");
@@ -22,6 +22,7 @@ export class SeminarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
   }
 

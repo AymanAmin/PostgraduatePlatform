@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./ListOrder.component.css']
 })
 export class ListOrderComponent implements OnInit {
-  LangCode:string = "us-en";
+  LangCode:any = "us-en";
   OrderList:any;
 
   //Start Pangation and filter
@@ -23,6 +23,7 @@ export class ListOrderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.getOrderList();
     this.GetLabelName(this.LangCode);
   }

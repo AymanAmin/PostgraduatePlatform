@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  LangCode: string = "us-en";
+  LangCode: any = "us-en";
   // Label Data
   lb_Info: any; lb_InfoD: any; lb_Email: any; lb_Password: any; lb_Signup: any;
   lb_IsActive: any; lb_Save_Change: any; lb_LoginD: any; lb_Active: any; lb_Registration: any;
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
   }
