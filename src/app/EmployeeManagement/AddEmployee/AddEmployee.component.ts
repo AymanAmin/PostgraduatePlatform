@@ -16,6 +16,10 @@ export class AddEmployeeComponent implements OnInit {
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
+
+  btn_spinner:any;
+  btn_status:boolean = false;
+
   EmployeeForm: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
@@ -29,7 +33,10 @@ export class AddEmployeeComponent implements OnInit {
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
-    this.getData();
+    if(this.GN_Code)
+      this.getData();
+
+      this.UpdateButtonSpinner(false);
   }
 
   public loadJsFile(url: any) {
@@ -45,13 +52,13 @@ export class AddEmployeeComponent implements OnInit {
 
   CreateForm() {
     this.EmployeeForm = new FormGroup({
-      Name_Ar: new FormControl(null, [Validators.required]),
+      Name_Ar: new FormControl('', [Validators.required]),
       Name_En: new FormControl(null, [Validators.required]),
       PhoneNo: new FormControl(null, [Validators.required]),
       Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       Gender: new FormControl(null, [Validators.required]),
-      JobTitle: new FormControl(null, [Validators.required]),
-      Username: new FormControl(null),
+      JobTitle: new FormControl('Software', [Validators.required]),
+      Username: new FormControl(null,[Validators.required,Validators.minLength(5),Validators.maxLength(10)]),
       Password: new FormControl(null),
       PasswordConfirm: new FormControl(null),
       UILanguage: new FormControl("en-us"),
@@ -91,8 +98,9 @@ export class AddEmployeeComponent implements OnInit {
     }
   }
 
-  OnSubmit() {
-    console.log(this.EmployeeForm.value);
+  OnSubmit(IsDeleted:boolean) {
+    this.UpdateButtonSpinner(true);
+    //console.log(this.EmployeeForm.value);
     var formData: any = new FormData();
     formData.append("GN_Code", this.GN_Code);
     formData.append("Name_Ar", this.EmployeeForm.get('Name_Ar')?.value);
@@ -107,7 +115,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.append("BriefSummary", this.EmployeeForm.get('BriefSummary')?.value);
     formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
     formData.append("IsActive", this.IsActive);
-    formData.append("IsDeleted", "false");
+    formData.append("IsDeleted", IsDeleted);
 
     this.http.post(environment.baseUrl + '/API/EmployeeManagment/Set/EmlpoyeeInfo.ashx', formData).subscribe(
       (response) => {
@@ -115,14 +123,31 @@ export class AddEmployeeComponent implements OnInit {
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
           this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnInfo")?.click();
         }
         else {
           this.IsShowMessageUpdate = false;
           this.IsShowMessageError = true;
         }
       },
-      (error) => console.log(error)
+      (error) => {
+        document.getElementById("btnInfo")?.click();
+        console.log(error);
+      }
     )
+  }
+
+  UpdateButtonSpinner(IsLoading: boolean) {
+    console.log("spinner: " + IsLoading);
+    if (IsLoading) {
+      this.btn_spinner = "<span class='spinner-border spinner-border-sm mx-2' role='status' aria-hidden='true'></span>  "+ this.lb_Loading;
+      this.btn_status = false;
+    }
+    else {
+      this.btn_spinner = "<span>" + this.lb_Save_Change + "</span>";
+      this.btn_status = true;
+    }
   }
 
   // Label Data
@@ -130,7 +155,7 @@ export class AddEmployeeComponent implements OnInit {
   lb_EmpEmail: any; lb_EmpGender: any; lb_EmpSection: any; lb_JobTitle: any;
   lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;
   lb_EmpUserName: any; lb_EmpPassword: any; lb_EmpCPassword: any; lb_Language: any;
-  lb_Save_Change: any; lb_Cancel: any;
+  lb_Save_Change: any; lb_Cancel: any;Erorr_username: any;lb_Loading:any;
 
   GenderList: any;
 
@@ -155,6 +180,8 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Language = "UI Language";
       this.lb_Save_Change = "Save Change";
       this.lb_Cancel = "Cancel";
+      this.Erorr_username = "Please Check the username length.";
+      this.lb_Loading = "Loading";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -176,6 +203,8 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Language = "اللغة الشاشات";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
+      this.Erorr_username = "الرجاء التحقق من طول كلمة المرور.";
+      this.lb_Loading = "جاري التحميل";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }

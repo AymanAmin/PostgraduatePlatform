@@ -474,3 +474,71 @@
 <div *ngIf="!IsAdminPage">
   <router-outlet></router-outlet>
 </div>
+
+<!-- Start button notify -->
+<div class="row" style="display: none;">
+  <div class="col-lg-3 col-sm-6 col-12">
+      <button class="btn bg-gradient-success w-100 mb-0 toast-btn" id="btnSuccess" type="button" data-target="successToast">Success Notification</button>
+  </div>
+  <div class="col-lg-3 col-sm-6 col-12 mt-sm-0 mt-2">
+      <button class="btn bg-gradient-info w-100 mb-0 toast-btn" id="btnInfo" type="button" data-target="infoToast">Info Notification</button>
+  </div>
+  <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
+      <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" id="btnWarning" type="button" data-target="warningToast">Warning Notification</button>
+  </div>
+  <div class="col-lg-3 col-sm-6 col-12 mt-lg-0 mt-2">
+      <button class="btn bg-gradient-danger w-100 mb-0 toast-btn" id="btnDanger" type="button" data-target="dangerToast">Danger Notification</button>
+  </div>
+</div>
+<!-- End button notify -->
+
+<div class="position-fixed top-1 end-2 z-index-sticky">
+  <div class="toast fade hide p-2 bg-white" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
+      <div class="toast-header border-0">
+          <i class="ni ni-check-bold text-success me-2"></i>
+          <span class="me-auto font-weight-bold">Header Message</span>
+          <!-- <small class="text-white">Body Massage</small> -->
+          <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+      </div>
+      <hr class="horizontal dark m-0">
+      <div class="toast-body">
+        Body Massage : Passing HTML into my component
+      </div>
+  </div>
+  <div class="toast fade hide p-2 mt-2 bg-gradient-info" role="alert" aria-live="assertive" id="infoToast" aria-atomic="true">
+      <div class="toast-header bg-transparent border-0">
+          <i class="ni ni-bell-55 text-white me-2"></i>
+          <span class="me-auto text-white font-weight-bold">Header Message</span>
+          <!-- <small class="text-white">Body Massage</small> -->
+          <i class="fas fa-times text-md text-white ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+      </div>
+      <hr class="horizontal light m-0">
+      <div class="toast-body text-white">
+        Body Massage : Passing HTML into my component
+      </div>
+  </div>
+  <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="warningToast" aria-atomic="true">
+      <div class="toast-header border-0">
+          <i class="ni ni-spaceship text-warning me-2"></i>
+          <span class="me-auto font-weight-bold">Header Message</span>
+          <!-- <small class="text-white">Body Massage</small> -->
+          <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+      </div>
+      <hr class="horizontal dark m-0">
+      <div class="toast-body">
+        Body Massage : Passing HTML into my component
+      </div>
+  </div>
+  <div class="toast fade hide p-2 mt-2 bg-white" role="alert" aria-live="assertive" id="dangerToast" aria-atomic="true">
+      <div class="toast-header border-0">
+          <i class="ni ni-notification-70 text-danger me-2"></i>
+          <span class="me-auto text-gradient text-danger font-weight-bold">Header Message</span>
+          <!-- <small class="text-white">Body Massage</small> -->
+          <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+      </div>
+      <hr class="horizontal dark m-0">
+      <div class="toast-body">
+        Body Massage : Passing HTML into my component
+      </div>
+  </div>
+</div>

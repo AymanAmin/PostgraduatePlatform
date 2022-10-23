@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class ListEmployeeComponent implements OnInit {
   LangCode:any = "us-en";
   UserList:any;
+  //Omer
 
   //Start Pangation and filter
   // npm install ngx-pagination --save
@@ -41,7 +42,7 @@ export class ListEmployeeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.UserList = JSON.parse(jsonInfo);
-        console.log(this.UserList[0]);
+        //console.log(this.UserList[0]);
       }
     )
   }
