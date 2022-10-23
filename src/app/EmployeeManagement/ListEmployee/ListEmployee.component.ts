@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ListEmployee',
@@ -19,7 +21,7 @@ export class ListEmployeeComponent implements OnInit {
   searchedKeyword:string = "";
   //End Pangation and filter
 
-  constructor(private titleService:Title,private router: Router) {
+  constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("List Employee");
   }
 
@@ -35,10 +37,15 @@ export class ListEmployeeComponent implements OnInit {
   lb_Date:any;lb_Id:any;lb_Search:any;lb_SearchD:any;
 
   getUserList(){
-    this.UserList = [{"Id":1001,"Name":"Ayman Amin","JobTitle":"Software","Status":"Active","Email":"Ayman@softwarecornerit.com","Date":"13-9-2022","StatusColor":"bg-info","img":"../../../assets/img/team-1.jpg"},
-    {"Id":1002,"Name":"Amjed Amin","JobTitle":"Accounting","Status":"Not Active","Email":"Amjed@softwarecornerit.com","Date":"16-9-2022","StatusColor":"bg-warning","img":"../../../assets/img/team-2.jpg"},
-    {"Id":1003,"Name":"Mazin Awad","JobTitle":"Software","Status":"Active","Email":"Mazin@softwarecornerit.com","Date":"15-8-2022","StatusColor":"bg-info","img":"../../../assets/img/team-3.jpg"}]
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.UserList = JSON.parse(jsonInfo);
+        console.log(this.UserList[0]);
+      }
+    )
   }
+
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){

@@ -14,7 +14,7 @@ export class ThesisDefenseComponent implements OnInit {
   tatalRecords: any;
   page:number = 1;
   searchedKeyword:string = "";
-  PerPage:number = 10;
+  PerPage:number = 2;
   //End Pangation and filter
 
   constructor(private titleService:Title) {
@@ -22,10 +22,10 @@ export class ThesisDefenseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.LoadThesisDefense();
     this.loadJsFile("assets/js/MyScript.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
-    this.LoadThesisDefense();
   }
 
   LoadThesisDefense(){

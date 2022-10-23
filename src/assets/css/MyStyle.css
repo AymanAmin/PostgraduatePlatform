@@ -2,3 +2,26 @@
   padding-top: 1.5rem !important;
   padding-bottom: 20.5rem !important;
 }
+
+:lang(ar) body,
+:lang(ar) h1,
+:lang(ar) h2,
+:lang(ar) h3,
+:lang(ar) h4,
+:lang(ar) h5,
+:lang(ar) h6,
+:lang(ar) p,
+:lang(ar) a,
+:lang(ar) li {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: medium !important;
+}
+
+:lang(ar) .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
+  margin-left: 0 !important;
+}
+
+.rtl-dir {
+  direction: rtl !important;
+}
+

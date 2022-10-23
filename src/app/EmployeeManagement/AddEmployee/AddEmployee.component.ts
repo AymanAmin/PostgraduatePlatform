@@ -1,5 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-AddEmployee',
@@ -8,9 +12,15 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class AddEmployeeComponent implements OnInit {
-  LangCode:any = "us-en";
+  LangCode: any = "us-en";
+  IsShowMessageUpdate: boolean = false;
+  IsShowMessageInsert: boolean = false;
+  IsShowMessageError: boolean = false;
+  EmployeeForm: FormGroup = new FormGroup({});
+  IsReady: boolean = false; IsActive: boolean = false;
+  GN_Code: string = this.route.snapshot.params['id'];
 
-  constructor(private titleService:Title) {
+  constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Add Employee");
   }
 
@@ -18,29 +28,118 @@ export class AddEmployeeComponent implements OnInit {
     this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
+    this.CreateForm();
+    this.getData();
   }
 
-  public loadJsFile(url:any) {
+  public loadJsFile(url: any) {
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
     document.getElementsByTagName('body')[0].appendChild(node);
   }
 
+  ActiveValue(IsActive: any) {
+    this.IsActive = IsActive.checked;
+  }
+
+  CreateForm() {
+    this.EmployeeForm = new FormGroup({
+      Name_Ar: new FormControl(null, [Validators.required]),
+      Name_En: new FormControl(null, [Validators.required]),
+      PhoneNo: new FormControl(null, [Validators.required]),
+      Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      Gender: new FormControl(null, [Validators.required]),
+      JobTitle: new FormControl(null, [Validators.required]),
+      Username: new FormControl(null),
+      Password: new FormControl(null),
+      PasswordConfirm: new FormControl(null),
+      UILanguage: new FormControl("en-us"),
+      BriefSummary: new FormControl(null),
+      IsActive: new FormControl(false)
+    });
+  }
+
+  getData() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmlpoyeeInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        let MainInfoData = JSON.parse(jsonInfo);
+        this.fillData(MainInfoData);
+      }
+    )
+  }
+
+  fillData(EmployeeData: any) {
+    console.log(EmployeeData);
+    if (EmployeeData) {
+      this.IsActive = EmployeeData.IsActive;
+      this.EmployeeForm.patchValue({
+        Name_Ar: EmployeeData.Name_Ar,
+        Name_En: EmployeeData.Name_En,
+        PhoneNo: EmployeeData.PhoneNo,
+        Email: EmployeeData.Email,
+        Gender: EmployeeData.Gender,
+        JobTitle: EmployeeData.JobTitle,
+        Username: EmployeeData.Credential.Username,
+        Password: EmployeeData.Credential.Password,
+        UILanguage: EmployeeData.Credential.UILanguage,
+        PasswordConfirm: EmployeeData.Credential.Password,
+        BriefSummary: EmployeeData.BriefSummary,
+        IsActive: EmployeeData.Credential.IsActive
+      });
+    }
+  }
+
+  OnSubmit() {
+    console.log(this.EmployeeForm.value);
+    var formData: any = new FormData();
+    formData.append("GN_Code", this.GN_Code);
+    formData.append("Name_Ar", this.EmployeeForm.get('Name_Ar')?.value);
+    formData.append("Name_En", this.EmployeeForm.get('Name_En')?.value);
+    formData.append("PhoneNo", this.EmployeeForm.get('PhoneNo')?.value);
+    formData.append("Email", this.EmployeeForm.get('Email')?.value);
+    formData.append("Gender", this.EmployeeForm.get('Gender')?.value);
+    formData.append("JobTitle", this.EmployeeForm.get('JobTitle')?.value);
+    formData.append("Username", this.EmployeeForm.get('Username')?.value);
+    formData.append("Password", this.EmployeeForm.get('Password')?.value);
+    formData.append("PasswordConfirm", this.EmployeeForm.get('PasswordConfirm')?.value);
+    formData.append("BriefSummary", this.EmployeeForm.get('BriefSummary')?.value);
+    formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
+    formData.append("IsActive", this.IsActive);
+    formData.append("IsDeleted", "false");
+
+    this.http.post(environment.baseUrl + '/API/EmployeeManagment/Set/EmlpoyeeInfo.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          this.IsShowMessageUpdate = true;
+          this.IsShowMessageError = false;
+          this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+        }
+        else {
+          this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
+        }
+      },
+      (error) => console.log(error)
+    )
+  }
+
   // Label Data
-  lb_EmpInfo:any;lb_EmpDetails:any;lb_EmpName:any;lb_EmpPhone:any;
-  lb_EmpEmail:any;lb_EmpGender:any;lb_EmpSection:any;lb_JobTitle:any;
-  lb_EmpIsActive:any;lb_EmpIsActiveD:any;lb_EmpBrief:any;lb_EmpBriefD:any;
-  lb_EmpUserName:any;lb_EmpPassword:any;lb_EmpCPassword:any;lb_Language:any;
-  lb_Save_Change:any;lb_Cancel:any;
+  lb_EmpInfo: any; lb_EmpDetails: any; lb_EmpName: any; lb_EmpNameEn: any; lb_EmpPhone: any;
+  lb_EmpEmail: any; lb_EmpGender: any; lb_EmpSection: any; lb_JobTitle: any;
+  lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;
+  lb_EmpUserName: any; lb_EmpPassword: any; lb_EmpCPassword: any; lb_Language: any;
+  lb_Save_Change: any; lb_Cancel: any;
 
-  GenderList :any;
+  GenderList: any;
 
-  GetLabelName(LangCode:any){
-    if(LangCode == "us-en"){
+  GetLabelName(LangCode: any) {
+    if (LangCode == "us-en") {
       this.lb_EmpInfo = "Employee Info";
       this.lb_EmpDetails = "Please fill all details for the employee";
-      this.lb_EmpName = "Full Name";
+      this.lb_EmpName = "Full Name Arabic";
+      this.lb_EmpNameEn = "Full Name English";
       this.lb_EmpPhone = "Phone No";
       this.lb_EmpEmail = "E-mail";
       this.lb_EmpGender = "Gender";
@@ -56,12 +155,13 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Language = "UI Language";
       this.lb_Save_Change = "Save Change";
       this.lb_Cancel = "Cancel";
-      this.GenderList = [{"Id":1,"Name":"Female"},{"Id":2,"Name":"Male"}];
+      this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
-    else{
+    else {
       this.lb_EmpInfo = "بيانات الموظف";
       this.lb_EmpDetails = "الرجاء تعبئة جميع بيانات الموظف";
-      this.lb_EmpName = "إسم بالكامل";
+      this.lb_EmpName = "إسم بالكامل بالعربي";
+      this.lb_EmpNameEn = "إسم بالكامل بالنجليزي";
       this.lb_EmpPhone = "رقم الجوال";
       this.lb_EmpEmail = "البريد الاكتروني";
       this.lb_EmpGender = "الجنس";
@@ -76,7 +176,7 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Language = "اللغة الشاشات";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
-      this.GenderList = [{"Id":1,"Name":"انثى"},{"Id":2,"Name":"ذكر"}];
+      this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }
 

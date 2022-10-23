@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link " routerLinkActive="active" routerLink="/" >
+        <a class="nav-link {{dashboard_Active}}" routerLink="/" >
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center  me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>{{Dashboard}} </title>
@@ -33,7 +33,7 @@
         <h6 class="{{CatMenuItem}}">{{Employees}}</h6>
       </li>
       <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#emoloyees" class="nav-link " routerLinkActive="active" aria-controls="pagesExamples" role="button" aria-expanded="false">
+        <a data-bs-toggle="collapse" href="#emoloyees" class="nav-link {{emp_Active}}" aria-controls="pagesExamples" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>{{Employees}}</title>
@@ -69,7 +69,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#Schedule" class="nav-link " routerLinkActive="active" aria-controls="Schedule" role="button" aria-expanded="false">
+        <a data-bs-toggle="collapse" href="#Schedule" class="nav-link {{schedule_Active}}"  aria-controls="Schedule" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>{{Schedule}}</title>
@@ -116,7 +116,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#orders" class="nav-link " routerLinkActive="active" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+        <a data-bs-toggle="collapse" href="#orders" class="nav-link {{order_Active}}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>{{Orders}}</title>
@@ -321,7 +321,7 @@
     </div>
   </div>
 </aside>
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+<main class="{{mainClass}}">
   <!-- Navbar -->
   <nav class="{{navClass}}" id="navbarBlur" data-scroll="true">
     <div class="container-fluid py-1 px-3">

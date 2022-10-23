@@ -102,10 +102,10 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="{{user.img}}" class="avatar avatar-sm me-3" alt="avatar image">
+                      <img src="{{user.img}}../../../assets/img/team-1.jpg" class="avatar avatar-sm me-3" alt="avatar image">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{user.Name}}</h6>
+                      <h6 class="mb-0 text-sm">{{user.Name_En}}</h6>
                     </div>
                   </div>
                 </td>
@@ -114,18 +114,18 @@
                 </td>
                 <td>
                   <span class="badge badge-dot me-4">
-                    <i class="{{user.StatusColor}}"></i>
-                    <span class="text-dark text-xs">{{user.Status}}</span>
+                    <i class="{{user.IsDeleted == true?'bg-danger':'bg-info'}}"></i>
+                    <span class="text-dark text-xs">{{user.IsDeleted == true?'Deleted':'Available'}}</span>
                   </span>
                 </td>
                 <td class="align-middle text-center text-sm">
                   <p class="text-secondary mb-0 text-sm">{{user.Email}}</p>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-sm">{{user.Date}}</span>
+                  <span class="text-secondary text-sm">{{user.DateCreation | date}}</span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{user.Id}}" id="{{user.Id}}" >{{user.Id}}</a></span>
+                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{user.GN_Code}}" id="{{user.Id}}" >{{user.Id}}</a></span>
                 </td>
               </tr>
             </tbody>

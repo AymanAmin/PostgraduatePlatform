@@ -1,32 +1,36 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12 col-12 mx-auto">
-      <div class="card card-body mt-4">
+      <form class="card card-body mt-4" [formGroup]="EmployeeForm" (ngSubmit)="OnSubmit()">
         <h6 class="mb-0">{{lb_EmpInfo}}</h6>
         <p class="text-sm mb-0">{{lb_EmpDetails}}</p>
         <hr class="horizontal dark my-3">
         <div class="row">
-          <div class="col-12 col-md-8">
-            <label for="va_EmpName" class="form-label">{{lb_EmpName}}</label>
-            <input type="text" class="form-control" id="va_EmpName">
+          <div class="col-12 col-md-4">
+            <label for="Name_Ar" class="form-label">{{lb_EmpName}}</label>
+            <input type="text" class="form-control" formControlName="Name_Ar">
           </div>
           <div class="col-12 col-md-4">
-            <label for="va_EmpPhone" class="form-label">{{lb_EmpPhone}}</label>
-            <input type="phone" placeholder="9665xxxxxxxx" class="form-control" id="va_EmpPhone">
+            <label for="Name_En" class="form-label">{{lb_EmpNameEn}}</label>
+            <input type="text" class="form-control" formControlName="Name_En">
           </div>
           <div class="col-12 col-md-4">
-            <label for="va_EmpEmail" class="form-label">{{lb_EmpEmail}}</label>
-            <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+            <label for="PhoneNo" class="form-label">{{lb_EmpPhone}}</label>
+            <input type="phone" placeholder="9665xxxxxxxx" class="form-control" formControlName="PhoneNo">
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="Email" class="form-label">{{lb_EmpEmail}}</label>
+            <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" formControlName="Email">
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_EmpGender}}</label>
-            <select class="form-control" name="choices-language" id="choices-language">
+            <select class="form-control" name="choices-language" formControlName="Gender">
               <option value="{{gender.Id}}" *ngFor="let gender of GenderList">{{gender.Name}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_JobTitle}}</label>
-            <select class="form-control" name="choices-language" id="choices-language">
+            <select class="form-control" name="choices-language" formControlName="JobTitle">
               <option value="Software">Software</option>
               <option value="Doctor">Doctor</option>
             </select>
@@ -42,22 +46,22 @@
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Language}}</label>
-            <select class="form-control" name="choices-language" id="choices-language">
+            <select class="form-control" name="choices-language" formControlName="UILanguage">
               <option value="en-us">English</option>
               <option value="ar-sa">عربي</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
-            <label for="va_EmpUserName" class="form-label">{{lb_EmpUserName}}</label>
-            <input type="text" class="form-control" id="va_EmpUserName">
+            <label for="Username" class="form-label">{{lb_EmpUserName}}</label>
+            <input type="text" class="form-control" formControlName="Username">
           </div>
           <div class="col-12 col-md-4">
-            <label for="va_EmpPassword" class="form-label">{{lb_EmpPassword}}</label>
-            <input type="password" placeholder="*******" class="form-control" id="va_EmpPassword">
+            <label for="Password" class="form-label">{{lb_EmpPassword}}</label>
+            <input type="password" placeholder="*******" class="form-control" formControlName="Password">
           </div>
           <div class="col-12 col-md-4">
-            <label for="va_EmpCPassword" class="form-label">{{lb_EmpCPassword}}</label>
-            <input type="password" placeholder="*******" class="form-control" id="va_EmpCPassword">
+            <label for="PasswordConfirm" class="form-label">{{lb_EmpCPassword}}</label>
+            <input type="password" placeholder="*******" class="form-control" formControlName="PasswordConfirm">
           </div>
 
         </div>
@@ -71,28 +75,26 @@
                 {{lb_EmpIsActiveD}}
               </p>
               <div class="form-check form-switch ms-1">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
-                  data-type="warning"
-                  data-content="Once a project is made private, you cannot revert it to a public project."
-                  data-title="Warning" data-icon="ni ni-bell-55">
-                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                <input class="form-check-input" type="checkbox" (change)="ActiveValue($event.target)" formControlName="IsActive" value="true" />
               </div>
             </div>
           </div>
         </div>
         <label class="mt-4">{{lb_EmpBrief}}</label>
+        <input type="hidden" class="form-control" formControlName="BriefSummary">
         <p class="form-text text-muted text-xs ms-1">
           {{lb_EmpBriefD}}
         </p>
+
         <div id="editor">
           <!-- Data -->
         </div>
 
         <div class="d-flex justify-content-end mt-4">
           <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
-          <button type="button" name="button" class="btn bg-gradient-success m-0 ms-2">{{lb_Save_Change}}</button>
+          <button type="submit" [disabled]="!(EmployeeForm.valid)" name="button" class="btn bg-gradient-success m-0 ms-2">{{lb_Save_Change}}</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <footer class="footer pt-3  ">

@@ -15,19 +15,40 @@ export class AppComponent {
   CurrentParentPage: any = "";
   username: string = "Ayman Amin";
   LangCode: any = "en-us";
-  constructor(private router: Router) {
+  emp_Active:any;schedule_Active:any;dashboard_Active:any;order_Active:any;
+  student_Active:any;
 
-  }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    var Path = window.location.pathname;
+    const myArray = Path.split("/");
+    console.log("path:" + myArray[1]);
+    if (myArray[1] == "")
+      this.dashboard_Active = "active";
+    else if (myArray[1] == "Employee")
+      this.emp_Active = "active";
+    else if (myArray[1] == "Schedule")
+      this.schedule_Active = "active";
+    else if (myArray[1] == "Order")
+      this.order_Active = "active";
+      else if (myArray[1] == "Order")
+      this.emp_Active = "active";
+      else if (myArray[1] == "Student")
+      this.student_Active = "active";
+      else if (myArray[1] == "Order")
+      this.emp_Active = "active";
+
+
     //Page name in navbar
     this.router.events.subscribe((val) => {
 
       if (val instanceof ActivationEnd) {
         if (val.snapshot.url.length >= 1)
-          this.CurrentPage = val.snapshot.url[val.snapshot.url.length - 1];
+          this.CurrentPage = val.snapshot.url[1];
         if (val.snapshot.url.length >= 2)
-          this.CurrentParentPage = val.snapshot.url[val.snapshot.url.length - 2];
+          this.CurrentParentPage = val.snapshot.url[0];
       }
       if (val instanceof ActivationEnd) {
         if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration") {
@@ -67,6 +88,7 @@ export class AppComponent {
   navClass:any = "navbar-custome navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
   CatMenuItem:any = "ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6";
   navbarClass:any = "collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4";
+  mainClass:any = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
   CatMainMenu:any = "nav-item mt-3";
   loginClass:any = "justify-content-end navbar-nav";
   Dashboard:any = "Dashboard";Employees:any = "Employees";
@@ -77,6 +99,7 @@ export class AppComponent {
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white";
       this.MenuItem = "nav-link-text ms-1";
       this.navClass = "navbar-custome navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
@@ -114,7 +137,8 @@ export class AppComponent {
     }
     else {
       this.username = "ايمن امين";
-      this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white";
+      this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl-dir";
+      this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white rtl-dir";
       this.MenuItem = "nav-link-text me-2";
       this.navClass = "navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
       this.breadcrumbClass = "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 ";
