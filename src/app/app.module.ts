@@ -69,7 +69,7 @@ const appRoutes: Routes = [
   { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
   { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
   { path: 'Schedule/Seminar/info', component: SeminarComponent, data: { title: 'Add Seminar' } },
-  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Update Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
   { path: 'ApplicationForm/View/:id', component: ViewApplicationFormComponent, data: { title: 'View Application Form' } },

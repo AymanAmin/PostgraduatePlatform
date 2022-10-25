@@ -1,50 +1,55 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12 col-12 mx-auto">
-      <div class="card card-body mt-4">
+      <form class="card card-body mt-4" [formGroup]="ThesisDefenseForm" (ngSubmit)="OnSubmit(false)">
         <h6 class="mb-0">{{lb_Address}}</h6>
         <p class="text-sm mb-0">{{lb_AddressD}}</p>
         <hr class="horizontal dark my-3">
         <div class="row">
           <div class="col-12 col-md-4">
             <label for="va_week" class="form-label">{{lb_week}}</label>
-            <input type="week" class="form-control" id="Week">
+            <input type="week" class="form-control" formControlName="Week">
           </div>
           <div class="col-12 col-md-4">
             <label for="va_date" class="form-label">{{lb_date}}</label>
-            <input type="date" placeholder="9665xxxxxxxx" class="form-control" id="Date">
+            <input type="date" placeholder="9665xxxxxxxx" class="form-control" formControlName="Date">
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Specialty}}</label>
-            <select class="form-control" name="choices-language" id="Specialty">
+            <select class="form-control" name="choices-language" formControlName="Specialty">
+              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of SpecialtyList">{{item.value}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Student}}</label>
-            <select class="form-control multi_cho" name="Student" id="Student">
+            <select class="form-control multi_cho" name="Student" formControlName="Student_GN_Code">
+              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of StudentList">{{item.value}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Supervisor}}</label>
-            <select class="form-control" name="Supervisor" id="Supervisor">
+            <select class="form-control" name="Supervisor" formControlName="Supervisor_GN_Code">
+              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of ExaminerList">{{item.value}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label for="va_Title" class="form-label">{{lb_Title}}</label>
-            <input type="text" class="form-control" id="Title">
+            <input type="text" class="form-control" formControlName="Title">
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Examiner}}</label>
-            <select class="form-control" name="Examiner" id="Examiner">
+            <select class="form-control" name="Examiner" formControlName="Examiner_GN_Code">
+              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of ExaminerList">{{item.value}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_RoomNo}}</label>
-            <select class="form-control" name="RoomNo" id="RoomNo">
+            <select class="form-control" name="RoomNo" formControlName="RoomNo_GN_Code">
+              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of RoomList">{{item.value}}</option>
             </select>
           </div>
@@ -52,10 +57,10 @@
         </div>
 
         <div class="d-flex justify-content-end mt-4">
-          <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
-          <button type="button" name="button" class="btn bg-gradient-success m-0 ms-2">{{lb_Save_Change}}</button>
+          <a type="button" routerLink="/Schedule/ThesisDefense/info" name="button" class="btn btn-light m-0">{{lb_Cancel}}</a>
+          <button type="submit" name="button" [disabled]="!(ThesisDefenseForm.valid && btn_status)" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 
@@ -96,29 +101,10 @@
             totalItems: tatalRecords}">
 
               <div class="checklist-item checklist-item-dark ps-2 ms-3">
-                <!--<div class="d-flex align-items-center">
-                  <h6 class="mb-0 ms-4 text-dark font-weight-bold fs-5 ">{{item.Student}}</h6>
-                  <div class="dropstart float-lg-end ms-auto pe-0">
-                    <a href="javascript:;" class="cursor-pointer" id="dropdownTable2" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <i class="fa fa-ellipsis-h text-secondary" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable2">
-                      <li><a class="dropdown-item border-radius-md"
-                          routerLink="../../../../Schedule/ThesisDefense/info/{{item.Id}}">{{lb_Edit}}</a></li>
-                      <li><a class="dropdown-item border-radius-md"
-                          routerLink="../../../../Schedule/ThesisDefense/info/{{item.Id}}">{{lb_Delete}}</a></li>
-                    </ul>
-                  </div>
-                </div>-->
-                <div class="d-flex align-items-center ms-4 mt-3 ps-1">
-                  <div>
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_week}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Week}}</span>
-                  </div>
-                  <div class="ms-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Date}}</span>
+                <div class="d-flex align-items-center mx-2 mt-3 ps-1">
+                  <div class="mx-auto">
+                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
+                    <span class="text-xs font-weight-bolder">{{item.Title}}</span>
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Specialty}}</p>
@@ -126,19 +112,22 @@
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Supervisor}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Supervisor}}</span>
-                  </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Title}}</span>
+                    <span class="text-xs font-weight-bolder">{{item.Supervisor_GN_Code}}</span>
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Examiner}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Examiner}}</span>
+                    <span class="text-xs font-weight-bolder">{{item.Examiner_GN_Code}}</span>
+                  </div>
+                  <div>
+                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_week}}</p>
+                    <span class="text-xs font-weight-bolder">{{item.Week}}</span>
+                  </div>
+                  <div class="ms-auto">
+                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
+                    <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
                   </div>
                   <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_RoomNo}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.RoomNo}}</span>
+                    <a routerLink="/Schedule/ThesisDefense/info/{{item.Id}}"><i class="fa fa-file-text-o fs-4 mt-3 mx-2" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -167,37 +156,3 @@
   </div>
 </div>
 
-<footer class="footer pt-3  ">
-  <div class="container-fluid">
-    <div class="row align-items-center justify-content-lg-between">
-      <div class="col-lg-6 mb-lg-0 mb-4">
-        <div class="copyright text-center text-sm text-muted text-lg-start">
-          ©
-          <script>
-            document.write(new Date().getFullYear())
-          </script>,
-          made with <i class="fa fa-heart"></i> by
-          <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-          for a better web.
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-              Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>

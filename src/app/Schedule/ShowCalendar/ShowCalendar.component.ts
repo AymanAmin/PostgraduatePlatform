@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ShowCalendar',
@@ -8,12 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class ShowCalendarComponent implements OnInit {
 
   LangCode: any = "us-en";
-  constructor() { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.loadJsFile("assets/js/Calender.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
+    this.GetAllScheduleData();
   }
 
   public loadJsFile(url: any) {
@@ -21,6 +25,15 @@ export class ShowCalendarComponent implements OnInit {
     node.src = url;
     node.type = 'text/javascript';
     document.getElementsByTagName('body')[0].appendChild(node);
+  }
+
+  GetAllScheduleData() {
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/GetAllSchedule.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        localStorage.setItem("ScheduleData",jsonInfo);
+      }
+    )
   }
 
   ThisColor: any;Seminar:any;Defanse:any;

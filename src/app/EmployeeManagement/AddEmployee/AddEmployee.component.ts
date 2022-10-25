@@ -36,7 +36,7 @@ export class AddEmployeeComponent implements OnInit {
     if(this.GN_Code)
       this.getData();
 
-      this.UpdateButtonSpinner(false);
+    this.UpdateButtonSpinner(false);
   }
 
   public loadJsFile(url: any) {
