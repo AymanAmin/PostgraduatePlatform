@@ -23,7 +23,7 @@ function CallCalendar() {
     ScheduleEvent += '"title": "' + resultData[i].title + '",';
     ScheduleEvent += '"start": "' + resultData[i].start + '",';
     ScheduleEvent += '"end": "' + resultData[i].end + '",';
-    ScheduleEvent += '"className": "' + resultData[i].className + '"';
+    ScheduleEvent += '"className": "' + resultData[i].className + ''+'"';
     ScheduleEvent += '}';
   }
   ScheduleEvent += ']';

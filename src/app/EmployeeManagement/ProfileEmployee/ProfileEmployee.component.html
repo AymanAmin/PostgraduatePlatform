@@ -5,7 +5,7 @@
         <ul class="nav flex-column bg-white border-radius-lg p-3">
           <li class="nav-item">
             <div class="nav-link text-body clickable" (click)="goToDiv('profile')">
-              <div class="icon me-2">
+              <div class="icon mx-2">
                 <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 40 40" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>spaceship</title>
@@ -31,12 +31,12 @@
                   </g>
                 </svg>
               </div>
-              <span class="text-sm">Profile</span>
+              <span class="text-sm">{{lb_ProfileInfo}}</span>
             </div>
           </li>
           <li class="nav-item pt-2">
             <a class="nav-link text-body clickable" (click)="goToDiv('basic-info')">
-              <div class="icon me-2">
+              <div class="icon mx-2">
                 <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 40 44" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>document</title>
@@ -56,12 +56,12 @@
                   </g>
                 </svg>
               </div>
-              <span class="text-sm">Basic Info</span>
+              <span class="text-sm">{{lb_EmpInfo}}</span>
             </a>
           </li>
           <li class="nav-item pt-2">
             <a class="nav-link text-body clickable" (click)="goToDiv('password')">
-              <div class="icon me-2">
+              <div class="icon mx-2">
                 <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 42 42" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>box-3d-50</title>
@@ -89,7 +89,7 @@
           </li>
           <li class="nav-item pt-2">
             <a class="nav-link text-body clickable" (click)="goToDiv('notifications')">
-              <div class="icon me-2">
+              <div class="icon mx-2">
                 <svg class="text-dark mb-1" width="16px" height="16px" viewBox="0 0 44 43" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>megaphone</title>
@@ -112,7 +112,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="text-sm">Notifications</span>
+              <span class="text-sm">{{lb_GeneralSetting}}</span>
             </a>
           </li>
         </ul>
@@ -124,7 +124,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-auto col-4">
             <div class="avatar avatar-xl position-relative">
-              <img src="../../../assets/img/bruce-mars.jpg" alt="bruce" class="w-100 border-radius-lg shadow-sm">
+              <img src="{{ProfileImg}}" alt="bruce" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
           <div class="col-sm-auto col-8 my-auto">
@@ -154,32 +154,32 @@
         <div class="card-header">
           <h5>{{lb_EmpInfo}}</h5>
         </div>
-        <div class="card-body pt-0">
+        <form class="card-body pt-0" [formGroup]="ProfileForm" (ngSubmit)="OnSubmit(false)">
           <div class="row">
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_EmpName}}</label>
               <div class="input-group">
-                <input  id="fullName" name="fullName" class="form-control" type="text" placeholder="{{username}}"
+                <input  formControlName="Name" name="Name" class="form-control" type="text" placeholder="{{username}}"
                   required="required" autocomplete="false">
               </div>
             </div>
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_ProfileImg}}</label>
               <div class="input-group">
-                <input id="imgFile" name="imgFile" class="form-control" type="file" required="required">
+                <input id="imgFile" accept="image/*" (change)="onFileChange($any($event).target.files,'Profile')" name="imgFile" class="form-control" type="file" required="required">
               </div>
             </div>
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_EmpPhone}}</label>
               <div class="input-group">
-                <input id="phone" name="phone" class="form-control" type="phone" placeholder="966xxxxxxxxx"
-                  required="required">
+                <input name="phone" class="form-control" type="phone" placeholder="966xxxxxxxxx"
+                  required="required" formControlName="PhoneNo">
               </div>
             </div>
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_EmpGender}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-gender" id="choices-gender">
+                <select class="form-control" name="choices-gender" formControlName="Gender">
                   <option value="{{gender.Id}}" *ngFor="let gender of GenderList">{{gender.Name}}</option>
                 </select>
               </div>
@@ -187,7 +187,7 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_Language}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-language" id="choices-language">
+                <select class="form-control" name="choices-language" formControlName="UILanguage">
                   <option value="en-us">English</option>
                   <option value="ar-sa">عربي</option>
                 </select>
@@ -196,12 +196,12 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_EmpEmail}}</label>
               <div class="input-group">
-                <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+                <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" formControlName="Email">
               </div>
             </div>
           </div>
-          <button class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
-        </div>
+          <button type="submit" [disabled]="!(ProfileForm.valid && btn_status)" class="btn bg-gradient-success btn-sm float-end mt-6 mb-0"><span [innerHTML]="btn_spinner"></span></button>
+        </form>
       </div>
       <!-- Card Change Password -->
       <div class="card mt-4" *ngIf="ChangePassword" id="password">
@@ -225,7 +225,7 @@
           <p class="text-muted mb-2">
             {{lb_PasswordRequirementsD}}
           </p>
-          <ul class="text-muted ps-4 mb-0 float-start main-list">
+          <ul class="text-muted ps-4 mb-0 main-list">
             <li class="{{nopassClass}}">
               <span class="text-sm">{{lb_ReqOne}}</span>
             </li>
@@ -342,39 +342,5 @@
       </div>
     </div>
   </div>
-  <footer class="footer pt-3  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div><span class="my-5"></span></div>
 </div>

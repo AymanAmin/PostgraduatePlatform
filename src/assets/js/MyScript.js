@@ -55,12 +55,7 @@ $( document ).ready(function() {
     }); // flatpickr
   }
 
-  //editor
-  if (document.getElementById('editor')) {
-    var quill = new Quill('#editor', {
-      theme: 'snow' // Specify theme in configuration
-    });
-  }
+
 
   //editor2
   if (document.getElementById('editor2')) {
@@ -87,14 +82,6 @@ $( document ).ready(function() {
   if (document.getElementById('editor5')) {
     var quill = new Quill('#editor5', {
       theme: 'snow' // Specify theme in configuration
-    });
-  }
-
-  //Multiple Choices
-  if (document.getElementById('choices-multiple-remove-button')) {
-    var element = document.getElementById('choices-multiple-remove-button');
-    const example = new Choices(element, {
-      removeItemButton: true
     });
   }
 });

@@ -23,6 +23,7 @@ export class AddEmployeeComponent implements OnInit {
   EmployeeForm: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
+  BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Add Employee");
@@ -30,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/MyScript.js");
+    this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     if(this.GN_Code)
@@ -72,13 +73,15 @@ export class AddEmployeeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
+        this.BriefSummary_Data = MainInfoData.BriefSummary;
         this.fillData(MainInfoData);
       }
     )
   }
 
   fillData(EmployeeData: any) {
-    console.log(EmployeeData);
+    //console.log(EmployeeData);
+    this.BriefSummary_Data = decodeURIComponent(atob(EmployeeData.BriefSummary));
     if (EmployeeData) {
       this.IsActive = EmployeeData.IsActive;
       this.EmployeeForm.patchValue({
@@ -100,7 +103,10 @@ export class AddEmployeeComponent implements OnInit {
 
   OnSubmit(IsDeleted:boolean) {
     this.UpdateButtonSpinner(true);
-    //console.log(this.EmployeeForm.value);
+
+    var div = document.getElementById('BriefSummary');
+    var data = div?.getAttribute("value");
+    var BriefSummary = btoa(encodeURIComponent(data || ""));
     var formData: any = new FormData();
     formData.append("GN_Code", this.GN_Code);
     formData.append("Name_Ar", this.EmployeeForm.get('Name_Ar')?.value);
@@ -112,8 +118,10 @@ export class AddEmployeeComponent implements OnInit {
     formData.append("Username", this.EmployeeForm.get('Username')?.value);
     formData.append("Password", this.EmployeeForm.get('Password')?.value);
     formData.append("PasswordConfirm", this.EmployeeForm.get('PasswordConfirm')?.value);
-    formData.append("BriefSummary", this.EmployeeForm.get('BriefSummary')?.value);
+    formData.append("BriefSummary", BriefSummary);
     formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+    formData.append("Type", 1);
     formData.append("IsActive", this.IsActive);
     formData.append("IsDeleted", IsDeleted);
 

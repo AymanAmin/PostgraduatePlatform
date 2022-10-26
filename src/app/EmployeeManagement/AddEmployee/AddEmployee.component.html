@@ -37,7 +37,7 @@
           </div>
           <div class="col-12 col-md-8">
             <label class="form-label">{{lb_EmpSection}}</label>
-            <select class="form-control" name="choices-multiple-remove-button" id="choices-multiple-remove-button"
+            <select class="form-control choices-multiple" name="choices-multiple-remove-button" id="Section"
               multiple>
               <option value="Dentel" selected>Dentel</option>
               <option value="Pharmacy">Pharmacy</option>
@@ -83,12 +83,12 @@
           </div>
         </div>
         <label class="mt-4">{{lb_EmpBrief}}</label>
-        <input type="hidden" class="form-control" formControlName="BriefSummary">
+        <input type="hidden" class="form-control BriefSummary" id="BriefSummary" formControlName="BriefSummary"  />
         <p class="form-text text-muted text-xs ms-1">
           {{lb_EmpBriefD}}
         </p>
 
-        <div id="editor">
+        <div id="editor" [innerHTML]="BriefSummary_Data">
           <!-- Data -->
         </div>
 

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +20,13 @@ export class AppComponent {
   emp_Active:any;schedule_Active:any;dashboard_Active:any;order_Active:any;
   student_Active:any;
 
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) {
 
-  constructor(private router: Router) { }
+  }
 
   ngOnInit() {
     var Path = window.location.pathname;
     const myArray = Path.split("/");
-    console.log("path:" + myArray[1]);
     if (myArray[1] == "")
       this.dashboard_Active = "active";
     else if (myArray[1] == "Employee")
@@ -59,6 +61,24 @@ export class AppComponent {
     });
     this.LangCode = localStorage.getItem('LangCode');
     this.GetLabelName(this.LangCode)
+
+    var GN_Code = localStorage.getItem("GN_Code");
+    if (GN_Code == null)
+        localStorage.setItem("GN_Code", "1234");
+  }
+
+  getProfileInfo() {
+    var GN_Code = localStorage.getItem("GN_Code");
+    var LangCode = localStorage.getItem("LangCode");
+    this.http.get(environment.baseUrl + '/API/ProfileManagment/Get/ProfileInfo.ashx?GN_Code=' + GN_Code+'&LangCode=' + LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        let ProfileInfoData = JSON.parse(jsonInfo);
+        if (ProfileInfoData != null){
+          this.username = ProfileInfoData.Name;
+        }
+      }
+    )
   }
 
   logoutEvent() {
