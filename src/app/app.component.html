@@ -328,9 +328,9 @@
       <nav aria-label="breadcrumb">
         <ol class="{{breadcrumbClass}}">
           <li class="breadcrumb-item text-sm px-2">
-            <a class="opacity-3 text-dark" href="javascript:;">
+            <a class="opacity-3 text-dark" routerLink="/">
               <svg width="12px" height="12px" class="mb-1" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>shop </title>
+                <title>home </title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#252f40" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -344,10 +344,9 @@
               </svg>
             </a>
           </li>
-          <li *ngIf="CurrentParentPage" class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">{{CurrentParentPage}}</a></li>
-          <li *ngIf="CurrentPage" class="breadcrumb-item text-sm text-dark active" aria-current="page">{{CurrentPage}}</li>
+          <li><h6 class="breadcrumb-item text-sm text-dark active"> / {{CurrentPage + " "+ CurrentParentPage | uppercase}}</h6></li>
         </ol>
-        <h6 class="font-weight-bolder mb-0">{{CurrentPage + " "+ CurrentParentPage | uppercase}}</h6>
+
       </nav>
       <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none mx-5" onclick="menuAction()">
         <a href="javascript:;" class="nav-link text-body p-0">
