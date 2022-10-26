@@ -19,7 +19,7 @@
             <input type="time" class="form-control" formControlName="Time">
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-Student_GN_Code">{{lb_Student}}</label>{{StudentList[1].value}}
+            <label class="form-Student_GN_Code">{{lb_Student}}</label>
             <select class="form-control" name="Student" formControlName="Student_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of StudentList">{{item.value}}</option>

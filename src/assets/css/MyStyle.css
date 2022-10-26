@@ -25,3 +25,8 @@
   direction: rtl !important;
 }
 
+.col-sm-6, .col-sm-4, .col-md-4 {
+
+  margin-bottom: 10px !important;
+}
+
