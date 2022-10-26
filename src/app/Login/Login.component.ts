@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     document.getElementsByTagName('body')[0].appendChild(node);
   }
   loginEvent(){
+    localStorage.setItem("IsLogin","true");
     window.location.href = "http://localhost:4200/";
     //this.router.navigateByUrl(['']);
   }

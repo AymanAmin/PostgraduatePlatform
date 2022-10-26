@@ -25,6 +25,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    //Login Check
+    if(!localStorage.getItem("IsLogin"))
+        this.router.navigate(['/Login/page']);
+
     var Path = window.location.pathname;
     const myArray = Path.split("/");
     if (myArray[1] == "")
@@ -65,6 +69,7 @@ export class AppComponent {
     var GN_Code = localStorage.getItem("GN_Code");
     if (GN_Code == null)
         localStorage.setItem("GN_Code", "1234");
+
   }
 
   getProfileInfo() {

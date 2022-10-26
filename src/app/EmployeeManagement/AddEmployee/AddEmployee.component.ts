@@ -128,6 +128,10 @@ export class AddEmployeeComponent implements OnInit {
     this.http.post(environment.baseUrl + '/API/EmployeeManagment/Set/EmlpoyeeInfo.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
+          if (response == "-2"){
+            localStorage.removeItem("IsLogin");
+            window.location.reload();
+          }
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
           this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
