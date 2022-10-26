@@ -30,3 +30,7 @@
   margin-bottom: 10px !important;
 }
 
+.form-check {
+  display: inline-block !important;
+}
+
