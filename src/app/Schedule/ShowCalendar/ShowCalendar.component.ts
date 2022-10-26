@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Element } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class ShowCalendarComponent implements OnInit {
 
   LangCode: any = "us-en";
+  CalendarData:any;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -31,7 +33,8 @@ export class ShowCalendarComponent implements OnInit {
     this.http.get(environment.baseUrl + '/API/Schedule/Get/GetAllSchedule.ashx').subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
-        localStorage.setItem("ScheduleData",jsonInfo);
+        this.CalendarData = jsonInfo;
+        //localStorage.setItem("ScheduleData",jsonInfo);
       }
     )
   }

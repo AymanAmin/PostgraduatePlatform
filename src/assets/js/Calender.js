@@ -1,6 +1,16 @@
 $(document).ready(function () {
+
+});
+
+const myTimeout = setTimeout(CallCalendar, 500);
+
+function CallCalendar() {
   var LangCode = localStorage.getItem("LangCode");
-  var jsonInfo = localStorage.getItem("ScheduleData");
+  var jsonInfo = document.getElementById("CalendarData").value;
+  if(jsonInfo == ""){
+    console.log("Start"+jsonInfo);
+    setTimeout(CallCalendar, 500);
+  }
   let resultData = JSON.parse(jsonInfo);
 
   var ScheduleEvent = '[';
@@ -28,7 +38,7 @@ $(document).ready(function () {
   today = yyyy + '-' + mm + '-' + dd ;
 
   RenderCalender(data, LangCode,today)
-});
+}
 
 function RenderCalender(data, LangCode,today) {
   console.log("start render");
@@ -68,7 +78,7 @@ function RenderCalender(data, LangCode,today) {
       }
     },
     eventClick: function (info) {
-      alert();
+      alert(info.event.title);
       //Link.href = info.event.id;
       //Link.click();
       // change the border color just for fun

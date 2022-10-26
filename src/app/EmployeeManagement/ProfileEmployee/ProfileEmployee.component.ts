@@ -49,7 +49,6 @@ export class ProfileEmployeeComponent implements OnInit {
     });*/
   }
 
-
     //Password Validation
     ck_right: string = "inside-list-success li-color-success";
     ck_woring: string = "inside-list-danger li-color-danger";
