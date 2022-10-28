@@ -51,7 +51,7 @@ export class ListEmployeeComponent implements OnInit {
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.lb_UsersActive = "Active";
-      this.lb_UsersInActive = "InActive";
+      this.lb_UsersInActive = "Not Active";
       this.lb_UserBreif = "Clarification";
       this.lb_UserBreifD = "Users are linked to more than one department to ensure that all requests reach them.";
       this.lb_AddEmployee = "Add Employee";

@@ -42,7 +42,7 @@ export class StudentListComponent implements OnInit {
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.lb_UsersActive = "Active";
-      this.lb_UsersInActive = "InActive";
+      this.lb_UsersInActive = "Not Active";
       this.lb_UserBreif = "Clarification";
       this.lb_UserBreifD = "All requests come by registering students from an external registration screen, and student accounts are approved from this screen.";
       this.lb_AddStd = "Add Std";
