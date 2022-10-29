@@ -118,7 +118,7 @@ export class AppComponent {
   loginClass:any = "justify-content-end navbar-nav";
   Dashboard:any = "Dashboard";Employees:any = "Employees";
   SystemAdmin:any;Specializations:any;Departments:any;Programs:any;TypesLeave:any;
-  EmailTemplate:any;Sequence:any;ListSequenceModel:any;ListSequenceStatus:any;CreateSequence:any;
+  EmailTemplate: any; Sequence: any; ListSequenceModel: any; ListSequenceStatus: any; CreateSequence: any; SequenceForm:any;
   Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
 
@@ -143,6 +143,7 @@ export class AppComponent {
       this.EmailTemplate = "Email Template";
       this.Sequence = "Sequence";
       this.ListSequenceModel = "List Sequence Model";
+      this.SequenceForm = "Sequence Form";
       this.ListSequenceStatus = "List Sequence Status";
       this.CreateSequence = "Create Sequence";
       this.Needhelp = "Need help?";
@@ -183,6 +184,7 @@ export class AppComponent {
       this.ListSequenceModel = "قائمة التسلسلات";
       this.ListSequenceStatus = "حالات التسلسل";
       this.CreateSequence = "إنشاء تسلسل";
+      this.SequenceForm = "فورمات التسلسل";
       this.Needhelp = "هل تحتاج مساعدة ؟";
       this.PleaseSendEmail = "الرجاء إرسال ايميل";
       this.Students = "الطلاب";
