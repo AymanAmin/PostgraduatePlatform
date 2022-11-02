@@ -44,13 +44,13 @@ function RenderCalender(data, LangCode,today) {
   console.log("start render");
   var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
     initialView: "dayGridMonth",
-    themeSystem: 'bootstrap5',
+    themeSystem: 'Litera',
     headerToolbar: {
       start: 'today prev,next',
       center: 'title',
       end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
-    lang: LangCode,
+    locale: LangCode,
     selectable: true,
     editable: false,
     initialDate: today,
