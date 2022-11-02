@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12 col-12 mx-auto">
       <div class="card card-body">
-        <form class="card card-body" [formGroup]="EmailTemplateForm" (ngSubmit)="OnSubmit(false)">
+        <form class="card card-body" [formGroup]="SequenceFormForm" (ngSubmit)="OnSubmit(false)">
           <h6 class="mb-0">{{lb_Info}}</h6>
           <p class="text-sm mb-0">{{lb_InfoD}}</p>
           <hr class="horizontal dark my-3">
@@ -17,23 +17,17 @@
             </div>
 
           </div>
-          <label class="mt-4">{{lb_TemplateAr}}</label>
-          <input type="hidden" class="form-control Template_Ar" id="Template_Ar" formControlName="Template_Ar" />
-          <p class="form-text text-muted text-xs ms-1">
-            {{lb_TemplateArD}}
-          </p>
-          <div id="editor3" [innerHTML]="Template_Ar_Data">
-            <!-- Data -->
-          </div>
-          <label class="mt-4">{{lb_TemplateEn}}</label>
-          <input type="hidden" class="form-control Template_En" id="Template_En" formControlName="Template_En" />
-          <p class="form-text text-muted text-xs ms-1">
-            {{lb_TemplateEnD}}
-          </p>
-          <div id="editor2" [innerHTML]="Template_En_Data">
-            <!-- Data -->
-          </div>
           <div class="row mt-4">
+            <div class="col-12 col-md-12">
+              <label class="form-label">{{lb_SequenceModel}}</label>
+              <select class="form-control" name="choices-language" formControlName="SequenceModel_ID">
+                <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                <option value="{{SeqModel.GN_Code}}" *ngFor="let SeqModel of SeqModelList">{{LangCode === "us-en" ? SeqModel.Name_En :
+                  SeqModel.Name_Ar}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="row mt-4">
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label>
@@ -50,12 +44,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="d-flex justify-content-end mt-4">
             <button type="button" name="button" class="btn btn-light m-0"
-              routerLink="/EmailTemplate/list/">{{lb_Cancel}}</button>
-            <button type="submit" [disabled]="!(EmailTemplateForm.valid && btn_status)" name="button"
+              routerLink="/SequenceForm/list/">{{lb_Cancel}}</button>
+            <button type="submit" [disabled]="!(SequenceFormForm.valid && btn_status)" name="button"
               class="btn bg-gradient-success m-0 ms-2"><span [innerHTML]="btn_spinner"></span></button>
           </div>
         </form>
@@ -82,9 +76,8 @@
                 </th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_TemplateAr}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_TemplateEn}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_SequenceModel}}</th>
+                <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th> -->
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
               </tr>
             </thead>
@@ -96,7 +89,7 @@
               totalItems: tatalRecords
           }">
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{oneSpe.Id}}"
+                  <span class="text-secondary text-sm"><a routerLink="/SequenceForm/list/{{oneSpe.GN_Code}}"
                       id="{{oneSpe.Id}}">{{oneSpe.Id}}</a></span>
                 </td>
                 <td>
@@ -116,25 +109,18 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm" [innerHTML]="oneSpe.Template_Ar"></h6>
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesModel" >{{LangCode === "us-en" ? oneSpe.SequencesModel.Name_En : oneSpe.SequencesModel.Name_Ar}}</h6>
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm" [innerHTML]="oneSpe.Template_En"></h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
+                <!-- <td>
                   <span class="badge badge-dot me-4">
                     <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
                     <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
                   </span>
-                </td>
+                </td> -->
                 <td class="text-sm">
-                  <a routerLink="/EmailTemplate/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
+                  <a routerLink="/SequenceForm/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
                     data-bs-original-title="Preview product">
                     <i class="fas fa-user-edit text-secondary"></i>
                   </a>

@@ -1,45 +1,48 @@
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-lg-12 col-12 mx-auto">
-      <div class="card card-body mt-4">
-        <h6 class="mb-0">{{lb_Info}}</h6>
-        <p class="text-sm mb-0">{{lb_InfoD}}</p>
-        <hr class="horizontal dark my-3">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <label for="va_EmpName" class="form-label">{{lb_ArName}}</label>
-            <input type="text" class="form-control" placeholder="{{lb_ArName}}" id="va_ArName">
-          </div>
-          <div class="col-12 col-md-6">
-            <label for="va_EmpName" class="form-label">{{lb_EngName}}</label>
-            <input type="text" class="form-control" placeholder="{{lb_EngName}}" id="va_EngName">
-          </div>
+      <div class="card card-body">
+        <form class="card card-body" [formGroup]="SequenceModelForm" (ngSubmit)="OnSubmit(false)">
+          <h6 class="mb-0">{{lb_Info}}</h6>
+          <p class="text-sm mb-0">{{lb_InfoD}}</p>
+          <hr class="horizontal dark my-3">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <label for="va_EmpName" class="form-label">{{lb_ArName}}</label>
+              <input type="text" class="form-control" placeholder="{{lb_ArName}}" formControlName="Name_Ar">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="va_EmpName" class="form-label">{{lb_EngName}}</label>
+              <input type="text" class="form-control" placeholder="{{lb_EngName}}" formControlName="Name_En">
+            </div>
 
-        </div>
-        <div class="row mt-4">
-          <div class="col-12 col-md-6">
-            <div class="form-group">
-              <label>
-                {{lb_IsActive}}
-              </label>
-              <p class="form-text text-muted text-xs ms-1">
-                {{lb_IsActiveD}}
-              </p>
-              <div class="form-check form-switch ms-1">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
-                  data-type="warning"
-                  data-content="Once a project is made private, you cannot revert it to a public project."
-                  data-title="Warning" data-icon="ni ni-bell-55">
-                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label>
+                  {{lb_IsActive}}
+                </label>
+                <p class="form-text text-muted text-xs ms-1">
+                  {{lb_IsActiveD}}
+                </p>
+                <div class="form-check form-switch ms-1">
+
+                  <input class="form-check-input" type="checkbox" (change)="ActiveValue($event.target)"
+                    formControlName="IsActive" value="true" />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="d-flex justify-content-end mt-4">
-          <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
-          <button type="button" name="button" class="btn bg-gradient-success m-0 mx-2">{{lb_Save_Change}}</button>
-        </div>
+          <div class="d-flex justify-content-end mt-4">
+            <button type="button" name="button" class="btn btn-light m-0"
+              routerLink="/Sequence/list/">{{lb_Cancel}}</button>
+            <button type="submit" [disabled]="!(SequenceModelForm.valid && btn_status)" name="button"
+              class="btn bg-gradient-success m-0 ms-2"><span [innerHTML]="btn_spinner"></span></button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -52,14 +55,15 @@
         <p class="text-sm px-3">{{lb_SearchD}}</p>
         <div class="input-group ps-3 pe-3 pb-3 pt-2">
           <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" placeholder="Type here..."  [(ngModel)]="searchedKeyword">
+          <input type="text" class="form-control" placeholder="Type here..." [(ngModel)]="searchedKeyword">
         </div>
         <div class="table-responsive">
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
 
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}
+                </th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
@@ -69,43 +73,45 @@
             <tbody>
               <tr *ngFor="let oneSpe of SpeList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
-              itemsPerPage: 2,
+              itemsPerPage: PerPage,
               currentPage: page,
               totalItems: tatalRecords
           }">
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{oneSpe.Id}}" id="{{oneSpe.Id}}" >{{oneSpe.Id}}</a></span>
+                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{oneSpe.Id}}"
+                      id="{{oneSpe.Id}}">{{oneSpe.Id}}</a></span>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.ArName}}</h6>
+                      <h6 class="mb-0 text-sm">{{oneSpe.Name_Ar}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.EngName}}</h6>
+                      <h6 class="mb-0 text-sm">{{oneSpe.Name_En}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <span class="badge badge-dot me-4">
-                    <i class="{{oneSpe.StatusColor}} mx-2"></i>
-                    <span class="text-dark text-xs">{{oneSpe.Status}}</span>
+                    <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
+                    <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
                   </span>
                 </td>
                 <td class="text-sm">
-                  <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
-                    <i class="fas fa-eye text-secondary"></i>
+                  <a routerLink="/Sequence/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
+                    data-bs-original-title="Preview product">
+                    <i class="fas fa-user-edit text-secondary"></i>
                   </a>
-                  <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
+                  <!-- <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
                     <i class="fas fa-user-edit text-secondary"></i>
                   </a>
                   <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
                     <i class="fas fa-trash text-secondary"></i>
-                  </a>
+                  </a> -->
                 </td>
               </tr>
             </tbody>
@@ -117,9 +123,10 @@
           <div class="col-lg-4"></div>
           <div class="col-lg-4">
             <!-- Pagination area -->
-            <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5" [directionLinks]="true" [autoHide]="true"
-              [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pages"
-              screenReaderPageLabel="Page" (pageChange)="page = $event"></pagination-controls>
+            <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5"
+              [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="Previous" nextLabel="Next"
+              screenReaderPaginationLabel="Pages" screenReaderPageLabel="Page" (pageChange)="page = $event">
+            </pagination-controls>
           </div>
           <div class="col-lg-4"></div>
         </div>

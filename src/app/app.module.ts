@@ -44,6 +44,7 @@ import { ViewPGT1Component } from './StudentManagement/ViewPGT1/ViewPGT1.compone
 import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.component';
 import { ViewPGT3Component } from './StudentManagement/ViewPGT3/ViewPGT3.component';
 import { ViewClearanceFormComponent } from './StudentManagement/ViewClearanceForm/ViewClearanceForm.component';
+import { SequenceFormComponent } from './SystemAdmin/SequenceForm/SequenceForm.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -58,13 +59,23 @@ const appRoutes: Routes = [
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
+  { path: 'Specialization/list/:id', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
+  { path: 'Department/list/:id', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
+  { path: 'Program/list/:id', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
+  { path: 'TypeLeave/list/:id', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
   { path: 'EmailTemplate/list', component: EmailTemplateComponent, data: { title: 'Email Template' } },
+  { path: 'EmailTemplate/list/:id', component: EmailTemplateComponent, data: { title: 'Email Template' } },
   { path: 'Sequence/list', component: AddSequenceModelComponent, data: { title: 'Sequence Model' } },
+  { path: 'Sequence/list/:id', component: AddSequenceModelComponent, data: { title: 'Sequence Model' } },
   { path: 'SequenceStatus/list', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
+  { path: 'SequenceStatus/list/:id', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
   { path: 'CreateSequence/list', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
+  { path: 'CreateSequence/list/:id', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
+  { path: 'SequenceForm/list', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
+  { path: 'SequenceForm/list/:id', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
   { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
   { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
@@ -106,6 +117,7 @@ const routerOptions: ExtraOptions = {
     AddSequenceModelComponent,
     AddSquecneStatusComponent,
     CreateSequenceComponent,
+    SequenceFormComponent,
     HomeComponent,
     LoginComponent,
     ThesisDefenseComponent,
