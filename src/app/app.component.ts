@@ -121,7 +121,7 @@ export class AppComponent {
   EmailTemplate: any; Sequence: any; ListSequenceModel: any; ListSequenceStatus: any; CreateSequence: any; SequenceForm:any;
   Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
-
+  Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
@@ -160,12 +160,13 @@ export class AppComponent {
       this.ListOrders = "List Orders";
       this.Profile = "Profile";
       this.ListStudents = "List Students";
+      this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
     }
     else {
       this.username = "ايمن امين";
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl-dir";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white rtl-dir";
-      this.MenuItem = "nav-link-text me-2";
+      this.MenuItem = "nav-link-text me-3";
       this.navClass = "navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
       this.breadcrumbClass = "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 ";
       this.CatMenuItem = "ps-4 me-5 text-uppercase text-xs font-weight-bolder opacity-6";
@@ -199,6 +200,7 @@ export class AppComponent {
       this.ListOrders = "عرض الطلبات";
       this.Profile = "صفحتي الشخصية";
       this.ListStudents = "قائمة الطلاب";
+      this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
     }
   }
 

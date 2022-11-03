@@ -29,7 +29,7 @@
             <label for="Supervisor_GN_Code" class="form-label">{{lb_Supervisor}}</label>
             <select class="form-control" name="Supervisor" formControlName="Supervisor_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.key}}" *ngFor="let item of ExaminerList">{{item.value}}</option>
+              <option value="{{item.GN_Code}}" *ngFor="let item of UserList">{{(LangCode == "us-en" || LangCode == "en-us")?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
@@ -40,7 +40,7 @@
             <label for="Examiner_GN_Code" class="form-label">{{lb_Examiner}}</label>
             <select class="form-control" name="Examiner" formControlName="Examiner_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.key}}" *ngFor="let item of ExaminerList">{{item.value}}</option>
+              <option value="{{item.GN_Code}}" *ngFor="let item of UserList">{{(LangCode == "us-en" || LangCode == "en-us")?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
@@ -81,7 +81,7 @@
               <div class="col-md-1  mt-2 text-start">{{lb_Entries}}</div>
               <div class="col-md-6"></div>
               <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
+                <input type="text" class="form-control search-input" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
               </div>
             </div>
           </div>
@@ -108,17 +108,17 @@
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Supervisor}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Supervisor_GN_Code}}</span>
+                    <span class="text-xs font-weight-bolder">{{GetEmpName(item.Supervisor_GN_Code)}}</span>
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Examiner}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Examiner_GN_Code}}</span>
+                    <span class="text-xs font-weight-bolder">{{GetEmpName(item.Examiner_GN_Code)}}</span>
                   </div>
-                  <div>
+                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_week}}</p>
                     <span class="text-xs font-weight-bolder">{{item.Week}}</span>
                   </div>
-                  <div class="ms-auto">
+                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
                     <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
                   </div>

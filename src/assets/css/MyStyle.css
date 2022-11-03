@@ -12,9 +12,18 @@
 :lang(ar) h6,
 :lang(ar) p,
 :lang(ar) a,
-:lang(ar) li {
+:lang(ar) li,
+:lang(ar) th,
+:lang(ar) td,
+:lang(ar) input,
+:lang(ar) span {
   font-family: 'Tajawal', sans-serif !important;
-  font-size: medium !important;
+  /*font-size: small !important;*/
+}
+
+:lang(ar) .search-input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 :lang(ar) .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {

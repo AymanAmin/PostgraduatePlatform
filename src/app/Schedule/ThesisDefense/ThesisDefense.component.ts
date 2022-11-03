@@ -29,6 +29,8 @@ export class ThesisDefenseComponent implements OnInit {
   PerPage:number = 5;
   //End Pangation and filter
 
+  UserList:any;
+
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Thesis Defense Info");
   }
@@ -39,6 +41,7 @@ export class ThesisDefenseComponent implements OnInit {
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
+    this.getUserList();
 
     if(this.Id)
       this.getThesisDefenseData();
@@ -59,6 +62,25 @@ export class ThesisDefenseComponent implements OnInit {
       Examiner_GN_Code: new FormControl(null,[Validators.required]),
       RoomNo_GN_Code: new FormControl(null,[Validators.required])
     });
+  }
+
+  getUserList(){
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.UserList = JSON.parse(jsonInfo);
+        //console.log(this.UserList);
+      }
+    )
+  }
+
+  GetEmpName(GN_Code: any) {
+    var user = this.UserList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    var name = user.Name_Ar;
+    if (this.LangCode == "us-en" || this.LangCode == "en-us")
+      name = user.Name_En;
+    return name;
   }
 
   getThesisDefenseData() {
@@ -165,7 +187,7 @@ export class ThesisDefenseComponent implements OnInit {
   lb_week:any;lb_date:any;lb_Specialty:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
   lb_ListOfThesisDefense:any;lb_NumberOfList:any;lb_Search:any;lb_Edit:any;lb_Delete:any;lb_Entries:any;
 
-  StudentList:any;RoomList:any;ExaminerList:any;SpecialtyList:any;lb_Loading:any;lb_Select:any;
+  StudentList:any;RoomList:any;SpecialtyList:any;lb_Loading:any;lb_Select:any;
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
@@ -192,7 +214,6 @@ export class ThesisDefenseComponent implements OnInit {
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
       this.SpecialtyList = [{"key":1,"value":"Dentistry"},{"key":2,"value":"Pharmacy"}];
       this.StudentList = [{"key":1,"value":"Ayman Amin"},{"key":2,"value":"Mazin Awad"}];
-      this.ExaminerList = [{"key":1,"value":"Dr. Fahad Alshamary"},{"key":2,"value":"Dr. Raied"}];
     }
     else{
       this.lb_Address =" جدولة أطروحة المناقشة";
@@ -218,7 +239,6 @@ export class ThesisDefenseComponent implements OnInit {
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
       this.SpecialtyList = [{"key":1,"value":"اسنان"},{"key":2,"value":"صيدلة"}];
       this.StudentList = [{"key":1,"value":"ايمن امين"},{"key":2,"value":"مازن عوض"}];
-      this.ExaminerList = [{"key":1,"value":"د. فهد الشمري"},{"key":2,"value":"د. رائد"}];
     }
   }
 
