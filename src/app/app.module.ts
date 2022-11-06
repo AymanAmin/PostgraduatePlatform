@@ -45,6 +45,7 @@ import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.compone
 import { ViewPGT3Component } from './StudentManagement/ViewPGT3/ViewPGT3.component';
 import { ViewClearanceFormComponent } from './StudentManagement/ViewClearanceForm/ViewClearanceForm.component';
 
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
   { path: 'Employee/add', component: AddEmployeeComponent, data: { title: 'Add Employee' } },
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
+  { path: 'Student/view/:id', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
@@ -80,6 +82,25 @@ const appRoutes: Routes = [
   { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Update Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
+
+  { path: 'ApplicationForm/add/:id', component: ApplicationFormComponent, data: { title: 'Application Form' } },
+  { path: 'Leave/add/:id', component: LeaveComponent, data: { title: 'Leave' } },
+  { path: 'StudentAttachment/add/:id', component: StudentAttachmentComponent, data: { title: 'Student Attachment' } },
+  { path: 'RecommendationLetter/add/:id', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
+  { path: 'ReferenceAndCertificates/add/:id', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
+  { path: 'PGT1/add/:id', component: PGTComponent, data: { title: 'PG-T1' } },
+  { path: 'PGT2/add/:id', component: PGTComponent, data: { title: 'PG-T2' } },
+  { path: 'PGT3/add/:id', component: PGTComponent, data: { title: 'PG-T3' } },
+
+  { path: 'ApplicationForm/add', component: ApplicationFormComponent, data: { title: 'Application Form' } },
+  { path: 'Leave/add', component: LeaveComponent, data: { title: 'Leave' } },
+  { path: 'StudentAttachment/add', component: StudentAttachmentComponent, data: { title: 'Student Attachment' } },
+  { path: 'RecommendationLetter/add', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
+  { path: 'ReferenceAndCertificates/add', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
+  { path: 'PGT1/add', component: PGTComponent, data: { title: 'PG-T1' } },
+  { path: 'PGT2/add', component: PGTComponent, data: { title: 'PG-T2' } },
+  { path: 'PGT3/add', component: PGTComponent, data: { title: 'PG-T3' } },
+
   { path: 'ApplicationForm/View/:id', component: ViewApplicationFormComponent, data: { title: 'View Application Form' } },
   { path: 'StudentLeave/View/:id', component: ViewStudentLeaveComponent, data: { title: 'View Student Leave' } },
   { path: 'ClearanceForm/View/:id', component: ViewClearanceFormComponent, data: { title: 'View Clearance Form' } },

@@ -2,11 +2,12 @@
             <h5>{{lb_FormTitle}}</h5>
           </div>
           <div class="card-body pt-0">
+            <form class="card card-body mt-4" [formGroup]="ReferenceAndCertificates" (ngSubmit)="OnSubmit(false)">
             <div class="row">
               <div class="col-sm-6 col-6">
                 <label class="form-label">{{lb_Receiver}}</label>
                 <div class="input-group">
-                  <select class="form-control" name="choices-gender" id="choices-Receiver">
+                  <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="Receiver_GN_Code">
                     <option value="{{receiver.Id}}" *ngFor="let receiver of ReceiverList">{{receiver.Name}}</option>
                   </select>
                 </div>
@@ -14,14 +15,16 @@
 
               <div class="col-sm-12 col-6">
                 <label class="form-label">{{lb_Letter}}</label>
-                  <div id="editor">
+                  <div id="editor" formControlName="Letter">
 
                   </div>
               </div>
           </div>
-          <div class="d-flex justify-content-end mt-7">
-            <button class="btn bg-gradient-success m-0 ms-2">{{lb_SaveChange}}</button>
+          <div class="d-flex justify-content-end mt-4" style="padding-top: 100px;">
+            <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
+            <button type="submit" [disabled]="!(ReferenceAndCertificates.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
           </div>
+          </form>
           </div>
 
 

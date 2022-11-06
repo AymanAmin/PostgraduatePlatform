@@ -2,12 +2,13 @@
           <h5>{{lb_FormTitle}}</h5>
         </div>
         <div class="card-body pt-0">
+          <form class="card card-body mt-4" [formGroup]="PGR" (ngSubmit)="OnSubmit(false)">
           <div class="row">
             <h6>{{lb_Partone}}</h6>
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_College}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-college" id="choices-college">
+                <select class="form-control" name="choices-college" formControlName="college_GN_Code" id="choices-college">
                   <option value="{{college.Id}}" *ngFor="let college of CollegeList">{{college.Name}}</option>
                 </select>
               </div>
@@ -15,7 +16,7 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_Department}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-department" id="choices-department">
+                <select class="form-control" name="choices-department" formControlName="department_GN_Code" id="choices-department">
                   <option value="{{department.Id}}" *ngFor="let department of DepartmentList">{{department.Name}}</option>
                 </select>
               </div>
@@ -23,7 +24,7 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-program" id="choices-program">
+                <select class="form-control" formControlName="program_GN_Code" name="choices-program" id="choices-program" formControlName="program">
                   <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
                 </select>
               </div>
@@ -32,20 +33,20 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_Date}}</label>
               <div class="input-group">
-                <input  id="date" name="date" class="form-control datetimepicker" type="date" placeholder=""
+                <input  id="date" formControlName="PGR_date" name="date" class="form-control datetimepicker" type="date" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
             <div class="col-sm-12 col-6">
               <label class="form-label">{{lb_thesis_En}}</label>
               <div class="input-group">
-                <textarea name="thesis_En" id="thesis_En" class="form-control"></textarea>
+                <textarea name="thesis_En" formControlName="Thesis_Title_En" id="thesis_En" class="form-control"></textarea>
               </div>
             </div>
             <div class="col-sm-12 col-6">
               <label class="form-label">{{lb_thesis_Ar}}</label>
               <div class="input-group">
-                <textarea name="thesis_Ar" id="thesis_Ar" class="form-control"></textarea>
+                <textarea name="thesis_Ar" formControlName="Thesis_Title_Ar" id="thesis_Ar" class="form-control"></textarea>
               </div>
             </div>
         </div>
@@ -57,29 +58,31 @@
           <div class="col-sm-6 col-6">
             <label class="form-label">{{lb_Date}}</label>
             <div class="input-group">
-             <input name="supervisor-date" id="supervisor-date" type="date" class="form-control datepicker">
+             <input name="supervisor-date"  formControlName="supervisor_date" id="supervisor-date" type="date" class="form-control datepicker">
             </div>
           </div>
           <div class="col-sm-6 col-6">
             <label class="form-label">{{lb_Date}}</label>
             <div class="input-group">
-             <input name="co-supervisor-date" id="co-supervisor-date" type="date" class="form-control datepicker">
+             <input name="co-supervisor-date" formControlName="co_supervisor_date" id="co-supervisor-date" type="date" class="form-control datepicker">
             </div>
           </div>
           <div class="col-sm-6 col-6">
             <label class="form-label">{{lb_Supervisor}}</label>
             <div class="input-group">
-             <input name="supervisor" id="supervisor" type="text" class="form-control">
+             <input name="supervisor" formControlName="supervisor" id="supervisor" type="text" class="form-control">
             </div>
           </div>
           <div class="col-sm-6 col-6">
             <label class="form-label">{{lb_CO_Supervisor}}</label>
             <div class="input-group">
-             <input name="co-supervisor" id="co-supervisor" type="text" class="form-control">
+             <input name="co-supervisor" formControlName="co_supervisor" id="co-supervisor" type="text" class="form-control">
             </div>
           </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
-          <button class="btn bg-gradient-success m-0 ms-2">{{lb_SaveChange}}</button>
+          <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
+          <button type="submit" [disabled]="!(PGR.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
         </div>
+          </form>
         </div>

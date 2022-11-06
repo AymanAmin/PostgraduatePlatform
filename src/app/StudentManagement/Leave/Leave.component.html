@@ -1,12 +1,12 @@
-        <div class="card-header">
-          <h5>{{lb_FormTitle}}</h5>
-        </div>
+       <div class="container-fluid">
         <div class="card-body pt-0">
+          <form class="card card-body mt-4" [formGroup]="Leave" (ngSubmit)="OnSubmit(false)">
+            <h6><u>{{lb_FormTitle}}</u></h6>
           <div class="row">
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-gender" id="choices-program">
+                <select class="form-control" name="choices-gender" id="choices-program" formControlName="program_GN_Code">
                   <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
                 </select>
               </div>
@@ -14,7 +14,7 @@
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_Speciality}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-gender" id="choices-speciality">
+                <select class="form-control" name="choices-gender" id="choices-speciality" formControlName="Speciality_GN_Code">
                   <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{speciality.Name}}</option>
                 </select>
               </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_Type}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-type" id="choices-type">
+                <select class="form-control" name="choices-type" id="choices-type" formControlName="Leave_Type_GN_Code">
                   <option value="{{type.Id}}" *ngFor="let type of TypeList">{{type.Name}}</option>
                 </select>
               </div>
@@ -30,35 +30,38 @@
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_From}}</label>
               <div class="input-group">
-                <input  id="from" name="from" class="form-control datetimepicker" type="date" placeholder=""
-                  required="required" autocomplete="false">
+                <input  id="from" name="from" formControlName="FromDate" class="form-control datetimepicker" type="date" placeholder=""
+                required="required" autocomplete="false">
               </div>
             </div>
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_To}}</label>
               <div class="input-group">
-                <input  id="to" name="to" class="form-control datetimepicker" type="date" placeholder=""
+                <input  id="to" name="to" formControlName="ToDate" class="form-control datetimepicker" type="date" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
             <div class="col-sm-4 col-6">
               <label class="form-label">{{lb_NoOfDaysLeave}}</label>
               <div class="input-group">
-                <input  id="NoOfDaysLeave" name="NoOfDaysLeave" class="form-control" type="text" placeholder=""
+                <input  id="NoOfDaysLeave" name="NoOfDaysLeave" formControlName="NoOfDays" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
 
             <div class="col-sm-12 col-6">
               <label class="form-label">{{lb_Reason}}</label>
-              <div id="editor5">
+              <div id="editor5"  [innerHTML]="Reason" >
                 <!-- Data -->
               </div>
             </div>
         </div>
-        <div class="d-flex justify-content-end mt-7">
-          <button class="btn bg-gradient-success m-0 ms-2">{{lb_SaveChange}}</button>
+        <div class="d-flex justify-content-end mt-4" style="padding-top: 100px;">
+          <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
+          <button type="submit" [disabled]="!(Leave.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
         </div>
+      </form>
         </div>
+      </div>
 
 
