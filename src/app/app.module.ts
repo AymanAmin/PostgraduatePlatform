@@ -45,6 +45,9 @@ import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.compone
 import { ViewPGT3Component } from './StudentManagement/ViewPGT3/ViewPGT3.component';
 import { ViewClearanceFormComponent } from './StudentManagement/ViewClearanceForm/ViewClearanceForm.component';
 import { SequenceFormComponent } from './SystemAdmin/SequenceForm/SequenceForm.component';
+import { SequenceActionComponent } from './StudentManagement/SequenceAction/SequenceAction.component';
+import { SequenceTrackingComponent } from './StudentManagement/SequenceTracking/SequenceTracking.component';
+import { RequestHeaderComponent } from './StudentManagement/RequestHeader/RequestHeader.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -137,7 +140,10 @@ const routerOptions: ExtraOptions = {
     ViewClearanceFormComponent,
     ViewPGT1Component,
     ViewPGT2Component,
-    ViewPGT3Component
+    ViewPGT3Component,
+    SequenceActionComponent,
+    SequenceTrackingComponent,
+    RequestHeaderComponent
    ],
   imports: [
     BrowserModule,
