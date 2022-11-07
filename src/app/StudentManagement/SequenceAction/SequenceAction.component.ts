@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +12,7 @@ export class SequenceActionComponent implements OnInit {
 
   LangCode: any = "us-en";
   Note:string = "";
-  FormCode:string = "1001";
+  @Input() FormCode:string = "";
   GN_Code: string = this.route.snapshot.params['id'];
   SequenceList:any;btnList:any;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -26,7 +26,7 @@ export class SequenceActionComponent implements OnInit {
   }
 
   getSequenceList(){
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/SequenceList.ashx?GN_Code='+ this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/SequenceList.ashx?GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SequenceList = JSON.parse(jsonInfo);
@@ -36,11 +36,11 @@ export class SequenceActionComponent implements OnInit {
   }
 
   getBtnList(){
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ButtonList.ashx?FormCode='+ this.FormCode +'&GN_Code='+ this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ButtonList.ashx?FormCode='+ this.FormCode +'&GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
-        console.log(this.btnList);
+        //console.log(this.btnList);
       }
     )
   }

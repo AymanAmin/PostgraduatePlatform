@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -40,7 +40,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   TrackDate3: string = "";
   TrackDate4: string = "";
 
-
+  FormCode:string = "1001";
 
   constructor(private titleService: Title) {
     this.titleService.setTitle("View Student Leave");

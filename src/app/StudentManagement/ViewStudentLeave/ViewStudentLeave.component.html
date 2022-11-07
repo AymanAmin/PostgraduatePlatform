@@ -4,7 +4,7 @@
     <div class="col-lg-9 col-md-9 mx-auto">
       <div class="card mb-4">
         <!-- Start Card Header -->
-        <app-RequestHeader></app-RequestHeader>
+        <app-RequestHeader [FormCode]='FormCode'></app-RequestHeader>
         <!-- End Card Header -->
 
         <div class="card-body">
@@ -55,7 +55,7 @@
           </div>
 
           <!-- Start Sequence Action -->
-          <app-SequenceAction></app-SequenceAction>
+          <app-SequenceAction [FormCode]='FormCode'></app-SequenceAction>
           <!-- End Sequence Action -->
 
         </div>
@@ -65,7 +65,7 @@
 
     <div class="col-lg-3 col-md-3 col-12">
       <!-- Start Sequence Tracking -->
-      <app-SequenceTracking></app-SequenceTracking>
+      <app-SequenceTracking [FormCode]='FormCode'></app-SequenceTracking>
       <!-- End Sequence Tracking -->
     </div>
 

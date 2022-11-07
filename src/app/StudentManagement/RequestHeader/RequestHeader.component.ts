@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-RequestHeader',
@@ -10,26 +13,41 @@ export class RequestHeaderComponent implements OnInit {
   LangCode: any = "us-en";
   OrderNo:any;Type:any;Date:any;StdName:any;StdEmail:any;
   StdPhone:any;Category:any;Program:any;Speciality:any;
+  StudentInfo:any;
+  @Input() FormCode:string = "";
 
-  constructor() { }
+  GN_Code: string = this.route.snapshot.params['id'];
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
-    this.fillData();
+    this.getStudentInfo();
+  }
+
+  getStudentInfo(){
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/StudentInfo.ashx?FormCode='+this.FormCode +'&GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StudentInfo = JSON.parse(jsonInfo);
+        this.fillData();
+        console.log(this.StudentInfo);
+      }
+    )
   }
 
   fillData()
   {
-    this.OrderNo = "100023";
-    this.Type = "Certificate Request";
-    this.Date = "22 DEC 7:20 AM";
-    this.StdName = "Ayman Amin";
-    this.StdEmail = "Ayman1793@hotmail.com";
-    this.StdPhone = "0550932548";
-    this.Category = "Dental";
-    this.Program = "Dental Repair";
-    this.Speciality = "Maxillofacial Surgery";
+    this.OrderNo = this.StudentInfo.OrderNo;
+    this.Type = this.StudentInfo.Type;
+    this.Date = this.StudentInfo.Date;
+    this.StdName = this.StudentInfo.StdName;
+    this.StdEmail = this.StudentInfo.StdEmail;
+    this.StdPhone = this.StudentInfo.StdPhone;
+    this.Category = this.StudentInfo.Category;
+    this.Program = this.StudentInfo.Program;
+    this.Speciality = this.StudentInfo.Speciality;
   }
 
   lb_OrderNo:any;lb_OrderType:any;lb_Category:any;top_class:any;
@@ -39,7 +57,7 @@ export class RequestHeaderComponent implements OnInit {
     if (LangCode == "us-en") {
       this.lb_OrderNo = "Order No";
       this.lb_OrderType = "Order Type";
-      this.lb_Category = "Category;";
+      this.lb_Category = "Category";
       this.top_class = "ms-auto"
       this.lb_Program = "Program";
       this.lb_Speciality = "Speciality";

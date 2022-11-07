@@ -32,7 +32,7 @@ export class ListOrderComponent implements OnInit {
   }
 
   getOrderList(){
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/GetRequest.ashx').subscribe(
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/GetRequest.ashx?LangCode='+this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.OrderList = JSON.parse(jsonInfo);
