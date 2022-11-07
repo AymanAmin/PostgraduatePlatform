@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-SequenceTracking',
@@ -8,18 +11,25 @@ import { Component, OnInit } from '@angular/core';
 export class SequenceTrackingComponent implements OnInit {
   LangCode: any = "us-en";
   Track:any;TrackDate:any;
-  constructor() { }
+  SequenceList:any;
+
+  GN_Code: string = this.route.snapshot.params['id'];
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
-    this.fillData();
+    this.getSequenceList();
   }
 
-  fillData()
-  {
-    this.Track = "Request created";
-    this.TrackDate = "22 DEC 7:20 AM";
+  getSequenceList(){
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/SequenceList.ashx?GN_Code='+ this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.SequenceList = JSON.parse(jsonInfo);
+        //console.log(this.SequenceList);
+      }
+    )
   }
 
   lb_Trackorder:any;

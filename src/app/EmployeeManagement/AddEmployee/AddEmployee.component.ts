@@ -144,7 +144,7 @@ export class AddEmployeeComponent implements OnInit {
         }
       },
       (error) => {
-        document.getElementById("btnInfo")?.click();
+        document.getElementById("btnDanger")?.click();
         console.log(error);
       }
     )
