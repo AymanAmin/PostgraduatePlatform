@@ -12,9 +12,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ReferenceAndCertificatesComponent implements OnInit {
   LangCode: any = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
-  lb_FormTitle:string="Recommendation Letter";
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -25,7 +22,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
 
   ReferenceAndCertificates: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
-  GN_Code: string = this.route.snapshot.params['id'];
+  GN_Code: string = "bc3ca983-100c-410b-8234-d461f2cd8aed"; //this.route.snapshot.params['id'];
+  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -55,12 +53,12 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   CreateForm() {
     this.ReferenceAndCertificates = new FormGroup({
       Receiver_GN_Code: new FormControl(null, [Validators.required]),
-      Letter: new FormControl(null, [Validators.required]),
+      BriefSummary: new FormControl(null),
     });
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/ReferenceAndCertificates/Get/ReferenceAndCertificates.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Get/ReferenceCertificateInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -72,10 +70,11 @@ export class ReferenceAndCertificatesComponent implements OnInit {
 
   fillData(ReferenceAndCertificatesData: any) {
     //console.log(ReferenceAndCertificatesData);
+    this.BriefSummary_Data = decodeURIComponent(atob(ReferenceAndCertificatesData.Letter));
     if (ReferenceAndCertificatesData) {
       this.ReferenceAndCertificates.patchValue({
       Receiver_GN_Code: ReferenceAndCertificatesData.Receiver_GN_Code,
-      Letter: ReferenceAndCertificatesData.Letter
+      BriefSummary: ReferenceAndCertificatesData.Letter
       });
     }
   }
@@ -89,10 +88,11 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     var formData: any = new FormData();
 
     formData.append("GN_Code", this.GN_Code);
+    formData.append("Student_GN_Code", this.Student_GN_Code);
     formData.append("Receiver_GN_Code", this.ReferenceAndCertificates.get('Receiver_GN_Code')?.value);
-    formData.append("Letter", this.ReferenceAndCertificates.get('Letter')?.value);
+    formData.append("Letter", BriefSummary);
 
-    this.http.post(environment.baseUrl + '/API/StudentManagment/ReferenceAndCertificates/Set/ReferenceAndCertificates.ashx', formData).subscribe(
+    this.http.post(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Set/ReferenceCertificateInfo.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
           if (response == "-2"){
@@ -139,9 +139,11 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   }
 
   // Label Data
-   lb_Receiver:any; ReceiverList:any;lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+  lb_FormTitle:any;lb_Details:any; lb_Receiver:any; ReceiverList:any;lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.lb_FormTitle="Reference And Certificates";
+      this.lb_Details = "Please fill all details for the Reference And Certificates Requst";
       this.lb_Receiver="Receiver";
       this.ReceiverList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
@@ -150,6 +152,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
+      this.lb_FormTitle="بيانات طلب مرجعية و شهادات";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات طلب مرجعية و شهادات";
       this.lb_Receiver="الجهه المرسل الية";
       this.ReceiverList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Letter="الخطاب";

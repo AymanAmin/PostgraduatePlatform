@@ -13,9 +13,6 @@ import { environment } from 'src/environments/environment';
 export class RecommendationLetterComponent implements OnInit {
 
   LangCode: any = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
-  lb_FormTitle:string="Recommendation Letter";
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -26,7 +23,8 @@ export class RecommendationLetterComponent implements OnInit {
 
   RecommendationLetter: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
-  GN_Code: string = this.route.snapshot.params['id'];
+  GN_Code: string = this.route.snapshot.params['id'];// "92d5e221-7206-4845-8e76-67e91700fc35";
+  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -56,12 +54,12 @@ export class RecommendationLetterComponent implements OnInit {
   CreateForm() {
     this.RecommendationLetter = new FormGroup({
       FacultyMember_GN_Code: new FormControl(null, [Validators.required]),
-      Letter: new FormControl(null, [Validators.required]),
+      BriefSummary: new FormControl(null),
     });
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/RecommendationLetter/Get/RecommendationLetter.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/RecommendationLetter/Get/RecommendationLetterInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -73,10 +71,11 @@ export class RecommendationLetterComponent implements OnInit {
 
   fillData(RecommendationLetterData: any) {
     //console.log(RecommendationLetterData);
+    this.BriefSummary_Data = decodeURIComponent(atob(RecommendationLetterData.Letter));
     if (RecommendationLetterData) {
       this.RecommendationLetter.patchValue({
       FacultyMember_GN_Code: RecommendationLetterData.FacultyMember_GN_Code,
-      Letter: RecommendationLetterData.Letter
+      BriefSummary : RecommendationLetterData.Letter
       });
     }
   }
@@ -90,10 +89,12 @@ export class RecommendationLetterComponent implements OnInit {
     var formData: any = new FormData();
 
     formData.append("GN_Code", this.GN_Code);
+    formData.append("Student_GN_Code", this.Student_GN_Code);
     formData.append("FacultyMember_GN_Code", this.RecommendationLetter.get('FacultyMember_GN_Code')?.value);
-    formData.append("Letter", this.RecommendationLetter.get('Letter')?.value);
+    formData.append("Letter", BriefSummary);
 
-    this.http.post(environment.baseUrl + '/API/StudentManagment/RecommendationLetter/Set/RecommendationLetter.ashx', formData).subscribe(
+
+    this.http.post(environment.baseUrl + '/API/StudentManagment/RecommendationLetter/Set/RecommendationLetterInfo.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
           if (response == "-2"){
@@ -141,9 +142,12 @@ export class RecommendationLetterComponent implements OnInit {
   }
 
   // Label Data
-   lb_FacultyMember:any; FacultyMemberList:any;lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+      lb_FormTitle:any;lb_Details:any;lb_FacultyMember:any; FacultyMemberList:any;
+      lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.lb_FormTitle="Recommendation Letter";
+      this.lb_Details = "Please fill all details for the Recommendation Letter Requst";
       this.lb_FacultyMember="Faculty Member";
       this.FacultyMemberList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
@@ -152,6 +156,8 @@ export class RecommendationLetterComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
+      this.lb_FormTitle="بيانات طلب توصية";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات طلب توصية";
       this.lb_FacultyMember="عضو هيئة التدريس";
       this.FacultyMemberList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Letter="الخطاب";

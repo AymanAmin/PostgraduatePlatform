@@ -79,8 +79,30 @@ export class StudentComponent implements OnInit {
       inline: "nearest"
     });*/
 
-
+    Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
+    Reference_Certificates:any;PG_T1:any;PG_T2:any;PG_T3:any;
   GetLabelName(LangCode: any) {
+    if (LangCode == "us-en") {
+      this.Studentinformation="Student Information";
+      this.StudentAttachment="Student Attachment";
+      this.ApplicationForm="Application Form";
+      this.StudentLeave="Leave Request";
+      this.RecommendationLetter="Recommendation Letter";
+      this.Reference_Certificates="Reference And Certificates";
+      this.PG_T1="PG_R1";
+      this.PG_T2="PG_R2";
+      this.PG_T3="PG_R3";
+    }else{
+      this.Studentinformation="بيانات الأساسية";
+      this.StudentAttachment="المرفقات";
+      this.ApplicationForm="إستمارة التقديم";
+      this.StudentLeave="طلب إجازة";
+      this.RecommendationLetter="طالب توصية";
+      this.Reference_Certificates="المراجع والشهادات";
+      this.PG_T1="PG_R1";
+      this.PG_T2="PG_R2";
+      this.PG_T3="PG_R3";
+    }
   }
 
 }

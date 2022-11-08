@@ -14,9 +14,8 @@ import { environment } from 'src/environments/environment';
 export class AddStudentComponent implements OnInit {
 
   LangCode: any = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
-  lb_FormTitle:string="Student Information";
+
+
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -185,7 +184,7 @@ export class AddStudentComponent implements OnInit {
 
   // Label Data
 
-  lb_Category :any;CategoryList: any;lb_Program:any;ProgramList:any;
+  lb_FormTitle:any;lb_Details:any;lb_Category :any;CategoryList: any;lb_Program:any;ProgramList:any;
   lb_Speciality:any;SpecialityList:any;lb_Phone:any;
   lb_FristName_En:any;lb_FatherName_En:any;lb_GrandFatherName_En:any;lb_FamilyName_En:any;
   lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
@@ -193,6 +192,8 @@ export class AddStudentComponent implements OnInit {
   lb_NationalIdNo:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.lb_FormTitle="Student Information";
+      this.lb_Details = "Please fill all details for the studant information";
       this.lb_Category = "Applicant Category";
       this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "Program";
@@ -218,6 +219,8 @@ export class AddStudentComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
+      this.lb_FormTitle="بيانات الطالب";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات الطالب";
       this.lb_Category = "نوع التقديم";
       this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "البرنامج";

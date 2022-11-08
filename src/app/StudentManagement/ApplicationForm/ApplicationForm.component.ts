@@ -12,9 +12,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ApplicationFormComponent implements OnInit {
   LangCode: any = "us-en";
-  /*username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";*/
-  lb_FormTitle:string="Application Form";
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -170,13 +167,14 @@ export class ApplicationFormComponent implements OnInit {
 
 
   // Label Data
-  lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
+  lb_FormTitle:any;lb_Details:any;lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
   lb_DateOfBirth:any;lb_PlaceOfBirth:any;lb_NationalIdNo:any;lb_IssueDate:any;
   lb_ExpiryDate:any;lb_MaritalStatus:any;MaritalStatusList:any;lb_Address:any;
   lb_City:any;lb_ZipCode:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-
+      this.lb_FormTitle="Application Form";
+      this.lb_Details = "Please fill all details for the application form";
       this.lb_FristName_Ar = "Frist Name(Arabic)";
       this.lb_FatherName_Ar = "Father Name(Arabic)";
       this.lb_GrandFatherName_Ar = "Grand Father Name(Arabic)";
@@ -196,7 +194,8 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
-
+      this.lb_FormTitle="بيانات التقديم";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات التقديم";
       this.lb_FristName_Ar = "(عربي)الأسم الأول";
       this.lb_FatherName_Ar = "(عربي)إسم الأب";
       this.lb_GrandFatherName_Ar = "(عربي)إسم الجد";

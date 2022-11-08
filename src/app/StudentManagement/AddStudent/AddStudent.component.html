@@ -1,7 +1,9 @@
 <div class="container-fluid">
        <div class="card-body pt-0">
         <form class="card card-body mt-4" [formGroup]="StudentInfo" (ngSubmit)="OnSubmit(false)">
-          <h6><u>{{lb_FormTitle}}</u></h6>
+          <h6>{{lb_FormTitle}}</h6>
+          <p class="text-sm mb-0">{{lb_Details}}</p>
+          <hr class="horizontal dark my-3">
           <div class="row">
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_Category}}</label>
@@ -101,7 +103,7 @@
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_RetypeEmail}}</label>
               <div class="input-group">
-                <input type="retypeemail" formControlName="Re_Email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+                <input type="retypeemail"  placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
               </div>
             </div>
             <div class="col-sm-6 col-6">
@@ -112,6 +114,7 @@
                 </select>
               </div>
             </div>
+
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_NationalIdNo}}</label>
               <div class="input-group">
@@ -119,11 +122,13 @@
                   required="required" autocomplete="false">
               </div>
             </div>
+
+            <div class="d-flex justify-content-end mt-4">
+              <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
+              <button type="submit" [disabled]="!(StudentInfo.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
+            </div>
           </div>
-          <div class="d-flex justify-content-end mt-4">
-            <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
-            <button type="submit" [disabled]="!(StudentInfo.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
-          </div>
+
         </form>
         </div>
         </div>

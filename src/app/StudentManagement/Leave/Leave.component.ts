@@ -12,9 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LeaveComponent implements OnInit {
   LangCode: any = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
-  lb_FormTitle:string="Leave Information";
+
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -26,8 +24,8 @@ export class LeaveComponent implements OnInit {
   Leave: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
-  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
-  Reason:any = "";
+  Student_GN_Code : string = "33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";//this.route.snapshot.params['Student_GN_Code'];
+  BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Leave");
@@ -59,7 +57,8 @@ export class LeaveComponent implements OnInit {
       Leave_Type_GN_Code: new FormControl(null, [Validators.required]),
       FromDate: new FormControl(null, [Validators.required]),
       ToDate: new FormControl(null, [Validators.required]),
-      Reason: new FormControl(null),
+      NoOfDays: new FormControl(null, [Validators.required]),
+      BriefSummary: new FormControl(null),
     });
   }
 
@@ -68,7 +67,7 @@ export class LeaveComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
-        this.Reason = MainInfoData.Reason;
+        this.BriefSummary_Data = MainInfoData.BriefSummary;
         this.fillData(MainInfoData);
       }
     )
@@ -76,7 +75,7 @@ export class LeaveComponent implements OnInit {
 
   fillData(LeaveData: any) {
     //console.log(LeaveData);
-    this.Reason = decodeURIComponent(atob(LeaveData.Reason));
+    this.BriefSummary_Data = decodeURIComponent(atob(LeaveData.Reason));
     if (LeaveData) {
       this.Leave.patchValue({
       Program_GN_Code: LeaveData.Program_GN_Code,
@@ -85,7 +84,7 @@ export class LeaveComponent implements OnInit {
       FromDate: LeaveData.FromDate,
       ToDate: LeaveData.ToDate,
       NoOfDays: LeaveData.NoOfDays,
-      Reason: LeaveData.Reason
+      BriefSummary : LeaveData.Reason
       });
     }
   }
@@ -106,7 +105,7 @@ export class LeaveComponent implements OnInit {
     formData.append("FromDate", this.Leave.get('FromDate')?.value);
     formData.append("ToDate", this.Leave.get('ToDate')?.value);
     formData.append("NoOfDays", this.Leave.get('NoOfDays')?.value);
-    formData.append("Reason", this.Leave.get('Reason')?.value);
+    formData.append("Reason", BriefSummary);
 
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentLeave/Set/StudentLeaveInfo.ashx', formData).subscribe(
       (response) => {
@@ -156,11 +155,13 @@ export class LeaveComponent implements OnInit {
   }
 
   // Label Data
-  lb_Program:any;ProgramList:any;lb_Speciality:any;SpecialityList:any;
+  lb_FormTitle:any;lb_Details:any;lb_Program:any;ProgramList:any;lb_Speciality:any;SpecialityList:any;
   lb_Type:any;TypeList:any;lb_Reason:any;lb_From:any;lb_To:any;
   lb_NoOfDaysLeave:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.lb_FormTitle="Leave Information";
+      this.lb_Details = "Please fill all details for the Leave Information";
       this.lb_Program = "Program";
       this.ProgramList = [{ "Id": 1, "Name": "Select Program" }];
       this.lb_Speciality = "Speciality";
@@ -176,6 +177,8 @@ export class LeaveComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
+      this.lb_FormTitle="بيانات الإجازة";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات الإجازة";
       this.lb_Program = "البرنامج";
       this.ProgramList = [{ "Id": 1, "Name": "إختر البرنامج" }];
       this.lb_Speciality = "التخصص";

@@ -12,9 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PGTComponent implements OnInit {
   LangCode: any = "us-en";
-  username: string = "Ayman Amin";
-  JobTitle: string = "Software Engineer";
-  lb_FormTitle:string="PG-T";
+
   lb_Partone :string="Part One";
   lb_PartTwo :string="Part Two";
 
@@ -28,6 +26,8 @@ export class PGTComponent implements OnInit {
   PGR: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
+  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
+  PG_R_Type : string = "1";//this.route.snapshot.params['PG_R_Type'];
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -56,21 +56,21 @@ export class PGTComponent implements OnInit {
 
   CreateForm() {
     this.PGR = new FormGroup({
+
       college_GN_Code: new FormControl(null, [Validators.required]),
       department_GN_Code: new FormControl(null, [Validators.required]),
       program_GN_Code: new FormControl(null, [Validators.required]),
-      PGR_date: new FormControl(null, [Validators.required]),
       Thesis_Title_En: new FormControl(null, [Validators.required]),
       Thesis_Title_Ar: new FormControl(null, [Validators.required]),
-      supervisor_date: new FormControl(null, [Validators.required]),
-      co_supervisor_date: new FormControl(null, [Validators.required]),
-      supervisor: new FormControl(null, [Validators.required]),
-      co_supervisor: new FormControl(null, [Validators.required]),
+      supervisor_date: new FormControl(null),
+      co_supervisor_date: new FormControl(null),
+      supervisor: new FormControl(null),
+      co_supervisor: new FormControl(null),
     });
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/PG_R/Get/PG_R.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/PG_R/Get/PG_R_Info.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -84,8 +84,10 @@ export class PGTComponent implements OnInit {
     //console.log(PGRData);
     if (PGRData) {
       this.PGR.patchValue({
+
         Thesis_Title_En: PGRData.Thesis_Title_En,
         Thesis_Title_Ar: PGRData.Thesis_Title_Ar
+
       });
     }
   }
@@ -99,10 +101,13 @@ export class PGTComponent implements OnInit {
     var formData: any = new FormData();
 
     formData.append("GN_Code", this.GN_Code);
+    formData.append("Student_GN_Code", this.Student_GN_Code);
+    formData.append("PG_R_Type", this.PG_R_Type);
     formData.append("Thesis_Title_En", this.PGR.get('Thesis_Title_En')?.value);
     formData.append("Thesis_Title_Ar", this.PGR.get('Thesis_Title_Ar')?.value);
 
-    this.http.post(environment.baseUrl + '/API/StudentManagment/PG_R/Set/PG_R.ashx', formData).subscribe(
+
+    this.http.post(environment.baseUrl + '/API/StudentManagment/PG_R/Set/PG_R_Info.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
           if (response == "-2"){
@@ -143,11 +148,13 @@ export class PGTComponent implements OnInit {
 
 
   // Label Data
-  lb_College:any; CollegeList:any;lb_Department:any;DepartmentList:any;lb_Date:any;
+  lb_FormTitle:any;lb_Details:any;lb_College:any; CollegeList:any;lb_Department:any;DepartmentList:any;lb_Date:any;
   lb_Program:any;ProgramList:any;lb_thesis_En:any;lb_thesis_Ar:any;
   lb_Supervisor:any;lb_CO_Supervisor:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.lb_FormTitle="PG-T";
+      this.lb_Details = "Please fill all details for the PG-T";
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Department="Department";
@@ -164,6 +171,8 @@ export class PGTComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
+      this.lb_FormTitle="PG-T";
+      this.lb_Details = "(PG-T)الرجاء تعبئة جميع بيانات";
       this.lb_College="الكلية";
       this.CollegeList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Department="القسم";
