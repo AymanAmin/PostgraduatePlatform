@@ -22,6 +22,9 @@ export class ListEmployeeComponent implements OnInit {
   searchedKeyword:string = "";
   //End Pangation and filter
 
+  ActiveNo: number = 0;
+  DisActiveNo: number = 0;
+
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("List Employee");
   }
@@ -32,21 +35,25 @@ export class ListEmployeeComponent implements OnInit {
     this.GetLabelName(this.LangCode);
   }
 
-  lb_UsersActive:any;lb_UsersInActive:any;
-  lb_UserBreif:any;lb_UserBreifD:any;lb_AddEmployee:any;
-  lb_Name:any;lb_JobTitle:any;lb_Status:any;lb_Email:any;
-  lb_Date:any;lb_Id:any;lb_Search:any;lb_SearchD:any;
-
-  getUserList(){
+    getUserList(){
     this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.UserList = JSON.parse(jsonInfo);
-        //console.log(this.UserList[0]);
+
+        //Get Number of Active user
+        this.ActiveNo = this.UserList.filter((obj: { IsActive: boolean; }) => { if (obj.IsActive) {return false;} return true;}).length;
+        this.DisActiveNo = this.UserList.filter((obj: { IsActive: boolean; }) => { if (obj.IsActive) {return true;} return false;}).length;
+        console.log(this.UserList);
       }
     )
   }
 
+  lb_UsersActive:any;lb_UsersInActive:any;
+  lb_UserBreif:any;lb_UserBreifD:any;lb_AddEmployee:any;
+  lb_Name:any;lb_JobTitle:any;lb_Status:any;lb_Email:any;
+  lb_Date:any;lb_Id:any;lb_Search:any;lb_SearchD:any;
+  lb_Active:any;lb_DisActive:any;lb_TypeHere:any;lb_Action:any;
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
@@ -63,6 +70,10 @@ export class ListEmployeeComponent implements OnInit {
       this.lb_Id = "Emp No";
       this.lb_Search = "Employee List";
       this.lb_SearchD = "You can search for any field in the table by typing here";
+      this.lb_Active = "Active";
+      this.lb_DisActive = "DisActive";
+      this.lb_TypeHere = "Type here...";
+      this.lb_Action = "Edit";
     }
     else
     {
@@ -79,6 +90,10 @@ export class ListEmployeeComponent implements OnInit {
       this.lb_Id = "رقم الموظف";
       this.lb_Search = "قائمة بالموظفين";
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
+      this.lb_Active = "نشط";
+      this.lb_DisActive = "غير نشط";
+      this.lb_TypeHere = "ابحث هنا ...";
+      this.lb_Action = "تعديل";
     }
   }
 

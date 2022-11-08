@@ -1,0 +1,8 @@
+.form-check {
+    display: inline-block !important;
+}
+
+:lang(ar) .form-control {
+    border-top-right-radius: 0rem !important;
+    border-bottom-right-radius: 0rem !important;
+}

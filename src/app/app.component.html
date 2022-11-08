@@ -431,6 +431,14 @@
               </a>
             </li>
           </ul>
+          <ul class="nav ms-4 ps-3">
+            <li class="nav-item ">
+              <a class="nav-link " routerLinkActive="active" routerLink="SequenceForm/list/">
+                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-normal"> {{SequenceForm}} </span>
+              </a>
+            </li>
+          </ul>
         </div>
 
       </li>
@@ -622,7 +630,7 @@
 </div>
 <!-- End button notify -->
 
-<div class="position-fixed top-1 end-2 z-index-sticky">
+<div class="{{Class_Massege}}">
   <div class="toast fade hide p-2 bg-white" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
       <div class="toast-header border-0">
           <i class="ni ni-check-bold text-success me-2"></i>

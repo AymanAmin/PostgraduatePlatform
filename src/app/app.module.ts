@@ -44,6 +44,10 @@ import { ViewPGT1Component } from './StudentManagement/ViewPGT1/ViewPGT1.compone
 import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.component';
 import { ViewPGT3Component } from './StudentManagement/ViewPGT3/ViewPGT3.component';
 import { ViewClearanceFormComponent } from './StudentManagement/ViewClearanceForm/ViewClearanceForm.component';
+import { SequenceFormComponent } from './SystemAdmin/SequenceForm/SequenceForm.component';
+import { SequenceActionComponent } from './StudentManagement/SequenceAction/SequenceAction.component';
+import { SequenceTrackingComponent } from './StudentManagement/SequenceTracking/SequenceTracking.component';
+import { RequestHeaderComponent } from './StudentManagement/RequestHeader/RequestHeader.component';
 
 
 const appRoutes: Routes = [
@@ -75,6 +79,8 @@ const appRoutes: Routes = [
   { path: 'SequenceStatus/list/:id', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
   { path: 'CreateSequence/list', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
   { path: 'CreateSequence/list/:id', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
+  { path: 'SequenceForm/list', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
+  { path: 'SequenceForm/list/:id', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
   { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
   { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
@@ -135,6 +141,7 @@ const routerOptions: ExtraOptions = {
     AddSequenceModelComponent,
     AddSquecneStatusComponent,
     CreateSequenceComponent,
+    SequenceFormComponent,
     HomeComponent,
     LoginComponent,
     ThesisDefenseComponent,
@@ -154,7 +161,10 @@ const routerOptions: ExtraOptions = {
     ViewClearanceFormComponent,
     ViewPGT1Component,
     ViewPGT2Component,
-    ViewPGT3Component
+    ViewPGT3Component,
+    SequenceActionComponent,
+    SequenceTrackingComponent,
+    RequestHeaderComponent
    ],
   imports: [
     BrowserModule,

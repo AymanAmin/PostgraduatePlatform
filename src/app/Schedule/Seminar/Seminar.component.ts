@@ -30,6 +30,8 @@ export class SeminarComponent implements OnInit {
   PerPage:number = 5;
   //End Pangation and filter
 
+  UserList:any;
+
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Seminar Info");
   }
@@ -47,6 +49,7 @@ export class SeminarComponent implements OnInit {
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
+    this.getUserList();
 
     if(this.Id)
       this.getSeminarData();
@@ -69,6 +72,25 @@ export class SeminarComponent implements OnInit {
     });
   }
 
+  getUserList(){
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.UserList = JSON.parse(jsonInfo);
+        //console.log(this.UserList);
+      }
+    )
+  }
+
+  GetEmpName(GN_Code: any) {
+    var user = this.UserList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    var name = user.Name_Ar;
+    if (this.LangCode == "us-en" || this.LangCode == "en-us")
+      name = user.Name_En;
+    return name;
+  }
+
   getSeminarData() {
     this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarInfo.ashx?Id=' + this.Id).subscribe(
       data => {
@@ -80,7 +102,6 @@ export class SeminarComponent implements OnInit {
   }
 
   fillData(Seminar: any) {
-
     if (Seminar)
       this.SeminarForm.patchValue({
         Week: Seminar.Week,
@@ -193,7 +214,6 @@ export class SeminarComponent implements OnInit {
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
       this.SpecialtyList = [{"key":1,"value":"Dentistry"},{"key":2,"value":"Pharmacy"}];
       this.StudentList = [{"key":1,"value":"Ayman Amin"},{"key":2,"value":"Mazin Awad"}];
-      this.ExaminerList = [{"key":1,"value":"Dr. Fahad Alshamary"},{"key":2,"value":"Dr. Raied"}];
     }
     else{
       this.lb_Address ="جدولة الندوات";
@@ -217,7 +237,6 @@ export class SeminarComponent implements OnInit {
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
       this.SpecialtyList = [{"key":1,"value":"اسنان"},{"key":2,"value":"صيدلة"}];
       this.StudentList = [{"key":1,"value":"ايمن امين"},{"key":2,"value":"مازن عوض"}];
-      this.ExaminerList = [{"key":1,"value":"د. فهد الشمري"},{"key":2,"value":"د. رائد"}];
     }
   }
 

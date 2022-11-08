@@ -11,14 +11,14 @@
               <label class="form-label">{{lb_SequenceModel}}</label>
               <select class="form-control" name="choices-language" formControlName="SequenceModel_ID">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{SeqModel.Id}}" *ngFor="let SeqModel of SeqModelList">{{SeqModel.Name_En}}</option>
+                <option value="{{SeqModel.Id}}" *ngFor="let SeqModel of SeqModelList">{{LangCode === "us-en" ? SeqModel.Name_En : SeqModel.Name_Ar}}</option>
               </select>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label">{{lb_SequenceStatus}}</label>
               <select class="form-control" name="choices-language" formControlName="SequenceStatus_ID">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{SeqStatus.Id}}" *ngFor="let SeqStatus of SeqStatusList">{{SeqStatus.Name_En}}</option>
+                <option value="{{SeqStatus.Id}}" *ngFor="let SeqStatus of SeqStatusList">{{LangCode === "us-en" ? SeqStatus.Name_En : SeqStatus.Name_Ar}}</option>
               </select>
             </div>
           </div>
@@ -28,21 +28,21 @@
               <label class="form-label">{{lb_NextStep}}</label>
               <select class="form-control" name="choices-language" formControlName="NextSequence_ID">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{nextStep.Id}}" *ngFor="let nextStep of SequenceList">{{nextStep.Name_En}}</option>
+                <option value="{{nextStep.Id}}" *ngFor="let nextStep of SeqStatusList">{{LangCode === "us-en" ? nextStep.Name_En : nextStep.Name_Ar}}</option>
               </select>
             </div>
             <div class="col-12 col-md-4">
               <label class="form-label">{{lb_PreviousStep}}</label>
               <select class="form-control" name="choices-language" formControlName="PreviousSequence_ID">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{prevStep.Id}}" *ngFor="let prevStep of SequenceList">{{prevStep.Name_En}}</option>
+                <option value="{{prevStep.Id}}" *ngFor="let prevStep of SeqStatusList">{{LangCode === "us-en" ? prevStep.Name_En : prevStep.Name_Ar}}</option>
               </select>
             </div>
             <div class="col-12 col-md-4">
               <label class="form-label">{{lb_OptionStep}}</label>
               <select class="form-control" name="choices-language" formControlName="OptionalSequence_ID">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{prevStep.Id}}" *ngFor="let prevStep of SequenceList">{{prevStep.Name_En}}</option>
+                <option value="{{optionStep.Id}}" *ngFor="let optionStep of SeqStatusList">{{LangCode === "us-en" ? optionStep.Name_En : optionStep.Name_Ar}}</option>
               </select>
             </div>
           </div>
@@ -92,12 +92,11 @@
               <tr>
 
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_SequenceModel}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_NextStep}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_PreviousStep}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_OptionStep}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
               </tr>
@@ -105,7 +104,7 @@
             <tbody>
               <tr *ngFor="let oneSpe of SequenceList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
-              itemsPerPage: 2,
+              itemsPerPage: PerPage,
               currentPage: page,
               totalItems: tatalRecords
           }">
@@ -115,60 +114,54 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.ArName}}</h6>
+                      <h6 class="mb-0 text-sm">{{LangCode === "us-en" ? oneSpe.SequencesModel.Name_En : oneSpe.SequencesModel.Name_Ar}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.EngName}}</h6>
+                      <h6 class="mb-0 text-sm"><span class="badge" style="background-color: {{oneSpe.SequencesStatus.ColorCode}}">{{LangCode === "us-en" ? oneSpe.SequencesStatus.Name_En : oneSpe.SequencesStatus.Name_Ar}}</span></h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><span class="badge bg-gradient-{{oneSpe.Color}}">{{oneSpe.SequenceStatus}}</span></h6>
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesNext"><span class="badge"
+                          style="background-color: {{oneSpe.SequencesNext.ColorCode}}">{{LangCode === "us-en" ?
+                          oneSpe.SequencesNext.Name_En : oneSpe.SequencesNext.Name_Ar}}</span></h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.SequenceModel}}</h6>
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesPreviose"><span class="badge"
+                          style="background-color: {{oneSpe.SequencesPreviose.ColorCode}}">{{LangCode === "us-en" ?
+                          oneSpe.SequencesPreviose.Name_En : oneSpe.SequencesPreviose.Name_Ar}}</span></h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><span class="badge bg-gradient-success">{{oneSpe.Next}}</span></h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><span class="badge bg-gradient-danger">{{oneSpe.Previous}}</span></h6>
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesOption"><span class="badge"
+                          style="background-color: {{oneSpe.SequencesOption != null ? oneSpe.SequencesOption.ColorCode : ''}}">{{LangCode === "us-en" && oneSpe.SequencesOption != null ?
+                          oneSpe.SequencesOption.Name_En : oneSpe.SequencesOption.Name_Ar}}</span></h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <span class="badge badge-dot me-4">
-                    <i class="{{oneSpe.StatusColor}} mx-2"></i>
-                    <span class="text-dark text-xs">{{oneSpe.Status}}</span>
+                    <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
+                    <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
                   </span>
                 </td>
                 <td class="text-sm">
-                  <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
-                    <i class="fas fa-eye text-secondary"></i>
-                  </a>
-                  <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
+                  <a routerLink="/CreateSequence/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
+                    data-bs-original-title="Preview product">
                     <i class="fas fa-user-edit text-secondary"></i>
-                  </a>
-                  <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                    <i class="fas fa-trash text-secondary"></i>
                   </a>
                 </td>
               </tr>

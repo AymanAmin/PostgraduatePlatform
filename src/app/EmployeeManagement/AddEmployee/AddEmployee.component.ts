@@ -80,7 +80,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   fillData(EmployeeData: any) {
-    //console.log(EmployeeData);
+    console.log(EmployeeData);
     this.BriefSummary_Data = decodeURIComponent(atob(EmployeeData.BriefSummary));
     if (EmployeeData) {
       this.IsActive = EmployeeData.IsActive;
@@ -144,7 +144,7 @@ export class AddEmployeeComponent implements OnInit {
         }
       },
       (error) => {
-        document.getElementById("btnInfo")?.click();
+        document.getElementById("btnDanger")?.click();
         console.log(error);
       }
     )

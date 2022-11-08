@@ -123,6 +123,7 @@ export class AppComponent {
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
   Reference_Certificates:any;PG_T1:any;PG_T2:any;PG_T3:any;
+  SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
@@ -146,6 +147,7 @@ export class AppComponent {
       this.EmailTemplate = "Email Template";
       this.Sequence = "Sequence";
       this.ListSequenceModel = "List Sequence Model";
+      this.SequenceForm = "Sequence Form";
       this.ListSequenceStatus = "List Sequence Status";
       this.CreateSequence = "Create Sequence";
       this.Needhelp = "Need help?";
@@ -171,12 +173,13 @@ export class AppComponent {
       this.PG_T1="PG_R1";
       this.PG_T2="PG_R2";
       this.PG_T3="PG_R3";
+      this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
     }
     else {
       this.username = "ايمن امين";
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl-dir";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white rtl-dir";
-      this.MenuItem = "nav-link-text me-2";
+      this.MenuItem = "nav-link-text me-3";
       this.navClass = "navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
       this.breadcrumbClass = "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 ";
       this.CatMenuItem = "ps-4 me-5 text-uppercase text-xs font-weight-bolder opacity-6";
@@ -197,6 +200,7 @@ export class AppComponent {
       this.ListSequenceModel = "قائمة التسلسلات";
       this.ListSequenceStatus = "حالات التسلسل";
       this.CreateSequence = "إنشاء تسلسل";
+      this.SequenceForm = "فورمات التسلسل";
       this.Needhelp = "هل تحتاج مساعدة ؟";
       this.PleaseSendEmail = "الرجاء إرسال ايميل";
       this.Students = "الطلاب";
@@ -220,6 +224,7 @@ export class AppComponent {
       this.PG_T1="PG_R1";
       this.PG_T2="PG_R2";
       this.PG_T3="PG_R3";
+      this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
     }
   }
 
