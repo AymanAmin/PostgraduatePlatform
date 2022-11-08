@@ -35,22 +35,13 @@ export class StudentAttachmentComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     if(this.GN_Code)
       this.getData();
-
     this.UpdateButtonSpinner(false);
   }
 
-  public loadJsFile(url: any) {
-
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('body')[0].appendChild(node);
-  }
 
   CreateForm() {
     this.Attachment = new FormGroup({
@@ -153,6 +144,38 @@ export class StudentAttachmentComponent implements OnInit {
       block: "start",
       inline: "nearest"
     });
+  }
+
+  onFileChange(files: FileList, Type: string) {
+    var GN_Code = localStorage.getItem("GN_Code");
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      var file = reader.result as string;
+      var formData: any = new FormData();
+      formData.append("GN_Code", GN_Code);
+      formData.append('file', file);
+      formData.append('Type', Type);
+      formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+
+      this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
+        (response) => {
+          if (response != "0") {
+            this.IsShowMessageUpdate = true;
+            this.IsShowMessageError = false;
+            var jsonInfo = JSON.stringify(response);
+            let MainInfoData = JSON.parse(jsonInfo);
+            console.log(MainInfoData);
+            //this.ProfileImg = response;
+          }
+          else {
+            this.IsShowMessageUpdate = false;
+            this.IsShowMessageError = true;
+          }
+        },
+        (error) => console.log(error)
+      );
+    };
   }
 
 

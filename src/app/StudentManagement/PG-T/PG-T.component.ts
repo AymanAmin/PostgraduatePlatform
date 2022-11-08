@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,31 +27,24 @@ export class PGTComponent implements OnInit {
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
   Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
-  PG_R_Type : string = "1";//this.route.snapshot.params['PG_R_Type'];
-  BriefSummary_Data:any = "";
+  PG_R_Type:number = this.route.snapshot.params['PG_R_Type'];
+  BriefSummary_Data:any = "";  FormCode:string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("PGR");
+    console.log(this.PG_R_Type);
+    console.log(this.GN_Code);
   }
 
   ngOnInit() {
 
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     if(this.GN_Code)
       this.getData();
 
     this.UpdateButtonSpinner(false);
-  }
-
-  public loadJsFile(url: any) {
-
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('body')[0].appendChild(node);
   }
 
   CreateForm() {
@@ -74,7 +67,6 @@ export class PGTComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
-        this.BriefSummary_Data = MainInfoData.BriefSummary;
         this.fillData(MainInfoData);
       }
     )

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="card-body pt-0">
-    <form class="card card-body mt-4" [formGroup]="Attachment" (ngSubmit)="OnSubmit(false)">
+    <form class="card card-body mt-4" >
       <h6>{{lb_FormTitle}}</h6>
       <p class="text-sm mb-0">{{lb_Details}}</p>
       <hr class="horizontal dark my-3">
@@ -8,7 +8,7 @@
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Curriculum_Vitae}}</label>
       <div class="input-group">
-        <input id="curriculum-vitae" name="curriculum-vitae" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'curriculum vitae')" id="curriculum-vitae" name="curriculum-vitae" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
