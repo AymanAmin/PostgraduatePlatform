@@ -20,7 +20,7 @@
               <label class="form-label">{{lb_Department}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-department" formControlName="department_GN_Code" >
-                  <option value="{{department.Id}}" *ngFor="let department of DepartmentList">{{department.Name}}</option>
+                  <option value="{{department.Id}}" *ngFor="let department of DepartmentList">{{LangCode === "us-en" ? department.Name_En : department.Name_Ar}}</option>
                 </select>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
                 <select class="form-control"  name="choices-program" formControlName="program_GN_Code" >
-                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
+                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{LangCode === "us-en" ? program.Name_En : program.Name_Ar}}</option>
                 </select>
               </div>
             </div>

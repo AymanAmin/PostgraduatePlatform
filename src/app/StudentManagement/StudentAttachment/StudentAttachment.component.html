@@ -14,86 +14,86 @@
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Application_Consent_Form}}</label>
       <div class="input-group">
-        <input id="application-consent-form" name="application-consent-form" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'application consent form')" id="application-consent-form" name="application-consent-form" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Personal_Photo}}</label>
       <div class="input-group">
-        <input id="personal-photo" name="personal-photo" class="form-control" type="file" required="required">
+        <input id="personal-photo"(change)="onFileChange($any($event).target.files,'personal photo')"  name="personal-photo" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_National_ID}}</label>
       <div class="input-group">
-        <input id="national_id" name="national_id" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'national ID')" id="national_id" name="national_id" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Graduation_Certificate}}</label>
       <div class="input-group">
-        <input id="graduation-certificate" name="graduation-certificate" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'graduation certificate')" id="graduation-certificate" name="graduation-certificate" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Internship_Training_Certificate}}</label>
       <div class="input-group">
-        <input id="internship-training-certificate" name="internship-training-certificate" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'internship training certificate')" id="internship-training-certificate" name="internship-training-certificate" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Official_Academic_Record}}</label>
       <div class="input-group">
-        <input id="official-academic-record" name="official-academic-record" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'official academic record')" id="official-academic-record" name="official-academic-record" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_English_Proficiency_Test_Score}}</label>
       <div class="input-group">
-        <input id="english-proficiency-test-score" name="english-proficiency-test-score" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'english proficiency test-score')" id="english-proficiency-test-score" name="english-proficiency-test-score" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Saudi_Licensure_Exam}}</label>
       <div class="input-group">
-        <input id="saudi-licensure-exam" name="saudi-licensure-exam " class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'saudi licensure exam')" id="saudi-licensure-exam" name="saudi-licensure-exam " class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Personal_Statement}}</label>
       <div class="input-group">
-        <input id="personal-statement" name="personal-statement" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'personal statement')" id="personal-statement" name="personal-statement" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Provisional_Registration}}</label>
       <div class="input-group">
-        <input id="provisional-registration" name="provisional-registration" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'provisional registration')"  id="provisional-registration" name="provisional-registration" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Letter_From_Your_Sponsor}}</label>
       <div class="input-group">
-        <input id="letter-from-your-sponsor" name="letter-from-your-sponsor" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'letter from your sponsor')" id="letter-from-your-sponsor" name="letter-from-your-sponsor" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Name_Page_of_Your_Passport}}</label>
       <div class="input-group">
-        <input id="name-page-of-your-passport" name="name-page-of-your-passport" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'name page of your passport')"  id="name-page-of-your-passport" name="name-page-of-your-passport" class="form-control" type="file" required="required">
       </div>
     </div>
     <div class="col-sm-6 col-6">
       <label class="form-label">{{lb_Recommendation_Letter}}</label>
       <div class="input-group">
-        <input id="recommendation-letter" name="recommendation-letter" class="form-control" type="file" required="required">
+        <input (change)="onFileChange($any($event).target.files,'recommendation letter')" id="recommendation-letter" name="recommendation-letter" class="form-control" type="file" required="required">
       </div>
     </div>
 
-    <div class="d-flex justify-content-end mt-4">
+    <!-- <div class="d-flex justify-content-end mt-4">
       <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
       <button type="submit" [disabled]="!(Attachment.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
-    </div>
+    </div>-->
 </div>
 </form>
 </div>

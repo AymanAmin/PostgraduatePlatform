@@ -41,6 +41,8 @@ export class PGTComponent implements OnInit {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getProgram();
+    this.getDepartment();
     if(this.GN_Code)
       this.getData();
 
@@ -150,9 +152,7 @@ export class PGTComponent implements OnInit {
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Department="Department";
-      this.DepartmentList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Program="Program";
-      this.ProgramList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Date="Date";
       this.lb_thesis_En="Thesis(English)";
       this.lb_thesis_Ar="Thesis(Arabic)";
@@ -168,9 +168,7 @@ export class PGTComponent implements OnInit {
       this.lb_College="الكلية";
       this.CollegeList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Department="القسم";
-      this.DepartmentList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Program="البرنامج";
-      this.ProgramList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Date="التاريخ";
       this.lb_thesis_En="(انجليزي)الأطروحة";
       this.lb_thesis_Ar="الأطروحة(عربي)";
@@ -180,6 +178,24 @@ export class PGTComponent implements OnInit {
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getProgram() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/ProgramManagment/Get/ProgramList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ProgramList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
+  getDepartment() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/DepartmentManagment/Get/DepartmentList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.DepartmentList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

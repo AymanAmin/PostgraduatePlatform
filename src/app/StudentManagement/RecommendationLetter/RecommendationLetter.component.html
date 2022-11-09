@@ -9,7 +9,7 @@
               <label class="form-label">{{lb_FacultyMember}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" id="choices-facultymember" formControlName="FacultyMember_GN_Code">
-                  <option value="{{facultymember.Id}}" *ngFor="let facultymember of FacultyMemberList">{{facultymember.Name}}</option>
+                  <option value="{{facultymember.Id}}" *ngFor="let facultymember of FacultyMemberList">{{LangCode === "us-en" ? facultymember.Name_En : facultymember.Name_Ar}}</option>
                 </select>
               </div>
             </div>

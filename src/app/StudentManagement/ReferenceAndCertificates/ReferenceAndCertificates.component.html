@@ -9,7 +9,7 @@
                 <label class="form-label">{{lb_Receiver}}</label>
                 <div class="input-group">
                   <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="Receiver_GN_Code">
-                    <option value="{{receiver.Id}}" *ngFor="let receiver of ReceiverList">{{receiver.Name}}</option>
+                    <option value="{{receiver.Id}}" *ngFor="let receiver of ReceiverList">{{LangCode === "us-en" ? receiver.Name_En : receiver.Name_Ar}}</option>
                   </select>
                 </div>
               </div>

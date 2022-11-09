@@ -36,6 +36,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getReceiver();
     if(this.GN_Code)
       this.getData();
 
@@ -145,7 +146,6 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_FormTitle="Reference And Certificates";
       this.lb_Details = "Please fill all details for the Reference And Certificates Requst";
       this.lb_Receiver="Receiver";
-      this.ReceiverList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
@@ -155,12 +155,20 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_FormTitle="بيانات طلب مرجعية و شهادات";
       this.lb_Details = "الرجاء تعبئة جميع بيانات طلب مرجعية و شهادات";
       this.lb_Receiver="الجهه المرسل الية";
-      this.ReceiverList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Letter="الخطاب";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getReceiver() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ReceiverList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

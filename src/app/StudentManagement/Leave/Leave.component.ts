@@ -36,6 +36,10 @@ export class LeaveComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getTypeLeave();
+    this.getProgram();
+    this.getSpeciality();
+
     if(this.GN_Code)
       this.getData();
 
@@ -163,11 +167,8 @@ export class LeaveComponent implements OnInit {
       this.lb_FormTitle="Leave Information";
       this.lb_Details = "Please fill all details for the Leave Information";
       this.lb_Program = "Program";
-      this.ProgramList = [{ "Id": 1, "Name": "Select Program" }];
       this.lb_Speciality = "Speciality";
-      this.SpecialityList = [{ "Id": 1, "Name": "Select Speciality" }];
       this.lb_Type = "Type";
-      this.TypeList = [{ "Id": 1, "Name": "Select Type" }];
       this.lb_From="From";
       this.lb_To="To";
       this.lb_NoOfDaysLeave="NO Of Days Leave";
@@ -180,11 +181,8 @@ export class LeaveComponent implements OnInit {
       this.lb_FormTitle="بيانات الإجازة";
       this.lb_Details = "الرجاء تعبئة جميع بيانات الإجازة";
       this.lb_Program = "البرنامج";
-      this.ProgramList = [{ "Id": 1, "Name": "إختر البرنامج" }];
       this.lb_Speciality = "التخصص";
-      this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
       this.lb_Type = "النوع";
-      this.TypeList = [{ "Id": 1, "Name": "إختر النوع" }];
       this.lb_From="من";
       this.lb_To="الي";
       this.lb_NoOfDaysLeave="عدد أيام الإجازة";
@@ -193,6 +191,33 @@ export class LeaveComponent implements OnInit {
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getProgram() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/ProgramManagment/Get/ProgramList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ProgramList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
+  getSpeciality() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/SpecializationManagment/Get/SpecializationList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.SpecialityList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
+  getTypeLeave() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/TypeLeaveManagment/Get/TypeLeaveList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.TypeList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

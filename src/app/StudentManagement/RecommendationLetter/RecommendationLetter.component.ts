@@ -37,6 +37,7 @@ export class RecommendationLetterComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getFacultyMember();
     if(this.GN_Code)
       this.getData();
 
@@ -149,7 +150,6 @@ export class RecommendationLetterComponent implements OnInit {
       this.lb_FormTitle="Recommendation Letter";
       this.lb_Details = "Please fill all details for the Recommendation Letter Requst";
       this.lb_FacultyMember="Faculty Member";
-      this.FacultyMemberList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Letter="Letter";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
@@ -159,12 +159,20 @@ export class RecommendationLetterComponent implements OnInit {
       this.lb_FormTitle="بيانات طلب توصية";
       this.lb_Details = "الرجاء تعبئة جميع بيانات طلب توصية";
       this.lb_FacultyMember="عضو هيئة التدريس";
-      this.FacultyMemberList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Letter="الخطاب";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getFacultyMember() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.FacultyMemberList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

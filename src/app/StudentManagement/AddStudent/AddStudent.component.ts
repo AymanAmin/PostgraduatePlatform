@@ -38,6 +38,8 @@ export class AddStudentComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getProgram();
+    this.getSpeciality();
     if(this.GN_Code)
       this.getData();
 
@@ -197,9 +199,10 @@ export class AddStudentComponent implements OnInit {
       this.lb_Category = "Applicant Category";
       this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "Program";
-      this.ProgramList = [{ "Id": 1, "Name": "Select Program" }];
+
+      //this.ProgramList = [{ "Id": 1, "Name": "Select Program" }];
       this.lb_Speciality = "Speciality";
-      this.SpecialityList = [{"Id":1,"Name":"Dentistry"},{"Id":2,"Name":"Pharmacy"}];
+     // this.SpecialityList = [{"Id":1,"Name":"Dentistry"},{"Id":2,"Name":"Pharmacy"}];
       this.lb_Phone="Phone";
       this.lb_FristName_En = "Frist Name(Engilsh)";
       this.lb_FatherName_En = "Father Name(Engilsh)";
@@ -224,9 +227,9 @@ export class AddStudentComponent implements OnInit {
       this.lb_Category = "نوع التقديم";
       this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "البرنامج";
-      this.ProgramList = [{ "Id": 1, "Name": "إختر البرنامج" }];
+      //this.ProgramList = [{ "Id": 1, "Name": "إختر البرنامج" }];
       this.lb_Speciality = "التخصص";
-      this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
+      //this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
       this.lb_Phone="رقم الجوال";
       this.lb_FristName_En = "(إنجليزي)الأسم الأول";
       this.lb_FatherName_En = "(إنجليزي)إسم الأب";
@@ -247,6 +250,24 @@ export class AddStudentComponent implements OnInit {
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getProgram() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/ProgramManagment/Get/ProgramList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ProgramList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
+  getSpeciality() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/SpecializationManagment/Get/SpecializationList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.SpecialityList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

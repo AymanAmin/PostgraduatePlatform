@@ -185,7 +185,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_IssueDate="Issue Date";
       this.lb_ExpiryDate="Expiry Date";
       this.lb_MaritalStatus="Marital Status";
-      this.MaritalStatusList = [{ "Id": 1, "Name": "Select" }];
+      this.MaritalStatusList = [{ "Id": 1, "Name": "Single" },{ "Id": 2, "Name": "Married" }];
       this.lb_City="City";
       this.lb_ZipCode="Zip Code";
       this.lb_Address="Address";
@@ -206,7 +206,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_IssueDate="تاريخ الإصدار";
       this.lb_ExpiryDate="تاريخ انتهاء الصلاحية";
       this.lb_MaritalStatus="الحالة الاجتماعية";
-      this.MaritalStatusList = [{ "Id": 1, "Name": "إختر" }];
+      this.MaritalStatusList = [{ "Id": 1, "Name": "أعذب" },{ "Id": 2, "Name": "متزوج" }];
       this.lb_City="المدينة";
       this.lb_ZipCode="الرمز البريدي";
       this.lb_Address="العنوان";

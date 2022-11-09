@@ -9,7 +9,7 @@
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" id="choices-program" formControlName="program_GN_Code">
-                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{program.Name}}</option>
+                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{LangCode === "us-en" ? program.Name_En : program.Name_Ar}}</option>
                 </select>
               </div>
             </div>
@@ -17,7 +17,7 @@
               <label class="form-label">{{lb_Speciality}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" id="choices-speciality" formControlName="Speciality_GN_Code">
-                  <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{speciality.Name}}</option>
+                  <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{LangCode === "us-en" ? speciality.Name_En : speciality.Name_Ar}}</option>
                 </select>
               </div>
             </div>
@@ -25,7 +25,7 @@
               <label class="form-label">{{lb_Type}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-type" id="choices-type" formControlName="Leave_Type_GN_Code">
-                  <option value="{{type.Id}}" *ngFor="let type of TypeList">{{type.Name}}</option>
+                  <option value="{{type.Id}}" *ngFor="let type of TypeList">{{LangCode === "us-en" ? type.Name_En : type.Name_Ar}}</option>
                 </select>
               </div>
             </div>
