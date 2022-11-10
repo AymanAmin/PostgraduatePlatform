@@ -117,11 +117,13 @@ export class AppComponent {
   CatMainMenu:any = "nav-item mt-3";
   loginClass:any = "justify-content-end navbar-nav";
   Dashboard:any = "Dashboard";Employees:any = "Employees";
-  SystemAdmin:any;Specializations:any;Departments:any;Programs:any;TypesLeave:any;
-  EmailTemplate: any; Sequence: any; ListSequenceModel: any; ListSequenceStatus: any; CreateSequence: any; SequenceForm:any;
+  StudentMangment:any;StudentRequest:any;SystemAdmin:any;Specializations:any;Departments:any;Programs:any;TypesLeave:any;
+  EmailTemplate:any;Sequence:any;ListSequenceModel:any;ListSequenceStatus:any;CreateSequence:any;
   Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
-  Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
+  Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
+  Reference_Certificates:any;PG_T1:any;PG_T2:any;PG_T3:any;
+  SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
@@ -135,6 +137,8 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "Dashboard";
       this.Employees = "Employees";
+      this.StudentMangment ="Student Mangment";
+      this.StudentRequest="Student Request";
       this.SystemAdmin = "System Admin";
       this.Specializations = "Specializations";
       this.Departments = "Departments";
@@ -160,6 +164,15 @@ export class AppComponent {
       this.ListOrders = "List Orders";
       this.Profile = "Profile";
       this.ListStudents = "List Students";
+      this.Studentinformation="Student Information";
+      this.StudentAttachment="Student Attachment";
+      this.ApplicationForm="Application Form";
+      this.StudentLeave="Leave Request";
+      this.RecommendationLetter="Recommendation Letter";
+      this.Reference_Certificates="Reference And Certificates";
+      this.PG_T1="PG_R1";
+      this.PG_T2="PG_R2";
+      this.PG_T3="PG_R3";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
     }
     else {
@@ -175,7 +188,9 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "لوحة المعلومات";
       this.Employees = "الموظفين";
+      this.StudentMangment ="إدارة الطلاب";
       this.SystemAdmin = "إدارة النظام";
+      this.StudentRequest="طلبات الطلاب";
       this.Specializations = "التخصصات";
       this.Departments = "الاقسام";
       this.Programs = "البرامج";
@@ -200,6 +215,15 @@ export class AppComponent {
       this.ListOrders = "عرض الطلبات";
       this.Profile = "صفحتي الشخصية";
       this.ListStudents = "قائمة الطلاب";
+      this.Studentinformation="بيانات الأساسية";
+      this.StudentAttachment="المرفقات";
+      this.ApplicationForm="إستمارة التقديم";
+      this.StudentLeave="طلب إجازة";
+      this.RecommendationLetter="طالب توصية";
+      this.Reference_Certificates="المراجع والشهادات";
+      this.PG_T1="PG_R1";
+      this.PG_T2="PG_R2";
+      this.PG_T3="PG_R3";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
     }
   }

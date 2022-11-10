@@ -1,27 +1,33 @@
-        <div class="card-header">
-          <h5>{{lb_FormTitle}}</h5>
-        </div>
+<div class="container-fluid">
         <div class="card-body pt-0">
+          <form class="card card-body mt-4" [formGroup]="RecommendationLetter" (ngSubmit)="OnSubmit(false)">
+            <h6>{{lb_FormTitle}}</h6>
+            <p class="text-sm mb-0">{{lb_Details}}</p>
+            <hr class="horizontal dark my-3">
           <div class="row">
             <div class="col-sm-6 col-6">
               <label class="form-label">{{lb_FacultyMember}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-gender" id="choices-facultymember">
-                  <option value="{{facultymember.Id}}" *ngFor="let facultymember of FacultyMemberList">{{facultymember.Name}}</option>
+                <select class="form-control" name="choices-gender" id="choices-facultymember" formControlName="FacultyMember_GN_Code">
+                  <option value="{{facultymember.Id}}" *ngFor="let facultymember of FacultyMemberList">{{LangCode === "us-en" ? facultymember.Name_En : facultymember.Name_Ar}}</option>
                 </select>
               </div>
             </div>
 
-            <div class="col-sm-12 col-6">
-              <label class="form-label">{{lb_Letter}}</label>
-                <div id="editor2">
+            <label class="mt-4">{{lb_Letter}}</label>
+            <input type="hidden" class="form-control BriefSummary" id="BriefSummary" formControlName="BriefSummary"  />
 
-                </div>
+            <div id="editor" [innerHTML]="BriefSummary_Data">
+              <!-- Data -->
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+              <button type="button" name="button" class="btn btn-light m-0">{{lb_Cancel}}</button>
+              <button type="submit" [disabled]="!(RecommendationLetter.valid && btn_status)" name="button" class="btn bg-gradient-success m-0 mx-2" ><span [innerHTML]="btn_spinner"></span></button>
             </div>
         </div>
-          <div class="d-flex justify-content-end mt-7">
-            <button class="btn bg-gradient-success m-0 ms-2">{{lb_SaveChange}}</button>
-          </div>
+        </form>
         </div>
+</div>
 
 
