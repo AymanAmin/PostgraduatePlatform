@@ -1,5 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ViewStudentLeave',
@@ -9,17 +12,7 @@ import { Title } from '@angular/platform-browser';
 export class ViewStudentLeaveComponent implements OnInit {
 
   LangCode: any = "us-en";
-  Date: any;
-  OrderNo: string = "";
-  OrderTo: string = "";
-  Details: any;
-  StdName: string = "";
-  StdPhone: string = "";
-  StdEmail: string = "";
-  Type: string = "";
-  Category: string = "";
-  Program: string = "";
-  Speciality: string = "";
+  GN_Code: string = this.route.snapshot.params['id'];
 
   DayOfLeave: string = "";
   TypeLeave: string = ""
@@ -27,63 +20,36 @@ export class ViewStudentLeaveComponent implements OnInit {
   DateFrom: string = "";
   Reason: string = "";
 
-  SequenceName1: string = "";
-  SequenceName2: string = "";
-  SequenceD1: string = "";
-  SequenceD2: string = "";
-  Track1: string = "";
-  Track2: string = "";
-  Track3: string = "";
-  Track4: string = "";
-  TrackDate1: string = "";
-  TrackDate2: string = "";
-  TrackDate3: string = "";
-  TrackDate4: string = "";
-
   FormCode:string = "1001";
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View Student Leave");
   }
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.GetOrderInfo();
+    this.getData();
     this.GetLabelName(this.LangCode);
   }
 
-  GetOrderInfo() {
-    this.Date = "30 March 2022";
-    this.OrderNo = "100023";
-    this.Type = "Student Leave";
-    this.OrderTo = "Dear Ms./Mr. [Recommender Name],";
-    this.Details = "I hope you’re well. I’m in the process of applying to [school or company name] and want to ask if you feel comfortable writing a strong letter of recommendation on my behalf.<br> <br>I thoroughly enjoyed my time as [your relationship to the recommender]. As my [teacher/counselor/manager], I believe you could honestly and effectively vouch for my [list of skills or qualifications] I’ve demonstrated during our time together. <br>I appreciate you considering my request. The deadline for submitting the letter is [date]. I’ve attached an updated version of my [resume/brag sheet], as well as the [job posting/admission requirements] and details on how to submit the letter. If you need any additional information, don’t hesitate to contact me.<br><br>Thank you for your time and support.<br>Sincerely,";
-    this.StdName = "Omer Ahmed Ali Alharith";
-    this.StdPhone = "+966 55 093 2548";
-    this.StdEmail = "omeralharith44@gmail.com";
-    this.Category = "Employed elsewhere";
-    this.Program = "Dentistry";
-    this.Speciality = "Pedodontics";
+  getData() {
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/LeaveInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        let MainInfoData = JSON.parse(jsonInfo);
+        this.GetOrderInfo(MainInfoData);
+      }
+    )
+  }
 
-    this.DayOfLeave = "14 Days";
-    this.TypeLeave = "Sick leave"
-    this.DateTo = "10 March 2022";
-    this.DateFrom = "20 March 2022";
-    this.Reason = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer erat a ante.";
-
-    this.SequenceName1 = "Michael Lewis";
-    this.SequenceName2 = "Jessica Stones";
-    this.SequenceD1 = "I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts - their perception of themselves!";
-    this.SequenceD2 = "Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out.It’s like a little kid, a little boy.";
-
-    this.Track1 = "Request created";
-    this.Track2 = "Generate Request";
-    this.Track3 = "Request viewed";
-    this.Track4 = "Request Approved";
-    this.TrackDate1 = "22 DEC 7:20 AM";
-    this.TrackDate2 = "22 DEC 7:21 AM";
-    this.TrackDate3 = "22 DEC 8:10 AM";
-    this.TrackDate4 = "22 DEC 8:10 AM";
+  GetOrderInfo(MainInfoData: any) {
+    if (MainInfoData) {
+      this.DayOfLeave = MainInfoData.requestLeave.NoOfDays;
+      this.TypeLeave = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
+      this.DateTo = new Date(MainInfoData.requestLeave.ToDate).toLocaleDateString();
+      this.DateFrom = new Date(MainInfoData.requestLeave.FromDate).toLocaleDateString();;
+      this.Reason = MainInfoData.requestLeave.Reason;
+    }
   }
 
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;

@@ -48,6 +48,7 @@ import { SequenceFormComponent } from './SystemAdmin/SequenceForm/SequenceForm.c
 import { SequenceActionComponent } from './StudentManagement/SequenceAction/SequenceAction.component';
 import { SequenceTrackingComponent } from './StudentManagement/SequenceTracking/SequenceTracking.component';
 import { RequestHeaderComponent } from './StudentManagement/RequestHeader/RequestHeader.component';
+import { ViewReferenceAndCertificatesComponent } from './StudentManagement/ViewReferenceAndCertificates/ViewReferenceAndCertificates.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -88,10 +89,11 @@ const appRoutes: Routes = [
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
   { path: 'ApplicationForm/View/:id', component: ViewApplicationFormComponent, data: { title: 'View Application Form' } },
   { path: 'StudentLeave/View/:id', component: ViewStudentLeaveComponent, data: { title: 'View Student Leave' } },
+  { path: 'ReferenceAndCertificates/View/:id', component: ViewReferenceAndCertificatesComponent, data: { title: 'View Reference And Certificates' } },
   { path: 'ClearanceForm/View/:id', component: ViewClearanceFormComponent, data: { title: 'View Clearance Form' } },
-  { path: 'PGT1/View/:id', component: ViewPGT1Component, data: { title: 'PG-T1' } },
-  { path: 'PGT2/View/:id', component: ViewPGT2Component, data: { title: 'PG-T2' } },
-  { path: 'PGT3/View/:id', component: ViewPGT3Component, data: { title: 'PG-T3' } },
+  { path: 'PGT1/View/:id', component: ViewPGT1Component, data: { title: 'PG-R' } },
+  { path: 'PGT2/View/:id', component: ViewPGT2Component, data: { title: 'PG-R' } },
+  { path: 'PGT3/View/:id', component: ViewPGT3Component, data: { title: 'PG-R' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -143,7 +145,8 @@ const routerOptions: ExtraOptions = {
     ViewPGT3Component,
     SequenceActionComponent,
     SequenceTrackingComponent,
-    RequestHeaderComponent
+    RequestHeaderComponent,
+    ViewReferenceAndCertificatesComponent
    ],
   imports: [
     BrowserModule,

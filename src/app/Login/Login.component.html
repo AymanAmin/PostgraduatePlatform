@@ -7,24 +7,30 @@
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-start">
                   <h3 class="font-weight-bolder text-info text-gradient">{{lb_Info}}</h3>
-                  <p class="mb-0">{{lb_InfoD}}</p>
+                  <p class="mb-0" style="font-size: 0.96rem !important;">{{lb_InfoD}}</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" class="text-start">
+                  <form role="form" class="text-start" [formGroup]="UserForm" (ngSubmit)="loginEvent()">
+                    <div class="alert alert-danger" role="alert" *ngIf="IsShowMessageError">
+                      <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                      <span class="alert-text"><strong>{{lb_Error}}!</strong> {{lb_ErrorD}}!</span>
+                    </div>
                     <label>{{lb_Email}}</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="{{lb_Email}}" aria-label="Email">
+                      <input type="text" class="form-control" placeholder="{{lb_Email}}" aria-label="UserName" formControlName="UserName">
                     </div>
                     <label>{{lb_Password}}</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="{{lb_Password}}" aria-label="Password">
+                      <input type="password" class="form-control" placeholder="{{lb_Password}}" aria-label="Password" formControlName="Password">
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
                       <label class="form-check-label" for="rememberMe">{{lb_Active}}</label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" (click)="loginEvent()">{{lb_Save_Change}}</button>
+                      <button type="submit" [disabled]="!(UserForm.valid && btn_status)" name="button" class="btn bg-gradient-info m-0 mx-2"><span [innerHTML]="btn_spinner"></span></button>
+                      <!-- </div> -->
+                      <!-- <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0" >{{lb_Save_Change}}</button> -->
                     </div>
                   </form>
                 </div>

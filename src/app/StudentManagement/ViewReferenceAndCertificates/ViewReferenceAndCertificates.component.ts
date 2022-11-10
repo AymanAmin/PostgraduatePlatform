@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-ViewClearanceForm',
-  templateUrl: './ViewClearanceForm.component.html',
-  styleUrls: ['./ViewClearanceForm.component.css']
+  selector: 'app-ViewReferenceAndCertificates',
+  templateUrl: './ViewReferenceAndCertificates.component.html',
+  styleUrls: ['./ViewReferenceAndCertificates.component.css']
 })
-export class ViewClearanceFormComponent implements OnInit {
+export class ViewReferenceAndCertificatesComponent implements OnInit {
 
   LangCode: any = "us-en";
   GN_Code: string = this.route.snapshot.params['id'];
@@ -17,10 +17,9 @@ export class ViewClearanceFormComponent implements OnInit {
   OrderDetails: any;
   OrderType: string = "";
   FormCode: string = "1004";
-  TrackDate4: string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("View Clearance Form");
+    this.titleService.setTitle("View Reference Certificate");
   }
 
   ngOnInit() {
@@ -67,6 +66,5 @@ export class ViewClearanceFormComponent implements OnInit {
       this.lb_OrderType = "نوع الطلب";
     }
   }
-
 
 }
