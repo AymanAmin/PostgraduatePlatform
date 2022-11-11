@@ -57,6 +57,7 @@ const appRoutes: Routes = [
   { path: 'Employee/add/:id', component: AddEmployeeComponent, data: { title: 'Update Employee' } },
   { path: 'Employee/list', component: ListEmployeeComponent, data: { title: 'List Employee' } },
   { path: 'Employee/profile', component: ProfileEmployeeComponent, data: { title: 'Profule Employee' } },
+
   { path: 'Student/add', component: AddStudentComponent, data: { title: 'Add Student' } },
   { path: 'Student/add/:id', component: AddStudentComponent, data: { title: 'Update Student' } },
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
