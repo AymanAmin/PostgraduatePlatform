@@ -36,7 +36,7 @@
             <label class="form-label">{{lb_EmpSection}}</label>
             <select class="form-control choices-multiple"  name="choices-multiple-remove-button" formControlName="Department"
               multiple>
-              <option value="{{item.Id}}" [selected]="item.IsActive"*ngFor="let item of DepartmentList">{{item.Name_Ar}}</option>
+              <option value="{{item.Id}}" [selected]="item.IsActive"*ngFor="let item of DepartmentList">{{LangCode =='en-us' || LangCode == 'us-en'?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">

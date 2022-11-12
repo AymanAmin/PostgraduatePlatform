@@ -13,11 +13,13 @@ function CallCalendar() {
     if (i != 0)
       ScheduleEvent += ',';
 
+      console.log(formatDate(resultData[i].start));
+
     ScheduleEvent += '{';
     ScheduleEvent += '"id": "' + resultData[i].urlLink + '",';
     ScheduleEvent += '"title": "' + resultData[i].title + '",';
-    ScheduleEvent += '"start": "' + resultData[i].start + '",';
-    ScheduleEvent += '"end": "' + resultData[i].end + '",';
+    ScheduleEvent += '"start": "' + formatDate(resultData[i].start) + "T" + resultData[i].start.split("T")[1] + '",';
+    ScheduleEvent += '"end": "' + formatDate(resultData[i].end) + "T" + resultData[i].end.split("T")[1] + '",';
     ScheduleEvent += '"className": "' + resultData[i].className + '' + '"';
     ScheduleEvent += '}';
   }
@@ -32,7 +34,7 @@ function CallCalendar() {
 
   today = yyyy + '-' + mm + '-' + dd;
 
-  RenderCalender(data, LangCode, today)
+  RenderCalender(data, LangCode, formatDate(today))
 }
 
 function RenderCalender(data, LangCode, today) {
@@ -121,4 +123,18 @@ function UpdateLang() {
 
 function pad(d) {
   return (d < 10) ? '0' + d.toString() : d.toString();
+}
+
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2)
+      month = '0' + month;
+  if (day.length < 2)
+      day = '0' + day;
+
+  return [year, month, day].join('-');
 }

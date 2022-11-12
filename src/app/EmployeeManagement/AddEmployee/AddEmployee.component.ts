@@ -161,6 +161,8 @@ export class AddEmployeeComponent implements OnInit {
         else {
           this.IsShowMessageUpdate = false;
           this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         }
       },
       (error) => {
