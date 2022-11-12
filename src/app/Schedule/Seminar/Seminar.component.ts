@@ -33,7 +33,11 @@ export class SeminarComponent implements OnInit {
   UserList:any;
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Seminar Info");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Seminar Info");
+      else
+      this.titleService.setTitle("بيانات السنمار");
   }
 
   public loadJsFile(url:any) {

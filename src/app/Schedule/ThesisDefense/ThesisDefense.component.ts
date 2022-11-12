@@ -33,6 +33,11 @@ export class ThesisDefenseComponent implements OnInit {
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Thesis Defense Info");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Thesis Defense Info");
+      else
+      this.titleService.setTitle("بيانات المناقشة");
   }
 
   ngOnInit() {

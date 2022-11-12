@@ -137,13 +137,13 @@
               </p>
             </div>
           </div>
-          <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
+          <div class="col-sm-auto {{class_mx_auto}} mt-sm-0 mt-3 d-flex">
             <label class="form-check-label mb-0">
               <small>
                 {{lb_IsActive}}
               </small>
             </label>
-            <div class="form-check form-switch ms-2">
+            <div class="form-check form-switch mx-2">
               <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault23" checked>
             </div>
           </div>
@@ -156,27 +156,27 @@
         </div>
         <form class="card-body pt-0" [formGroup]="ProfileForm" (ngSubmit)="OnSubmit(false)">
           <div class="row">
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_EmpName}}</label>
               <div class="input-group">
                 <input  formControlName="Name" name="Name" class="form-control" type="text" placeholder="{{username}}"
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_ProfileImg}}</label>
               <div class="input-group">
                 <input id="imgFile" accept="image/*" (change)="onFileChange($any($event).target.files,'Profile')" name="imgFile" class="form-control" type="file" required="required">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_EmpPhone}}</label>
               <div class="input-group">
                 <input name="phone" class="form-control" type="phone" placeholder="966xxxxxxxxx"
                   required="required" formControlName="PhoneNo">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_EmpGender}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" formControlName="Gender">
@@ -184,16 +184,16 @@
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Language}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-language" formControlName="UILanguage">
-                  <option value="en-us">English</option>
+                  <option value="us-en">English</option>
                   <option value="ar-sa">عربي</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_EmpEmail}}</label>
               <div class="input-group">
                 <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" formControlName="Email">
@@ -225,7 +225,7 @@
           <p class="text-muted mb-2">
             {{lb_PasswordRequirementsD}}
           </p>
-          <ul class="text-muted ps-4 mb-0 main-list">
+          <ul class="text-muted px-4 mb-0 main-list">
             <li class="{{nopassClass}}">
               <span class="text-sm">{{lb_ReqOne}}</span>
             </li>
@@ -252,7 +252,7 @@
             <table class="table mb-0">
               <thead>
                 <tr>
-                  <th class="ps-1" colspan="4">
+                  <th class="px-1" colspan="4">
                     <p class="mb-0">Activity</p>
                   </th>
                   <th class="text-center">
@@ -265,7 +265,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="ps-1" colspan="4">
+                  <td class="px-1" colspan="4">
                     <div class="my-auto">
                       <span class="text-dark d-block text-sm">Mentions</span>
                       <span class="text-xs font-weight-normal">Notify when another user mentions you in a comment</span>
@@ -283,7 +283,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="ps-1" colspan="4">
+                  <td class="px-1" colspan="4">
                     <div class="my-auto">
                       <span class="text-dark d-block text-sm">Comments</span>
                       <span class="text-xs font-weight-normal">Notify when another user comments your item.</span>
@@ -301,7 +301,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="ps-1" colspan="4">
+                  <td class="px-1" colspan="4">
                     <div class="my-auto">
                       <span class="text-dark d-block text-sm">Follows</span>
                       <span class="text-xs font-weight-normal">Notify when another user follows you.</span>
@@ -319,7 +319,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="ps-1" colspan="4">
+                  <td class="px-1" colspan="4">
                     <div class="my-auto">
                       <p class="text-sm mb-0">Log in from a new device</p>
                     </div>

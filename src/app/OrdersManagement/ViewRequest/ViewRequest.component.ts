@@ -18,7 +18,11 @@ export class ViewRequestComponent implements OnInit {
   OrderType:string = "";
 
   constructor(private titleService:Title) {
-    this.titleService.setTitle("Request View");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View Request");
+      else
+      this.titleService.setTitle("بيانات الطلب");
   }
 
   ngOnInit() {

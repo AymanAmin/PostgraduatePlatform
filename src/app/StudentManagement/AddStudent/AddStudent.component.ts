@@ -231,20 +231,20 @@ export class AddStudentComponent implements OnInit {
       this.lb_Speciality = "التخصص";
       //this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
       this.lb_Phone="رقم الجوال";
-      this.lb_FristName_En = "(إنجليزي)الأسم الأول";
-      this.lb_FatherName_En = "(إنجليزي)إسم الأب";
-      this.lb_GrandFatherName_En = "(إنجليزي)إسم الجد";
-      this.lb_FamilyName_En = "(إنجليزي)إسم العائلة";
+      this.lb_FristName_En = "الأسم الأول (إنجليزي)";
+      this.lb_FatherName_En = "إسم الأب (إنجليزي)";
+      this.lb_GrandFatherName_En = "إسم الجد (إنجليزي)";
+      this.lb_FamilyName_En = "إسم العائلة (إنجليزي)";
 
-      this.lb_FristName_Ar = "(عربي)الأسم الأول";
-      this.lb_FatherName_Ar = "(عربي)إسم الأب";
-      this.lb_GrandFatherName_Ar = "(عربي)إسم الجد";
-      this.lb_FamilyName_Ar = "(عربي)إسم العائلة";
+      this.lb_FristName_Ar = "الأسم الأول (عربي)";
+      this.lb_FatherName_Ar = "إسم الأب (عربي)";
+      this.lb_GrandFatherName_Ar = "إسم الجد (عربي)";
+      this.lb_FamilyName_Ar = "إسم العائلة (عربي)";
 
       this.lb_Email="البريد الإلكتروني";
       this.lb_RetypeEmail="إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
-      this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      this.CitizenshipList = [{ "Id": 1, "Name": "سعودي" }];
       this.lb_NationalIdNo="رقم الهوية";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";

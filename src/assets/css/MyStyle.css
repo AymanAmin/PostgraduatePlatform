@@ -43,4 +43,24 @@
   display: inline-block !important;
 }
 
+.ql-toolbar {
+  direction: ltr !important;
+  width: 98% !important;
+  margin-left: 1% !important;
+  margin-right: 1% !important;
+}
+
+.ql-container {
+  width: 98% !important;
+  margin-left: 1% !important;
+  margin-right: 1% !important;
+}
+
+.fc-list-event, .fc-daygrid-event{
+  color:white !important;
+}
+.fc-list-event:hover ,.fc-daygrid-event:hover {
+  color:black !important;
+}
+
 

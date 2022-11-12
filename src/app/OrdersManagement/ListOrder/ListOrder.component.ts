@@ -22,7 +22,11 @@ export class ListOrderComponent implements OnInit {
   //End Pangation and filter
 
   constructor(private titleService:Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("List Employee");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("List of Request");
+      else
+      this.titleService.setTitle("قائمة الطلبات");
   }
 
   ngOnInit() {

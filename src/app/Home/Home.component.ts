@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-Home',
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   LangCode:any;
-  constructor() {
+  constructor(private titleService:Title) {
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Dashboard");
+      else
+      this.titleService.setTitle("لوحة المعلومات");
    }
 
   ngOnInit() {

@@ -94,14 +94,14 @@
         <div class="card-body p-3 pt-0">
 
           <ul class="list-group list-group-flush" data-toggle="checklist">
-            <li class="list-group-item border-0 flex-column align-items-start ps-0 py-0 mb-3" *ngFor="let item of ThesisDefenseList | filter: searchedKeyword |
+            <li class="list-group-item border-0 flex-column align-items-start px-0 py-0 mb-3" *ngFor="let item of ThesisDefenseList | filter: searchedKeyword |
             paginate: {id: 'listing_pagination',
             itemsPerPage: PerPage,
             currentPage: page,
             totalItems: tatalRecords}">
 
-              <div class="checklist-item checklist-item-dark ps-2 ms-3">
-                <div class="d-flex align-items-center mx-2 mt-3 ps-1">
+              <div class="checklist-item checklist-item-dark px-2 ms-3">
+                <div class="d-flex align-items-center mx-2 mt-3 px-1">
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
                     <span class="text-xs font-weight-bolder">{{item.Title}}</span>
