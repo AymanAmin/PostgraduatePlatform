@@ -58,7 +58,7 @@ export class LeaveComponent implements OnInit {
     this.Leave = new FormGroup({
      /* program_GN_Code: new FormControl(null, [Validators.required]),
       Speciality_GN_Code: new FormControl(null, [Validators.required]),*/
-      Leave_Type_GN_Code: new FormControl(null, [Validators.required]),
+      Type_GN_Code: new FormControl(null, [Validators.required]),
       FromDate: new FormControl(null, [Validators.required]),
       ToDate: new FormControl(null, [Validators.required]),
       NoOfDays: new FormControl(null, [Validators.required]),
@@ -82,9 +82,7 @@ export class LeaveComponent implements OnInit {
     this.BriefSummary_Data = decodeURIComponent(atob(LeaveData.Reason));
     if (LeaveData) {
       this.Leave.patchValue({
-      Program_GN_Code: LeaveData.Program_GN_Code,
-      Speciality_GN_Code: LeaveData.Speciality_GN_Code,
-      Leave_Type_GN_Code: LeaveData.Leave_Type_GN_Code,
+      Type_GN_Code: LeaveData.Type_GN_Code,
       FromDate: LeaveData.FromDate,
       ToDate: LeaveData.ToDate,
       NoOfDays: LeaveData.NoOfDays,
@@ -103,9 +101,7 @@ export class LeaveComponent implements OnInit {
 
     formData.append("GN_Code", this.GN_Code);
     formData.append("Student_GN_Code", this.Student_GN_Code);
-    formData.append("program_GN_Code", this.Leave.get('program_GN_Code')?.value);
-    formData.append("Speciality_GN_Code", this.Leave.get('Speciality_GN_Code')?.value);
-    formData.append("Leave_Type_GN_Code", this.Leave.get('Leave_Type_GN_Code')?.value);
+    formData.append("Type_GN_Code", this.Leave.get('Type_GN_Code')?.value);
     formData.append("FromDate", this.Leave.get('FromDate')?.value);
     formData.append("ToDate", this.Leave.get('ToDate')?.value);
     formData.append("NoOfDays", this.Leave.get('NoOfDays')?.value);
