@@ -26,7 +26,7 @@ export class AppComponent {
 
   ngOnInit() {
     //Login Check
-    if(!localStorage.getItem("IsLogin"))
+    if(localStorage.getItem("IsLogin") === "false")
         this.router.navigate(['/Login/page']);
 
     var Path = window.location.pathname;
@@ -87,6 +87,8 @@ export class AppComponent {
   }
 
   logoutEvent() {
+    localStorage.setItem("GN_Code", "");
+    localStorage.setItem("IsLogin", "false");
     window.location.href = "http://localhost:4200/Login/page";
   }
   onActivate(event: any) {

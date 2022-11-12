@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
             this.IsShowMessageUpdate = true;
             this.IsShowMessageError = false;
             localStorage.setItem("IsLogin", "true");
+            localStorage.setItem("GN_Code", response.toString());
             window.location.href = "http://localhost:4200/";
             document.getElementById("btnSuccess")?.click();
           }
