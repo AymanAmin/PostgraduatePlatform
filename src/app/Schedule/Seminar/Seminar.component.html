@@ -22,7 +22,7 @@
             <label class="form-Student_GN_Code">{{lb_Student}}</label>
             <select class="form-control" name="Student" formControlName="Student_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.key}}" *ngFor="let item of StudentList">{{item.value}}</option>
+              <option value="{{item.GN_Code}}" *ngFor="let item of StudentList">{{item.Name}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
@@ -103,6 +103,10 @@
                     <span class="text-xs font-weight-bolder">{{item.Title}}</span>
                   </div>
                   <div class="mx-auto">
+                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Student}}</p>
+                    <span class="text-xs font-weight-bolder">{{GetStudentName(item.Student_GN_Code)}}</span>
+                  </div>
+                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Time}}</p>
                     <span class="text-xs font-weight-bolder">{{item.Time || 'Unknow'}}</span>
                   </div>
@@ -115,15 +119,11 @@
                     <span class="text-xs font-weight-bolder">{{GetEmpName(item.Examiner_GN_Code)}}</span>
                   </div>
                   <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_week}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Week}}</span>
-                  </div>
-                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
                     <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
                   </div>
                   <div class="mx-auto">
-                    <a routerLink="/Schedule/Seminar/info/{{item.Id}}"><i class="fa fa-file-text-o fs-4 mt-3 mx-2" aria-hidden="true"></i></a>
+                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)" ><i class="fa fa-file-text-o fs-4 mt-3 mx-2" aria-hidden="true"></i></div>
                   </div>
                 </div>
               </div>
