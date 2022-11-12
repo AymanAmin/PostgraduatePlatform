@@ -73,18 +73,8 @@
               <h6 class="mb-0">{{lb_ListOfThesisDefense}}</h6>
             </div>
             <div class="row col-md-12 mt-3">
-              <div class="col-md-1 mt-2 text-end">{{lb_NumberOfList}}</div>
-              <div class="col-md-1">
-                <select class="form-control text-center" [(ngModel)]="PerPage" name="choices-language">
-                  <option value="1"> 1 </option>
-                  <option value="2"> 2 </option>
-                  <option value="5"> 5 </option>
-                  <option value="10"> 10 </option>
-                </select>
-              </div>
-              <div class="col-md-1  mt-2 text-start">{{lb_Entries}}</div>
-              <div class="col-md-6"></div>
-              <div class="col-md-3">
+              <div class="col-md-8"></div>
+              <div class="col-md-4">
                 <input type="text" class="form-control search-input" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
               </div>
             </div>
@@ -96,13 +86,13 @@
           <ul class="list-group list-group-flush" data-toggle="checklist">
             <li class="list-group-item border-0 flex-column align-items-start px-0 py-0 mb-3" *ngFor="let item of ThesisDefenseList | filter: searchedKeyword |
             paginate: {id: 'listing_pagination',
-            itemsPerPage: PerPage,
+            itemsPerPage: 10,
             currentPage: page,
             totalItems: tatalRecords}">
 
               <div class="checklist-item checklist-item-dark px-2 ms-3">
-                <div class="d-flex align-items-center mx-2 mt-3 px-1">
-                  <div class="mx-auto">
+                <div class="d-flex align-items-center mt-3">
+                  <div class="">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
                     <span class="text-xs font-weight-bolder">{{item.Title}}</span>
                   </div>
@@ -127,7 +117,7 @@
                     <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
                   </div>
                   <div class="mx-auto">
-                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)"><i class="fa fa-file-text-o fs-4 mt-3 mx-2" aria-hidden="true"></i></div>
+                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)"><i class="fa fa-edit fs-5 mt-3 mx-2" aria-hidden="true"></i></div>
                   </div>
                 </div>
               </div>
