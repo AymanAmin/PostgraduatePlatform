@@ -1,3 +1,21 @@
+var toolbarOptions = [
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+  [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+
+
+  ['clean']                                         // remove formatting button
+];
+
 $(document).ready(function () {
   //Multiple Choices
   if (document.getElementsByClassName('choices-multiple')) {
@@ -12,6 +30,7 @@ $(document).ready(function () {
   if (document.getElementById('editor')) {
     var BriefSummary = new Quill('#editor', {
       theme: 'snow' // Specify theme in configuration
+      , modules: { toolbar: toolbarOptions }
     });
 
     document.getElementsByClassName("BriefSummary")[0].value = BriefSummary.root.innerHTML;

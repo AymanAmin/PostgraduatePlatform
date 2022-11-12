@@ -5,59 +5,60 @@
           <p class="text-sm mb-0">{{lb_Details}}</p>
           <hr class="horizontal dark my-3">
           <div class="row">
-            <div class="col-sm-6 col-6">
+
+            <div class="col-md-6">
               <label class="form-label">{{lb_Category}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" formControlName="ApplicantCategory">
-                  <option value="{{category.Id}}" *ngFor="let category of CategoryList">{{category.Name}}</option>
+                  <option value="{{category.GN_Code}}" *ngFor="let category of CategoryList">{{category.Name}}</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-Program_GN_Code"  formControlName="Program_GN_Code">
-                  <option value="{{program.Id}}" *ngFor="let program of ProgramList">{{LangCode === "us-en" ? program.Name_En : program.Name_Ar}}</option>
+                  <option value="{{program.GN_Code}}" *ngFor="let program of ProgramList">{{LangCode === "us-en" ? program.Name_En : program.Name_Ar}}</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Speciality}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-Speciality_GN_Code" formControlName="Speciality_GN_Code">
-                  <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{LangCode === "us-en" ? speciality.Name_En : speciality.Name_Ar}}</option>
+                  <option value="{{speciality.GN_Code}}" *ngFor="let speciality of SpecialityList">{{LangCode === "us-en" ? speciality.Name_En : speciality.Name_Ar}}</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Phone}}</label>
               <div class="input-group">
                 <input id="phone" name="phone" formControlName="Phone" class="form-control" type="phone" placeholder="966xxxxxxxxx" required="required">
               </div>
             </div>
 
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FristName_En}}</label>
               <div class="input-group">
                 <input  id="fristname" name="fristname_En" formControlName="FirstName_En" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FatherName_En}}</label>
               <div class="input-group">
                 <input  id="fathername" name="fathername_En" formControlName="FatherName_En" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_GrandFatherName_En}}</label>
               <div class="input-group">
                 <input  id="grandfathername"  name="grandfathername_En" formControlName="GrandFatherName_En" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FamilyName_En}}</label>
               <div class="input-group">
                 <input  id="familyname" name="familyname_En" formControlName="FamilyName_En" class="form-control" type="text" placeholder=""
@@ -65,28 +66,28 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FristName_Ar}}</label>
               <div class="input-group">
                 <input  id="fristname" name="fristname_Ar" formControlName="FirstName_Ar" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FatherName_Ar}}</label>
               <div class="input-group">
                 <input  id="fathername" name="fathername_Ar" formControlName="FatherName_Ar" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_GrandFatherName_Ar}}</label>
               <div class="input-group">
                 <input  id="grandfathername"  name="grandfathername_Ar" formControlName="GrandFatherName_Ar" class="form-control" type="text" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-3">
               <label class="form-label">{{lb_FamilyName_Ar}}</label>
               <div class="input-group">
                 <input  id="familyname" name="familyname_Ar" formControlName="FamilyName_Ar" class="form-control" type="text" placeholder=""
@@ -94,19 +95,19 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Email}}</label>
               <div class="input-group">
                 <input type="email" formControlName="Email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_RetypeEmail}}</label>
               <div class="input-group">
-                <input type="retypeemail"  placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
+                <input type="retypeemail" formControlName="ReEmail" placeholder="ex: emp@riyadh.edu.sa" class="form-control" id="va_EmpEmail">
               </div>
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_Citizenship}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" formControlName="CitizenShip">
@@ -114,8 +115,7 @@
                 </select>
               </div>
             </div>
-
-            <div class="col-sm-6 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_NationalIdNo}}</label>
               <div class="input-group">
                 <input  id="NationalIdNo" name="NationalIdNo" formControlName="CardNational_ID" class="form-control" type="text" placeholder=""

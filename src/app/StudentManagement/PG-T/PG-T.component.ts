@@ -52,15 +52,16 @@ export class PGTComponent implements OnInit {
   CreateForm() {
     this.PGR = new FormGroup({
 
-      college_GN_Code: new FormControl(null, [Validators.required]),
-      department_GN_Code: new FormControl(null, [Validators.required]),
-      program_GN_Code: new FormControl(null, [Validators.required]),
+
       Thesis_Title_En: new FormControl(null, [Validators.required]),
       Thesis_Title_Ar: new FormControl(null, [Validators.required]),
+      /* college_GN_Code: new FormControl(null, [Validators.required]),
+      department_GN_Code: new FormControl(null, [Validators.required]),
+      program_GN_Code: new FormControl(null, [Validators.required]),
       supervisor_date: new FormControl(null),
       co_supervisor_date: new FormControl(null),
       supervisor: new FormControl(null),
-      co_supervisor: new FormControl(null),
+      co_supervisor: new FormControl(null),*/
     });
   }
 

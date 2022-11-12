@@ -23,6 +23,7 @@ export class RecommendationLetterComponent implements OnInit {
 
   RecommendationLetter: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
+
   GN_Code: string = this.route.snapshot.params['id'];
   Student_GN_Code :any =localStorage.getItem("GN_Code");
   BriefSummary_Data:any = "";

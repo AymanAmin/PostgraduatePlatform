@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -17,10 +18,31 @@ export class AppComponent {
   CurrentParentPage: any = "";
   username: string = "Ayman Amin";
   LangCode: any = "en-us";
-  emp_Active:any;schedule_Active:any;dashboard_Active:any;order_Active:any;
-  student_Active:any;
+  emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
+  student_Active: any;
 
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+    router.events.subscribe(val => {
+      this.CurrentParentPage = this.titleService.getTitle();
+
+      var Path = window.location.pathname;
+      const myArray = Path.split("/");
+
+      this.dashboard_Active = ""; this.emp_Active = ""; this.schedule_Active = "";
+      this.order_Active = ""; this.emp_Active = ""; this.student_Active = "";
+      if (myArray[1] == "")
+        this.dashboard_Active = "active";
+      else if (myArray[1] == "Employee")
+        this.emp_Active = "active";
+      else if (myArray[1] == "Schedule")
+        this.schedule_Active = "active";
+      else if (myArray[1] == "Order")
+        this.order_Active = "active";
+      else if (myArray[1] == "Order")
+        this.emp_Active = "active";
+      else if (myArray[1] == "Student")
+        this.student_Active = "active";
+    });
 
   }
 
@@ -46,16 +68,8 @@ export class AppComponent {
       else if (myArray[1] == "Order")
       this.emp_Active = "active";
 
-
     //Page name in navbar
     this.router.events.subscribe((val) => {
-
-      if (val instanceof ActivationEnd) {
-        if (val.snapshot.url.length >= 1)
-          this.CurrentPage = val.snapshot.url[1];
-        if (val.snapshot.url.length >= 2)
-          this.CurrentParentPage = val.snapshot.url[0];
-      }
       if (val instanceof ActivationEnd) {
         if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration") {
           this.IsAdminPage = false;
@@ -68,18 +82,18 @@ export class AppComponent {
 
     var GN_Code = localStorage.getItem("GN_Code");
     if (GN_Code == null)
-        localStorage.setItem("GN_Code", "1234");
+      localStorage.setItem("GN_Code", "1234");
 
   }
 
   getProfileInfo() {
     var GN_Code = localStorage.getItem("GN_Code");
     var LangCode = localStorage.getItem("LangCode");
-    this.http.get(environment.baseUrl + '/API/ProfileManagment/Get/ProfileInfo.ashx?GN_Code=' + GN_Code+'&LangCode=' + LangCode).subscribe(
+    this.http.get(environment.baseUrl + '/API/ProfileManagment/Get/ProfileInfo.ashx?GN_Code=' + GN_Code + '&LangCode=' + LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let ProfileInfoData = JSON.parse(jsonInfo);
-        if (ProfileInfoData != null){
+        if (ProfileInfoData != null) {
           this.username = ProfileInfoData.Name;
         }
       }
@@ -139,8 +153,8 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "Dashboard";
       this.Employees = "Employees";
-      this.StudentMangment ="Student Mangment";
-      this.StudentRequest="Student Request";
+      this.StudentMangment = "Student Mangment";
+      this.StudentRequest = "Student Request";
       this.SystemAdmin = "System Admin";
       this.Specializations = "Specializations";
       this.Departments = "Departments";
@@ -191,9 +205,9 @@ export class AppComponent {
       this.CatMainMenu = "nav-item mt-3";
       this.Dashboard = "لوحة المعلومات";
       this.Employees = "الموظفين";
-      this.StudentMangment ="إدارة الطلاب";
+      this.StudentMangment = "إدارة الطلاب";
       this.SystemAdmin = "إدارة النظام";
-      this.StudentRequest="طلبات الطلاب";
+      this.StudentRequest = "طلبات الطلاب";
       this.Specializations = "التخصصات";
       this.Departments = "الاقسام";
       this.Programs = "البرامج";
@@ -214,7 +228,7 @@ export class AppComponent {
       this.Schedule = "التقويم";
       this.AddEmployee = "إضافة موظف";
       this.ListEmployee = "قائمة الموظفين";
-      this.AddOrders= "إضافة طلب";
+      this.AddOrders = "إضافة طلب";
       this.ListOrders = "عرض الطلبات";
       this.Profile = "صفحتي الشخصية";
       this.ListStudents = "قائمة الطلاب";

@@ -24,15 +24,21 @@ export class AddEmployeeComponent implements OnInit {
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
   BriefSummary_Data:any = "";
+  DepartmentList:any;ListDep:any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Add Employee");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Employee Info");
+      else
+      this.titleService.setTitle("بيانات موظف");
   }
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
+    this.getDepartmentList();
     this.CreateForm();
     if(this.GN_Code)
       this.getData();
@@ -64,6 +70,7 @@ export class AddEmployeeComponent implements OnInit {
       PasswordConfirm: new FormControl(null),
       UILanguage: new FormControl("en-us"),
       BriefSummary: new FormControl(null),
+      Department: new FormControl(),
       IsActive: new FormControl(false)
     });
   }
@@ -80,10 +87,15 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   fillData(EmployeeData: any) {
-    console.log(EmployeeData);
     this.BriefSummary_Data = decodeURIComponent(atob(EmployeeData.BriefSummary));
+    var list = [];
+    for(let i = 0; i < EmployeeData.Department.length; i ++){
+      console.log(EmployeeData.Department[i].Department_Id);
+      list.push(""+EmployeeData.Department[i].Department_Id);
+    }
+
     if (EmployeeData) {
-      this.IsActive = EmployeeData.IsActive;
+      this.IsActive = EmployeeData.Credential.IsActive;
       this.EmployeeForm.patchValue({
         Name_Ar: EmployeeData.Name_Ar,
         Name_En: EmployeeData.Name_En,
@@ -96,9 +108,16 @@ export class AddEmployeeComponent implements OnInit {
         UILanguage: EmployeeData.Credential.UILanguage,
         PasswordConfirm: EmployeeData.Credential.Password,
         BriefSummary: EmployeeData.BriefSummary,
+        Department: list,
         IsActive: EmployeeData.Credential.IsActive
       });
     }
+  }
+
+  IsSelected(DepartmentID:number){
+    console.log(this.ListDep);
+    var Obj = this.ListDep.find((x: { Department_Id: number; }) => x.Department_Id == DepartmentID);
+    return Obj != null ? "selected": "";
   }
 
   OnSubmit(IsDeleted:boolean) {
@@ -120,6 +139,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.append("PasswordConfirm", this.EmployeeForm.get('PasswordConfirm')?.value);
     formData.append("BriefSummary", BriefSummary);
     formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
+    formData.append("Department", this.EmployeeForm.get('Department')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("Type", 1);
     formData.append("IsActive", this.IsActive);
@@ -141,6 +161,8 @@ export class AddEmployeeComponent implements OnInit {
         else {
           this.IsShowMessageUpdate = false;
           this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         }
       },
       (error) => {
@@ -162,13 +184,23 @@ export class AddEmployeeComponent implements OnInit {
     }
   }
 
+  getDepartmentList() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/ListOfDepartments.ashx?GN_Code='+this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.DepartmentList = JSON.parse(jsonInfo);
+        //console.log(this.DepartmentList);
+      }
+    )
+  }
+
+
   // Label Data
   lb_EmpInfo: any; lb_EmpDetails: any; lb_EmpName: any; lb_EmpNameEn: any; lb_EmpPhone: any;
   lb_EmpEmail: any; lb_EmpGender: any; lb_EmpSection: any; lb_JobTitle: any;
   lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;
   lb_EmpUserName: any; lb_EmpPassword: any; lb_EmpCPassword: any; lb_Language: any;
-  lb_Save_Change: any; lb_Cancel: any;Erorr_username: any;lb_Loading:any;
-
+  lb_Save_Change: any; lb_Cancel: any;Erorr_username: any;lb_Loading:any;lb_Select:any;
   GenderList: any;
 
   GetLabelName(LangCode: any) {
@@ -194,6 +226,7 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Cancel = "Cancel";
       this.Erorr_username = "Please Check the username length.";
       this.lb_Loading = "Loading";
+      this.lb_Select = "- Select - ";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -217,6 +250,7 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Cancel = "إلغاء";
       this.Erorr_username = "الرجاء التحقق من طول كلمة المرور.";
       this.lb_Loading = "جاري التحميل";
+      this.lb_Select = " - اختر - ";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }

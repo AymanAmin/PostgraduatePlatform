@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Element } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -13,10 +14,16 @@ export class ShowCalendarComponent implements OnInit {
 
   LangCode: any = "us-en";
   CalendarData:any;
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Calendar View");
+      else
+      this.titleService.setTitle("عرض التقويم");
+  }
 
   ngOnInit() {
-    this.loadJsFile("assets/js/Calender.js");
+    this.loadJsFile("assets/js/LoadCalendar.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.GetAllScheduleData();

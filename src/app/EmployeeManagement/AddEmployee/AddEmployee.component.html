@@ -30,24 +30,19 @@
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_JobTitle}}</label>
-            <select class="form-control" name="choices-language" formControlName="JobTitle">
-              <option value="Software">Software</option>
-              <option value="Doctor">Doctor</option>
-            </select>
+            <input type="text" value="" class="form-control" formControlName="JobTitle" />
           </div>
           <div class="col-12 col-md-8">
             <label class="form-label">{{lb_EmpSection}}</label>
-            <select class="form-control choices-multiple" name="choices-multiple-remove-button" id="Section"
+            <select class="form-control choices-multiple"  name="choices-multiple-remove-button" formControlName="Department"
               multiple>
-              <option value="Dentel" selected>اسنان</option>
-              <option value="Pharmacy">صيدلة</option>
-              <option value="Management">ادارة</option>
+              <option value="{{item.Id}}" [selected]="item.IsActive"*ngFor="let item of DepartmentList">{{LangCode =='en-us' || LangCode == 'us-en'?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Language}}</label>
             <select class="form-control" name="choices-language" formControlName="UILanguage">
-              <option value="en-us">English</option>
+              <option value="us-en">English</option>
               <option value="ar-sa">عربي</option>
             </select>
           </div>

@@ -33,20 +33,26 @@ export class ThesisDefenseComponent implements OnInit {
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Thesis Defense Info");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Thesis Defense Info");
+      else
+      this.titleService.setTitle("بيانات المناقشة");
   }
 
   ngOnInit() {
-    this.loadJsFile("assets/js/MyScript.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
     this.getUserList();
-
-    if(this.Id)
-      this.getThesisDefenseData();
-    else
-      this.Id = "0";
+    this.getStudentList();
+    this.getSpecialtyList();
+    this.Id = this.route.snapshot.params['id'];
+    if (this.Id)
+        this.getThesisDefenseData(this.Id);
+      else
+        this.Id = "0";
 
     this.LoadThesisDefenses();
   }
@@ -74,6 +80,31 @@ export class ThesisDefenseComponent implements OnInit {
     )
   }
 
+  getStudentList(){
+    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentInfo/Get/ListOfStudent.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StudentList = JSON.parse(jsonInfo);
+        //console.log(this.StudentList);
+      }
+    )
+  }
+
+  getSpecialtyList(){
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/SpecializationManagment/Get/SpecializationList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.SpecialtyList = JSON.parse(jsonInfo);
+        //console.log(this.SpecialtyList);
+      }
+    )
+  }
+
+  UpdateRoute(Id:string){
+    this.getThesisDefenseData(Id);
+    this.router.navigate(['/Schedule/ThesisDefense/info/' + Id]);
+  }
+
   GetEmpName(GN_Code: any) {
     var user = this.UserList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
     if(user == undefined) return '';
@@ -83,8 +114,23 @@ export class ThesisDefenseComponent implements OnInit {
     return name;
   }
 
-  getThesisDefenseData() {
-    this.http.get(environment.baseUrl + '/API/Schedule/Get/DefenseInfo.ashx?Id=' + this.Id).subscribe(
+  GetStudentName(GN_Code: any) {
+    var user = this.StudentList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    return user.Name;
+  }
+
+  GetSpecialtyName(Id: any) {
+    var Specialty = this.SpecialtyList.find((x: { Id: any; }) => x.Id == Id);
+    if(Specialty == undefined) return '';
+    var name = Specialty.Name_Ar;
+    if (this.LangCode == "us-en" || this.LangCode == "en-us")
+      name = Specialty.Name_En;
+    return name;
+  }
+
+  getThesisDefenseData(Id:any) {
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/DefenseInfo.ashx?Id=' + Id).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -94,7 +140,7 @@ export class ThesisDefenseComponent implements OnInit {
   }
 
   fillData(ThesisDefense: any) {
-    console.log(ThesisDefense);
+    //console.log(ThesisDefense);
     if (ThesisDefense)
       this.ThesisDefenseForm.patchValue({
         Week: ThesisDefense.Week,
@@ -113,15 +159,19 @@ export class ThesisDefenseComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.ThesisDefenseList = JSON.parse(jsonInfo);
+        //console.log(this.ThesisDefenseList);
       }
     )
   }
 
   OnSubmit(IsDeleted:boolean) {
-    console.log(this.ThesisDefenseForm.value);
+   //console.log(this.ThesisDefenseForm.value);
     this.UpdateButtonSpinner(true);
+    var ID = 0;
+    if(this.route.snapshot.params['id'])
+     ID = this.route.snapshot.params['id'];
     var formData: any = new FormData();
-    formData.append("Id", this.Id);
+    formData.append("Id", ID);
     formData.append("Week", this.ThesisDefenseForm.get('Week')?.value);
     formData.append("Date", this.ThesisDefenseForm.get('Date')?.value);
     formData.append("Specialty", this.ThesisDefenseForm.get('Specialty')?.value);
@@ -138,7 +188,7 @@ export class ThesisDefenseComponent implements OnInit {
         if (response != "0") {
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
-          this.router.navigate([this.router.url.replace(this.Id, '') + '/' + response]);
+          this.router.navigate([this.router.url]);
           this.UpdateButtonSpinner(false);
           this.LoadThesisDefenses();
           document.getElementById("btnInfo")?.click();
@@ -146,21 +196,20 @@ export class ThesisDefenseComponent implements OnInit {
         else {
           this.IsShowMessageUpdate = false;
           this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         }
       },
       (error) => {
-        document.getElementById("btnInfo")?.click();
+        this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         console.log(error);
       }
     )
   }
 
-  public loadJsFile(url:any) {
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('body')[0].appendChild(node);
-  }
 
   UpdateButtonSpinner(IsLoading: boolean) {
     console.log("spinner: " + IsLoading);
@@ -212,8 +261,6 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Loading = "Loading";
       this.lb_Select = "Select";
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
-      this.SpecialtyList = [{"key":1,"value":"Dentistry"},{"key":2,"value":"Pharmacy"}];
-      this.StudentList = [{"key":1,"value":"Ayman Amin"},{"key":2,"value":"Mazin Awad"}];
     }
     else{
       this.lb_Address =" جدولة أطروحة المناقشة";
@@ -237,8 +284,6 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Loading = "جاري المعالجة";
       this.lb_Select = "اختر";
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
-      this.SpecialtyList = [{"key":1,"value":"اسنان"},{"key":2,"value":"صيدلة"}];
-      this.StudentList = [{"key":1,"value":"ايمن امين"},{"key":2,"value":"مازن عوض"}];
     }
   }
 

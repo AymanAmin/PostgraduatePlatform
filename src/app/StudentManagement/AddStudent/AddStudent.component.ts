@@ -30,7 +30,12 @@ export class AddStudentComponent implements OnInit {
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Add Student");
+
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+    this.titleService.setTitle("Student Information");
+      else
+      this.titleService.setTitle("بيانات الطالب");
   }
 
   ngOnInit() {
@@ -68,6 +73,7 @@ export class AddStudentComponent implements OnInit {
       GrandFatherName_Ar: new FormControl(null, [Validators.required]),
       FamilyName_Ar: new FormControl(null, [Validators.required]),
       Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      ReEmail: new FormControl(null),
       CitizenShip: new FormControl(null, [Validators.required]),
       CardNational_ID: new FormControl(null, [Validators.required]),
     });
@@ -197,12 +203,9 @@ export class AddStudentComponent implements OnInit {
       this.lb_FormTitle="Student Information";
       this.lb_Details = "Please fill all details for the studant information";
       this.lb_Category = "Applicant Category";
-      this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
+      this.CategoryList = [{ "GN_Code": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "Program";
-
-      //this.ProgramList = [{ "Id": 1, "Name": "Select Program" }];
       this.lb_Speciality = "Speciality";
-     // this.SpecialityList = [{"Id":1,"Name":"Dentistry"},{"Id":2,"Name":"Pharmacy"}];
       this.lb_Phone="Phone";
       this.lb_FristName_En = "Frist Name(Engilsh)";
       this.lb_FatherName_En = "Father Name(Engilsh)";
@@ -227,24 +230,20 @@ export class AddStudentComponent implements OnInit {
       this.lb_Category = "نوع التقديم";
       this.CategoryList = [{ "Id": 1, "Name": "Employed else where or unemployed" }];
       this.lb_Program = "البرنامج";
-      //this.ProgramList = [{ "Id": 1, "Name": "إختر البرنامج" }];
       this.lb_Speciality = "التخصص";
-      //this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
       this.lb_Phone="رقم الجوال";
-      this.lb_FristName_En = "(إنجليزي)الأسم الأول";
-      this.lb_FatherName_En = "(إنجليزي)إسم الأب";
-      this.lb_GrandFatherName_En = "(إنجليزي)إسم الجد";
-      this.lb_FamilyName_En = "(إنجليزي)إسم العائلة";
-
-      this.lb_FristName_Ar = "(عربي)الأسم الأول";
-      this.lb_FatherName_Ar = "(عربي)إسم الأب";
-      this.lb_GrandFatherName_Ar = "(عربي)إسم الجد";
-      this.lb_FamilyName_Ar = "(عربي)إسم العائلة";
-
+      this.lb_FristName_En = "الأسم الأول (إنجليزي)";
+      this.lb_FatherName_En = "إسم الأب (إنجليزي)";
+      this.lb_GrandFatherName_En = "إسم الجد (إنجليزي)";
+      this.lb_FamilyName_En = "إسم العائلة (إنجليزي)";
+      this.lb_FristName_Ar = "الأسم الأول (عربي)";
+      this.lb_FatherName_Ar = "إسم الأب (عربي)";
+      this.lb_GrandFatherName_Ar = "إسم الجد (عربي)";
+      this.lb_FamilyName_Ar = "إسم العائلة (عربي)";
       this.lb_Email="البريد الإلكتروني";
       this.lb_RetypeEmail="إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
-      this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      this.CitizenshipList = [{ "Id": 1, "Name": "سعودي" }];
       this.lb_NationalIdNo="رقم الهوية";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";

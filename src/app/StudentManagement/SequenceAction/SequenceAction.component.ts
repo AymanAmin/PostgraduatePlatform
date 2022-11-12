@@ -40,7 +40,7 @@ export class SequenceActionComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
-        //console.log(this.btnList);
+        console.log(this.btnList);
       }
     )
   }
@@ -56,6 +56,7 @@ export class SequenceActionComponent implements OnInit {
     this.http.post(environment.baseUrl + '/API/RequestManagment/Set/UpdateStatus.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
+          this.Note = "";
           document.getElementById("btnInfo")?.click();
           this.getSequenceList();
           this. getBtnList();
@@ -73,7 +74,7 @@ export class SequenceActionComponent implements OnInit {
   }
 
   lb_Approve_btn: any; lb_Reject_btn: any; lb_Trackorder: any; top_class: any;
-  SequenceName:any;SequenceD:any;lb_Sequence:any;lb_Optional_btn:any;
+  SequenceName:any;SequenceD:any;lb_Sequence:any;lb_Optional_btn:any;lb_Comment:any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -83,6 +84,7 @@ export class SequenceActionComponent implements OnInit {
       this.lb_Trackorder = "Track Order";
       this.top_class = "ms-auto";
       this.lb_Optional_btn = "Optional";
+      this.lb_Comment = "Write your comment";
     }
     else{
       this.lb_Sequence = "تتبع التسلسل";
@@ -91,6 +93,7 @@ export class SequenceActionComponent implements OnInit {
       this.lb_Trackorder = "تتبع الطلب";
       this.top_class = "me-auto";
       this.lb_Optional_btn = "إختياري";
+      this.lb_Comment = "اكتب تعليقك هنا";
     }
   }
 

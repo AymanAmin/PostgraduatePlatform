@@ -18,14 +18,14 @@
             <label class="form-label">{{lb_Specialty}}</label>
             <select class="form-control" name="choices-language" formControlName="Specialty">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.key}}" *ngFor="let item of SpecialtyList">{{item.value}}</option>
+              <option value="{{item.Id}}" *ngFor="let item of SpecialtyList">{{LangCode == 'en-us' || LangCode == 'us-en'?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
             <label class="form-label">{{lb_Student}}</label>
             <select class="form-control multi_cho" name="Student" formControlName="Student_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.key}}" *ngFor="let item of StudentList">{{item.value}}</option>
+              <option value="{{item.GN_Code}}" *ngFor="let item of StudentList">{{item.Name}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
@@ -73,18 +73,8 @@
               <h6 class="mb-0">{{lb_ListOfThesisDefense}}</h6>
             </div>
             <div class="row col-md-12 mt-3">
-              <div class="col-md-1 mt-2 text-end">{{lb_NumberOfList}}</div>
-              <div class="col-md-1">
-                <select class="form-control text-center" [(ngModel)]="PerPage" name="choices-language">
-                  <option value="1"> 1 </option>
-                  <option value="2"> 2 </option>
-                  <option value="5"> 5 </option>
-                  <option value="10"> 10 </option>
-                </select>
-              </div>
-              <div class="col-md-1  mt-2 text-start">{{lb_Entries}}</div>
-              <div class="col-md-6"></div>
-              <div class="col-md-3">
+              <div class="col-md-8"></div>
+              <div class="col-md-4">
                 <input type="text" class="form-control search-input" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
               </div>
             </div>
@@ -94,21 +84,25 @@
         <div class="card-body p-3 pt-0">
 
           <ul class="list-group list-group-flush" data-toggle="checklist">
-            <li class="list-group-item border-0 flex-column align-items-start ps-0 py-0 mb-3" *ngFor="let item of ThesisDefenseList | filter: searchedKeyword |
+            <li class="list-group-item border-0 flex-column align-items-start px-0 py-0 mb-3" *ngFor="let item of ThesisDefenseList | filter: searchedKeyword |
             paginate: {id: 'listing_pagination',
-            itemsPerPage: PerPage,
+            itemsPerPage: 10,
             currentPage: page,
             totalItems: tatalRecords}">
 
-              <div class="checklist-item checklist-item-dark ps-2 ms-3">
-                <div class="d-flex align-items-center mx-2 mt-3 ps-1">
-                  <div class="mx-auto">
+              <div class="checklist-item checklist-item-dark px-2 ms-3">
+                <div class="d-flex align-items-center mt-3">
+                  <div class="">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
                     <span class="text-xs font-weight-bolder">{{item.Title}}</span>
                   </div>
                   <div class="mx-auto">
+                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Student}}</p>
+                    <span class="text-xs font-weight-bolder">{{GetStudentName(item.Student_GN_Code)}}</span>
+                  </div>
+                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Specialty}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Specialty}}</span>
+                    <span class="text-xs font-weight-bolder">{{GetSpecialtyName(item.Specialty)}}</span>
                   </div>
                   <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Supervisor}}</p>
@@ -119,15 +113,11 @@
                     <span class="text-xs font-weight-bolder">{{GetEmpName(item.Examiner_GN_Code)}}</span>
                   </div>
                   <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_week}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Week}}</span>
-                  </div>
-                  <div class="mx-auto">
                     <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
                     <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
                   </div>
                   <div class="mx-auto">
-                    <a routerLink="/Schedule/ThesisDefense/info/{{item.Id}}"><i class="fa fa-file-text-o fs-4 mt-3 mx-2" aria-hidden="true"></i></a>
+                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)"><i class="fa fa-edit fs-5 mt-3 mx-2" aria-hidden="true"></i></div>
                   </div>
                 </div>
               </div>

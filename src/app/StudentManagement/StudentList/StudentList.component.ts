@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-StudentList',
@@ -10,6 +13,9 @@ export class StudentListComponent implements OnInit {
   LangCode: any = "us-en";
   StudentList:any;
 
+  ActiveNo:number = 0;
+  DisActiveNo:number = 0;
+
   //Start Pangation and filter
   // npm install ngx-pagination --save
   // npm install ng2-search-filter --save
@@ -18,27 +24,36 @@ export class StudentListComponent implements OnInit {
   searchedKeyword:string = "";
   //End Pangation and filter
 
-  constructor(private titleService:Title) {
+  constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Student List");
   }
 
   ngOnInit() {
-    this.getStudentList();
     this.LangCode = localStorage.getItem("LangCode");
+    this.getStudentList();
     this.GetLabelName(this.LangCode);
+  }
+
+  getStudentList(){
+    console.log(this.LangCode);
+    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentInfo/Get/ListOfStudent.ashx?LangCode='+this.LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StudentList = JSON.parse(jsonInfo);
+        console.log(this.StudentList);
+
+        //Get Number of Active user
+        this.ActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (obj.IsActive) {return true;} return false;}).length;
+        this.DisActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (!obj.IsActive) {return true;} return false;}).length;
+      }
+    )
   }
 
   lb_UsersActive:any;lb_UsersInActive:any;
   lb_UserBreif:any;lb_UserBreifD:any;lb_AddStd:any;
   lb_Name:any;lb_Specialization:any;lb_Status:any;lb_Email:any;
   lb_Date:any;lb_Id:any;lb_Search:any;lb_SearchD:any;lb_Action:any;
-
-  getStudentList(){
-    this.StudentList = [{"Id":1001,"Name":"Ayman Amin","Specialization":"Software","Status":"Active","Email":"Ayman@softwarecornerit.com","Date":"13-9-2022","StatusColor":"bg-info","img":"../../../assets/img/team-1.jpg"},
-    {"Id":1002,"Name":"Amjed Amin","Specialization":"Accounting","Status":"Suspended","Email":"Amjed@softwarecornerit.com","Date":"16-9-2022","StatusColor":"bg-warning","img":"../../../assets/img/team-2.jpg"},
-    {"Id":1003,"Name":"Mazin Awad","Specialization":"Software","Status":"Active","Email":"Mazin@softwarecornerit.com","Date":"15-8-2022","StatusColor":"bg-info","img":"../../../assets/img/team-3.jpg"}]
-  }
-
+  lb_Active:any;lb_DisActive:any;
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.lb_UsersActive = "Active";
@@ -55,6 +70,8 @@ export class StudentListComponent implements OnInit {
       this.lb_Search = "Student List";
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Actions";
+      this.lb_Active = "Active";
+      this.lb_DisActive = "DisActive";
     }
     else
     {
@@ -72,6 +89,8 @@ export class StudentListComponent implements OnInit {
       this.lb_Search = "قائمة بالطلاب";
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "العمليات";
+      this.lb_Active = "نشط";
+      this.lb_DisActive = "غير نشط";
     }
   }
 

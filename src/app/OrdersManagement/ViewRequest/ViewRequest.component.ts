@@ -15,10 +15,13 @@ export class ViewRequestComponent implements OnInit {
   OrderTo:string = "";
   OrderDetails:any;
   OrderType:string = "";
-  FormCode: string = "1003";
-  
-  constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("View Recommendation Letter");
+FormCode: string = "1003";
+constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View Request");
+      else
+      this.titleService.setTitle("بيانات الطلب");
   }
 
   ngOnInit() {

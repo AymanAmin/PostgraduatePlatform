@@ -12,14 +12,14 @@
                     <i class="ni ni-circle-08 text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                   <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                    {{ActiveNo}}
+                    {{DisActiveNo}}
                   </h5>
                   <span class="text-white text-sm">{{lb_UsersActive}}</span>
                 </div>
                 <div class="col-4">
                   <div class="dropdown text-end mb-6">
                   </div>
-                  <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">{{ActiveNo * 100 / (DisActiveNo
+                  <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">{{DisActiveNo * 100 / (DisActiveNo
                     + ActiveNo)}}%</p>
                 </div>
               </div>
@@ -36,7 +36,7 @@
                     <i class="ni ni-fat-remove text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                   <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                    {{DisActiveNo}}
+                    {{ActiveNo}}
                   </h5>
                   <span class="text-white text-sm">{{lb_UsersInActive}}</span>
                 </div>
@@ -46,7 +46,7 @@
                       aria-expanded="false">
                     </a>
                   </div>
-                  <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">{{DisActiveNo * 100 /
+                  <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">{{ActiveNo * 100 /
                     (DisActiveNo + ActiveNo)}}%</p>
                 </div>
               </div>
@@ -66,9 +66,9 @@
               {{lb_UserBreifD}}
             </p>
           </div>
-          <div class="w-40 text-end">
+          <div class="w-40 text-center">
             <a routerLink="/Employee/add" routerLinkActive="active"
-              class="btn bg-gradient-dark mb-0 text-end">{{lb_AddEmployee}}</a>
+              class="btn bg-gradient-dark mb-0 text-center">{{lb_AddEmployee}}</a>
           </div>
         </div>
       </div>
@@ -89,9 +89,9 @@
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Name}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_JobTitle}}
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">{{lb_JobTitle}}
                 </th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">{{lb_Status}}</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Email}}
                 </th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Date}}
@@ -103,7 +103,7 @@
             <tbody>
               <tr *ngFor="let user of UserList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
-              itemsPerPage: 2,
+              itemsPerPage: 10,
               currentPage: page,
               totalItems: tatalRecords
           }">

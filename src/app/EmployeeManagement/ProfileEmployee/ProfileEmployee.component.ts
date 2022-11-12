@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CkPasswordService } from '../service/CkPassword.service';
@@ -25,7 +26,13 @@ export class ProfileEmployeeComponent implements OnInit {
   IsShowMessageError: boolean = false;
 
 
-  constructor(private ck_Pass: CkPasswordService, private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private titleService:Title,private ck_Pass: CkPasswordService, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Profile");
+      else
+      this.titleService.setTitle("الصحفة الشخصية");
+   }
 
   ngOnInit() {
     this.CreateForm();
@@ -118,7 +125,7 @@ export class ProfileEmployeeComponent implements OnInit {
     formData.append("Email", this.ProfileForm.get('Email')?.value);
     formData.append("Gender", this.ProfileForm.get('Gender')?.value);
     formData.append("UILanguage", this.ProfileForm.get('UILanguage')?.value);
-    formData.append("LangCode", localStorage.getItem("LangCode"));
+    formData.append("LangCode", localStorage.getItem('LangCode'));
 
     this.http.post(environment.baseUrl + '/API/ProfileManagment/Set/ProfileInfo.ashx', formData).subscribe(
       (response) => {
@@ -126,8 +133,11 @@ export class ProfileEmployeeComponent implements OnInit {
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
           this.UpdateButtonSpinner(false);
-          console.log(response);
           document.getElementById("btnInfo")?.click();
+          if( localStorage.getItem("LangCode") != this.ProfileForm.get('UILanguage')?.value){
+            localStorage.setItem("LangCode",this.ProfileForm.get('UILanguage')?.value);
+            window.location.reload();
+          }
         }
         else {
           this.IsShowMessageUpdate = false;
@@ -239,7 +249,7 @@ export class ProfileEmployeeComponent implements OnInit {
   lb_Save_Change: any; lb_Cancel: any; lb_ProfileImg: any; lb_ChangePassword: any;
   lb_PasswordRequirements: any; lb_PasswordRequirementsD: any; lb_SaveChange: any;
   lb_ReqOne: any; lb_ReqTwo: any; lb_ReqThree: any; lb_ReqFour: any; lb_GeneralSetting: any;
-  lb_Loading:any;
+  lb_Loading:any;class_mx_auto:any;
 
   GenderList: any;
 
@@ -277,6 +287,7 @@ export class ProfileEmployeeComponent implements OnInit {
       this.lb_GeneralSetting = "General Setting";
       this.lb_SaveChange = "Save Change";
       this.lb_Loading = "Loading";
+      this.class_mx_auto = "ms-sm-auto";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -311,6 +322,7 @@ export class ProfileEmployeeComponent implements OnInit {
       this.lb_GeneralSetting = "إعدادات عامة";
       this.lb_SaveChange = "حفظ التعديلات";
       this.lb_Loading = "جاري المعالجة";
+      this.class_mx_auto = "me-sm-auto";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }

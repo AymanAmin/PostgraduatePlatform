@@ -33,28 +33,27 @@ export class SeminarComponent implements OnInit {
   UserList:any;
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Seminar Info");
+    this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Seminar Info");
+      else
+      this.titleService.setTitle("بيانات السنمار");
   }
 
-  public loadJsFile(url:any) {
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('body')[0].appendChild(node);
-  }
 
   ngOnInit() {
-    this.loadJsFile("assets/js/MyScript.js");
+    //this.loadJsFile("assets/js/MyScript.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
     this.getUserList();
-
-    if(this.Id)
-      this.getSeminarData();
-    else
-      this.Id = "0";
+    this.getStudentList();
+    this.Id = this.route.snapshot.params['id'];
+      if (this.Id)
+        this.getSeminarData(this.Id);
+      else
+        this.Id = "0";
 
     this.LoadSeminars();
   }
@@ -82,6 +81,16 @@ export class SeminarComponent implements OnInit {
     )
   }
 
+  getStudentList(){
+    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentInfo/Get/ListOfStudent.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StudentList = JSON.parse(jsonInfo);
+        console.log(this.StudentList);
+      }
+    )
+  }
+
   GetEmpName(GN_Code: any) {
     var user = this.UserList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
     if(user == undefined) return '';
@@ -91,8 +100,19 @@ export class SeminarComponent implements OnInit {
     return name;
   }
 
-  getSeminarData() {
-    this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarInfo.ashx?Id=' + this.Id).subscribe(
+  GetStudentName(GN_Code: any) {
+    var user = this.StudentList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    return user.Name;
+  }
+
+  UpdateRoute(Id:string){
+    this.getSeminarData(Id);
+    this.router.navigate(['/Schedule/Seminar/info/' + Id]);
+  }
+
+  getSeminarData(Id:any) {
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarInfo.ashx?Id=' + Id).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -102,6 +122,7 @@ export class SeminarComponent implements OnInit {
   }
 
   fillData(Seminar: any) {
+    console.log(Seminar);
     if (Seminar)
       this.SeminarForm.patchValue({
         Week: Seminar.Week,
@@ -129,8 +150,11 @@ export class SeminarComponent implements OnInit {
   OnSubmit(IsDeleted:boolean) {
     console.log(this.SeminarForm.value);
     this.UpdateButtonSpinner(true);
+    var ID = 0;
+    if(this.route.snapshot.params['id'])
+     ID = this.route.snapshot.params['id'];
     var formData: any = new FormData();
-    formData.append("Id", this.Id);
+    formData.append("Id", ID);
     formData.append("Week", this.SeminarForm.get('Week')?.value);
     formData.append("Date", this.SeminarForm.get('Date')?.value);
     formData.append("Time", this.SeminarForm.get('Time')?.value);
@@ -147,7 +171,7 @@ export class SeminarComponent implements OnInit {
         if (response != "0") {
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
-          this.router.navigate([this.router.url.replace(this.Id, '') + '/' + response]);
+          //this.router.navigate([this.router.url]);
           this.UpdateButtonSpinner(false);
           this.LoadSeminars();
           document.getElementById("btnInfo")?.click();
@@ -155,10 +179,15 @@ export class SeminarComponent implements OnInit {
         else {
           this.IsShowMessageUpdate = false;
           this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         }
       },
       (error) => {
-        document.getElementById("btnInfo")?.click();
+        this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnDanger")?.click();
         console.log(error);
       }
     )
@@ -213,7 +242,6 @@ export class SeminarComponent implements OnInit {
       this.lb_ListOfSeminar = "List Of Seminars";
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
       this.SpecialtyList = [{"key":1,"value":"Dentistry"},{"key":2,"value":"Pharmacy"}];
-      this.StudentList = [{"key":1,"value":"Ayman Amin"},{"key":2,"value":"Mazin Awad"}];
     }
     else{
       this.lb_Address ="جدولة الندوات";
@@ -236,7 +264,6 @@ export class SeminarComponent implements OnInit {
       this.lb_ListOfSeminar = "قائمة الندوات";
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
       this.SpecialtyList = [{"key":1,"value":"اسنان"},{"key":2,"value":"صيدلة"}];
-      this.StudentList = [{"key":1,"value":"ايمن امين"},{"key":2,"value":"مازن عوض"}];
     }
   }
 
