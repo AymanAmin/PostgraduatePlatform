@@ -156,7 +156,7 @@
         <h6 class="{{CatMenuItem}}">{{StudentMangment}}</h6>
       </li>
       <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#Specialization" class="nav-link" aria-controls="Specialization" role="button"
+        <a data-bs-toggle="collapse" href="#StudentMangment" class="nav-link" aria-controls="Specialization" role="button"
           aria-expanded="false">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -184,7 +184,7 @@
           </div>
           <span class="{{MenuItem}}">{{StudentMangment}}</span>
         </a>
-        <div class="collapse " routerLinkActive="show" id="Specialization">
+        <div class="collapse " routerLinkActive="show" id="StudentMangment">
           <ul class="nav ms-4 ps-3">
             <li class="nav-item ">
               <a class="nav-link " routerLinkActive="active" routerLink="Student/add">
@@ -209,10 +209,10 @@
         </div>
       </li>
       <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#Sequence" class="nav-link" aria-controls="Sequence" role="button" aria-expanded="false">
+        <a data-bs-toggle="collapse" href="#StudentRequest" class="nav-link" aria-controls="StudentRequest" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>{{Sequence}}</title>
+              <title>{{StudentRequest}}</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -229,7 +229,7 @@
           </div>
           <span class="{{MenuItem}}">{{StudentRequest}}</span>
         </a>
-        <div class="collapse "  routerLinkActive="show" id="Sequence">
+        <div class="collapse "  routerLinkActive="show" id="StudentRequest">
           <ul class="nav mx-4 ps-3">
             <li class="nav-item ">
               <a class="nav-link " routerLinkActive="active" routerLink="Leave/add">
@@ -279,10 +279,6 @@
               </a>
             </li>
           </ul>
-
-
-
-
         </div>
 
       </li>
@@ -349,6 +345,12 @@
               <a class="nav-link " routerLinkActive="active" routerLink="EmailTemplate/list">
                 <span class="sidenav-mini-icon"> O </span>
                 <span class="sidenav-normal"> {{EmailTemplate}} </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link " routerLinkActive="active" routerLink="Permission/add">
+                <span class="sidenav-mini-icon"> O </span>
+                <span class="sidenav-normal"> {{Permission}} </span>
               </a>
             </li>
           </ul>

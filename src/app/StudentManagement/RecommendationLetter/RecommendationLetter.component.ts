@@ -23,8 +23,9 @@ export class RecommendationLetterComponent implements OnInit {
 
   RecommendationLetter: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
-  GN_Code: string = this.route.snapshot.params['id'];// "92d5e221-7206-4845-8e76-67e91700fc35";
-  Student_GN_Code : string ="1";// this.route.snapshot.params['Student_GN_Code'];
+
+  GN_Code: string = this.route.snapshot.params['id'];
+  Student_GN_Code :any =localStorage.getItem("GN_Code");
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {

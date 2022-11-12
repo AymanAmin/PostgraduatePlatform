@@ -1,45 +1,40 @@
+<p>
+  Permission works!
+</p>
 <div class="container-fluid py-4">
   <div class="row">
-    <div class="col-lg-12 col-12 mx-auto">
+    <div class="col-lg-12 mx-auto">
       <div class="card card-body">
-        <form class="card card-body" [formGroup]="DepartmentForm" (ngSubmit)="OnSubmit(false)">
+        <form class="card card-body" [formGroup]="PermissionForm" (ngSubmit)="OnSubmit(false)">
           <h6 class="mb-0">{{lb_Info}}</h6>
           <p class="text-sm mb-0">{{lb_InfoD}}</p>
           <hr class="horizontal dark my-3">
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Group}}</label>
+              <div class="input-group">
+               <select class="form-control" (change)="onGroupChange($any($event).target.value)" >
+                <option value="null"  selected></option>
+                 <option value="{{Group.Id}}" *ngFor="let Group of GroupList">{{LangCode === "us-en" ? Group.Name_En : Group.Name_Ar}}</option>
+               </select>
+              </div>
+             </div>
+             <div class="col-md-6"></div>
+            <div class="col-md-6">
               <label for="va_EmpName" class="form-label">{{lb_ArName}}</label>
               <input type="text" class="form-control" placeholder="{{lb_ArName}}" formControlName="Name_Ar">
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-md-6">
               <label for="va_EmpName" class="form-label">{{lb_EngName}}</label>
               <input type="text" class="form-control" placeholder="{{lb_EngName}}" formControlName="Name_En">
             </div>
 
           </div>
-          <div class="row mt-4">
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label>
-                  {{lb_IsActive}}
-                </label>
-                <p class="form-text text-muted text-xs ms-1">
-                  {{lb_IsActiveD}}
-                </p>
-                <div class="form-check form-switch ms-1">
-
-                  <input class="form-check-input" type="checkbox" (change)="ActiveValue($event.target)"
-                    formControlName="IsActive" value="true" />
-                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="d-flex justify-content-end mt-4">
             <button type="button" name="button" class="btn btn-light m-0"
-              routerLink="/Department/list/">{{lb_Cancel}}</button>
-            <button type="submit" [disabled]="!(DepartmentForm.valid && btn_status)" name="button"
+              routerLink="/Permission/list/">{{lb_Cancel}}</button>
+            <button type="submit" [disabled]="!(PermissionForm.valid && btn_status)" name="button"
               class="btn bg-gradient-success m-0 ms-2"><span [innerHTML]="btn_spinner"></span></button>
           </div>
         </form>
@@ -48,6 +43,7 @@
   </div>
 
   <div class="row my-4">
+
     <div class="col-12">
 
       <div class="card">
@@ -57,61 +53,52 @@
           <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
           <input type="text" class="form-control" placeholder="Type here..." [(ngModel)]="searchedKeyword">
         </div>
+
         <div class="table-responsive">
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
 
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}
-                </th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_EngName}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let oneSpe of SpeList | filter: searchedKeyword |
+              <tr *ngFor="let Role of RoleList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
               itemsPerPage: PerPage,
               currentPage: page,
               totalItems: tatalRecords
           }">
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{oneSpe.Id}}"
-                      id="{{oneSpe.Id}}">{{oneSpe.Id}}</a></span>
-                </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.Name_Ar}}</h6>
+                      <h6 class="mb-0 text-sm">{{Role.Name_Ar}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.Name_En}}</h6>
+                      <h6 class="mb-0 text-sm">{{Role.Name_En}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <span class="badge badge-dot me-4">
-                    <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
-                    <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
-                  </span>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">{{Role.Code}}</h6>
+                    </div>
+                  </div>
                 </td>
-                <td class="text-sm">
-                  <a routerLink="/Department/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
-                    data-bs-original-title="Preview product">
-                    <i class="fas fa-user-edit text-secondary"></i>
-                  </a>
-                  <!-- <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                    <i class="fas fa-user-edit text-secondary"></i>
-                  </a>
-                  <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                    <i class="fas fa-trash text-secondary"></i>
-                  </a> -->
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <input type="checkbox" (change)="onRoleChange($any($event).target.id,$any($event).target.checked)" name="{{Role.Code}}" id="{{Role.Code}}" [checked]="Role.PemissionRole_Code ===null  ?  false :  true"/>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>

@@ -22,8 +22,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
 
   ReferenceAndCertificates: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
-  GN_Code: string = "bc3ca983-100c-410b-8234-d461f2cd8aed"; //this.route.snapshot.params['id'];
-  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
+  GN_Code: string = this.route.snapshot.params['id'];
+  Student_GN_Code : any =localStorage.getItem("GN_Code");
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {

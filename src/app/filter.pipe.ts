@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class FilterPipe implements PipeTransform {
   transform(listData: any[], filterText: string) {
-    if (listData.length === 0 || filterText === '') {
+    if (listData == undefined || listData.length === 0 || filterText === '') {
       return listData;
     } else {
       return listData.filter((listData) => {

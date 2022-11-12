@@ -26,7 +26,7 @@ export class PGTComponent implements OnInit {
   PGR: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
-  Student_GN_Code : string ="33e4dcd8-f998-4ba3-9e06-7b3a22e9b697";// this.route.snapshot.params['Student_GN_Code'];
+  Student_GN_Code : any =localStorage.getItem("GN_Code");
   PG_R_Type:number = this.route.snapshot.params['PG_R_Type'];
   BriefSummary_Data:any = "";  FormCode:string = "";
 
