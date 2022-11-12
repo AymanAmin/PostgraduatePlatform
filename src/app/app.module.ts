@@ -49,7 +49,7 @@ import { SequenceActionComponent } from './StudentManagement/SequenceAction/Sequ
 import { SequenceTrackingComponent } from './StudentManagement/SequenceTracking/SequenceTracking.component';
 import { RequestHeaderComponent } from './StudentManagement/RequestHeader/RequestHeader.component';
 import { ViewReferenceAndCertificatesComponent } from './StudentManagement/ViewReferenceAndCertificates/ViewReferenceAndCertificates.component';
-
+import { PermissionComponent } from './SystemAdmin/Permission/Permission.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -119,6 +119,10 @@ const appRoutes: Routes = [
   { path: 'PGT1/View/:id', component: ViewPGT1Component, data: { title: 'PG-R' } },
   { path: 'PGT2/View/:id', component: ViewPGT2Component, data: { title: 'PG-R' } },
   { path: 'PGT3/View/:id', component: ViewPGT3Component, data: { title: 'PG-R' } },
+
+  { path: 'Permission/add/:id', component: PermissionComponent, data: { title: 'Permission' } },
+  { path: 'Permission/add', component: PermissionComponent, data: { title: 'Permission' } },
+
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -171,7 +175,8 @@ const routerOptions: ExtraOptions = {
     SequenceActionComponent,
     SequenceTrackingComponent,
     RequestHeaderComponent,
-    ViewReferenceAndCertificatesComponent
+    ViewReferenceAndCertificatesComponent,
+    PermissionComponent
    ],
   imports: [
     BrowserModule,
