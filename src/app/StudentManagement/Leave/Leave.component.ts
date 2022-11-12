@@ -24,7 +24,7 @@ export class LeaveComponent implements OnInit {
   Leave: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
-  Student_GN_Code : any =localStorage.getItem("GN_Code"); ;//this.route.snapshot.params['Student_GN_Code'];
+  Student_GN_Code : any =localStorage.getItem("GN_Code"); //this.route.snapshot.params['Student_GN_Code'];
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -56,8 +56,8 @@ export class LeaveComponent implements OnInit {
 
   CreateForm() {
     this.Leave = new FormGroup({
-      program_GN_Code: new FormControl(null, [Validators.required]),
-      Speciality_GN_Code: new FormControl(null, [Validators.required]),
+     /* program_GN_Code: new FormControl(null, [Validators.required]),
+      Speciality_GN_Code: new FormControl(null, [Validators.required]),*/
       Leave_Type_GN_Code: new FormControl(null, [Validators.required]),
       FromDate: new FormControl(null, [Validators.required]),
       ToDate: new FormControl(null, [Validators.required]),
