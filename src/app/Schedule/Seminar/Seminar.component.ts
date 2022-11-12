@@ -48,17 +48,21 @@ export class SeminarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadJsFile("assets/js/MyScript.js");
+    //this.loadJsFile("assets/js/MyScript.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
     this.getUserList();
 
-    if(this.Id)
-      this.getSeminarData();
-    else
-      this.Id = "0";
+    this.router.events.subscribe((val) => {
+      this.Id = this.route.snapshot.params['id'];
+      console.log(this.Id);
+      if (this.Id)
+        this.getSeminarData();
+      else
+        this.Id = "0";
+    });
 
     this.LoadSeminars();
   }

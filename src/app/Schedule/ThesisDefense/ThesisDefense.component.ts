@@ -48,10 +48,13 @@ export class ThesisDefenseComponent implements OnInit {
     this.UpdateButtonSpinner(false);
     this.getUserList();
 
-    if(this.Id)
-      this.getThesisDefenseData();
-    else
-      this.Id = "0";
+    this.router.events.subscribe((val) => {
+      this.Id = this.route.snapshot.params['id'];
+      if (this.Id)
+        this.getThesisDefenseData();
+      else
+        this.Id = "0";
+    });
 
     this.LoadThesisDefenses();
   }
