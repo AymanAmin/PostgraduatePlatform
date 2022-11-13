@@ -211,11 +211,13 @@
         <div class="card-body pt-0">
           <label class="form-label">{{lb_OldPassword}}</label>
           <div class="form-group">
-            <input class="form-control" type="password" placeholder="Current password">
+            <input class="form-control" [(ngModel)]="ClientLastPassword" type="password" placeholder="Current password">
+            <span class="text-danger text-sm" *ngIf="ServerLastPassword != ClientLastPassword && ClientLastPassword != ''" >
+              {{Erorr_oldPassword}}</span>
           </div>
           <label class="form-label">{{lb_NewPassword}}</label>
           <div class="form-group">
-            <input class="form-control" type="password" placeholder="New password" (change)="CheckPassword()" [(ngModel)]="n_password">
+            <input class="form-control" [(ngModel)]="Password" type="password" placeholder="New password" (change)="CheckPassword()" [(ngModel)]="n_password">
           </div>
           <label class="form-label">{{lb_EmpCPassword}}</label>
           <div class="form-group">
@@ -226,6 +228,9 @@
             {{lb_PasswordRequirementsD}}
           </p>
           <ul class="text-muted px-4 mb-0 main-list">
+            <!--<li class="{{ServerLastPassword == ClientLastPassword? ck_right:ck_woring}}">
+              <span class="text-sm">{{Erorr_oldPassword}}</span>
+            </li>-->
             <li class="{{nopassClass}}">
               <span class="text-sm">{{lb_ReqOne}}</span>
             </li>
@@ -239,7 +244,7 @@
               <span class="text-sm">{{lb_ReqFour}}</span>
             </li>
           </ul>
-          <button *ngIf="IsValidPassword"  class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
+          <button *ngIf="IsValidPassword && ServerLastPassword == ClientLastPassword" (click)="UpdatePassword()"  class="btn bg-gradient-success btn-sm float-end mt-6 mb-0">{{lb_SaveChange}}</button>
         </div>
       </div>
       <!-- Card Notifications -->

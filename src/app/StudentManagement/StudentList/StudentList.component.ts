@@ -49,6 +49,28 @@ export class StudentListComponent implements OnInit {
     )
   }
 
+  UpdateStatus(IsActive:boolean,GN_Code:string) {
+    var formData: any = new FormData();
+    formData.append("GN_Code", GN_Code);
+    formData.append("IsActive", IsActive);
+
+    this.http.post(environment.baseUrl + '/API/StudentManagment/StudentInfo/Set/UpdateStatus.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          this.getStudentList();
+          document.getElementById("btnInfo")?.click();
+        }
+        else {
+          document.getElementById("btnDanger")?.click();
+        }
+      },
+      (error) => {
+        document.getElementById("btnDanger")?.click();
+        console.log(error);
+      }
+    )
+  }
+
   lb_UsersActive:any;lb_UsersInActive:any;
   lb_UserBreif:any;lb_UserBreifD:any;lb_AddStd:any;
   lb_Name:any;lb_Specialization:any;lb_Status:any;lb_Email:any;

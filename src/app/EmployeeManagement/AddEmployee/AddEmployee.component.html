@@ -6,57 +6,63 @@
         <p class="text-sm mb-0">{{lb_EmpDetails}}</p>
         <hr class="horizontal dark my-3">
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="Name_Ar" class="form-label">{{lb_EmpName}}</label>
             <input type="text" class="form-control" formControlName="Name_Ar">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="Name_En" class="form-label">{{lb_EmpNameEn}}</label>
             <input type="text" class="form-control" formControlName="Name_En">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="PhoneNo" class="form-label">{{lb_EmpPhone}}</label>
             <input type="phone" placeholder="9665xxxxxxxx" class="form-control" formControlName="PhoneNo">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="Email" class="form-label">{{lb_EmpEmail}}</label>
             <input type="email" placeholder="ex: emp@riyadh.edu.sa" class="form-control" formControlName="Email">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label class="form-label">{{lb_EmpGender}}</label>
             <select class="form-control" name="choices-language" formControlName="Gender">
               <option value="{{gender.Id}}" *ngFor="let gender of GenderList">{{gender.Name}}</option>
             </select>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
+            <label class="form-label">{{lb_EmpPermission}}</label>
+            <select class="form-control" name="choices-language" formControlName="GroupId">
+              <option value="{{group.Id}}" *ngFor="let group of GroupPermissionList">{{LangCode == 'en-us' || LangCode == 'us-en' ? group.Name_En : group.Name_Ar}}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
             <label class="form-label">{{lb_JobTitle}}</label>
             <input type="text" value="" class="form-control" formControlName="JobTitle" />
           </div>
-          <div class="col-12 col-md-8">
+          <div class="col-md-8">
             <label class="form-label">{{lb_EmpSection}}</label>
             <select class="form-control choices-multiple"  name="choices-multiple-remove-button" formControlName="Department"
               multiple>
               <option value="{{item.Id}}" [selected]="item.IsActive"*ngFor="let item of DepartmentList">{{LangCode =='en-us' || LangCode == 'us-en'?item.Name_En:item.Name_Ar}}</option>
             </select>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label class="form-label">{{lb_Language}}</label>
             <select class="form-control" name="choices-language" formControlName="UILanguage">
               <option value="us-en">English</option>
               <option value="ar-sa">عربي</option>
             </select>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="Username" class="form-label">{{lb_EmpUserName}}</label>
             <input type="text" class="form-control" formControlName="Username">
             <span class="text-danger text-sm" *ngIf="!EmployeeForm.get('Username')?.valid && EmployeeForm.get('Username')?.touched">
              {{Erorr_username}}</span>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="Password" class="form-label">{{lb_EmpPassword}}</label>
             <input type="password" placeholder="*******" class="form-control" formControlName="Password">
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-md-4">
             <label for="PasswordConfirm" class="form-label">{{lb_EmpCPassword}}</label>
             <input type="password" placeholder="*******" class="form-control" formControlName="PasswordConfirm">
           </div>
@@ -98,33 +104,7 @@
     <div class="container-fluid">
       <div class="row align-items-center justify-content-lg-between">
         <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
+
         </div>
       </div>
     </div>

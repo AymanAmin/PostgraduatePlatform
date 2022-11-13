@@ -25,6 +25,7 @@ export class AddEmployeeComponent implements OnInit {
   GN_Code: string = this.route.snapshot.params['id'];
   BriefSummary_Data:any = "";
   DepartmentList:any;ListDep:any;
+  GroupPermissionList:any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
@@ -39,6 +40,7 @@ export class AddEmployeeComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.getDepartmentList();
+    this.getGroupPermissionList();
     this.CreateForm();
     if(this.GN_Code)
       this.getData();
@@ -70,7 +72,8 @@ export class AddEmployeeComponent implements OnInit {
       PasswordConfirm: new FormControl(null),
       UILanguage: new FormControl("en-us"),
       BriefSummary: new FormControl(null),
-      Department: new FormControl(),
+      GroupId: new FormControl(null, [Validators.required]),
+      Department: new FormControl(null, [Validators.required]),
       IsActive: new FormControl(false)
     });
   }
@@ -109,6 +112,7 @@ export class AddEmployeeComponent implements OnInit {
         PasswordConfirm: EmployeeData.Credential.Password,
         BriefSummary: EmployeeData.BriefSummary,
         Department: list,
+        GroupId: EmployeeData.GroupId,
         IsActive: EmployeeData.Credential.IsActive
       });
     }
@@ -140,6 +144,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.append("BriefSummary", BriefSummary);
     formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
     formData.append("Department", this.EmployeeForm.get('Department')?.value);
+    formData.append("GroupId", this.EmployeeForm.get('GroupId')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("Type", 1);
     formData.append("IsActive", this.IsActive);
@@ -194,6 +199,16 @@ export class AddEmployeeComponent implements OnInit {
     )
   }
 
+  getGroupPermissionList() {
+    this.http.get(environment.baseUrl + '/API/Permission/Group/Get/GroupList.ashx?GN_Code='+this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.GroupPermissionList = JSON.parse(jsonInfo);
+        console.log(this.GroupPermissionList);
+      }
+    )
+  }
+
 
   // Label Data
   lb_EmpInfo: any; lb_EmpDetails: any; lb_EmpName: any; lb_EmpNameEn: any; lb_EmpPhone: any;
@@ -201,7 +216,7 @@ export class AddEmployeeComponent implements OnInit {
   lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;
   lb_EmpUserName: any; lb_EmpPassword: any; lb_EmpCPassword: any; lb_Language: any;
   lb_Save_Change: any; lb_Cancel: any;Erorr_username: any;lb_Loading:any;lb_Select:any;
-  GenderList: any;
+  GenderList: any;lb_EmpPermission:any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -227,6 +242,7 @@ export class AddEmployeeComponent implements OnInit {
       this.Erorr_username = "Please Check the username length.";
       this.lb_Loading = "Loading";
       this.lb_Select = "- Select - ";
+      this.lb_EmpPermission = "Group Permissions";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -251,6 +267,7 @@ export class AddEmployeeComponent implements OnInit {
       this.Erorr_username = "الرجاء التحقق من طول كلمة المرور.";
       this.lb_Loading = "جاري التحميل";
       this.lb_Select = " - اختر - ";
+      this.lb_EmpPermission = "مجموعة الصلاحيات";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }

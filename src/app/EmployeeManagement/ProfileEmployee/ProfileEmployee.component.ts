@@ -20,7 +20,8 @@ export class ProfileEmployeeComponent implements OnInit {
   Notification: boolean = false;
   ProfileForm: FormGroup = new FormGroup({});
   ProfileImg: any;
-
+  Password:string = "";
+  ServerLastPassword:string = "";ClientLastPassword:string= "";
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
@@ -103,7 +104,8 @@ export class ProfileEmployeeComponent implements OnInit {
   }
 
   fillData(ProfileData: any) {
-    //console.log(ProfileData);
+    //console.log(ProfileData.Password);
+    this.ServerLastPassword = ProfileData.Password;
     if (ProfileData) {
       this.ProfileForm.patchValue({
         Name: ProfileData.Name,
@@ -145,6 +147,36 @@ export class ProfileEmployeeComponent implements OnInit {
         }
       },
       (error) => {
+        document.getElementById("btnDanger")?.click();
+        console.log(error);
+      }
+    )
+  }
+
+  UpdatePassword() {
+    this.UpdateButtonSpinner(true);
+    //console.log(this.Password);
+    var formData: any = new FormData();
+    formData.append("GN_Code", localStorage.getItem("GN_Code"));
+    formData.append("Password", this.Password);
+
+    this.http.post(environment.baseUrl + '/API/ProfileManagment/Set/UpdatePassword.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          this.IsShowMessageUpdate = true;
+          this.IsShowMessageError = false;
+          this.UpdateButtonSpinner(false);
+          document.getElementById("btnInfo")?.click();
+        }
+        else {
+          this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
+          document.getElementById("btnDanger")?.click();
+        }
+      },
+      (error) => {
+        this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
         document.getElementById("btnDanger")?.click();
         console.log(error);
       }
@@ -249,7 +281,7 @@ export class ProfileEmployeeComponent implements OnInit {
   lb_Save_Change: any; lb_Cancel: any; lb_ProfileImg: any; lb_ChangePassword: any;
   lb_PasswordRequirements: any; lb_PasswordRequirementsD: any; lb_SaveChange: any;
   lb_ReqOne: any; lb_ReqTwo: any; lb_ReqThree: any; lb_ReqFour: any; lb_GeneralSetting: any;
-  lb_Loading:any;class_mx_auto:any;
+  lb_Loading:any;class_mx_auto:any;Erorr_oldPassword:any;
 
   GenderList: any;
 
@@ -288,6 +320,7 @@ export class ProfileEmployeeComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
       this.lb_Loading = "Loading";
       this.class_mx_auto = "ms-sm-auto";
+      this.Erorr_oldPassword = "Wrong old password";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -323,6 +356,7 @@ export class ProfileEmployeeComponent implements OnInit {
       this.lb_SaveChange = "حفظ التعديلات";
       this.lb_Loading = "جاري المعالجة";
       this.class_mx_auto = "me-sm-auto";
+      this.Erorr_oldPassword = "كلمة المرور السابقة خطأ";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }
