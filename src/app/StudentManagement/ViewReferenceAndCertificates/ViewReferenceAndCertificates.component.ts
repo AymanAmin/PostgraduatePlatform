@@ -19,7 +19,11 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
   FormCode: string = "1004";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("View Reference Certificate");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View Reference Certificate");
+    else
+      this.titleService.setTitle("عرض الشهادة المرجعية");
   }
 
   ngOnInit() {
@@ -42,7 +46,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
     if (MainInfoData) {
       // this.OrderTo = MainInfoData.requestLeave.NoOfDays;
       // this.OrderType = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
-      this.OrderDetails = MainInfoData.Letter;
+      this.OrderDetails = decodeURIComponent(atob(MainInfoData.Letter));
     }
     // this.OrderType = "Recommendation Letter";
     // this.OrderTo = "Dear Ms./Mr. [Recommender Name],";

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-SequenceForm',
@@ -39,7 +39,11 @@ export class SequenceFormComponent implements OnInit {
   SeqModelList: any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("List Sequence Forms");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("List Sequence Forms");
+    else
+      this.titleService.setTitle("قائمة بفورمات التسلسل");
   }
 
   ngOnInit() {
@@ -50,6 +54,13 @@ export class SequenceFormComponent implements OnInit {
     this.GetLabelName(this.LangCode);
 
     this.CreateForm();
+    this.router.events.subscribe((val) => {
+      if (val instanceof ActivationEnd) {
+        this.GN_Code = this.route.snapshot.params['id'];
+        if (this.GN_Code)
+          this.getData();
+      }
+    });
     if (this.GN_Code)
       this.getData();
 

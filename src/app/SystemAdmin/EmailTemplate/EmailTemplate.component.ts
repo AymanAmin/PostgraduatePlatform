@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -42,7 +42,11 @@ export class EmailTemplateComponent implements OnInit {
   Template_En_Data: any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("List Email Templates");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("List Email Templates");
+    else
+      this.titleService.setTitle("قائمة بقوالب الإيميلات");
   }
 
   ngOnInit() {
@@ -52,6 +56,13 @@ export class EmailTemplateComponent implements OnInit {
     this.GetLabelName(this.LangCode);
 
     this.CreateForm();
+    this.router.events.subscribe((val) => {
+      if (val instanceof ActivationEnd) {
+        this.GN_Code = this.route.snapshot.params['id'];
+        if (this.GN_Code)
+          this.getData();
+      }
+    });
     if (this.GN_Code)
       this.getData();
 

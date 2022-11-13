@@ -23,7 +23,11 @@ export class ViewStudentLeaveComponent implements OnInit {
   FormCode:string = "1001";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("View Student Leave");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View Student Leave");
+    else
+      this.titleService.setTitle("عرض إجازة الطالب");
   }
 
   ngOnInit() {
@@ -33,7 +37,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/LeaveInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentLeave/Get/StudentLeaveInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -44,11 +48,11 @@ export class ViewStudentLeaveComponent implements OnInit {
 
   GetOrderInfo(MainInfoData: any) {
     if (MainInfoData) {
-      this.DayOfLeave = MainInfoData.requestLeave.NoOfDays;
-      this.TypeLeave = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
-      this.DateTo = new Date(MainInfoData.requestLeave.ToDate).toLocaleDateString();
-      this.DateFrom = new Date(MainInfoData.requestLeave.FromDate).toLocaleDateString();;
-      this.Reason = MainInfoData.requestLeave.Reason;
+      this.DayOfLeave = MainInfoData.NoOfDays;
+      this.TypeLeave = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
+      this.DateTo = new Date(MainInfoData.ToDate).toLocaleDateString();
+      this.DateFrom = new Date(MainInfoData.FromDate).toLocaleDateString();
+      this.Reason = decodeURIComponent(atob(MainInfoData.Reason));
     }
   }
 

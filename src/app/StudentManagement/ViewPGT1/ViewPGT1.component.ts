@@ -25,6 +25,11 @@ export class ViewPGT1Component implements OnInit {
   
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View PG-R");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View PG-R");
+    else
+      this.titleService.setTitle("PG-R عرض");
   }
 
   ngOnInit() {
