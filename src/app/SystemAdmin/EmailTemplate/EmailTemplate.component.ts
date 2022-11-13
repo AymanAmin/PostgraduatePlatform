@@ -211,6 +211,7 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_Search = "Email Template List";
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Action";
+      this.lb_Loading = "Loading";
       this.lb_TemplateAr = "Template Arabic";
       this.lb_TemplateArD = "A brief summary does not exceed 400 letter from the template";
       this.lb_TemplateEn = "Template English";
@@ -236,6 +237,7 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_TemplateArD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
       this.lb_TemplateEn = "القالب إنجليزي";
       this.lb_TemplateEnD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
+      this.lb_Loading = "جاري التحميل";
     }
   }
 

@@ -48,6 +48,14 @@
           </div>
           <div class="row mt-4">
             <div class="col-12 col-md-6">
+              <label class="form-label">{{lb_EmailTemplate}}</label>
+              <select class="form-control" name="choices-language" formControlName="EmailTemplate_ID">
+                <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                <option value="{{oneEmailTemplate.Id}}" *ngFor="let oneEmailTemplate of EmailTemplateList">{{LangCode === "us-en" ?
+                  oneEmailTemplate.Name_En : oneEmailTemplate.Name_Ar}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
               <div class="form-group">
                 <label>
                   {{lb_IsActive}}
@@ -62,6 +70,23 @@
                   <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
               </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <label class="form-label">{{lb_Employee}}</label>
+                <select class="form-control choices-multiple" name="choices-multiple-remove-button" formControlName="Employee" multiple>
+                  <option value="{{oneUser.Id}}" [selected]="oneUser.IsActive" *ngFor="let oneUser of UserList">{{LangCode =='en-us' ||
+                    LangCode == 'us-en' ? oneUser.Name_En : oneUser.Name_Ar}}</option>
+                    <!-- <option value="1" selected>Choice 1</option>
+                    <option value="2">Choice 2</option> -->
+                </select>
+              </div>
+              <!-- <select class="form-control choices-multiple" name="choices-multiple-remove-button" id="choices-multiple-remove-button" multiple>
+                <option value="Choice 1" selected>Choice 1</option>
+                <option value="Choice 2">Choice 2</option>
+                <option value="Choice 3">Choice 3</option>
+                <option value="Choice 4">Choice 4</option>
+              </select> -->
             </div>
           </div>
 
@@ -97,6 +122,7 @@
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_NextStep}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_PreviousStep}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_OptionStep}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EmailTemplate}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
               </tr>
@@ -149,6 +175,14 @@
                       <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesOption"><span class="badge"
                           style="background-color: {{oneSpe.SequencesOption != null ? oneSpe.SequencesOption.ColorCode : ''}}">{{LangCode === "us-en" && oneSpe.SequencesOption != null ?
                           oneSpe.SequencesOption.Name_En : oneSpe.SequencesOption.Name_Ar}}</span></h6>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.EmailTemplate">{{LangCode === "us-en" && oneSpe.EmailTemplate != null ? oneSpe.EmailTemplate.Name_En : oneSpe.EmailTemplate.Name_Ar}}
+                      </h6>
                     </div>
                   </div>
                 </td>

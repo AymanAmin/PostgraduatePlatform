@@ -28,8 +28,8 @@ export class CreateSequenceComponent implements OnInit {
   lb_IsActive: any; lb_IsActiveD: any;
   lb_Save_Change: any; lb_Cancel: any;
   lb_Color: any; lb_Icon: any;
-  lb_SequenceModel: any; lb_SequenceStatus: any;
-  lb_PreviousStep: any; lb_NextStep: any; lb_OptionStep: any;
+  lb_SequenceModel: any; lb_SequenceStatus: any; lb_Employee: any;
+  lb_PreviousStep: any; lb_NextStep: any; lb_OptionStep: any; lb_EmailTemplate: any;
 
 
   lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;
@@ -42,6 +42,8 @@ export class CreateSequenceComponent implements OnInit {
   PerPage: number = 10;
   SeqModelList: any;
   SeqStatusList: any;
+  EmailTemplateList: any;
+  UserList: any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
@@ -53,13 +55,16 @@ export class CreateSequenceComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/MyScript.js");
     this.getSequenceList(); 
     this.getSeqModel();
     this.getSeqStatus();
+    this.getEmailTemplateList();
+    this.getUserList();
     this.GetLabelName(this.LangCode);
 
     this.CreateForm(); 
+
+    this.loadJsFile("assets/js/Multi-choice.js");
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
         this.GN_Code = this.route.snapshot.params['id'];
@@ -104,13 +109,30 @@ export class CreateSequenceComponent implements OnInit {
     )
   }
 
+  getEmailTemplateList() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/EmailTemplateManagment/Get/EmailTemplateList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.EmailTemplateList = JSON.parse(jsonInfo);
+      }
+    )
+  }
+
+  getUserList() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.UserList = JSON.parse(jsonInfo);
+      }
+    )
+  }
+
   public loadJsFile(url: any) {
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
     document.getElementsByTagName('body')[0].appendChild(node);
   }
-
 
   ActiveValue(IsActive: any) {
     this.IsActive = IsActive.checked;
@@ -123,6 +145,8 @@ export class CreateSequenceComponent implements OnInit {
       NextSequence_ID: new FormControl(null),
       PreviousSequence_ID: new FormControl(null),
       OptionalSequence_ID: new FormControl(null),
+      EmailTemplate_ID: new FormControl(null),
+      Employee: new FormControl(null),
       IsActive: new FormControl(false)
     });
   }
@@ -139,14 +163,21 @@ export class CreateSequenceComponent implements OnInit {
 
   fillData(MainInfoData: any) {
     if (MainInfoData) {
-      this.IsActive = MainInfoData.IsActive;
+      let list = [];
+      for (let i = 0; i < MainInfoData.Employee_Sequence.length; i++) {
+        list.push("" + MainInfoData.Employee_Sequence[i].Id);
+      }
+      console.log(list);
+      this.IsActive = MainInfoData.Sequence.IsActive;
       this.SequenceForm.patchValue({
-        SequenceModel_ID: MainInfoData.SequenceModel_ID,
-        SequenceStatus_ID: MainInfoData.SequenceStatus_ID,
-        NextSequence_ID: MainInfoData.NextSequence_ID,
-        PreviousSequence_ID: MainInfoData.PreviousSequence_ID,
-        OptionalSequence_ID: MainInfoData.OptionalSequence_ID,
-        IsActive: MainInfoData.IsActive
+        SequenceModel_ID: MainInfoData.Sequence.SequenceModel_ID,
+        SequenceStatus_ID: MainInfoData.Sequence.SequenceStatus_ID,
+        NextSequence_ID: MainInfoData.Sequence.NextSequence_ID,
+        PreviousSequence_ID: MainInfoData.Sequence.PreviousSequence_ID,
+        OptionalSequence_ID: MainInfoData.Sequence.OptionalSequence_ID,
+        EmailTemplate_ID: MainInfoData.Sequence.EmailTemplate_ID,
+        Employee: list,
+        IsActive: MainInfoData.Sequence.IsActive
       });
     }
   }
@@ -160,6 +191,8 @@ export class CreateSequenceComponent implements OnInit {
     formData.append("NextSequence_ID", this.SequenceForm.get('NextSequence_ID')?.value);
     formData.append("PreviousSequence_ID", this.SequenceForm.get('PreviousSequence_ID')?.value);
     formData.append("OptionalSequence_ID", this.SequenceForm.get('OptionalSequence_ID')?.value);
+    formData.append("EmailTemplate_ID", this.SequenceForm.get('EmailTemplate_ID')?.value);
+    formData.append("Employee", this.SequenceForm.get('Employee')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("IsActive", this.IsActive);
     formData.append("IsDeleted", IsDeleted);
@@ -229,6 +262,8 @@ export class CreateSequenceComponent implements OnInit {
       this.lb_Action = "Action";
       this.lb_Loading = "Loading";
       this.lb_Select = "Select Item";
+      this.lb_EmailTemplate = "Email Template";
+      this.lb_Employee = "Employees";
     }
     else {
       this.lb_Info = "بيانات إنشاء تسلسل";
@@ -255,6 +290,8 @@ export class CreateSequenceComponent implements OnInit {
       this.lb_Action = "عملية";
       this.lb_Loading = "جاري التحميل";
       this.lb_Select = "إختيار عنصر";
+      this.lb_EmailTemplate = "قالب الايميل";
+      this.lb_Employee = "الموظفين";
     }
   }
 
