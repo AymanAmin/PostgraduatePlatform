@@ -27,7 +27,11 @@ export class ViewApplicationFormComponent implements OnInit {
   FormCode: string = "1004";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("View Application Form");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("View Application Form");
+    else
+      this.titleService.setTitle("عرض استمارة التقديم");
   }
 
   ngOnInit() {

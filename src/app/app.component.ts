@@ -48,8 +48,25 @@ export class AppComponent {
 
   ngOnInit() {
     //Login Check
-    if (!localStorage.getItem("IsLogin"))
-      this.router.navigate(['/Login/page']);
+    if(localStorage.getItem("IsLogin") === "false")
+        this.router.navigate(['/Login/page']);
+
+    var Path = window.location.pathname;
+    const myArray = Path.split("/");
+    if (myArray[1] == "")
+      this.dashboard_Active = "active";
+    else if (myArray[1] == "Employee")
+      this.emp_Active = "active";
+    else if (myArray[1] == "Schedule")
+      this.schedule_Active = "active";
+    else if (myArray[1] == "Order")
+      this.order_Active = "active";
+      else if (myArray[1] == "Order")
+      this.emp_Active = "active";
+      else if (myArray[1] == "Student")
+      this.student_Active = "active";
+      else if (myArray[1] == "Order")
+      this.emp_Active = "active";
 
     //Page name in navbar
     this.router.events.subscribe((val) => {
@@ -84,6 +101,8 @@ export class AppComponent {
   }
 
   logoutEvent() {
+    localStorage.setItem("GN_Code", "");
+    localStorage.setItem("IsLogin", "false");
     window.location.href = "http://localhost:4200/Login/page";
   }
   onActivate(event: any) {

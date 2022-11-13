@@ -44,7 +44,7 @@ constructor(private titleService: Title, private http: HttpClient, private route
     if (MainInfoData) {
       // this.OrderTo = MainInfoData.requestLeave.NoOfDays;
       // this.OrderType = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
-      this.OrderDetails = MainInfoData.Letter;
+      this.OrderDetails = decodeURIComponent(atob(MainInfoData.Letter));
     }
     // this.OrderType = "Recommendation Letter";
     // this.OrderTo = "Dear Ms./Mr. [Recommender Name],";

@@ -62,6 +62,7 @@ export class RegistrationStudentComponent implements OnInit {
       GrandFatherName_Ar: new FormControl(null, [Validators.required]),
       FamilyName_Ar: new FormControl(null, [Validators.required]),
       Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      reEmail: new FormControl(null),
       CitizenShip: new FormControl(null, [Validators.required]),
       CardNational_ID: new FormControl(null, [Validators.required]),
     });
@@ -75,13 +76,14 @@ export class RegistrationStudentComponent implements OnInit {
       inline: "nearest"
     });
   }
-  public loadJsFile(url: any) {
 
+  public loadJsFile(url: any) {
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
     document.getElementsByTagName('body')[0].appendChild(node);
   }
+
   routerEvent() {
     this.router.navigateByUrl('Login/page');
   }
@@ -121,13 +123,15 @@ export class RegistrationStudentComponent implements OnInit {
             localStorage.removeItem("IsLogin");
             window.location.reload();
           }
-          this.IsShowMessageUpdate = true;
+          this.IsShowMessageUpdate = true; 
           this.IsShowMessageError = false;
-          localStorage.setItem("IsLogin", "true");
-          window.location.href = "http://localhost:4200/";
+          this.CreateForm();
+          // localStorage.setItem("IsLogin", "true");
+          // window.location.href = "http://localhost:4200/";
           // this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+          
           this.UpdateButtonSpinner(false);
-          document.getElementById("btnInfo")?.click();
+          document.getElementById("btnSuccess")?.click();
         }
         else {
           this.IsShowMessageUpdate = false;
@@ -135,7 +139,9 @@ export class RegistrationStudentComponent implements OnInit {
         }
       },
       (error) => {
-        document.getElementById("btnInfo")?.click();
+        document.getElementById("btnDanger")?.click();
+        this.IsShowMessageUpdate = false;
+        this.IsShowMessageError = true;
         console.log(error);
       }
     )
@@ -148,7 +154,7 @@ export class RegistrationStudentComponent implements OnInit {
       this.btn_status = false;
     }
     else {
-      this.btn_spinner = "<span>" + this.lb_SaveChange + "</span>";
+      this.btn_spinner = "<span>" + this.lb_Registration + "</span>";
       this.btn_status = true;
     }
   }
@@ -160,7 +166,8 @@ export class RegistrationStudentComponent implements OnInit {
   lb_FristName_Ar: any; lb_FatherName_Ar: any; lb_GrandFatherName_Ar: any; lb_FamilyName_Ar: any;
   lb_Email: any; lb_RetypeEmail: any; lb_Citizenship: any; CitizenshipList: any;
   lb_NationalIdNo: any; lb_SaveChange: any; lb_Cancel: any; lb_Loading: any;
-  lb_Welcome: any; lb_WelcomeD: any; lb_Registration: any;
+  lb_Welcome: any; lb_WelcomeD: any; lb_Registration: any; lb_Signin: any;
+  lb_Error: any; lb_ErrorD: any; lb_Success: any; lb_SuccessD: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle = "Student Information";
@@ -192,6 +199,11 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_Welcome = "Welcome!";
       this.lb_WelcomeD = "Please fill all details for the studant information!";
       this.lb_Registration = "New Registration";
+      this.lb_Signin = "Login";
+      this.lb_Error = "Error";
+      this.lb_ErrorD = "Username Or Password Not Found";
+      this.lb_Success = "Success";
+      this.lb_SuccessD = "Your registration has been successful, your request will be processed and sent email";
     }
     else {
       this.lb_FormTitle = "بيانات الطالب";
@@ -224,6 +236,11 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_Welcome = "!مرحبا";
       this.lb_WelcomeD = "الرجاء تعبئة جميع بيانات الطالب";
       this.lb_Registration = "تسجيل جديد";
+      this.lb_Signin = "تسجيل الدخول";
+      this.lb_Error = "خطأ";
+      this.lb_ErrorD = "إسم المستخدم او كلمة المرور غير موجودة";
+      this.lb_Success = "نجاح";
+      this.lb_SuccessD = "تم التسجيل بنجاح، سوف يتم معالجة طلبك وارسال بريد إلكتروني اليك";
     }
   }
 

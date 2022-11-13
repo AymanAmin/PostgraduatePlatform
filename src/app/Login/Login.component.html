@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <form role="form" class="text-start" [formGroup]="UserForm" (ngSubmit)="loginEvent()">
                     <div class="alert alert-danger" role="alert" *ngIf="IsShowMessageError">
-                      <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                      <span class="alert-icon"><i class="ni ni-notification-70"></i>{{" "}}</span>
                       <span class="alert-text"><strong>{{lb_Error}}!</strong> {{lb_ErrorD}}!</span>
                     </div>
                     <label>{{lb_Email}}</label>

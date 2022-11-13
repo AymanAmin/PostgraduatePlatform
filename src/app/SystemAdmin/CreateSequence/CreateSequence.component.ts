@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -39,12 +39,16 @@ export class CreateSequenceComponent implements OnInit {
   tatalRecords: any;
   page: number = 1;
   searchedKeyword: string = "";
-  PerPage: number = 5;
+  PerPage: number = 10;
   SeqModelList: any;
   SeqStatusList: any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Creation Sequences");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Creation Sequences");
+    else
+      this.titleService.setTitle("إنشاء تسلسل");
   }
 
   ngOnInit() {
@@ -55,7 +59,14 @@ export class CreateSequenceComponent implements OnInit {
     this.getSeqStatus();
     this.GetLabelName(this.LangCode);
 
-    this.CreateForm();
+    this.CreateForm(); 
+    this.router.events.subscribe((val) => {
+      if (val instanceof ActivationEnd) {
+        this.GN_Code = this.route.snapshot.params['id'];
+        if (this.GN_Code)
+          this.getData();
+      }
+    });
     if (this.GN_Code)
       this.getData();
 

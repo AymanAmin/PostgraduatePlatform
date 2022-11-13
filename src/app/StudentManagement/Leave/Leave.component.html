@@ -5,7 +5,7 @@
             <p class="text-sm mb-0">{{lb_Details}}</p>
             <hr class="horizontal dark my-3">
           <div class="row">
-            <div class="col-md-6">
+          <!--  <div class="col-md-6">
               <label class="form-label">{{lb_Program}}</label>
               <div class="input-group">
                 <select class="form-control" name="choices-gender" id="choices-program" formControlName="program_GN_Code">
@@ -20,15 +20,7 @@
                   <option value="{{speciality.Id}}" *ngFor="let speciality of SpecialityList">{{LangCode === "us-en" ? speciality.Name_En : speciality.Name_Ar}}</option>
                 </select>
               </div>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">{{lb_Type}}</label>
-              <div class="input-group">
-                <select class="form-control" name="choices-type" id="choices-type" formControlName="Leave_Type_GN_Code">
-                  <option value="{{type.Id}}" *ngFor="let type of TypeList">{{LangCode === "us-en" ? type.Name_En : type.Name_Ar}}</option>
-                </select>
-              </div>
-            </div>
+            </div>-->
             <div class="col-md-6">
               <label class="form-label">{{lb_From}}</label>
               <div class="input-group">
@@ -50,7 +42,14 @@
                   required="required" autocomplete="false">
               </div>
             </div>
-
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Type}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-type" id="choices-type" formControlName="Type_GN_Code">
+                  <option value="{{type.GN_Code}}" *ngFor="let type of TypeList">{{LangCode === "us-en" ? type.Name_En : type.Name_Ar}}</option>
+                </select>
+              </div>
+            </div>
             <label class="mt-4">{{lb_Reason}}</label>
             <input type="hidden" class="form-control BriefSummary" id="BriefSummary" formControlName="BriefSummary"  />
 
