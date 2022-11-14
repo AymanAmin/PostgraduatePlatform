@@ -85,7 +85,7 @@ export class StudentComponent implements OnInit {
     if (LangCode == "us-en") {
       this.Studentinformation="Student Information";
       this.StudentAttachment="Student Attachment";
-      this.ApplicationForm="Application Form";
+      this.ApplicationForm="Addational Info";
       this.StudentLeave="Leave Request";
       this.RecommendationLetter="Recommendation Letter";
       this.Reference_Certificates="Reference And Certificates";

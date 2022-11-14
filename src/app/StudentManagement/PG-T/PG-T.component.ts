@@ -31,9 +31,10 @@ export class PGTComponent implements OnInit {
   BriefSummary_Data:any = "";  FormCode:string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("PGR");
-    console.log(this.PG_R_Type);
-    console.log(this.GN_Code);
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+    this.titleService.setTitle("PG-R");
+   else
+     this.titleService.setTitle("PG-R");
   }
 
   ngOnInit() {
