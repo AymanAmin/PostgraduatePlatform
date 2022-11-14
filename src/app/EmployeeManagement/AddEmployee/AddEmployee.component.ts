@@ -37,7 +37,6 @@ export class AddEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.getDepartmentList();
     this.getGroupPermissionList();
@@ -194,6 +193,7 @@ export class AddEmployeeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.DepartmentList = JSON.parse(jsonInfo);
+        this.loadJsFile("assets/js/Multi-choice.js");
         //console.log(this.DepartmentList);
       }
     )

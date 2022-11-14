@@ -16,7 +16,7 @@ export class AppComponent {
   IsCurrentParentPage: boolean = false;
   IsCurrentPage: boolean = false;
   CurrentParentPage: any = "";
-  username: string = "Ayman Amin";
+  username: string = "guset";
   LangCode: any = "en-us";
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
   student_Active: any;
@@ -50,6 +50,9 @@ export class AppComponent {
     //Login Check
     if(localStorage.getItem("IsLogin") === "false")
         this.router.navigate(['/Login/page']);
+
+        // Get Username
+        this.getProfileInfo();
 
     var Path = window.location.pathname;
     const myArray = Path.split("/");
