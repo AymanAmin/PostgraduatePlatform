@@ -82,7 +82,6 @@ export class AddEmployeeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
-        this.BriefSummary_Data = MainInfoData.BriefSummary;
         this.fillData(MainInfoData);
       }
     )
@@ -92,7 +91,7 @@ export class AddEmployeeComponent implements OnInit {
     this.BriefSummary_Data = decodeURIComponent(atob(EmployeeData.BriefSummary));
     var list = [];
     for(let i = 0; i < EmployeeData.Department.length; i ++){
-      console.log(EmployeeData.Department[i].Department_Id);
+      //console.log(EmployeeData.Department[i].Department_Id);
       list.push(""+EmployeeData.Department[i].Department_Id);
     }
 
@@ -118,7 +117,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   IsSelected(DepartmentID:number){
-    console.log(this.ListDep);
+    //console.log(this.ListDep);
     var Obj = this.ListDep.find((x: { Department_Id: number; }) => x.Department_Id == DepartmentID);
     return Obj != null ? "selected": "";
   }
@@ -204,7 +203,7 @@ export class AddEmployeeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.GroupPermissionList = JSON.parse(jsonInfo);
-        console.log(this.GroupPermissionList);
+        //console.log(this.GroupPermissionList);
       }
     )
   }

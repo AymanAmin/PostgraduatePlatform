@@ -55,25 +55,26 @@ export class CreateSequenceComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.getSequenceList(); 
+    this.getSequenceList();
     this.getSeqModel();
     this.getSeqStatus();
     this.getEmailTemplateList();
     this.getUserList();
     this.GetLabelName(this.LangCode);
 
-    this.CreateForm(); 
+    this.CreateForm();
 
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
         this.GN_Code = this.route.snapshot.params['id'];
         if (this.GN_Code){
-          // this.getUserList();
+          //this.getUserList();
+          this.CreateForm();
           this.getData();
         }
-
       }
     });
+
     if (this.GN_Code)
       this.getData();
 
@@ -121,7 +122,6 @@ export class CreateSequenceComponent implements OnInit {
   }
 
   getUserList() {
-    this.UserList = [];
     this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/ListOfEmployees.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
@@ -150,7 +150,7 @@ export class CreateSequenceComponent implements OnInit {
       PreviousSequence_ID: new FormControl(null),
       OptionalSequence_ID: new FormControl(null),
       EmailTemplate_ID: new FormControl(null),
-      Employee: new FormControl(null),
+      EmployeeList: new FormControl(null),
       IsActive: new FormControl(false)
     });
   }
@@ -180,7 +180,7 @@ export class CreateSequenceComponent implements OnInit {
         PreviousSequence_ID: MainInfoData.Sequence.PreviousSequence_ID,
         OptionalSequence_ID: MainInfoData.Sequence.OptionalSequence_ID,
         EmailTemplate_ID: MainInfoData.Sequence.EmailTemplate_ID,
-        Employee: list,
+        EmployeeList: list,
         IsActive: MainInfoData.Sequence.IsActive
       });
     }
@@ -196,7 +196,7 @@ export class CreateSequenceComponent implements OnInit {
     formData.append("PreviousSequence_ID", this.SequenceForm.get('PreviousSequence_ID')?.value);
     formData.append("OptionalSequence_ID", this.SequenceForm.get('OptionalSequence_ID')?.value);
     formData.append("EmailTemplate_ID", this.SequenceForm.get('EmailTemplate_ID')?.value);
-    formData.append("Employee", this.SequenceForm.get('Employee')?.value);
+    formData.append("Employee", this.SequenceForm.get('EmployeeList')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("IsActive", this.IsActive);
     formData.append("IsDeleted", IsDeleted);
@@ -227,6 +227,8 @@ export class CreateSequenceComponent implements OnInit {
       }
     )
   }
+
+
 
   UpdateButtonSpinner(IsLoading: boolean) {
     console.log("spinner: " + IsLoading);

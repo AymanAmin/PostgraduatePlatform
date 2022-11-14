@@ -64,7 +64,7 @@
                   {{lb_IsActiveD}}
                 </p>
                 <div class="form-check form-switch ms-1">
-              
+
                   <input class="form-check-input" type="checkbox" (change)="ActiveValue($event.target)" formControlName="IsActive"
                     value="true" />
                   <label class="form-check-label" for="flexSwitchCheckDefault"></label>
@@ -74,8 +74,8 @@
             <div class="row mt-4">
               <div class="col-md-12">
                 <label class="form-label">{{lb_Employee}}</label>
-                <select class="form-control choices-multiple" name="choices-multiple-remove-button" formControlName="Employee" multiple>
-                  <option value="{{oneUser.GN_Code}}" [selected]="oneUser.IsDeleted" *ngFor="let oneUser of UserList">{{LangCode =='en-us' ||
+                <select class="form-control choices-multiple" name="choices-multiple-remove-button" formControlName="EmployeeList" multiple>
+                  <option value="{{oneUser.GN_Code}}" *ngFor="let oneUser of UserList">{{LangCode =='en-us' ||
                     LangCode == 'us-en' ? oneUser.Name_En : oneUser.Name_Ar}}</option>
                     <!-- <option value="Choice 1" selected>Choice 1</option>
                     <option value="2" selected>Choice 2</option>
@@ -149,7 +149,7 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><span class="badge" style="background-color: {{oneSpe.SequencesStatus.ColorCode}}">{{LangCode === "us-en" ? oneSpe.SequencesStatus.Name_En : oneSpe.SequencesStatus.Name_Ar}}</span></h6>
+                      <h6 class="mb-0 text-sm"><span class="badge" [ngStyle]="{'background-color':oneSpe.SequencesStatus.ColorCode}">{{LangCode === "us-en" ? oneSpe.SequencesStatus.Name_En : oneSpe.SequencesStatus.Name_Ar}}</span></h6>
                     </div>
                   </div>
                 </td>
@@ -157,7 +157,7 @@
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesNext"><span class="badge"
-                          style="background-color: {{oneSpe.SequencesNext.ColorCode}}">{{LangCode === "us-en" ?
+                        [ngStyle]="{'background-color':oneSpe.SequencesNext.ColorCode}">{{LangCode === "us-en" ?
                           oneSpe.SequencesNext.Name_En : oneSpe.SequencesNext.Name_Ar}}</span></h6>
                     </div>
                   </div>
@@ -166,7 +166,7 @@
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesPreviose"><span class="badge"
-                          style="background-color: {{oneSpe.SequencesPreviose.ColorCode}}">{{LangCode === "us-en" ?
+                        [ngStyle]="{'background-color': oneSpe.SequencesPreviose.ColorCode}">{{LangCode === "us-en" ?
                           oneSpe.SequencesPreviose.Name_En : oneSpe.SequencesPreviose.Name_Ar}}</span></h6>
                     </div>
                   </div>
@@ -175,7 +175,7 @@
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm" *ngIf="oneSpe.SequencesOption"><span class="badge"
-                          style="background-color: {{oneSpe.SequencesOption != null ? oneSpe.SequencesOption.ColorCode : ''}}">{{LangCode === "us-en" && oneSpe.SequencesOption != null ?
+                        [ngStyle]="{'background-color': oneSpe.SequencesOption != null ? oneSpe.SequencesOption.ColorCode : ''}">{{LangCode === "us-en" && oneSpe.SequencesOption != null ?
                           oneSpe.SequencesOption.Name_En : oneSpe.SequencesOption.Name_Ar}}</span></h6>
                     </div>
                   </div>
@@ -195,7 +195,7 @@
                   </span>
                 </td>
                 <td class="text-sm">
-                  <a routerLink="/CreateSequence/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
+                  <a routerLink="/CreateSequence/list/{{oneSpe.GN_Code}}"  data-bs-toggle="tooltip"
                     data-bs-original-title="Preview product">
                     <i class="fas fa-user-edit text-secondary"></i>
                   </a>
