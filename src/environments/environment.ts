@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:49854/"
+  baseUrl: "http://localhost:49854/",
+  Group_Permission :[]
 };
 
 /*

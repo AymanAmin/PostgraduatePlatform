@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-Home',
@@ -8,26 +12,34 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  LangCode:any;
-  constructor(private titleService:Title) {
+  LangCode:any; OrderList:any;
+
+  constructor(private titleService:Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
     if(this.LangCode == "en-us" || this.LangCode == "us-en")
       this.titleService.setTitle("Dashboard");
       else
       this.titleService.setTitle("لوحة المعلومات");
-   }
+  }
+
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
+
+    this.getOrderList();
     this. GetLabelName(this.LangCode);
-    this.loadJsFile("assets/js/polar-ch.js");
+
   }
+
   public loadJsFile(url:any) {
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
     document.getElementsByTagName('body')[0].appendChild(node);
   }
+
+
+
 
   AllRequset: any = "All Requset";
   SinceLastMonth: any = "Since last month";
@@ -36,7 +48,8 @@ export class HomeComponent implements OnInit {
   textstart: any = "text-start";textend: any = "text-end";
   Requests:any;Request:any;
   lb_VacationRequests:any;lb_LetterRec:any;lb_AllRequest:any;ApplicationForm:any;
-  lb_ReferenceLetter:any;lb_RequestCertificate:any;lb_ModelPGT1:any;lb_ModelPGT2:any;lb_ModelPGT3:any;
+  lb_RequsetLeave:any;lb_ReferenceLetter:any;lb_RequestCertificate:any;lb_ModelPGT1:any;lb_ModelPGT2:any;lb_ModelPGT3:any;
+  Count_RequsetLeave:any;Count_ReferenceLetter:any;Count_RequestCertificate:any;Count_ModelPGT1:any;Count_ModelPGT2:any;Count_ModelPGT3:any;
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
@@ -49,6 +62,7 @@ export class HomeComponent implements OnInit {
       this.Requests = "Requests";
       this.Request = "Request";
       this.ApplicationForm = "Application Form";
+      this.lb_RequsetLeave ="Requset Leave";
       this.lb_VacationRequests = "Vacation Requests";
       this.lb_LetterRec = "Recommendation Letter";
       this.lb_ReferenceLetter = "Reference Letter";
@@ -67,6 +81,7 @@ export class HomeComponent implements OnInit {
       this.Requests = "الطلبات";
       this.Request = "طلب";
       this.ApplicationForm = " طالب جديد";
+      this.lb_RequsetLeave ="طلبات الاجازة";
       this.lb_VacationRequests = "طلبات الاجازة";
       this.lb_LetterRec = "خطاب توصية";
       this.lb_ReferenceLetter = "خطاب مرجعية";
@@ -75,6 +90,36 @@ export class HomeComponent implements OnInit {
       this.lb_ModelPGT2 = "نموذج PG-T2";
       this.lb_ModelPGT3 = "نموذج PG-T3";
     }
+  }
+
+  getOrderList(){
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/GetRequest.ashx?LangCode='+this.LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.OrderList = JSON.parse(jsonInfo);
+     if(this.OrderList!=null || this.OrderList !=""  || this.OrderList !=undefined){
+        this.Count_RequsetLeave = this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Requset Leave"}).length;
+
+         this.Count_ReferenceLetter= this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Recommendation Letter"}).length;
+
+         this.Count_RequestCertificate= this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Reference Certificates"}).length;
+
+         this.Count_ModelPGT1=this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Model PG-R1"}).length;
+
+         this.Count_ModelPGT2=this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Model PG-R2"}).length;
+
+         this.Count_ModelPGT3=this.OrderList.filter(function (object :any) {
+          return object.Request_Type==="Model PG-R3"}).length;
+
+          this.loadJsFile("assets/js/polar-ch.js");
+         }
+      }
+    )
   }
 }
 

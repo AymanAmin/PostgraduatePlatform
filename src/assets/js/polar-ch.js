@@ -1,20 +1,28 @@
 // Radar chart
 var ctx10 = document.getElementById("polar-chart").getContext("2d");
 
+var RequsetLeave = document.getElementById("RequsetLeave").innerText;
+var ReferenceLetter = document.getElementById("ReferenceLetter").innerText;
+var RequestCertificate = document.getElementById("RequestCertificate").innerText;
+var ModelPG_T1 = document.getElementById("ModelPGT1").innerText;
+var ModelPG_T2 = document.getElementById("ModelPGT2").innerText;
+var ModelPG_T3 = document.getElementById("ModelPGT3").innerText;
+//debugger;
 new Chart(ctx10, {
   type: "polarArea",
   data: {
     labels: [
-      'Red',
-      'Green',
-      'Yellow',
-      'Grey',
-      'Blue'
+      'Requset Leave',
+      'Recommendation Letter',
+      'Certificate Request',
+      'Model PG-T1',
+      'Model PG-T2',
+      'Model PG-T3'
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [11, 16, 7, 3, 14],
-      backgroundColor: ['#17c1e8', '#cb0c9f', '#3A416F', '#a8b8d8', '#82d616'],
+      data: [RequsetLeave, ReferenceLetter,RequestCertificate, ModelPG_T1 , ModelPG_T2,ModelPG_T3],
+      backgroundColor: ['#21d4fd', '#FF0080', '#A8B8D8', '#98ec2d', '#fbcf33','#3A416F'],
     }]
   },
   options: {

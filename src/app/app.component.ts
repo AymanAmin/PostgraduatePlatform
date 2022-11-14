@@ -87,6 +87,7 @@ export class AppComponent {
     if (GN_Code == null)
       localStorage.setItem("GN_Code", "1234");
 
+      this.getPermissionInfo();
   }
 
   getProfileInfo() {
@@ -103,6 +104,19 @@ export class AppComponent {
     )
   }
 
+
+
+  getPermissionInfo() {
+    var Group_Id = localStorage.getItem("Group_Id");
+    this.http.get(environment.baseUrl + '/API/Permission/Group_Role/Get/GroupRoleList.ashx?Group_Id=' + Group_Id).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        environment.Group_Permission = JSON.parse(jsonInfo);
+        //console.log(environment.Group_Permission);
+      }
+    )
+
+  }
   logoutEvent() {
     localStorage.setItem("GN_Code", "");
     localStorage.setItem("IsLogin", "false");

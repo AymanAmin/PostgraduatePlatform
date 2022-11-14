@@ -66,7 +66,7 @@ export class PermissionComponent implements OnInit {
         data => {
           var jsonInfo = JSON.stringify(data);
           this.GroupList = JSON.parse(jsonInfo);
-          console.log(jsonInfo);
+          //console.log(jsonInfo);
         }
       )
   }
@@ -216,7 +216,7 @@ export class PermissionComponent implements OnInit {
             this.IsShowMessageError = false;
             var jsonInfo = JSON.stringify(response);
             let MainInfoData = JSON.parse(jsonInfo);
-            console.log(MainInfoData);
+            //console.log(MainInfoData);
             //this.ProfileImg = response;
           }
           else {
