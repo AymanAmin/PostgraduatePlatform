@@ -64,12 +64,14 @@ export class CreateSequenceComponent implements OnInit {
 
     this.CreateForm(); 
 
-    this.loadJsFile("assets/js/Multi-choice.js");
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
         this.GN_Code = this.route.snapshot.params['id'];
-        if (this.GN_Code)
+        if (this.GN_Code){
+          // this.getUserList();
           this.getData();
+        }
+
       }
     });
     if (this.GN_Code)
@@ -119,10 +121,12 @@ export class CreateSequenceComponent implements OnInit {
   }
 
   getUserList() {
-    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+    this.UserList = [];
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/ListOfEmployees.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.UserList = JSON.parse(jsonInfo);
+        this.loadJsFile("assets/js/Multi-choice.js");
       }
     )
   }
@@ -165,7 +169,7 @@ export class CreateSequenceComponent implements OnInit {
     if (MainInfoData) {
       let list = [];
       for (let i = 0; i < MainInfoData.Employee_Sequence.length; i++) {
-        list.push("" + MainInfoData.Employee_Sequence[i].Id);
+        list.push("" + MainInfoData.Employee_Sequence[i].Emp_GN_Code);
       }
       console.log(list);
       this.IsActive = MainInfoData.Sequence.IsActive;
