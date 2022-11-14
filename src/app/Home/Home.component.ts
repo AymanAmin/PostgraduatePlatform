@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
 
   AllRequset: any = "All Requset";
-  SinceLastMonth: any = "Since last month";
+  SinceLastMonth: any = "";
   ApprovedRequest: any = "Approved Request";
   RejectedRequest: any = "Rejected Request";
   textstart: any = "text-start";textend: any = "text-end";
@@ -50,15 +50,15 @@ export class HomeComponent implements OnInit {
   lb_VacationRequests:any;lb_LetterRec:any;lb_AllRequest:any;ApplicationForm:any;
   lb_RequsetLeave:any;lb_ReferenceLetter:any;lb_RequestCertificate:any;lb_ModelPGT1:any;lb_ModelPGT2:any;lb_ModelPGT3:any;
   Count_RequsetLeave:any;Count_ReferenceLetter:any;Count_RequestCertificate:any;Count_ModelPGT1:any;Count_ModelPGT2:any;Count_ModelPGT3:any;
-
+  Count_RejectedRequest:any;Count_ApprovedRequest:any;
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.textstart = "text-start";
       this.textend = "text-end";
       this.AllRequset = "All Requset";
-      this.SinceLastMonth = "Since last month";
+      //this.SinceLastMonth = "Since last month";
       this.ApprovedRequest = "Approved Request";
-      this.RejectedRequest = "Rejected Request";
+      this.RejectedRequest = "Request Processing";
       this.Requests = "Requests";
       this.Request = "Request";
       this.ApplicationForm = "Application Form";
@@ -75,9 +75,9 @@ export class HomeComponent implements OnInit {
       this.textstart = "text-end";
       this.textend = "text-start";
       this.AllRequset = "كل الطلبات";
-      this.SinceLastMonth = "من اخر الشهر";
+      //this.SinceLastMonth = "من اخر الشهر";
       this.ApprovedRequest = "الطلبات المقبوله";
-      this.RejectedRequest = "الطلبات المرفوضه";
+      this.RejectedRequest = "قيد المعالجة";
       this.Requests = "الطلبات";
       this.Request = "طلب";
       this.ApplicationForm = " طالب جديد";
@@ -116,7 +116,14 @@ export class HomeComponent implements OnInit {
          this.Count_ModelPGT3=this.OrderList.filter(function (object :any) {
           return object.Request_Type==="Model PG-R3"}).length;
 
+
+
+        this.Count_ApprovedRequest=this.OrderList.filter(function (object :any) {
+          return object.Request_StatusName==="Close" || object.Request_StatusName==="إغلاق" }).length;
           this.loadJsFile("assets/js/polar-ch.js");
+
+          this.Count_RejectedRequest=this.OrderList.filter(function (object :any) {
+          return object.Request_StatusName !="Close" && object.Request_StatusName!="إغلاق" }).length;
          }
       }
     )
