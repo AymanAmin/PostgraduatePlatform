@@ -75,16 +75,18 @@
               <div class="col-md-12">
                 <label class="form-label">{{lb_Employee}}</label>
                 <select class="form-control choices-multiple" name="choices-multiple-remove-button" formControlName="Employee" multiple>
-                  <option value="{{oneUser.Id}}" [selected]="oneUser.IsActive" *ngFor="let oneUser of UserList">{{LangCode =='en-us' ||
+                  <option value="{{oneUser.GN_Code}}" [selected]="oneUser.IsDeleted" *ngFor="let oneUser of UserList">{{LangCode =='en-us' ||
                     LangCode == 'us-en' ? oneUser.Name_En : oneUser.Name_Ar}}</option>
-                    <!-- <option value="1" selected>Choice 1</option>
-                    <option value="2">Choice 2</option> -->
+                    <!-- <option value="Choice 1" selected>Choice 1</option>
+                    <option value="2" selected>Choice 2</option>
+                    <option value="3" selected>Choice 3</option>
+                    <option value="4">Choice 4</option> -->
                 </select>
               </div>
-              <!-- <select class="form-control choices-multiple" name="choices-multiple-remove-button" id="choices-multiple-remove-button" multiple>
-                <option value="Choice 1" selected>Choice 1</option>
-                <option value="Choice 2">Choice 2</option>
-                <option value="Choice 3">Choice 3</option>
+              <!-- <select class="form-control choices-multiple" name="choices-multiple-remove-button" multiple>
+                <option value="Choice 1" selected="true">Choice 1</option>
+                <option value="Choice 2" selected="true">Choice 2</option>
+                <option value="Choice 3" selected="false">Choice 3</option>
                 <option value="Choice 4">Choice 4</option>
               </select> -->
             </div>
