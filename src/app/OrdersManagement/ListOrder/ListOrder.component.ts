@@ -67,7 +67,7 @@ export class ListOrderComponent implements OnInit {
       this.lb_OrderList = "Request List";
       this.lb_OrderListD = "View the various requests submitted by students, you can click on the statistics to change the values in the table according to the choice.";
       this.lb_AllRequest = "All Requests";
-      this.lb_VacationRequests = "Vacation Requests";
+      this.lb_VacationRequests = "Requset Leave";
       this.lb_LetterRec = "Recommendation Letter";
       this.lb_ReferenceLetter = "Reference Letter";
       this.lb_RequestCertificate = "Certificate Request";

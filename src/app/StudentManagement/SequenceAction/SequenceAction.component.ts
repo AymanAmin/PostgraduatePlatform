@@ -12,6 +12,7 @@ export class SequenceActionComponent implements OnInit {
 
   LangCode: any = "us-en";
   Note:string = "";
+  Emp_GN_Code:any;
   @Input() FormCode:string = "";
   GN_Code: string = this.route.snapshot.params['id'];
   SequenceList:any;btnList:any;
@@ -20,6 +21,7 @@ export class SequenceActionComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
+    this.Emp_GN_Code = localStorage.getItem("GN_Code");
     this.GetLabelName(this.LangCode);
     this.getBtnList();
     this.getSequenceList();
@@ -36,7 +38,7 @@ export class SequenceActionComponent implements OnInit {
   }
 
   getBtnList(){
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ButtonList.ashx?FormCode='+ this.FormCode +'&GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ButtonList.ashx?Emp_GN_Code='+this.Emp_GN_Code+'&FormCode='+ this.FormCode +'&GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
