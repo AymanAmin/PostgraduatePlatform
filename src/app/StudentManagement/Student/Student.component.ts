@@ -95,7 +95,7 @@ export class StudentComponent implements OnInit {
     }else{
       this.Studentinformation="بيانات الأساسية";
       this.StudentAttachment="المرفقات";
-      this.ApplicationForm="إستمارة التقديم";
+      this.ApplicationForm="بيانات إضافية";
       this.StudentLeave="طلب إجازة";
       this.RecommendationLetter="طالب توصية";
       this.Reference_Certificates="المراجع والشهادات";
