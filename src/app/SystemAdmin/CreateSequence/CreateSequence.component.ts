@@ -63,6 +63,8 @@ export class CreateSequenceComponent implements OnInit {
     this.GetLabelName(this.LangCode);
 
     this.CreateForm();
+    if (this.GN_Code)
+      this.getData();
 
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
@@ -70,14 +72,15 @@ export class CreateSequenceComponent implements OnInit {
         if (this.GN_Code){
           //this.getUserList();
           this.CreateForm();
+          this.getSequenceList();
+          this.getSeqModel();
+          this.getSeqStatus();
+          this.getEmailTemplateList();
+          this.getUserList();
           this.getData();
         }
       }
     });
-
-    if (this.GN_Code)
-      this.getData();
-
     this.UpdateButtonSpinner(false);
   }
 
@@ -122,7 +125,7 @@ export class CreateSequenceComponent implements OnInit {
   }
 
   getUserList() {
-    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/ListOfEmployees.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.UserList = JSON.parse(jsonInfo);
