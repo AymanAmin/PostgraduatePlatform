@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -82,12 +83,13 @@ export class LeaveComponent implements OnInit {
 
   fillData(LeaveData: any) {
     //console.log(LeaveData);
+
     this.BriefSummary_Data = decodeURIComponent(atob(LeaveData.Reason));
     if (LeaveData) {
       this.Leave.patchValue({
       Type_GN_Code: LeaveData.Type_GN_Code,
-      FromDate: LeaveData.FromDate,
-      ToDate: LeaveData.ToDate,
+      FromDate:this.convertDate(LeaveData.FromDate),
+      ToDate: this.convertDate(LeaveData.ToDate),
       NoOfDays: LeaveData.NoOfDays,
       BriefSummary : LeaveData.Reason
       });
@@ -217,6 +219,15 @@ export class LeaveComponent implements OnInit {
           this.TypeList = JSON.parse(jsonInfo);
         }
       )
+  }
+
+  convertDate(FullDate:any){
+    let dateTime = FullDate.split("T");
+    let date = dateTime[0].split("-");
+    var year = date[0];
+    var month = date[1];
+    var day = date[2];
+    return year+'-'+month+'-'+day;
   }
 
 }
