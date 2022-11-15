@@ -200,7 +200,7 @@ export class AppComponent {
       this.ListStudents = "List Students";
       this.Studentinformation="Student Information";
       this.StudentAttachment="Student Attachment";
-      this.ApplicationForm="Application Form";
+      this.ApplicationForm="Addational Info";
       this.StudentLeave="Leave Request";
       this.RecommendationLetter="Recommendation Letter";
       this.Reference_Certificates="Reference And Certificates";
@@ -252,7 +252,7 @@ export class AppComponent {
       this.ListStudents = "قائمة الطلاب";
       this.Studentinformation="بيانات الأساسية";
       this.StudentAttachment="المرفقات";
-      this.ApplicationForm="إستمارة التقديم";
+      this.ApplicationForm="بيانات إضافية";
       this.StudentLeave="طلب إجازة";
       this.RecommendationLetter="طالب توصية";
       this.Reference_Certificates="المراجع والشهادات";

@@ -28,7 +28,10 @@ export class LeaveComponent implements OnInit {
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Leave");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+       this.titleService.setTitle("Leave");
+      else
+      this.titleService.setTitle("الإجازات");
   }
 
   ngOnInit() {

@@ -29,7 +29,10 @@ export class RecommendationLetterComponent implements OnInit {
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("RecommendationLetter");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+     this.titleService.setTitle("Recommendation Letter");
+   else
+     this.titleService.setTitle("خطابات التوصية");
   }
 
   ngOnInit() {

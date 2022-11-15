@@ -27,7 +27,10 @@ export class ApplicationFormComponent implements OnInit {
   //BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Application Form");
+    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+    this.titleService.setTitle("Addational Info");
+      else
+      this.titleService.setTitle("بيانات إضافية");
   }
 
   ngOnInit() {
