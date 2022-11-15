@@ -66,6 +66,7 @@ export class CreateSequenceComponent implements OnInit {
     if (this.GN_Code)
       this.getData();
 
+    this.getUserList();
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
         this.GN_Code = this.route.snapshot.params['id'];
@@ -76,8 +77,8 @@ export class CreateSequenceComponent implements OnInit {
           this.getSeqModel();
           this.getSeqStatus();
           this.getEmailTemplateList();
-          this.getUserList();
           this.getData();
+          // window.location.reload()
         }
       }
     });
