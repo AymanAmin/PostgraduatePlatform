@@ -59,10 +59,13 @@ export class LoginComponent implements OnInit {
             window.location.reload();
           }
           if (response != "-1") {
+            var jsonInfo = JSON.stringify(response);
+            let MainInfoData = JSON.parse(jsonInfo);
             this.IsShowMessageUpdate = true;
             this.IsShowMessageError = false;
             localStorage.setItem("IsLogin", "true");
-            localStorage.setItem("GN_Code", response.toString());
+            localStorage.setItem("GN_Code", MainInfoData.GN_Code);
+            localStorage.setItem("Group_Id", MainInfoData.PermissionGroup_Id);
             window.location.href = "http://localhost:4200/";
             document.getElementById("btnSuccess")?.click();
           }

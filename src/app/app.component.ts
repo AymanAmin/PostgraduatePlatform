@@ -120,6 +120,7 @@ export class AppComponent {
   logoutEvent() {
     localStorage.setItem("GN_Code", "");
     localStorage.setItem("IsLogin", "false");
+    localStorage.setItem("Group_Id", "");
     window.location.href = "http://localhost:4200/Login/page";
   }
   onActivate(event: any) {
