@@ -97,7 +97,7 @@ export class RecommendationLetterComponent implements OnInit {
     formData.append("Student_GN_Code", this.Student_GN_Code);
     formData.append("FacultyMember_GN_Code", this.RecommendationLetter.get('FacultyMember_GN_Code')?.value);
     formData.append("Letter", BriefSummary);
-
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
     this.http.post(environment.baseUrl + '/API/StudentManagment/RecommendationLetter/Set/RecommendationLetterInfo.ashx', formData).subscribe(
       (response) => {

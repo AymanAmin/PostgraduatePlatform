@@ -95,6 +95,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     formData.append("Student_GN_Code", this.Student_GN_Code);
     formData.append("Receiver_GN_Code", this.ReferenceAndCertificates.get('Receiver_GN_Code')?.value);
     formData.append("Letter", BriefSummary);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
     this.http.post(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Set/ReferenceCertificateInfo.ashx', formData).subscribe(
       (response) => {

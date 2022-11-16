@@ -111,6 +111,7 @@ export class LeaveComponent implements OnInit {
     formData.append("ToDate", this.Leave.get('ToDate')?.value);
     formData.append("NoOfDays", this.Leave.get('NoOfDays')?.value);
     formData.append("Reason", BriefSummary);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentLeave/Set/StudentLeaveInfo.ashx', formData).subscribe(
       (response) => {
