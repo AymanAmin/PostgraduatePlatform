@@ -45,7 +45,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
   GetOrderInfo(MainInfoData: any) {
     if (MainInfoData) {
       // this.OrderTo = MainInfoData.requestLeave.NoOfDays;
-      // this.OrderType = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
+      this.OrderTo = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
       this.OrderDetails = decodeURIComponent(atob(MainInfoData.Letter));
     }
     // this.OrderType = "Recommendation Letter";
@@ -54,6 +54,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
   }
 
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
+  lb_Receiver: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date : ";
@@ -61,6 +62,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
       this.lb_OrderNo = "Request No: ";
       this.lb_OrderDate = "Request Date: ";
       this.lb_OrderType = "Request Type: ";
+      this.lb_Receiver = "Receiver";
     }
     else {
       this.lb_date = "تاريخ الطلب : ";
@@ -68,6 +70,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
       this.lb_OrderNo = "رقم الطلب";
       this.lb_OrderDate = "تاريخ الطلب";
       this.lb_OrderType = "نوع الطلب";
+      this.lb_Receiver = "المستلم";
     }
   }
 
