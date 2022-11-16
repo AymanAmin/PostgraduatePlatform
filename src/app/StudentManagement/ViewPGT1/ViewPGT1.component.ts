@@ -54,7 +54,7 @@ export class ViewPGT1Component implements OnInit {
       // this.COSupervisor = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
       // this.DateTo = new Date(MainInfoData.requestLeave.ToDate).toLocaleDateString();
       // this.DateFrom = new Date(MainInfoData.requestLeave.FromDate).toLocaleDateString();;
-      // this.PG_T_Type = this.LangCode === "us-en" ? MainInfoData.PG_R_Type.Name_En : MainInfoData.PG_R_Type.Name_Ar;
+      this.PG_T_Type = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
       this.ThesisEnglish = MainInfoData.Thesis_Title_En;
       this.ThesisArabic = MainInfoData.Thesis_Title_Ar
     }

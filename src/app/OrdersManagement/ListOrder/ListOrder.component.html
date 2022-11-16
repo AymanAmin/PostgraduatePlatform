@@ -11,49 +11,49 @@
             <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('')">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_AllRequest}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>23980</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo('All')}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('Requset Leave')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_VacationRequests)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_VacationRequests}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>2380</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_VacationRequests)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('Recommendation Letter')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_LetterRec)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_LetterRec}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>2400</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_LetterRec)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('Reference Letter')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ReferenceLetter)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ReferenceLetter}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>48</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ReferenceLetter)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('Request Certificate')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_RequestCertificate)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_RequestCertificate}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_RequestCertificate)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-R1')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR1)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR1}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR1)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-R2')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR2)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR2}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR2)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword('PG-R3')">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR3)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR3}}</h6>
-                <h4 class="font-weight-bolder"><span class="small"> </span>4</h4>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR3)}}</h4>
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@
             <div class="col-lg-4">
               <!-- Pagination area -->
               <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5" [directionLinks]="true" [autoHide]="true"
-                [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pages"
+                [responsive]="true" previousLabel="{{lb_Previous}}" nextLabel="{{lb_Next}}" screenReaderPaginationLabel="Pages"
                 screenReaderPageLabel="Page" (pageChange)="page = $event"></pagination-controls>
             </div>
             <div class="col-lg-4"></div>
