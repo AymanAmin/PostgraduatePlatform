@@ -181,13 +181,13 @@ export class PermissionComponent implements OnInit {
       this.lb_Loading = "Loading";
     }
     else {
-      this.lb_Info = "بيانات القسم";
-      this.lb_InfoD = "الرجاء تعبئة جميع بيانات القسم";
+      this.lb_Info = "بيانات الصلاحية";
+      this.lb_InfoD = "الرجاء تعبئة جميع بيانات الصلاحية";
       this.lb_EngName = "الإسم إنجليزي";
       this.lb_ArName = "الإسم عربي";
       this.lb_IsActive = "هل نشط ؟";
       this.lb_Group = "المجموعه";
-      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه القسم يعمل";
+      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه الصلاحية يعمل";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
       this.lb_Active = "نشط";

@@ -110,13 +110,13 @@ export class HomeComponent implements OnInit {
           return object.Request_Type==="Reference Certificates" || object.Request_Type==="الشهادات المرجعية"}).length;
 
          this.Count_ModelPGT1=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R1"}).length;
+          return object.Request_Type==="Model PG-R1"||object.Request_Type==="نموذج PG-R1"}).length;
 
          this.Count_ModelPGT2=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R2"}).length;
+          return object.Request_Type==="Model PG-R2" ||object.Request_Type==="نموذج PG-R2"}).length;
 
          this.Count_ModelPGT3=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R3"}).length;
+          return object.Request_Type==="Model PG-R3"||object.Request_Type==="نموذج PG-R3"}).length;
 
 
 

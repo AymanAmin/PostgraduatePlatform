@@ -45,6 +45,7 @@ export class AddStudentComponent implements OnInit {
     this.CreateForm();
     this.getProgram();
     this.getSpeciality();
+    this.getNationality();
     if(this.GN_Code)
       this.getData();
 
@@ -218,7 +219,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_Email="Email";
       this.lb_RetypeEmail="Retype Email";
       this.lb_Citizenship = "Citizen Ship";
-      this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      //this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
       this.lb_NationalIdNo="National Id No";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
@@ -243,7 +244,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_Email="البريد الإلكتروني";
       this.lb_RetypeEmail="إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
-      this.CitizenshipList = [{ "Id": 1, "Name": "سعودي" }];
+      //this.CitizenshipList = [{ "Id": 1, "Name": "سعودي" }];
       this.lb_NationalIdNo="رقم الهوية";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
@@ -265,6 +266,15 @@ export class AddStudentComponent implements OnInit {
         data => {
           var jsonInfo = JSON.stringify(data);
           this.SpecialityList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
+  getNationality() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/NationalityManagment/Get/NationalityList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.CitizenshipList = JSON.parse(jsonInfo);
         }
       )
   }
