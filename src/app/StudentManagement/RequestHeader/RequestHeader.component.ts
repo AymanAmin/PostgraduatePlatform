@@ -13,7 +13,7 @@ export class RequestHeaderComponent implements OnInit {
   LangCode: any = "us-en";
   OrderNo:any;Type:any;Date:any;StdName:any;StdEmail:any;
   StdPhone:any;Category:any;Program:any;Speciality:any;
-  StudentInfo:any;
+  StudentInfo:any;ProfileImage:any;
   @Input() FormCode:string = "";
 
   GN_Code: string = this.route.snapshot.params['id'];
@@ -48,6 +48,7 @@ export class RequestHeaderComponent implements OnInit {
     this.Category = this.StudentInfo.Category;
     this.Program = this.StudentInfo.Program;
     this.Speciality = this.StudentInfo.Speciality;
+    this.ProfileImage = this.StudentInfo.ProfileImage;
   }
 
   lb_OrderNo:any;lb_OrderType:any;lb_Category:any;top_class:any;

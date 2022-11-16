@@ -10,3 +10,6 @@ a:hover {
 .alert-danger {
 color: white !important;
 }
+:lang(ar) .card-plain{
+  direction: rtl;
+}

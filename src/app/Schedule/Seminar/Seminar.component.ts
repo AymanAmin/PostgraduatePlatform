@@ -106,6 +106,12 @@ export class SeminarComponent implements OnInit {
     return user.Name;
   }
 
+  GetProfileImage(GN_Code: any) {
+    var user = this.StudentList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    return user.Profile;
+  }
+
   UpdateRoute(Id:string){
     this.getSeminarData(Id);
     this.router.navigate(['/Schedule/Seminar/info/' + Id]);
@@ -135,8 +141,6 @@ export class SeminarComponent implements OnInit {
         RoomNoGN_Code: Seminar.RoomNoGN_Code,
       });
   }
-
-
 
   LoadSeminars() {
     this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarList.ashx').subscribe(
@@ -227,7 +231,7 @@ export class SeminarComponent implements OnInit {
       this.lb_week = "Seminar Week";
       this.lb_date = "Seminar Date";
       this.lb_Time = "Time";
-      this.lb_Student = "Student";
+      this.lb_Student = "Student Info";
       this.lb_Supervisor = "Supervisor";
       this.lb_Title = "Title";
       this.lb_Examiner = "Examiner";
@@ -249,7 +253,7 @@ export class SeminarComponent implements OnInit {
       this.lb_week = "الاسبوع";
       this.lb_date = "التاريخ";
       this.lb_Time = "الزمن";
-      this.lb_Student = "الطالب";
+      this.lb_Student = "بيانات الطالب";
       this.lb_Supervisor = "المشرف";
       this.lb_Title = "العنوان";
       this.lb_Examiner = "الممتحن";

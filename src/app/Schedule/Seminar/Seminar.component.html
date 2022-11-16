@@ -33,10 +33,6 @@
             </select>
           </div>
           <div class="col-12 col-md-4">
-            <label for="Title" class="form-label">{{lb_Title}}</label>
-            <input type="text" class="form-control" formControlName="Title">
-          </div>
-          <div class="col-12 col-md-4">
             <label for="Examiner_GN_Code" class="form-label">{{lb_Examiner}}</label>
             <select class="form-control" name="Examiner" formControlName="Examiner_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
@@ -50,6 +46,10 @@
               <option value="{{item.key}}" *ngFor="let item of RoomList">{{item.value}}</option>
             </select>
           </div>
+          <div class="col-12 col-md-8">
+            <label for="Title" class="form-label">{{lb_Title}}</label>
+            <input type="text" class="form-control" formControlName="Title">
+          </div>
 
         </div>
 
@@ -60,70 +60,81 @@
       </form>
     </div>
   </div>
-  <div class="row mt-4">
-    <div class="col-lg-12 col-md-12">
+
+  <div class="row my-4">
+    <div class="col-12">
       <div class="card">
         <div class="card-header p-3">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <h6 class="mb-0">{{lb_ListOfSeminar}}</h6>
             </div>
-            <div class="row col-md-12 mt-3">
-              <div class="col-md-8"></div>
-              <div class="col-md-4">
-                <input type="text" class="form-control search-input" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
-              </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control search-input" placeholder="{{lb_Search}}" [(ngModel)]="searchedKeyword">
             </div>
           </div>
-          <hr class="horizontal dark mb-0">
         </div>
-        <div class="card-body p-3 pt-0">
 
-          <ul class="list-group list-group-flush" data-toggle="checklist">
-            <li class="list-group-item border-0 flex-column align-items-start px-0 py-0 mb-3" *ngFor="let item of SeminarList | filter: searchedKeyword |
-            paginate: {id: 'listing_pagination',
-            itemsPerPage: 10,
-            currentPage: page,
-            totalItems: tatalRecords}">
-
-              <div class="checklist-item checklist-item-dark px-2 ms-3">
-                <div class="d-flex align-items-center mt-3">
-                  <div class="">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Title}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Title}}</span>
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0 px-2">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Student}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Title}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Time}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Supervisor}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Examiner}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_date}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of SeminarList | filter: searchedKeyword |
+              paginate: {id: 'listing_pagination',
+              itemsPerPage: 10,
+              currentPage: page,
+              totalItems: tatalRecords}">
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{GetProfileImage(item.Student_GN_Code)}}" class="avatar avatar-sm mx-3" alt="avatar image">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">{{GetStudentName(item.Student_GN_Code)}}</h6>
+                    </div>
                   </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Student}}</p>
-                    <span class="text-xs font-weight-bolder">{{GetStudentName(item.Student_GN_Code)}}</span>
-                  </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Time}}</p>
-                    <span class="text-xs font-weight-bolder">{{item.Time || 'Unknow'}}</span>
-                  </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Supervisor}}</p>
-                    <span class="text-xs font-weight-bolder">{{GetEmpName(item.Supervisor_GN_Code)}}</span>
-                  </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_Examiner}}</p>
-                    <span class="text-xs font-weight-bolder">{{GetEmpName(item.Examiner_GN_Code)}}</span>
-                  </div>
-                  <div class="mx-auto">
-                    <p class="text-xs mb-0 text-secondary font-weight-bold">{{lb_date}}</p>
-                    <span class="text-xs font-weight-bolder"><span class="badge bg-dark">{{item.Date | date}}</span></span>
-                  </div>
-                  <div class="mx-auto">
-                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)" ><i class="fa fa-edit fs-5 mt-3 mx-2" aria-hidden="true"></i></div>
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark mt-4 mb-0">
-            </li>
-          </ul>
-
+                </td>
+                <td class="text-center">
+                  <p class="text-sm text-secondary mb-0">{{item.Title}}</p>
+                </td>
+                <td class="align-middle text-center">
+                  <i class="bg-info"></i>
+                  <span class="text-dark text-xs">{{item.Time || 'Unknow'}}</span>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-dot me-4">
+                    <p class="text-secondary mb-0 text-sm">{{GetEmpName(item.Supervisor_GN_Code)}}</p>
+                  </span>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-secondary mb-0 text-sm">{{GetEmpName(item.Examiner_GN_Code)}}</p>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-dark text-xs">{{item.Date | date}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-sm mx-auto">
+                    <div style="cursor: pointer;" (click)="UpdateRoute(item.Id)">
+                      <i class="fa fa-edit fs-5 mt-3 mx-2" aria-hidden="true"></i>
+                    </div>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
         <div class="card-footer p-3">
-
           <div class="row justify-content-md-center mb-2">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
@@ -135,8 +146,8 @@
             </div>
             <div class="col-lg-4"></div>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>

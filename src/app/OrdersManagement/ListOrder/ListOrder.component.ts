@@ -19,10 +19,12 @@ export class ListOrderComponent implements OnInit {
   tatalRecords: any;
   page:number = 1;
   searchedKeyword:string = "";
+  GN_Code:any;
   //End Pangation and filter
 
   constructor(private titleService:Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
+    this.GN_Code = localStorage.getItem("GN_Code");
     if(this.LangCode == "en-us" || this.LangCode == "us-en")
       this.titleService.setTitle("List of Request");
       else
@@ -36,7 +38,7 @@ export class ListOrderComponent implements OnInit {
   }
 
   getOrderList(){
-    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/GetRequest.ashx?LangCode='+this.LangCode).subscribe(
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/GetRequest.ashx?LangCode='+this.LangCode+'&GN_Code='+this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.OrderList = JSON.parse(jsonInfo);
