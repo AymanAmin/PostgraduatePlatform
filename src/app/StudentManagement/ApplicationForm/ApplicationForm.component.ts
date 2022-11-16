@@ -119,6 +119,7 @@ export class ApplicationFormComponent implements OnInit {
     formData.append("IssueDate", this.ApplicationForm.get('IssueDate')?.value);
     formData.append("ExpiryDate", this.ApplicationForm.get('ExpiryDate')?.value);
     formData.append("CardNational_ID", this.ApplicationForm.get('CardNational_ID')?.value);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("FormType", "ApplicationForm");
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentInfo/Set/StudentInfo.ashx', formData).subscribe(
       (response) => {

@@ -101,7 +101,7 @@ export class PGTComponent implements OnInit {
     formData.append("PG_R_Type", this.PG_R_Type);
     formData.append("Thesis_Title_En", this.PGR.get('Thesis_Title_En')?.value);
     formData.append("Thesis_Title_Ar", this.PGR.get('Thesis_Title_Ar')?.value);
-
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
     this.http.post(environment.baseUrl + '/API/StudentManagment/PG_R/Set/PG_R_Info.ashx', formData).subscribe(
       (response) => {
@@ -149,8 +149,8 @@ export class PGTComponent implements OnInit {
   lb_Supervisor:any;lb_CO_Supervisor:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_FormTitle="PG-T";
-      this.lb_Details = "Please fill all details for the PG-T";
+      this.lb_FormTitle="PG-R"+this.PG_R_Type;
+      this.lb_Details = "Please fill all details for the PG-R";
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Department="Department";
@@ -165,8 +165,8 @@ export class PGTComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
-      this.lb_FormTitle="PG-T";
-      this.lb_Details = "(PG-T)الرجاء تعبئة جميع بيانات";
+      this.lb_FormTitle="PG-R"+this.PG_R_Type;
+      this.lb_Details = "لرجاء تعبئة جميع بيانات (PG-T)";
       this.lb_College="الكلية";
       this.CollegeList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Department="القسم";
