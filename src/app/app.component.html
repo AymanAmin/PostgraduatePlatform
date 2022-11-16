@@ -29,10 +29,10 @@
           <span class="{{MenuItem}}">{{Dashboard}}</span>
         </a>
       </li>
-      <li class="{{CatMainMenu}}">
+      <li class="{{CatMainMenu}}" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
         <h6 class="{{CatMenuItem}}">{{Employees}}</h6>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
         <a data-bs-toggle="collapse" href="#emoloyees" class="nav-link {{emp_Active}}" aria-controls="pagesExamples" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -51,15 +51,15 @@
           </div>
           <span class="{{MenuItem}}">{{Employees}}</span>
         </a>
-        <div class="collapse " routerLinkActive="show" id="emoloyees">
+        <div class="collapse " routerLinkActive="show" id="emoloyees" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('1003')">
               <a class="nav-link " routerLinkActive="active" routerLink="Employee/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{AddEmployee}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('1010')">
               <a class="nav-link " routerLinkActive="active" routerLink="Employee/list">
                 <span class="sidenav-mini-icon"> LE </span>
                 <span class="sidenav-normal"> {{ListEmployee}} </span>

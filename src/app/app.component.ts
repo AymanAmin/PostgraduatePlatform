@@ -20,6 +20,7 @@ export class AppComponent {
   LangCode: any = "en-us";
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
   student_Active: any;
+  PermissionList:any;
 
 
   constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
@@ -105,21 +106,20 @@ export class AppComponent {
     )
   }
 
-
-
   getPermissionInfo() {
     var Group_Id = localStorage.getItem("Group_Id");
     this.http.get(environment.baseUrl + '/API/Permission/Group_Role/Get/GroupRoleList.ashx?Group_Id=' + Group_Id).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         environment.Group_Permission = JSON.parse(jsonInfo);
-        console.log(environment.Group_Permission);
       }
     )
   }
 
   IsRoleEixed(PermissionCode:any) {
-    var result = environment.Group_Permission.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code === PermissionCode);
+    this.PermissionList = environment.Group_Permission;
+    var result = this.PermissionList.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code == PermissionCode);
+    //console.log("result: "+ JSON.stringify(this.PermissionList));
     if(result == undefined) return false;
    return true;
   }
@@ -200,7 +200,7 @@ export class AppComponent {
       this.AddSeminar = "Add Seminar";
       this.AddDefense = "Add Defense";
       this.Schedule = "Schedule";
-      this.AddEmployee = "Add Employee";
+      this.AddEmployee = "Employee Info";
       this.ListEmployee = "List Employee";
       this.AddOrders = "Add Orders";
       this.ListOrders = "List Orders";
@@ -252,7 +252,7 @@ export class AppComponent {
       this.AddSeminar = "إضافة ندوة";
       this.AddDefense = "إضافة مناقشة";
       this.Schedule = "التقويم";
-      this.AddEmployee = "إضافة موظف";
+      this.AddEmployee = "بيانات الموظف";
       this.ListEmployee = "قائمة الموظفين";
       this.AddOrders = "إضافة طلب";
       this.ListOrders = "عرض الطلبات";
