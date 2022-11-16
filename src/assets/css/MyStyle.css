@@ -29,6 +29,11 @@
 :lang(ar) .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
   margin-left: 0 !important;
 }
+:lang(ar) .g-sidenav-show .sidenav .nav-link-text {
+  transition: 0.3s ease;
+  opacity: 1;
+  font-weight: 700;
+}
 
 .rtl-dir {
   direction: rtl !important;

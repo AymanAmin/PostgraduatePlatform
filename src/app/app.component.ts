@@ -180,7 +180,7 @@ export class AppComponent {
       this.Dashboard = "Dashboard";
       this.Employees = "Employees";
       this.StudentMangment = "Student Mangment";
-      this.StudentRequest = "Student Request";
+      this.StudentRequest = "Requests";
       this.SystemAdmin = "System Admin";
       this.Specializations = "Specializations";
       this.Departments = "Departments";
@@ -233,7 +233,7 @@ export class AppComponent {
       this.Employees = "الموظفين";
       this.StudentMangment = "إدارة الطلاب";
       this.SystemAdmin = "إدارة النظام";
-      this.StudentRequest = "طلبات الطلاب";
+      this.StudentRequest = "الطلبات";
       this.Specializations = "التخصصات";
       this.Departments = "الاقسام";
       this.Programs = "البرامج";
