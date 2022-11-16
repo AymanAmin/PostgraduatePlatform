@@ -13,9 +13,9 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  LangCode: any = "us-en"; 
+  LangCode: any = "us-en";
   btn_spinner: any;
-  btn_status: boolean = false; 
+  btn_status: boolean = false;
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
@@ -109,6 +109,20 @@ export class LoginComponent implements OnInit {
       this.btn_spinner = "<span>" + this.lb_Save_Change + "</span>";
       this.btn_status = true;
     }
+  }
+
+  UpdateLanguage() {
+    var LangCode = localStorage.getItem("LangCode");
+    if (LangCode != null) {
+      if (LangCode == "us-en")
+        localStorage.setItem("LangCode", "ar-sa");
+      else
+        localStorage.setItem("LangCode", "us-en");
+    }
+    else
+      localStorage.setItem("LangCode", "us-en");
+
+    window.location.reload();
   }
 
   GetLabelName(LangCode: any) {

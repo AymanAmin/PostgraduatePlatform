@@ -86,8 +86,6 @@ export class AppComponent {
     this.GetLabelName(this.LangCode)
 
     var GN_Code = localStorage.getItem("GN_Code");
-    if (GN_Code == null)
-      localStorage.setItem("GN_Code", "1234");
 
       this.getPermissionInfo();
   }
@@ -120,7 +118,6 @@ export class AppComponent {
     return true;
     this.PermissionList = environment.Group_Permission;
     var result = this.PermissionList.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code == PermissionCode);
-
     if(result == undefined) return false;
 
    return result;
@@ -128,9 +125,9 @@ export class AppComponent {
 
 
   logoutEvent() {
-    localStorage.setItem("GN_Code", "");
+    localStorage.removeItem("GN_Code");
     localStorage.setItem("IsLogin", "false");
-    localStorage.setItem("Group_Id", "");
+    localStorage.removeItem("Group_Id");
     window.location.href = "http://localhost:4200/Login/page";
   }
   onActivate(event: any) {

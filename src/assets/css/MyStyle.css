@@ -29,10 +29,8 @@
 :lang(ar) .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
   margin-left: 0 !important;
 }
-:lang(ar) .g-sidenav-show .sidenav .nav-link-text {
-  transition: 0.3s ease;
-  opacity: 1;
-  font-weight: 700;
+.g-sidenav-show .sidenav .nav-link-text {
+  font-weight: 600;
 }
 :lang(ar) .input-group > input {
   text-align: right !important;
