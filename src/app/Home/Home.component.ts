@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit {
   Requests:any;Request:any;
   lb_VacationRequests:any;lb_LetterRec:any;lb_AllRequest:any;ApplicationForm:any;
   lb_RequsetLeave:any;lb_ReferenceLetter:any;lb_RequestCertificate:any;lb_ModelPGT1:any;lb_ModelPGT2:any;lb_ModelPGT3:any;
-  Count_RequsetLeave:any;Count_ReferenceLetter:any;Count_RequestCertificate:any;Count_ModelPGT1:any;Count_ModelPGT2:any;Count_ModelPGT3:any;
-  Count_RejectedRequest:any;Count_ApprovedRequest:any;
+  Count_RequsetLeave:any=0;Count_ReferenceLetter:any=0;Count_RequestCertificate:any=0;Count_ModelPGT1:any=0;Count_ModelPGT2:any=0;Count_ModelPGT3:any=0;
+  Count_RejectedRequest:any=0;Count_ApprovedRequest:any=0; Count_AllRequest:any=0;
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
       this.textstart = "text-start";
@@ -99,14 +99,15 @@ export class HomeComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         this.OrderList = JSON.parse(jsonInfo);
      if(this.OrderList!=null || this.OrderList !=""  || this.OrderList !=undefined){
+         this.Count_AllRequest =this.OrderList.length;
         this.Count_RequsetLeave = this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Requset Leave"}).length;
+          return object.Request_Type==="Requset Leave" || object.Request_Type==="طلب إجازة"}).length;
 
          this.Count_ReferenceLetter= this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Recommendation Letter"}).length;
+          return object.Request_Type==="Recommendation Letter" || object.Request_Type==="خطاب توصية"}).length;
 
          this.Count_RequestCertificate= this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Reference Certificates"}).length;
+          return object.Request_Type==="Reference Certificates" || object.Request_Type==="الشهادات المرجعية"}).length;
 
          this.Count_ModelPGT1=this.OrderList.filter(function (object :any) {
           return object.Request_Type==="Model PG-R1"}).length;
