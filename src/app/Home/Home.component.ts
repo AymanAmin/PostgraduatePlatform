@@ -99,13 +99,13 @@ export class HomeComponent implements OnInit {
         this.OrderList = JSON.parse(jsonInfo);
      if(this.OrderList!=null || this.OrderList !=""  || this.OrderList !=undefined){
         this.Count_RequsetLeave = this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Requset Leave"}).length;
+          return object.Request_Type==="Requset Leave" || object.Request_Type==="طلب إجازة"}).length;
 
          this.Count_ReferenceLetter= this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Recommendation Letter"}).length;
+          return object.Request_Type==="Recommendation Letter" || object.Request_Type==="خطاب توصية"}).length;
 
          this.Count_RequestCertificate= this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Reference Certificates"}).length;
+          return object.Request_Type==="Reference Certificates" || object.Request_Type==="الشهادات المرجعية"}).length;
 
          this.Count_ModelPGT1=this.OrderList.filter(function (object :any) {
           return object.Request_Type==="Model PG-R1"}).length;
