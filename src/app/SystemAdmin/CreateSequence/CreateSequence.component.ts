@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+declare var jQuery: any;
 @Component({
   selector: 'app-CreateSequence',
   templateUrl: './CreateSequence.component.html',
@@ -71,14 +72,31 @@ export class CreateSequenceComponent implements OnInit {
       if (val instanceof ActivationEnd) {
         this.GN_Code = this.route.snapshot.params['id'];
         if (this.GN_Code){
-          //this.getUserList();
+
+          // document.getElementsByClassName('choices-multiple')[0].removeAttribute("selected");
+          window.location.reload();
           this.CreateForm();
           this.getSequenceList();
           this.getSeqModel();
           this.getSeqStatus();
           this.getEmailTemplateList();
           this.getData();
-          window.location.reload()
+          // this.getUserList();
+          // (function ($) {
+          //   $(document).ready(function () {
+          //     alert("omer");
+          //     $(".choices-multiple").removeAttr("selected");
+          //     $("#choices-multiple1 option:selected").prop("selected", false);
+          //     if (document.getElementsByClassName('choices-multiple')) {
+          //       var elementList = document.getElementsByClassName('choices-multiple');
+          //       for (let i = 0; i < elementList.length; i++) {
+          //         const example = new Choices(elementList[i], {
+          //           removeItemButton: true
+          //         });
+          //       }
+          //     }
+          //   });
+          // })(jQuery);
         }
       }
     });

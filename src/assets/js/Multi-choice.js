@@ -16,6 +16,16 @@ var toolbarOptions = [
   ['clean']                                         // remove formatting button
 ];
 
+function reloadChoices(){
+  if (document.getElementsByClassName('choices-multiple')) {
+    var elementList = document.getElementsByClassName('choices-multiple');
+    for (let i = 0; i < elementList.length; i++) {
+      const example = new Choices(elementList[i], {
+        removeItemButton: true
+      });
+    }
+  }
+}
 $(document).ready(function () {
   //Multiple Choices
   if (document.getElementsByClassName('choices-multiple')) {
