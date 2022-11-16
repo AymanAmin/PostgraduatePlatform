@@ -78,7 +78,7 @@ export class CreateSequenceComponent implements OnInit {
           this.getSeqStatus();
           this.getEmailTemplateList();
           this.getData();
-          // window.location.reload()
+          window.location.reload()
         }
       }
     });
