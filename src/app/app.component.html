@@ -115,7 +115,7 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="IsRoleEixed('2001') && IsRoleEixed('2002')&&IsRoleEixed('2003')&&IsRoleEixed('2004') && IsRoleEixed('2005') && IsRoleEixed('2006')&& IsRoleEixed('2007')&& IsRoleEixed('2008')&& IsRoleEixed('2009')&& IsRoleEixed('2010')">
         <a data-bs-toggle="collapse" href="#Student" class="nav-link " routerLinkActive="active" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -152,10 +152,10 @@
         </div>
       </li>
 
-      <li class="{{CatMainMenu}}">
+      <li class="{{CatMainMenu}}" *ngIf="IsRoleEixed('2001') || IsRoleEixed('2002')||IsRoleEixed('2003')||IsRoleEixed('2004') ||IsRoleEixed('2005') ||IsRoleEixed('2006')||IsRoleEixed('2007')||IsRoleEixed('2008') ||IsRoleEixed('2009')||IsRoleEixed('2010')">
         <h6 class="{{CatMenuItem}}">{{StudentMangment}}</h6>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="IsRoleEixed('2001') || IsRoleEixed('2002')||IsRoleEixed('2003')">
         <a data-bs-toggle="collapse" href="#StudentMangment" class="nav-link" aria-controls="Specialization" role="button"
           aria-expanded="false">
           <div
@@ -186,19 +186,19 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="StudentMangment">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2001')">
               <a class="nav-link " routerLinkActive="active" routerLink="Student/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{Studentinformation}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2002')">
               <a class="nav-link " routerLinkActive="active" routerLink="StudentAttachment/add">
                 <span class="sidenav-mini-icon"> L </span>
                 <span class="sidenav-normal"> {{StudentAttachment}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2003')">
               <a class="nav-link " routerLinkActive="active" routerLink="ApplicationForm/add">
                 <span class="sidenav-mini-icon"> O </span>
                 <span class="sidenav-normal"> {{ApplicationForm}} </span>
@@ -208,7 +208,7 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="IsRoleEixed('2004') ||IsRoleEixed('2005') ||IsRoleEixed('2006')||IsRoleEixed('2007')||IsRoleEixed('2008') ||IsRoleEixed('2009')||IsRoleEixed('2010')">
         <a data-bs-toggle="collapse" href="#StudentRequest" class="nav-link" aria-controls="StudentRequest" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -231,48 +231,48 @@
         </a>
         <div class="collapse "  routerLinkActive="show" id="StudentRequest">
           <ul class="nav mx-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2004')">
               <a class="nav-link " routerLinkActive="active" routerLink="Leave/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{StudentLeave}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2005')">
               <a class="nav-link " routerLinkActive="active" routerLink="RecommendationLetter/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{RecommendationLetter}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2006')">
               <a class="nav-link " routerLinkActive="active" routerLink="ReferenceAndCertificates/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{Reference_Certificates}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2007')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT1/add/1">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T1}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2008')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT2/add/2">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T2}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2009')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT3/add/3">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T3}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('2010')">
               <a class="nav-link " routerLink="Order/list" routerLinkActive="active">
                 <span class="sidenav-mini-icon"> L </span>
                 <span class="sidenav-normal"> {{ListOrders}} </span>
