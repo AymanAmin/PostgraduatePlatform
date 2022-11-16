@@ -115,7 +115,6 @@ export class AppComponent {
   }
 
   IsRoleEixed(PermissionCode:any) {
-    return true;
     this.PermissionList = environment.Group_Permission;
     var result = this.PermissionList.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code == PermissionCode);
     if(result == undefined) return false;
