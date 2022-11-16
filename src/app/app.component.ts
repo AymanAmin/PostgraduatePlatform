@@ -21,6 +21,7 @@ export class AppComponent {
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
   student_Active: any;
 
+
   constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     router.events.subscribe(val => {
       this.CurrentParentPage = this.titleService.getTitle();
@@ -112,11 +113,18 @@ export class AppComponent {
       data => {
         var jsonInfo = JSON.stringify(data);
         environment.Group_Permission = JSON.parse(jsonInfo);
-        //console.log(environment.Group_Permission);
+        console.log(environment.Group_Permission);
       }
     )
-
   }
+
+  IsRoleEixed(PermissionCode:any) {
+    var result = environment.Group_Permission.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code === PermissionCode);
+    if(result == undefined) return false;
+   return true;
+  }
+
+
   logoutEvent() {
     localStorage.setItem("GN_Code", "");
     localStorage.setItem("IsLogin", "false");
