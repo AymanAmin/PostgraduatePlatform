@@ -50,6 +50,7 @@ import { SequenceTrackingComponent } from './StudentManagement/SequenceTracking/
 import { RequestHeaderComponent } from './StudentManagement/RequestHeader/RequestHeader.component';
 import { ViewReferenceAndCertificatesComponent } from './StudentManagement/ViewReferenceAndCertificates/ViewReferenceAndCertificates.component';
 import { PermissionComponent } from './SystemAdmin/Permission/Permission.component';
+import { ViewCreateSequenceComponent } from './SystemAdmin/ViewCreateSequence/ViewCreateSequence.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
   { path: 'SequenceStatus/list', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
   { path: 'SequenceStatus/list/:id', component: AddSquecneStatusComponent, data: { title: 'Sequence Status' } },
   { path: 'CreateSequence/list', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
+  { path: 'ViewSequence/list', component: ViewCreateSequenceComponent, data: { title: 'View Sequence' } },
   { path: 'CreateSequence/list/:id', component: CreateSequenceComponent, data: { title: 'Create Sequence' } },
   { path: 'SequenceForm/list', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'SequenceForm/list/:id', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
@@ -176,7 +178,8 @@ const routerOptions: ExtraOptions = {
     SequenceTrackingComponent,
     RequestHeaderComponent,
     ViewReferenceAndCertificatesComponent,
-    PermissionComponent
+    PermissionComponent,
+    ViewCreateSequenceComponent
    ],
   imports: [
     BrowserModule,

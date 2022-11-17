@@ -163,7 +163,7 @@ export class AppComponent {
   Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
-  Reference_Certificates:any;PG_T1:any;PG_T2:any;PG_T3:any;Permission:any;
+  Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -216,6 +216,7 @@ export class AppComponent {
       this.PG_T3="PG_R3";
       this.Permission="Permission";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
+      this.ViewSequence = "View Sequence";
     }
     else {
       this.username = "ايمن امين";
@@ -268,6 +269,7 @@ export class AppComponent {
       this.PG_T3="PG_R3";
       this.Permission="الصلاحيات";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
+      this.ViewSequence = "عرض التسلسل";
     }
   }
 
