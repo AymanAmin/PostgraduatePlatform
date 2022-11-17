@@ -12,7 +12,7 @@
               <label class="form-label">{{lb_Group}}</label>
               <div class="input-group">
                <select class="form-control" (change)="onGroupChange($any($event).target.value)" >
-                <option value="null"  selected></option>
+                <option  selected>{{lb_Select}}</option>
                  <option value="{{Group.Id}}" *ngFor="let Group of GroupList">{{LangCode === "us-en" ? Group.Name_En : Group.Name_Ar}}</option>
                </select>
               </div>

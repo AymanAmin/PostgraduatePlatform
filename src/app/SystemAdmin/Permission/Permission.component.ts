@@ -26,21 +26,25 @@ export class PermissionComponent implements OnInit {
   Group_Id: string = this.route.snapshot.params['id'];
 
   // Label Data
-  lb_Info: any; lb_InfoD: any; lb_EngName: any; lb_ArName: any;lb_Group:any;GroupList:any;
+  lb_Info: any; lb_InfoD: any; lb_EngName: any; lb_ArName: any; lb_Group: any; GroupList: any;
   lb_IsActive: any; lb_IsActiveD: any;
   lb_Save_Change: any; lb_Cancel: any;
 
   lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;
-  lb_Status: any; lb_Id: any; lb_Search: any; lb_SearchD: any;
+  lb_Status: any; lb_Id: any; lb_Search: any; lb_SearchD: any;lb_Select : any;
 
   RoleList: any;
   tatalRecords: any;
   page: number = 1;
   searchedKeyword: string = "";
-  PerPage: number = 5;
+  PerPage: number = 15;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("List Permissions");
+    this.LangCode = localStorage.getItem("LangCode");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("List Permissions");
+    else
+      this.titleService.setTitle("قائمة الصلاحيات");
   }
 
   ngOnInit() {
@@ -52,7 +56,7 @@ export class PermissionComponent implements OnInit {
     this.getGroupData();
 
     this.Group_Id = this.route.snapshot.params['id'];
-    if (this.Group_Id){
+    if (this.Group_Id) {
       this.getData();
       this.getPermissionList();
     }
@@ -63,12 +67,12 @@ export class PermissionComponent implements OnInit {
 
   getGroupData() {
     this.http.get(environment.baseUrl + '/API/Permission/Group/Get/GroupList.ashx').subscribe(
-        data => {
-          var jsonInfo = JSON.stringify(data);
-          this.GroupList = JSON.parse(jsonInfo);
-          //console.log(jsonInfo);
-        }
-      )
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.GroupList = JSON.parse(jsonInfo);
+        //console.log(jsonInfo);
+      }
+    )
   }
   getPermissionList() {
 
@@ -179,6 +183,7 @@ export class PermissionComponent implements OnInit {
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Action";
       this.lb_Loading = "Loading";
+      this.lb_Select = " - Select Group -";
     }
     else {
       this.lb_Info = "بيانات الصلاحية";
@@ -198,44 +203,43 @@ export class PermissionComponent implements OnInit {
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "عملية";
       this.lb_Loading = "جاري التحميل";
+      this.lb_Select = " - إختر المجموعة - ";
     }
   }
 
 
-  onRoleChange(RoleCode: string, IsRole:string) {
+  onRoleChange(RoleCode: string, IsRole: string) {
 
-      var formData: any = new FormData();
-      formData.append("PemissionCode", RoleCode);
-      formData.append("Group_Id", this.Group_Id);
-      formData.append("IsRole", IsRole);
+    var formData: any = new FormData();
+    formData.append("PemissionCode", RoleCode);
+    formData.append("Group_Id", this.Group_Id);
+    formData.append("IsRole", IsRole);
 
-      this.http.post(environment.baseUrl + '/API/Permission/Group_Role/Set/GroupRoleInfo.ashx', formData).subscribe(
-        (response) => {
-          if (response != "0") {
-            this.IsShowMessageUpdate = true;
-            this.IsShowMessageError = false;
-            var jsonInfo = JSON.stringify(response);
-            let MainInfoData = JSON.parse(jsonInfo);
-            //console.log(MainInfoData);
-            //this.ProfileImg = response;
-          }
-          else {
-            this.IsShowMessageUpdate = false;
-            this.IsShowMessageError = true;
-          }
-        },
-        (error) => console.log(error)
-      );
+    this.http.post(environment.baseUrl + '/API/Permission/Group_Role/Set/GroupRoleInfo.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          this.IsShowMessageUpdate = true;
+          this.IsShowMessageError = false;
+          var jsonInfo = JSON.stringify(response);
+          let MainInfoData = JSON.parse(jsonInfo);
+          //console.log(MainInfoData);
+          //this.ProfileImg = response;
+        }
+        else {
+          this.IsShowMessageUpdate = false;
+          this.IsShowMessageError = true;
+        }
+      },
+      (error) => console.log(error)
+    );
   }
 
-  onGroupChange( Group_Id:any) {
-
-    this.Group_Id =Group_Id;
-      this.getData();
-      this.getPermissionList();
-   this.router.navigate( ['Permission/add/' + Group_Id]);
+  onGroupChange(Group_Id: any) {
+    this.Group_Id = Group_Id;
+    this.getData();
+    this.getPermissionList();
+    this.router.navigate(['Permission/add/' + Group_Id]);
 
   }
-
 
 }

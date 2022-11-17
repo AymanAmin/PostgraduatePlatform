@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     } else {
       return listData.filter((listData) => {
         var keys = Object.keys(listData);
-        console.log(listData);
+        // console.log(listData);
         if (keys.length == 1)
           return  listData[keys[0]] != null && listData[keys[0]].toString().toLowerCase().includes(filterText.toLowerCase());
         else if (keys.length == 2)
