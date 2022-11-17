@@ -46,18 +46,38 @@ export class ShowCalendarComponent implements OnInit {
     )
   }
 
-  ThisColor: any;Seminar:any;Defanse:any;
+  ThisColor: any;Seminar:any;Defanse:any;lb_GoTo:any;lb_Close:any;
+  StudentName: any; StartDate: any; EndDate: any;EndTime:any; StartTime:any;
+  lb_Title: any;lb_DataInfo :any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       //this.ThisColor = "This color represents";
       this.Seminar = "Seminar";
       this.Defanse = "Defanse";
+      this.lb_GoTo = "Go To";
+      this.lb_Close = "Close";
+      this.StudentName = "Student Name";
+      this.StartDate = "Start Date";
+      this.EndDate = "End Date";
+      this.StartTime = "Start Time";
+      this.EndTime = "End Time";
+      this.lb_Title = "Title";
+      this.lb_DataInfo = "Data Info";
     }
     else {
       //this.ThisColor = "هذا اللون يمثل";
       this.Seminar = "سمنار";
       this.Defanse = "مناقشة";
+      this.lb_GoTo = "ذهاب الي";
+      this.lb_Close = "إغلاق";
+      this.StudentName = "إسم الطالب";
+      this.StartDate = "من تاريخ";
+      this.EndDate = "الي تاريخ";
+      this.StartTime = "من الساعة";
+      this.EndTime = "الي الساعة";
+      this.lb_Title = "العنوان";
+      this.lb_DataInfo = "بيانات السنمار / المناقشة";
     }
   }
 
