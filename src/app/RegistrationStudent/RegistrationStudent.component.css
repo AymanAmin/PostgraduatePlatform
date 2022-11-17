@@ -12,3 +12,9 @@
 .alert-danger, .alert-success {
   color: white !important;
 }
+:lang(ar) .card .card-body {
+  direction: rtl;
+}
+:lang(ar) .card .card-body label {
+  direction: ltr;
+}

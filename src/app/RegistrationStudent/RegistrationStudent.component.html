@@ -132,7 +132,7 @@
                     <label class="form-label">{{lb_Citizenship}}</label>
                     <div class="input-group">
                       <select class="form-control" name="choices-gender" formControlName="CitizenShip">
-                        <option value="{{citizenship.Id}}" *ngFor="let citizenship of CitizenshipList">{{citizenship.Name}}</option>
+                        <option value="{{citizenship.Id}}" *ngFor="let citizenship of CitizenshipList">{{LangCode === "us-en" ? citizenship.Nationality_Name_En : citizenship.Nationality_Name_Ar}}</option>
                       </select>
                     </div>
                   </div>

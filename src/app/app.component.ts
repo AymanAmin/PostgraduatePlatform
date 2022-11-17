@@ -127,6 +127,7 @@ export class AppComponent {
     localStorage.removeItem("GN_Code");
     localStorage.setItem("IsLogin", "false");
     localStorage.removeItem("Group_Id");
+    localStorage.removeItem("Credential_Type");
     window.location.href = "http://localhost:4200/Login/page";
   }
   onActivate(event: any) {

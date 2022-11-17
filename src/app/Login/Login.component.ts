@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("IsLogin", "true");
             localStorage.setItem("GN_Code", MainInfoData.GN_Code);
             localStorage.setItem("Group_Id", MainInfoData.PermissionGroup_Id);
+            localStorage.setItem("Credential_Type", MainInfoData.Type);
             window.location.href = "http://localhost:4200/";
             document.getElementById("btnSuccess")?.click();
           }
@@ -147,7 +148,7 @@ export class LoginComponent implements OnInit {
       this.lb_Save_Change = "تسجيل الدخول";
       this.lb_Active = "تذكير";
       this.lb_LoginD = "اذا لم يكن لديك حساب؟";
-      this.lb_Signup = "تسجيل جديد";
+      this.lb_Registration = "تسجيل جديد";
       this.lb_Loading = "جاري التحميل";
       this.lb_Error = "خطأ";
       this.lb_ErrorD = "إسم المستخدم او كلمة المرور غير موجودة";
