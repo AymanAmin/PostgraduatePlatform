@@ -3,7 +3,7 @@ function CallCalendar() {
   var LangCode = localStorage.getItem("LangCode");
   var jsonInfo = document.getElementById("CalendarData").value;
   if (jsonInfo == "") {
-    console.log("Start" + jsonInfo);
+    //console.log("Start" + jsonInfo);
     setTimeout(CallCalendar, 500);
   }
   let resultData = JSON.parse(jsonInfo);
@@ -13,7 +13,7 @@ function CallCalendar() {
     if (i != 0)
       ScheduleEvent += ',';
 
-      console.log(formatDate(resultData[i].start));
+      //console.log(formatDate(resultData[i].start));
 
     ScheduleEvent += '{';
     ScheduleEvent += '"id": "' + resultData[i].urlLink + '",';
@@ -38,7 +38,7 @@ function CallCalendar() {
 }
 
 function RenderCalender(data, LangCode, today) {
-  console.log(data);
+  //console.log(data);
   var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
     initialView: "dayGridMonth",
     themeSystem: 'Litera',
