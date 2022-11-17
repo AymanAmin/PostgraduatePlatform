@@ -26,7 +26,8 @@ export class AddStudentComponent implements OnInit {
 
   StudentInfo: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
-  GN_Code: string = this.route.snapshot.params['id'];
+  GN_Code: any = this.route.snapshot.params['id'];
+  Credential_Type :any ='1';
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -46,6 +47,10 @@ export class AddStudentComponent implements OnInit {
     this.getProgram();
     this.getSpeciality();
     this.getNationality();
+
+   if(localStorage.getItem("Credential_Type") ==='2')
+      this.GN_Code =localStorage.getItem("GN_Code");
+
     if(this.GN_Code)
       this.getData();
 
