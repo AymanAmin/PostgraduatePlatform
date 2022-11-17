@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("IsLogin", "true");
             localStorage.setItem("GN_Code", MainInfoData.GN_Code);
             localStorage.setItem("Group_Id", MainInfoData.PermissionGroup_Id);
+            localStorage.setItem("Credential_Type", MainInfoData.Type);
             window.location.href = "http://localhost:4200/";
             document.getElementById("btnSuccess")?.click();
           }
