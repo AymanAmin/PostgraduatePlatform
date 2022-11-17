@@ -289,10 +289,10 @@
 
       </li>
 
-      <li class="{{CatMainMenu}}">
+      <li class="{{CatMainMenu}}" *ngIf="IsRoleEixed('3003') || IsRoleEixed('3007') || IsRoleEixed('3011') || IsRoleEixed('3015') || IsRoleEixed('3019') || IsRoleEixed('3023') || IsRoleEixed('3027') || IsRoleEixed('3031') || IsRoleEixed('3035') || IsRoleEixed('3039')">
         <h6 class="{{CatMenuItem}}">{{SystemAdmin}}</h6>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"  *ngIf="IsRoleEixed('3003') || IsRoleEixed('3007') || IsRoleEixed('3011') || IsRoleEixed('3015') || IsRoleEixed('3019') || IsRoleEixed('3039')">
         <a data-bs-toggle="collapse" href="#Specialization" class="nav-link" aria-controls="Specialization" role="button"
           aria-expanded="false">
           <div
@@ -323,46 +323,47 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="Specialization">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3003')">
               <a class="nav-link " routerLinkActive="active" routerLink="Specialization/list">
-                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-mini-icon"> SP </span>
                 <span class="sidenav-normal"> {{Specializations}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3007')">
               <a class="nav-link " routerLinkActive="active" routerLink="Department/list">
-                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-mini-icon"> DP </span>
                 <span class="sidenav-normal"> {{Departments}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3011')">
               <a class="nav-link " routerLinkActive="active" routerLink="Program/list">
-                <span class="sidenav-mini-icon"> O </span>
+                <span class="sidenav-mini-icon"> PM </span>
                 <span class="sidenav-normal"> {{Programs}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3015')">
               <a class="nav-link " routerLinkActive="active" routerLink="TypeLeave/list">
-                <span class="sidenav-mini-icon"> O </span>
+                <span class="sidenav-mini-icon"> TL </span>
                 <span class="sidenav-normal"> {{TypesLeave}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3019')">
               <a class="nav-link " routerLinkActive="active" routerLink="EmailTemplate/list">
-                <span class="sidenav-mini-icon"> O </span>
+                <span class="sidenav-mini-icon"> ET </span>
                 <span class="sidenav-normal"> {{EmailTemplate}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3039')">
               <a class="nav-link " routerLinkActive="active" routerLink="Permission/add">
-                <span class="sidenav-mini-icon"> O </span>
+                <span class="sidenav-mini-icon"> PM </span>
                 <span class="sidenav-normal"> {{Permission}} </span>
               </a>
             </li>
           </ul>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"
+        *ngIf="IsRoleEixed('3023') || IsRoleEixed('3027') || IsRoleEixed('3031') || IsRoleEixed('3035')">
         <a data-bs-toggle="collapse" href="#Sequence" class="nav-link" aria-controls="Sequence" role="button" aria-expanded="false">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -385,30 +386,30 @@
         </a>
         <div class="collapse "  routerLinkActive="show" id="Sequence">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3023')">
               <a class="nav-link " routerLinkActive="active" routerLink="Sequence/list">
-                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-mini-icon"> SM </span>
                 <span class="sidenav-normal"> {{ListSequenceModel}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3031')">
               <a class="nav-link " routerLinkActive="active" routerLink="CreateSequence/list">
-                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-mini-icon"> CS </span>
                 <span class="sidenav-normal"> {{CreateSequence}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3035')">
               <a class="nav-link " routerLinkActive="active" routerLink="SequenceForm/list/">
-                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-mini-icon">SF </span>
                 <span class="sidenav-normal"> {{SequenceForm}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3027')">
               <a class="nav-link " routerLinkActive="active" routerLink="SequenceStatus/list">
-                <span class="sidenav-mini-icon"> A </span>
+                <span class="sidenav-mini-icon"> SS </span>
                 <span class="sidenav-normal"> {{ListSequenceStatus}} </span>
               </a>
             </li>

@@ -40,6 +40,7 @@ export class RegistrationStudentComponent implements OnInit {
     this.CreateForm();
     this.getProgram();
     this.getSpeciality();
+    this.getNationality();
 
     this.UpdateButtonSpinner(false);
     // this.loadJsFile("assets/js/MyScript.js");
@@ -180,18 +181,18 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_Speciality = "Speciality";
       // this.SpecialityList = [{"Id":1,"Name":"Dentistry"},{"Id":2,"Name":"Pharmacy"}];
       this.lb_Phone = "Phone";
-      this.lb_FristName_En = "Frist Name(Engilsh)";
-      this.lb_FatherName_En = "Father Name(Engilsh)";
-      this.lb_GrandFatherName_En = "Grand Father Name(Engilsh)";
-      this.lb_FamilyName_En = "Family Name(Engilsh)";
-      this.lb_FristName_Ar = "Frist Name(Arabic)";
-      this.lb_FatherName_Ar = "Father Name(Arabic)";
-      this.lb_GrandFatherName_Ar = "Grand Father Name(Arabic)";
-      this.lb_FamilyName_Ar = "Family Name(Arabic)";
+      this.lb_FristName_En = "Frist Name (Engilsh)";
+      this.lb_FatherName_En = "Father Name (Engilsh)";
+      this.lb_GrandFatherName_En = "Grand Father Name (Engilsh)";
+      this.lb_FamilyName_En = "Family Name (Engilsh)";
+      this.lb_FristName_Ar = "Frist Name (Arabic)";
+      this.lb_FatherName_Ar = "Father Name (Arabic)";
+      this.lb_GrandFatherName_Ar = "Grand Father Name (Arabic)";
+      this.lb_FamilyName_Ar = "Family Name (Arabic)";
       this.lb_Email = "Email";
       this.lb_RetypeEmail = "Retype Email";
       this.lb_Citizenship = "Citizen Ship";
-      this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      // this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
       this.lb_NationalIdNo = "National Id No";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
@@ -215,20 +216,20 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_Speciality = "التخصص";
       //this.SpecialityList = [{ "Id": 1, "Name": "إختر التخصص" }];
       this.lb_Phone = "رقم الجوال";
-      this.lb_FristName_En = "(إنجليزي)الأسم الأول";
-      this.lb_FatherName_En = "(إنجليزي)إسم الأب";
-      this.lb_GrandFatherName_En = "(إنجليزي)إسم الجد";
-      this.lb_FamilyName_En = "(إنجليزي)إسم العائلة";
+      this.lb_FristName_En = "(إنجليزي) الإسم الاول "
+      this.lb_FatherName_En = "(إنجليزي) إسم الأب";
+      this.lb_GrandFatherName_En = "(إنجليزي) إسم الجد ";
+      this.lb_FamilyName_En = "(إنجليزي) إسم العائلة";
 
-      this.lb_FristName_Ar = "(عربي)الأسم الأول";
-      this.lb_FatherName_Ar = "(عربي)إسم الأب";
-      this.lb_GrandFatherName_Ar = "(عربي)إسم الجد";
-      this.lb_FamilyName_Ar = "(عربي)إسم العائلة";
+      this.lb_FristName_Ar = "(عربي) الأسم الأول";
+      this.lb_FatherName_Ar = "(عربي) إسم الأب";
+      this.lb_GrandFatherName_Ar = "(عربي) إسم الجد";
+      this.lb_FamilyName_Ar = "(عربي) إسم العائلة";
 
       this.lb_Email = "البريد الإلكتروني";
       this.lb_RetypeEmail = "إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
-      this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      // this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
       this.lb_NationalIdNo = "رقم الهوية";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
@@ -258,6 +259,15 @@ export class RegistrationStudentComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SpecialityList = JSON.parse(jsonInfo);
+      }
+    )
+  }
+
+  getNationality() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/NationalityManagment/Get/NationalityList.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.CitizenshipList = JSON.parse(jsonInfo);
       }
     )
   }
