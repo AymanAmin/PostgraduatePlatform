@@ -13,8 +13,6 @@ function CallCalendar() {
     if (i != 0)
       ScheduleEvent += ',';
 
-      //console.log(formatDate(resultData[i].start));
-
     ScheduleEvent += '{';
     ScheduleEvent += '"id": "' + resultData[i].urlLink + '",';
     ScheduleEvent += '"title": "' + resultData[i].title + '",';
@@ -75,11 +73,29 @@ function RenderCalender(data, LangCode, today) {
       }
     },
     eventClick: function (info) {
-      alert(info.event.title);
-      //Link.href = info.event.id;
-      //Link.click();
-      // change the border color just for fun
-      //info.el.style.borderColor = 'red';
+      var jsonInfo = document.getElementById("CalendarData").value;
+      let ListOfEvent = JSON.parse(jsonInfo);
+      var CurrentEevent = ListOfEvent.find(x => x.urlLink == info.event.id);
+      console.log(CurrentEevent);
+      document.getElementById("Modelinfo").click();
+      document.getElementById("Title").innerText = CurrentEevent.title;
+      if (LangCode == "en-us" || LangCode == "us-en") {
+        document.getElementById("StdName").innerText = CurrentEevent.stdName_En;
+        document.getElementById("DataInfo").innerText = CurrentEevent.Type_En;
+      }
+      else {
+        document.getElementById("StdName").innerText = CurrentEevent.stdName_Ar;
+        document.getElementById("DataInfo").innerText = CurrentEevent.Type_Ar;
+      }
+
+      document.getElementById("StartDate").innerText = CurrentEevent.start.split("T")[0];
+      document.getElementById("EndDate").innerText = CurrentEevent.end.split("T")[0];
+
+      document.getElementById("StartTime").innerText = CurrentEevent.start.split("T")[1];
+      document.getElementById("EndTime").innerText = CurrentEevent.end.split("T")[1];
+
+      document.getElementById("GoTo").href = "../../../" + info.event.id;
+      info.el.style.borderColor = 'red';
     }
   });
 
@@ -112,6 +128,10 @@ function RenderCalender(data, LangCode, today) {
 }
 
 function UpdateLang() {
+
+}
+
+function UpdateLang() {
   document.getElementsByClassName("fc-listWeek-button")[0].innerText = "قائمة الاجتماعات";
   document.getElementsByClassName("fc-timeGridDay-button")[0].innerText = "بالساعات";
   document.getElementsByClassName("fc-timeGridWeek-button")[0].innerText = "الاسبوع";
@@ -127,14 +147,14 @@ function pad(d) {
 
 function formatDate(date) {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
 
   if (month.length < 2)
-      month = '0' + month;
+    month = '0' + month;
   if (day.length < 2)
-      day = '0' + day;
+    day = '0' + day;
 
   return [year, month, day].join('-');
 }

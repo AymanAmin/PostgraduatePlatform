@@ -10,7 +10,7 @@
         <span class="alert-text" style="color: white;"> {{ThisColor}} <strong>{{Defanse}}</strong> </span>
       </div>
     </div>
-    <div class="col-md-2" >
+    <div class="col-md-2">
       <a routerLink="/Schedule/Show" style="margin-left: 75%;"
         class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center"
         data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="See traffic channels">
@@ -28,3 +28,42 @@
   </div>
 </div>
 <input type="hidden" id="CalendarData" value="{{CalendarData}}" />
+
+<button type="button" style="display: none;" id="Modelinfo" class="btn btn-block bg-gradient-primary mb-3"
+  data-bs-toggle="modal" data-bs-target="#modal-default"></button>
+<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default"
+  aria-hidden="true">
+  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-default" id="DataInfo"></h6>
+      </div>
+      <div class="modal-body">
+        <strong>{{StudentName}} : <span id="StdName"></span></strong>
+        <br>
+        <table class="table table-striped table-bordered w-100" style="margin-top: 10px;margin-bottom: 10px;">
+          <tr>
+            <th> {{lb_Title}}</th>
+            <td colspan="3" id="Title" style="white-space: inherit;text-align: justify;"></td>
+          </tr>
+          <tr>
+            <th> {{StartDate}}</th>
+            <td id="StartDate"></td>
+            <th style="margin-right: 10%;margin-left: 10%;">{{EndDate}}</th>
+            <td id="EndDate"></td>
+          </tr>
+          <tr>
+            <th> {{StartTime}}</th>
+            <td id="StartTime"></td>
+            <th style="margin-right: 10%;margin-left: 10%;">{{EndTime}}</th>
+            <td id="EndTime"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <a id="GoTo" href="#" target="_blank" class="btn bg-gradient-primary">{{lb_GoTo}}</a>
+        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">{{lb_Close}}</button>
+      </div>
+    </div>
+  </div>
+</div>
