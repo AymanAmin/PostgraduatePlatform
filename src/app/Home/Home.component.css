@@ -2,3 +2,6 @@
   display: block !important;
 }
 
+.fc .fc-toolbar-title {
+  font-size: 0.9rem !important;
+}
