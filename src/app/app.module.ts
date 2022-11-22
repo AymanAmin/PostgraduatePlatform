@@ -51,6 +51,7 @@ import { RequestHeaderComponent } from './StudentManagement/RequestHeader/Reques
 import { ViewReferenceAndCertificatesComponent } from './StudentManagement/ViewReferenceAndCertificates/ViewReferenceAndCertificates.component';
 import { PermissionComponent } from './SystemAdmin/Permission/Permission.component';
 import { ViewCreateSequenceComponent } from './SystemAdmin/ViewCreateSequence/ViewCreateSequence.component';
+import { InvoiceCreationComponent } from './Financial/InvoiceCreation/InvoiceCreation.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -121,10 +122,9 @@ const appRoutes: Routes = [
   { path: 'PGT1/View/:id', component: ViewPGT1Component, data: { title: 'PG-R' } },
   { path: 'PGT2/View/:id', component: ViewPGT2Component, data: { title: 'PG-R' } },
   { path: 'PGT3/View/:id', component: ViewPGT3Component, data: { title: 'PG-R' } },
-
   { path: 'Permission/add/:id', component: PermissionComponent, data: { title: 'Permission' } },
   { path: 'Permission/add', component: PermissionComponent, data: { title: 'Permission' } },
-
+  { path: 'Financial/InvoiceCreation', component: InvoiceCreationComponent, data: { title: 'Invoice Creation' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -179,7 +179,8 @@ const routerOptions: ExtraOptions = {
     RequestHeaderComponent,
     ViewReferenceAndCertificatesComponent,
     PermissionComponent,
-    ViewCreateSequenceComponent
+    ViewCreateSequenceComponent,
+    InvoiceCreationComponent
    ],
   imports: [
     BrowserModule,
