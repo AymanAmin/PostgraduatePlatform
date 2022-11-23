@@ -19,7 +19,7 @@ export class AppComponent {
   username: string = "guset";
   LangCode: any = "en-us";
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
-  student_Active: any;
+  student_Active: any;Financial_Active:any;
   PermissionList:any;
 
 
@@ -32,6 +32,8 @@ export class AppComponent {
 
       this.dashboard_Active = ""; this.emp_Active = ""; this.schedule_Active = "";
       this.order_Active = ""; this.emp_Active = ""; this.student_Active = "";
+      this.Financial_Active = "";
+
       if (myArray[1] == "")
         this.dashboard_Active = "active";
       else if (myArray[1] == "Employee")
@@ -44,6 +46,8 @@ export class AppComponent {
         this.emp_Active = "active";
       else if (myArray[1] == "Student")
         this.student_Active = "active";
+        else if (myArray[1] == "Financial")
+        this.Financial_Active = "active";
     });
 
   }
@@ -165,6 +169,7 @@ export class AppComponent {
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
   Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
+  Financial:any;CreateInvoice:any;InvoiceList:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
@@ -217,6 +222,9 @@ export class AppComponent {
       this.Permission="Permission";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
       this.ViewSequence = "View Sequence";
+      this.Financial = "Financial";
+      this.CreateInvoice = "Create Invoice";
+      this.InvoiceList = "Invoice List";
     }
     else {
       this.username = "ايمن امين";
@@ -270,6 +278,9 @@ export class AppComponent {
       this.Permission="الصلاحيات";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
       this.ViewSequence = "عرض التسلسل";
+      this.Financial = "المالية ";
+      this.CreateInvoice = "إنشاء فاتورة";
+      this.InvoiceList = "Invoice List";
     }
   }
 
