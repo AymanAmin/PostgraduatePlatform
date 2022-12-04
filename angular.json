@@ -50,7 +50,10 @@
               "src/assets/js/core/bootstrap.min.js",
               "src/assets/js/soft-ui-dashboard.min.js",
               "src/assets/js/plugins/fullcalendar.min.js",
-              "src/assets/js/plugins/chartjs.min.js"
+              "src/assets/js/plugins/chartjs.min.js",
+              "src/assets/js/plugins/datatables.js",
+              "src/assets/js/plugins/jkanban/jkanban.js",
+              "src/assets/js/plugins/dragula/dragula.min.js"
             ]
           },
           "configurations": {

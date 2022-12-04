@@ -52,6 +52,8 @@ import { ViewReferenceAndCertificatesComponent } from './StudentManagement/ViewR
 import { PermissionComponent } from './SystemAdmin/Permission/Permission.component';
 import { ViewCreateSequenceComponent } from './SystemAdmin/ViewCreateSequence/ViewCreateSequence.component';
 import { InvoiceCreationComponent } from './Financial/InvoiceCreation/InvoiceCreation.component';
+import { InvoiceListComponent } from './Financial/InvoiceList/InvoiceList.component';
+import { ViewInvoiceComponent } from './Financial/ViewInvoice/ViewInvoice.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -125,6 +127,8 @@ const appRoutes: Routes = [
   { path: 'Permission/add/:id', component: PermissionComponent, data: { title: 'Permission' } },
   { path: 'Permission/add', component: PermissionComponent, data: { title: 'Permission' } },
   { path: 'Financial/InvoiceCreation', component: InvoiceCreationComponent, data: { title: 'Invoice Creation' } },
+  { path: 'Financial/InvoiceList', component: InvoiceListComponent, data: { title: 'Invoice List' } },
+  { path: 'Financial/ViewInvoice/:id', component: ViewInvoiceComponent, data: { title: 'View Invoice' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -180,7 +184,9 @@ const routerOptions: ExtraOptions = {
     ViewReferenceAndCertificatesComponent,
     PermissionComponent,
     ViewCreateSequenceComponent,
-    InvoiceCreationComponent
+    InvoiceCreationComponent,
+    InvoiceListComponent,
+    ViewInvoiceComponent
    ],
   imports: [
     BrowserModule,
