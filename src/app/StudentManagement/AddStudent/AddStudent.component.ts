@@ -81,6 +81,7 @@ export class AddStudentComponent implements OnInit {
       Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       ReEmail: new FormControl(null),
       CitizenShip: new FormControl(null, [Validators.required]),
+      Gender: new FormControl(null, [Validators.required]),
       CardNational_ID: new FormControl(null, [Validators.required]),
     });
   }
@@ -114,6 +115,7 @@ export class AddStudentComponent implements OnInit {
       FamilyName_Ar: StudentData.FamilyName_Ar,
       Email: StudentData.Email,
       CitizenShip: StudentData.CitizenShip,
+      Gender: StudentData.Gender,
       CardNational_ID: StudentData.CardNational_ID
       });
     }
@@ -142,6 +144,7 @@ export class AddStudentComponent implements OnInit {
     formData.append("FamilyName_Ar", this.StudentInfo.get('FamilyName_Ar')?.value);
     formData.append("Email", this.StudentInfo.get('Email')?.value);
     formData.append("CitizenShip", this.StudentInfo.get('CitizenShip')?.value);
+    formData.append("Gender", this.StudentInfo.get('Gender')?.value);
     formData.append("CardNational_ID", this.StudentInfo.get('CardNational_ID')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("IsActive", this.IsActive);
@@ -202,8 +205,8 @@ export class AddStudentComponent implements OnInit {
   lb_Speciality:any;SpecialityList:any;lb_Phone:any;
   lb_FristName_En:any;lb_FatherName_En:any;lb_GrandFatherName_En:any;lb_FamilyName_En:any;
   lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
-  lb_Email:any;lb_RetypeEmail:any;lb_Citizenship:any;CitizenshipList:any;
-  lb_NationalIdNo:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+  lb_Email:any;lb_RetypeEmail:any;lb_Citizenship:any;CitizenshipList:any;lb_Gender: any;
+  lb_NationalIdNo:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;GenderList: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle="Student Information";
@@ -224,8 +227,9 @@ export class AddStudentComponent implements OnInit {
       this.lb_Email="Email";
       this.lb_RetypeEmail="Retype Email";
       this.lb_Citizenship = "Citizen Ship";
-      //this.CitizenshipList = [{ "Id": 1, "Name": "Saudi" }];
+      this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
       this.lb_NationalIdNo="National Id No";
+      this.lb_Gender="Gender";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
@@ -249,8 +253,9 @@ export class AddStudentComponent implements OnInit {
       this.lb_Email="البريد الإلكتروني";
       this.lb_RetypeEmail="إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
-      //this.CitizenshipList = [{ "Id": 1, "Name": "سعودي" }];
+      this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
       this.lb_NationalIdNo="رقم الهوية";
+      this.lb_Gender="الجنس";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
