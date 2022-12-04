@@ -84,6 +84,8 @@ $( document ).ready(function() {
       theme: 'snow' // Specify theme in configuration
     });
   }
+
+
 });
 
 if (document.getElementById('choices-language')) {
@@ -138,5 +140,4 @@ if (win && document.querySelector('#sidenav-scrollbar')) {
   }
   Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
 }
-
 

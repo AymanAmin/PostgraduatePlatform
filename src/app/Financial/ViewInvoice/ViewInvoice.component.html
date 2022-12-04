@@ -1,0 +1,195 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card mb-4">
+        <div class="card-header p-3 pb-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6>{{OneRosomRequest.PaymentType === 1 ? lb_Registration_Fees : lb_Study_Fees}}</h6>
+              <p class="text-sm mb-0">
+                {{lb_Id}}. <b>{{OneRosomRequest.Id}}</b> {{lb_FromDate}} <b>{{OneRosomRequest.DateCreation | date}}</b>
+              </p>
+              <p class="text-sm">
+                {{lb_Trackingkey}}: <b>{{OneRosomRequest.Trackingkey}}</b>
+              </p>
+            </div>
+            <p class="btn {{OneRosomRequest.IsPaid ? 'bg-gradient-success' : 'bg-gradient-danger'}} ms-auto mb-0">{{OneRosomRequest.IsPaid ? lb_Paid : lb_NotPaid}}</p>
+          </div>
+        </div>
+        <div class="card-body p-3 pt-0">
+          <hr class="horizontal dark mt-0 mb-4">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-12">
+              <div class="d-flex">
+                <div>
+                  <img
+                    src="{{OneStudent[0].Profile}}"
+                    class="avatar avatar-xxl me-3" alt="image">
+                </div>
+                <div>
+                  <!-- <h6 class="text-lg mb-0 mt-2">{{LangCode === "us-en" ? OneStudent.FirstName_En + " " + OneStudent.FatherName_En + " " + OneStudent.GrandFatherName_En + " "+ OneStudent.FamilyName_En
+                     : OneStudent.FirstName_Ar + " " + OneStudent.FatherName_Ar + " " + OneStudent.GrandFatherName_Ar + " "+ OneStudent.FamilyName_Ar}}</h6> -->
+                  <h6 class="text-lg mb-0 mt-2">{{OneStudent[0].Name}}</h6>
+                     <p class="text-sm mb-2">{{OneStudent[0].Email}}</p>
+                  <span class="badge badge-sm bg-gradient-secondary">{{OneStudent[0].PhoneNo}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <ul class="list-unstyled">
+                <li class="d-flex mb-2">
+                  <p class="mb-0 mx-1">{{lb_Category}}</p>
+                  <b class=" {{top_class}}">{{Category}}</b>
+                </li>
+                <li>
+                </li>
+                <li class="d-flex mb-2">
+                  <p class="mb-0">{{lb_Program}}</p>
+                  <span class="badge badge-secondary {{top_class}}">{{OneStudent[0].Program}}</span>
+                </li>
+                <li>
+                </li>
+                <li class="d-flex">
+                  <p class="mb-0">{{lb_Speciality}}</p>
+                  <span class="badge badge-success {{top_class}}">{{OneStudent[0].Specialization}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr class="horizontal dark mt-4 mb-4">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+              <h6 class="mb-3">{{lb_TrackInvoice}}</h6>
+              <div class="timeline timeline-one-side">
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-calendar-grid-58 text-secondary"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{lb_DateCreation}}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{OneRosomRequest.CreateDate | date}}</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-calendar-grid-58 text-secondary"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{lb_DateExpiry}}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{OneRosomRequest.ExpiryDate | date}}</p>
+                  </div>
+                </div>
+                <!-- <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-cart text-secondary"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">Order transmited to courier</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 8:10 AM</p>
+                  </div>
+                </div> -->
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="ni ni-check-bold text-success text-gradient"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{lb_DatePaid}}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{OneRosomRequest.Timestamp | date}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-6 col-12">
+              <h6 class="mb-3">{{lb_InvoiceDetails}}</h6>
+              <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                <!-- <img class="w-10 me-3 mb-0" src="../../../assets/img/logos/mastercard.png" alt="logo"> -->
+                <h6 class="mb-0">{{OneRosomRequest.InvoiceId}}</h6>
+                <button type="button"
+                  class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-auto"
+                  data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
+                  data-bs-original-title="We do not store card details">
+                  <i class="fas fa-info" aria-hidden="true"></i>
+                </button>
+              </div>
+              <h6 class="mb-3 mt-4">{{lb_BillingInformation}}</h6>
+              <ul class="list-group">
+                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-3 text-sm">{{lb_RosomPayment}}</h6>
+                    <span class="mb-2 text-xs">{{lb_PayedId}}: <span class="text-dark font-weight-bold ms-2">{{OneRosomRequest.PayeeId}}</span></span>
+                    <span class="mb-2 text-xs">{{lb_InvoiceStatus}}: <span
+                        class="text-dark ms-2 font-weight-bold">{{OneRosomRequest.InvoiceStatus}}</span></span>
+                    <span class="text-xs">{{lb_BillType}}: <span
+                        class="text-dark ms-2 font-weight-bold">{{OneRosomRequest.BillType}}</span></span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-12 ms-auto">
+              <h6 class="mb-3">{{lb_InvoiceAmount}}</h6>
+              <div class="d-flex justify-content-between">
+                <span class="mb-2 text-sm">
+                  {{lb_MinPartialAmount}}:
+                </span>
+                <span class="text-dark font-weight-bold ms-2">{{OneRosomRequest.PaymentRange_MinPartialAmount}}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="mb-2 text-sm">
+                  {{lb_MinAdvanceAmount}}:
+                </span>
+                <span class="text-dark ms-2 font-weight-bold">{{OneRosomRequest.PaymentRange_MinAdvanceAmount}}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-sm">
+                  {{lb_MaxAdvanceAmount}}:
+                </span>
+                <span class="text-dark ms-2 font-weight-bold">{{OneRosomRequest.PaymentRange_MaxAdvanceAmount}}</span>
+              </div>
+              <div class="d-flex justify-content-between mt-4">
+                <span class="mb-2 text-lg">
+                  {{lb_Amount}}:
+                </span>
+                <span class="text-dark text-lg ms-2 font-weight-bold">{{OneRosomRequest.AmountDue}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer pt-3  ">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-lg-between">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="copyright text-center text-sm text-muted text-lg-start">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>,
+            made with <i class="fa fa-heart"></i> by
+            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+            for a better web.
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
+                Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
+                target="_blank">License</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
