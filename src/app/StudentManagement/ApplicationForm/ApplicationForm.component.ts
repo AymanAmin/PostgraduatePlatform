@@ -66,6 +66,7 @@ export class ApplicationFormComponent implements OnInit {
       City: new FormControl(null, [Validators.required]),
       ZipCode: new FormControl(null, [Validators.required]),
       Address: new FormControl(null, [Validators.required]),
+      Student_No : new FormControl(null, [Validators.required]),
     });
   }
 
@@ -95,7 +96,8 @@ export class ApplicationFormComponent implements OnInit {
       Address: ApplicationData.Address,
       IssueDate: ApplicationData.CardIssueDate,
       ExpiryDate: ApplicationData.CardExpiryDate,
-      CardNational_ID: ApplicationData.CardNational_ID
+      CardNational_ID: ApplicationData.CardNational_ID,
+      Student_No: ApplicationData.Student_No
       });
     }
   }
@@ -119,6 +121,7 @@ export class ApplicationFormComponent implements OnInit {
     formData.append("IssueDate", this.ApplicationForm.get('IssueDate')?.value);
     formData.append("ExpiryDate", this.ApplicationForm.get('ExpiryDate')?.value);
     formData.append("CardNational_ID", this.ApplicationForm.get('CardNational_ID')?.value);
+    formData.append("Student_No", this.ApplicationForm.get('Student_No')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("FormType", "ApplicationForm");
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentInfo/Set/StudentInfo.ashx', formData).subscribe(
@@ -174,7 +177,7 @@ export class ApplicationFormComponent implements OnInit {
   lb_FormTitle:any;lb_Details:any;lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
   lb_DateOfBirth:any;lb_PlaceOfBirth:any;lb_NationalIdNo:any;lb_IssueDate:any;
   lb_ExpiryDate:any;lb_MaritalStatus:any;MaritalStatusList:any;lb_Address:any;
-  lb_City:any;lb_ZipCode:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+  lb_City:any;lb_ZipCode:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;lb_Student_No:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle="Application Form";
@@ -193,6 +196,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_City="City";
       this.lb_ZipCode="Zip Code";
       this.lb_Address="Address";
+      this.lb_Student_No="Student No";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
@@ -214,6 +218,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_City="المدينة";
       this.lb_ZipCode="الرمز البريدي";
       this.lb_Address="العنوان";
+      this.lb_Student_No="رقم الطالب";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
