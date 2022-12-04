@@ -65,6 +65,7 @@ export class RegistrationStudentComponent implements OnInit {
       Email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       reEmail: new FormControl(null),
       CitizenShip: new FormControl(null, [Validators.required]),
+      Gender: new FormControl(null, [Validators.required]),
       CardNational_ID: new FormControl(null, [Validators.required]),
     });
   }
@@ -112,6 +113,7 @@ export class RegistrationStudentComponent implements OnInit {
     formData.append("FamilyName_Ar", this.StudentInfo.get('FamilyName_Ar')?.value);
     formData.append("Email", this.StudentInfo.get('Email')?.value);
     formData.append("CitizenShip", this.StudentInfo.get('CitizenShip')?.value);
+    formData.append("Gender", this.StudentInfo.get('Gender')?.value);
     formData.append("CardNational_ID", this.StudentInfo.get('CardNational_ID')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("IsActive", this.IsActive);
@@ -169,6 +171,7 @@ export class RegistrationStudentComponent implements OnInit {
   lb_NationalIdNo: any; lb_SaveChange: any; lb_Cancel: any; lb_Loading: any;
   lb_Welcome: any; lb_WelcomeD: any; lb_Registration: any; lb_Signin: any;
   lb_Error: any; lb_ErrorD: any; lb_Success: any; lb_SuccessD: any;
+  GenderList: any; lb_Gender: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle = "Student Information";
@@ -205,6 +208,8 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_ErrorD = "Username Or Password Not Found";
       this.lb_Success = "Success";
       this.lb_SuccessD = "Your registration has been successful, your request will be processed and sent email";
+      this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
+      this.lb_Gender = "Gender";
     }
     else {
       this.lb_FormTitle = "بيانات الطالب";
@@ -242,6 +247,8 @@ export class RegistrationStudentComponent implements OnInit {
       this.lb_ErrorD = "إسم المستخدم او كلمة المرور غير موجودة";
       this.lb_Success = "نجاح";
       this.lb_SuccessD = "تم التسجيل بنجاح، سوف يتم معالجة طلبك وارسال بريد إلكتروني اليك";
+      this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
+      this.lb_Gender = "الجنس";
     }
   }
 

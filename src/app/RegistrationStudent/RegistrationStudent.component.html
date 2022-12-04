@@ -144,7 +144,16 @@
                         placeholder="" required="required" autocomplete="false">
                     </div>
                   </div>
-              
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="form-label">{{lb_Gender}}</label>
+                      <div class="input-group">
+                        <select class="form-control" name="choices-gender" formControlName="Gender">
+                          <option value="{{gender.Id}}" *ngFor="let gender of GenderList">{{gender.Name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="text-center col-sm-2 col-2"></div>
                     <div class="text-center col-sm-8 col-8">
