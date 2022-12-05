@@ -440,9 +440,9 @@
                 <span class="sidenav-normal"> {{CreateSequence}} </span>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " *ngIf="IsRoleEixed('3031')">
               <a class="nav-link " routerLinkActive="active" routerLink="ViewSequence/list">
-                <span class="sidenav-mini-icon"> CS </span>
+                <span class="sidenav-mini-icon"> VS </span>
                 <span class="sidenav-normal"> {{ViewSequence}} </span>
               </a>
             </li>
