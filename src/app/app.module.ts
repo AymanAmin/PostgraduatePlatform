@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AddEmployeeComponent } from './EmployeeManagement/AddEmployee/AddEmployee.component';
 import { AddStudentComponent } from './StudentManagement/AddStudent/AddStudent.component';
 import { NotFoundComponent } from './SystemAdmin/NotFound/NotFound.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ListEmployeeComponent } from './EmployeeManagement/ListEmployee/ListEmployee.component';
 import { FilterPipe } from './filter.pipe';
 import { ListSpecializationsComponent } from './SystemAdmin/ListSpecializations/ListSpecializations.component';
@@ -54,6 +54,7 @@ import { ViewCreateSequenceComponent } from './SystemAdmin/ViewCreateSequence/Vi
 import { InvoiceCreationComponent } from './Financial/InvoiceCreation/InvoiceCreation.component';
 import { InvoiceListComponent } from './Financial/InvoiceList/InvoiceList.component';
 import { ViewInvoiceComponent } from './Financial/ViewInvoice/ViewInvoice.component';
+import { AttendanceComponent } from './StudentManagement/Attendance/Attendance.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
   { path: 'Student/list', component: StudentListComponent, data: { title: 'List of Student' } },
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Student/view/:id', component: StudentComponent, data: { title: 'Student' } },
+  { path: 'Student/Attendance/:id', component: AttendanceComponent, data: { title: 'Student Attendance' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'Specialization/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
@@ -186,7 +188,8 @@ const routerOptions: ExtraOptions = {
     ViewCreateSequenceComponent,
     InvoiceCreationComponent,
     InvoiceListComponent,
-    ViewInvoiceComponent
+    ViewInvoiceComponent,
+    AttendanceComponent
    ],
   imports: [
     BrowserModule,
@@ -197,7 +200,7 @@ const routerOptions: ExtraOptions = {
     NgxPaginationModule,
     RouterModule.forRoot(appRoutes, routerOptions)
   ],
-  providers: [ CkPasswordService],
+  providers: [ CkPasswordService , {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

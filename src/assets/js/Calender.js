@@ -13,8 +13,10 @@ function CallCalendar() {
     if (i != 0)
       ScheduleEvent += ',';
 
+    var link = resultData[i].urlLink;
+
     ScheduleEvent += '{';
-    ScheduleEvent += '"id": "' + resultData[i].urlLink + '",';
+    ScheduleEvent += '"id": "' + link + '",';
     ScheduleEvent += '"title": "' + resultData[i].title + '",';
     ScheduleEvent += '"start": "' + formatDate(resultData[i].start) + "T" + resultData[i].start.split("T")[1] + '",';
     ScheduleEvent += '"end": "' + formatDate(resultData[i].end) + "T" + resultData[i].end.split("T")[1] + '",';
@@ -76,7 +78,10 @@ function RenderCalender(data, LangCode, today) {
       var jsonInfo = document.getElementById("CalendarData").value;
       let ListOfEvent = JSON.parse(jsonInfo);
       var CurrentEevent = ListOfEvent.find(x => x.urlLink == info.event.id);
-      console.log(CurrentEevent);
+
+      var link = "http://www.postgraduate.riyadh.edu.sa:8081/#" + CurrentEevent.urlLink;
+      console.log(link);
+
       document.getElementById("Modelinfo").click();
       document.getElementById("Title").innerText = CurrentEevent.title;
       if (LangCode == "en-us" || LangCode == "us-en") {
@@ -94,7 +99,7 @@ function RenderCalender(data, LangCode, today) {
       document.getElementById("StartTime").innerText = CurrentEevent.start.split("T")[1];
       document.getElementById("EndTime").innerText = CurrentEevent.end.split("T")[1];
 
-      document.getElementById("GoTo").href = "../../../" + info.event.id;
+      document.getElementById("GoTo").href = link;
       info.el.style.borderColor = 'red';
     }
   });

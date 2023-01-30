@@ -21,6 +21,7 @@ export class AppComponent {
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
   student_Active: any;Financial_Active:any;
   PermissionList:any;
+  Std_GN_Code:any;
 
 
   constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
@@ -91,6 +92,8 @@ export class AppComponent {
 
     var GN_Code = localStorage.getItem("GN_Code");
 
+    this.Std_GN_Code = localStorage.getItem("GN_Code");
+
       this.getPermissionInfo();
   }
 
@@ -132,7 +135,7 @@ export class AppComponent {
     localStorage.setItem("IsLogin", "false");
     localStorage.removeItem("Group_Id");
     localStorage.removeItem("Credential_Type");
-    window.location.href = "http://localhost:4200/Login/page";
+    window.location.href = environment.baseUrl + "/Login/page";
   }
   onActivate(event: any) {
     window.scroll(0, 0);
@@ -169,7 +172,7 @@ export class AppComponent {
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
   Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
-  Financial:any;CreateInvoice:any;InvoiceList:any;
+  Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
@@ -225,6 +228,7 @@ export class AppComponent {
       this.Financial = "Financial";
       this.CreateInvoice = "Create Invoice";
       this.InvoiceList = "Invoice List";
+      this.StudentAttendance = "Student Attendance";
     }
     else {
       this.username = "ايمن امين";
@@ -280,7 +284,8 @@ export class AppComponent {
       this.ViewSequence = "عرض التسلسل";
       this.Financial = "المالية ";
       this.CreateInvoice = "إنشاء فاتورة";
-      this.InvoiceList = "Invoice List";
+      this.InvoiceList = "قائمة الفواتير";
+      this.StudentAttendance = "الحضور"
     }
   }
 
