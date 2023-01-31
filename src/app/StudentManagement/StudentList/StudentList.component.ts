@@ -73,6 +73,7 @@ export class StudentListComponent implements OnInit {
 
           document.getElementById("btnSuccess")?.click();
           this.btn_status = false;
+          this.getStudentList()
           //this.ProfileImg = response;
         }
         else {
