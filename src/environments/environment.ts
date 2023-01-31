@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //baseUrl: "http://localhost:49854/",
-  baseUrl: "http://www.postgraduate.riyadh.edu.sa:8081/",
+  baseUrl: "http://localhost:49854/",
+  // baseUrl: "http://www.postgraduate.riyadh.edu.sa:8081/",
   Group_Permission :[]
 };
 

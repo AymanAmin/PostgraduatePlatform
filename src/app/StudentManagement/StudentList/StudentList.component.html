@@ -61,9 +61,15 @@
         </div>
         <div class="card-footer pt-0 p-3 d-flex align-items-center">
           <div class="w-60">
-            <p class="text-sm text-justify">
-             {{lb_UserBreifD}}
-            </p>
+            <div class="col-md-12">
+              <label class="form-label">{{lb_Upload_Student}}</label>
+              <div class="input-group pb-2">
+                <input id="upload-file" (change)="onFileChange($any($event).target.files,'upload file')" name="upload-file"
+                  class="form-control" type="file" required="required">
+              </div>
+              <button type="submit" name="button" [disabled]="!(btn_status)" 
+                class="btn bg-gradient-success m-0 mx-2 " (click)="OnSubmit()"><span [innerHTML]="btn_spinner"></span></button>
+            </div>
           </div>
           <div class="w-40 text-center">
             <a routerLink="/Employee/add" routerLinkActive="active"   class="btn bg-gradient-dark mb-0 text-end" >{{lb_AddStd}}</a>
