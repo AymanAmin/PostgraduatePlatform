@@ -11,11 +11,11 @@ import { environment } from 'src/environments/environment';
 })
 export class StudentListComponent implements OnInit {
   LangCode: any = "us-en";
-  StudentList:any;
+  StudentList: any;
 
   btn_spinner: any;
-  ActiveNo:number = 0;
-  DisActiveNo:number = 0;
+  ActiveNo: number = 0;
+  DisActiveNo: number = 0;
 
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
@@ -27,12 +27,15 @@ export class StudentListComponent implements OnInit {
   // npm install ngx-pagination --save
   // npm install ng2-search-filter --save
   tatalRecords: any;
-  page:number = 1;
-  searchedKeyword:string = "";
+  page: number = 1;
+  searchedKeyword: string = "";
   //End Pangation and filter
 
-  constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.titleService.setTitle("Student List");
+  constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    if (this.LangCode == "en-us" || this.LangCode == "us-en")
+      this.titleService.setTitle("Student List");
+    else
+      this.titleService.setTitle("قائمة الطلاب");
   }
 
   ngOnInit() {
@@ -42,17 +45,17 @@ export class StudentListComponent implements OnInit {
     this.getStudentList();
   }
 
-  getStudentList(){
+  getStudentList() {
     console.log(this.LangCode);
-    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentInfo/Get/ListOfStudent.ashx?LangCode='+this.LangCode).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/StudentInfo/Get/ListOfStudent.ashx?LangCode=' + this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
         console.log(this.StudentList);
 
         //Get Number of Active user
-        this.ActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (obj.IsActive) {return true;} return false;}).length;
-        this.DisActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (!obj.IsActive) {return true;} return false;}).length;
+        this.ActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (obj.IsActive) { return true; } return false; }).length;
+        this.DisActiveNo = this.StudentList.filter((obj: { IsActive: boolean; }) => { if (!obj.IsActive) { return true; } return false; }).length;
       }
     )
   }
@@ -104,7 +107,7 @@ export class StudentListComponent implements OnInit {
     }
   }
 
-  UpdateStatus(IsActive:boolean,GN_Code:string) {
+  UpdateStatus(IsActive: boolean, GN_Code: string) {
     var formData: any = new FormData();
     formData.append("GN_Code", GN_Code);
     formData.append("IsActive", IsActive);
@@ -163,13 +166,13 @@ export class StudentListComponent implements OnInit {
     };
   }
 
-  lb_UsersActive:any;lb_UsersInActive:any;
-  lb_UserBreif:any;lb_UserBreifD:any;lb_AddStd:any;
-  lb_Name:any;lb_Specialization:any;lb_Status:any;lb_Email:any;
-  lb_Date:any;lb_Id:any;lb_Search:any;lb_SearchD:any;lb_Action:any;
+  lb_UsersActive: any; lb_UsersInActive: any;
+  lb_UserBreif: any; lb_UserBreifD: any; lb_AddStd: any;
+  lb_Name: any; lb_Specialization: any; lb_Status: any; lb_Email: any;
+  lb_Date: any; lb_Id: any; lb_Search: any; lb_SearchD: any; lb_Action: any;
   lb_Active: any; lb_DisActive: any; lb_Upload_Student: any; lb_Save_Change: any; lb_Loading: any;
-  GetLabelName(LangCode:any){
-    if(LangCode == "us-en"){
+  GetLabelName(LangCode: any) {
+    if (LangCode == "us-en") {
       this.lb_UsersActive = "Active";
       this.lb_UsersInActive = "Not Active";
       this.lb_UserBreif = "Clarification";
@@ -190,8 +193,7 @@ export class StudentListComponent implements OnInit {
       this.lb_Save_Change = "Upload File";
       this.lb_Loading = "Uploading ....";
     }
-    else
-    {
+    else {
       this.lb_UsersActive = "النشطين";
       this.lb_UsersInActive = "غير النشطين";
       this.lb_UserBreif = "توضيح";

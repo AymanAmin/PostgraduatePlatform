@@ -1,6 +1,5 @@
 <div class="row my-4">
   <div class="col-12">
-
     <div class="card">
       <div class="table-responsive" *ngFor="let SequenceModelList of SequenceList |
               paginate: {id: 'listing_pagination',
@@ -8,12 +7,10 @@
               currentPage: page,
               totalItems: tatalRecords
           }">
-        <h5 class="mx-4 mt-4">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>  
+        <h5 class="mx-4 mt-4">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Id}}</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}
               </th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_NextStep}}</th>
@@ -34,10 +31,6 @@
               currentPage: page,
               totalItems: tatalRecords
           }">
-              <td class="align-middle text-center">
-                <span class="text-secondary text-sm"><a routerLink="../../Employee/add/{{oneSpe.Id}}"
-                    id="{{oneSpe.Id}}">{{oneSpe.Id}}</a></span>
-              </td>
               <td>
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">

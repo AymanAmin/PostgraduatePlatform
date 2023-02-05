@@ -38,12 +38,13 @@ export class AttendanceComponent implements OnInit {
   }
 
   getStudentInfo() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/Attendees/Get/StudentInfo.ashx?GN_Code=' + this.GN_Code + '&LangCode=' + this.LangCode).subscribe(
+    this.http.get(environment.baseUrl + 'API/StudentManagment/Attendees/Get/StudentInfo.ashx?GN_Code=' + this.GN_Code + '&LangCode=' + this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentInfo = JSON.parse(jsonInfo);
+        //console.log(this.StudentInfo.StdNO);
         this.fillData();
-        this.getStudentAttendance("431202584");
+        this.getStudentAttendance(this.StudentInfo.StdNO);
       }
     )
   }

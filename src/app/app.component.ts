@@ -55,7 +55,7 @@ export class AppComponent {
 
   ngOnInit() {
     //Login Check
-    if(localStorage.getItem("IsLogin") === "false")
+    if(localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false")
         this.router.navigate(['/Login/page']);
 
         // Get Username
@@ -135,7 +135,7 @@ export class AppComponent {
     localStorage.setItem("IsLogin", "false");
     localStorage.removeItem("Group_Id");
     localStorage.removeItem("Credential_Type");
-    window.location.href = environment.baseUrl + "/Login/page";
+    window.location.href = environment.baseUrl + "/#/Login/page";
   }
   onActivate(event: any) {
     window.scroll(0, 0);
@@ -231,7 +231,7 @@ export class AppComponent {
       this.StudentAttendance = "Student Attendance";
     }
     else {
-      this.username = "ايمن امين";
+      this.username = "ضيف";
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl-dir";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white rtl-dir";
       this.MenuItem = "nav-link-text me-3";

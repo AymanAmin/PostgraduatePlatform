@@ -53,16 +53,22 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="emoloyees" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('1003')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1003')">
               <a class="nav-link " routerLinkActive="active" routerLink="Employee/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{AddEmployee}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('1010')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1010')">
               <a class="nav-link " routerLinkActive="active" routerLink="Employee/list">
                 <span class="sidenav-mini-icon"> LE </span>
                 <span class="sidenav-normal"> {{ListEmployee}} </span>
+              </a>
+            </li>
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1005')">
+              <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal"> {{ListStudents}} </span>
               </a>
             </li>
           </ul>
@@ -93,13 +99,13 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="financial" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('1003')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1003')">
               <a class="nav-link " routerLinkActive="active" routerLink="Financial/InvoiceCreation">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{CreateInvoice}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('1010')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1010')">
               <a class="nav-link " routerLinkActive="active" routerLink="Financial/InvoiceList">
                 <span class="sidenav-mini-icon"> LE </span>
                 <span class="sidenav-normal"> {{InvoiceList}} </span>
@@ -131,14 +137,14 @@
         <div class="collapse " routerLinkActive="show" id="Schedule">
           <ul class="nav ms-4 ps-3">
 
-            <li class="nav-item ">
+            <li class="nav-item " onclick="toggleSidenav()">
               <a class="nav-link " routerLinkActive="active" routerLink="Schedule/ThesisDefense/info">
                 <span class="sidenav-mini-icon"> AD </span>
                 <span class="sidenav-normal"> {{AddDefense}} </span>
               </a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item " onclick="toggleSidenav()">
               <a class="nav-link " routerLinkActive="active" routerLink="Schedule/Seminar/info">
                 <span class="sidenav-mini-icon"> AS </span>
                 <span class="sidenav-normal"> {{AddSeminar}} </span>
@@ -146,7 +152,7 @@
             </li>
 
 
-            <li class="nav-item ">
+            <li class="nav-item " onclick="toggleSidenav()">
               <a class="nav-link " routerLinkActive="active" routerLink="Schedule/Show">
                 <span class="sidenav-mini-icon"> VS </span>
                 <span class="sidenav-normal"> {{ShowSchedule }}</span>
@@ -177,16 +183,10 @@
         </a>
         <div class="collapse "  routerLinkActive="show" id="Student">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item ">
+            <li class="nav-item " onclick="toggleSidenav()">
               <a class="nav-link " routerLink="Student/view" routerLinkActive="active">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal">{{Profile}}</span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
-                <span class="sidenav-mini-icon"> L </span>
-                <span class="sidenav-normal"> {{ListStudents}} </span>
               </a>
             </li>
           </ul>
@@ -227,31 +227,25 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="StudentMangment">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('2001')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2001')">
               <a class="nav-link " routerLinkActive="active" routerLink="Student/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{Studentinformation}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('2002')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2002')">
               <a class="nav-link " routerLinkActive="active" routerLink="StudentAttachment/add">
                 <span class="sidenav-mini-icon"> L </span>
                 <span class="sidenav-normal"> {{StudentAttachment}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('2003')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2003')">
               <a class="nav-link " routerLinkActive="active" routerLink="ApplicationForm/add">
                 <span class="sidenav-mini-icon"> O </span>
                 <span class="sidenav-normal"> {{ApplicationForm}} </span>
               </a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
-                <span class="sidenav-mini-icon"> L </span>
-                <span class="sidenav-normal"> {{ListStudents}} </span>
-              </a>
-            </li>
-            <li class="nav-item ">
+            <li class="nav-item " onclick="toggleSidenav()">
               <a class="nav-link " routerLink="Student/Attendance/{{Std_GN_Code}}" routerLinkActive="active">
                 <span class="sidenav-mini-icon"> L </span>
                 <span class="sidenav-normal"> {{StudentAttendance}} </span>
@@ -283,48 +277,48 @@
         </a>
         <div class="collapse "  routerLinkActive="show" id="StudentRequest">
           <ul class="nav mx-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('2004')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2004')">
               <a class="nav-link " routerLinkActive="active" routerLink="Leave/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{StudentLeave}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('2005')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2005')">
               <a class="nav-link " routerLinkActive="active" routerLink="RecommendationLetter/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{RecommendationLetter}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('2006')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2006')">
               <a class="nav-link " routerLinkActive="active" routerLink="ReferenceAndCertificates/add">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{Reference_Certificates}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('2007')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2007')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT1/add/1">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T1}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('2008')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2008')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT2/add/2">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T2}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('2009')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2009')">
               <a class="nav-link " routerLinkActive="active" routerLink="PGT3/add/3">
                 <span class="sidenav-mini-icon"> A </span>
                 <span class="sidenav-normal"> {{PG_T3}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('2010')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2010')">
               <a class="nav-link " routerLink="Order/list" routerLinkActive="active">
                 <span class="sidenav-mini-icon"> L </span>
                 <span class="sidenav-normal"> {{ListOrders}} </span>
@@ -369,37 +363,37 @@
         </a>
         <div class="collapse " routerLinkActive="show" id="Specialization">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('3003')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3003')">
               <a class="nav-link " routerLinkActive="active" routerLink="Specialization/list">
                 <span class="sidenav-mini-icon"> SP </span>
                 <span class="sidenav-normal"> {{Specializations}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3007')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3007')">
               <a class="nav-link " routerLinkActive="active" routerLink="Department/list">
                 <span class="sidenav-mini-icon"> DP </span>
                 <span class="sidenav-normal"> {{Departments}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3011')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3011')">
               <a class="nav-link " routerLinkActive="active" routerLink="Program/list">
                 <span class="sidenav-mini-icon"> PM </span>
                 <span class="sidenav-normal"> {{Programs}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3015')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3015')">
               <a class="nav-link " routerLinkActive="active" routerLink="TypeLeave/list">
                 <span class="sidenav-mini-icon"> TL </span>
                 <span class="sidenav-normal"> {{TypesLeave}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3019')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3019')">
               <a class="nav-link " routerLinkActive="active" routerLink="EmailTemplate/list">
                 <span class="sidenav-mini-icon"> ET </span>
                 <span class="sidenav-normal"> {{EmailTemplate}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3039')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3039')">
               <a class="nav-link " routerLinkActive="active" routerLink="Permission/add">
                 <span class="sidenav-mini-icon"> PM </span>
                 <span class="sidenav-normal"> {{Permission}} </span>
@@ -432,34 +426,34 @@
         </a>
         <div class="collapse "  routerLinkActive="show" id="Sequence">
           <ul class="nav ms-4 ps-3">
-            <li class="nav-item " *ngIf="IsRoleEixed('3023')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3023')">
               <a class="nav-link " routerLinkActive="active" routerLink="Sequence/list">
                 <span class="sidenav-mini-icon"> SM </span>
                 <span class="sidenav-normal"> {{ListSequenceModel}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('3031')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3031')">
               <a class="nav-link " routerLinkActive="active" routerLink="CreateSequence/list">
                 <span class="sidenav-mini-icon"> CS </span>
                 <span class="sidenav-normal"> {{CreateSequence}} </span>
               </a>
             </li>
-            <li class="nav-item " *ngIf="IsRoleEixed('3031')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3031')">
               <a class="nav-link " routerLinkActive="active" routerLink="ViewSequence/list">
                 <span class="sidenav-mini-icon"> VS </span>
                 <span class="sidenav-normal"> {{ViewSequence}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('3035')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3035')">
               <a class="nav-link " routerLinkActive="active" routerLink="SequenceForm/list/">
                 <span class="sidenav-mini-icon">SF </span>
                 <span class="sidenav-normal"> {{SequenceForm}} </span>
               </a>
             </li>
 
-            <li class="nav-item " *ngIf="IsRoleEixed('3027')">
+            <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3027')">
               <a class="nav-link " routerLinkActive="active" routerLink="SequenceStatus/list">
                 <span class="sidenav-mini-icon"> SS </span>
                 <span class="sidenav-normal"> {{ListSequenceStatus}} </span>
