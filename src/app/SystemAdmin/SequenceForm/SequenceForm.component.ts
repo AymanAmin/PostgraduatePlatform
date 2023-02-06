@@ -18,6 +18,7 @@ export class SequenceFormComponent implements OnInit {
 
   btn_spinner: any;
   btn_status: boolean = false;
+  btn_status_update: boolean = false;
 
   SequenceFormForm: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
@@ -52,11 +53,15 @@ export class SequenceFormComponent implements OnInit {
     this.getSequencesFormList();
     this.getSeqModel();
     this.GetLabelName(this.LangCode);
+    this.btn_status_update = false;
 
     this.CreateForm();
     this.router.events.subscribe((val) => {
+      this.btn_status_update = false;
       if (val instanceof ActivationEnd) {
+
         this.GN_Code = this.route.snapshot.params['id'];
+
         if (this.GN_Code)
           this.getData();
       }
@@ -113,6 +118,7 @@ export class SequenceFormComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
         this.fillData(MainInfoData);
+        this.btn_status_update = true;
       }
     )
   }

@@ -62,7 +62,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
       this.lb_OrderNo = "Request No: ";
       this.lb_OrderDate = "Request Date: ";
       this.lb_OrderType = "Request Type: ";
-      this.lb_Receiver = "Receiver";
+      this.lb_Receiver = "Forwarded to";
     }
     else {
       this.lb_date = "تاريخ الطلب : ";
@@ -70,7 +70,7 @@ export class ViewReferenceAndCertificatesComponent implements OnInit {
       this.lb_OrderNo = "رقم الطلب";
       this.lb_OrderDate = "تاريخ الطلب";
       this.lb_OrderType = "نوع الطلب";
-      this.lb_Receiver = "المستلم";
+      this.lb_Receiver = "موجهة إلي";
     }
   }
 
