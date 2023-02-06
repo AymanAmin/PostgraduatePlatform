@@ -1,147 +1,115 @@
-<div class="row my-4">
-  <div class="col-12">
-    <div class="card">
-      <div class="table-responsive" *ngFor="let SequenceModelList of SequenceList |
-              paginate: {id: 'listing_pagination',
-              itemsPerPage: PerPage,
-              currentPage: page,
-              totalItems: tatalRecords
-          }">
-        <h5 class="mx-4 mt-4">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>
-        <table class="table align-items-center mb-0">
-          <thead>
-            <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}
-              </th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_NextStep}}</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_PreviousStep}}
-              </th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_OptionStep}}
-              </th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EmailTemplate}}
-              </th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let oneSpe of SequenceModelList |
-              paginate: {id: 'listing_pagination',
-              itemsPerPage: PerPage,
-              currentPage: page,
-              totalItems: tatalRecords
-          }">
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm"><span class="badge"
-                        [ngStyle]="{'background-color':GetSeqStatus(oneSpe.SequenceStatus_ID).ColorCode}">{{LangCode === "us-en" ?
-                        GetSeqStatus(oneSpe.SequenceStatus_ID).Name_En : GetSeqStatus(oneSpe.SequenceStatus_ID).Name_Ar}}</span></h6>
+<div class="container-fluid py-4">
+  <div class="row my-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="table-responsive" *ngFor="let SequenceModelList of SequenceList |
+                paginate: {id: 'listing_pagination',
+                itemsPerPage: PerPage,
+                currentPage: page,
+                totalItems: tatalRecords
+            }">
+          <h5 class="mx-4 mt-4">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}
+                </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_NextStep}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_PreviousStep}}
+                </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_OptionStep}}
+                </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EmailTemplate}}
+                </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let oneSpe of SequenceModelList |
+                paginate: {id: 'listing_pagination',
+                itemsPerPage: PerPage,
+                currentPage: page,
+                totalItems: tatalRecords
+            }">
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><span class="badge"
+                          [ngStyle]="{'background-color':GetSeqStatus(oneSpe.SequenceStatus_ID).ColorCode}">{{LangCode === "us-en" ?
+                          GetSeqStatus(oneSpe.SequenceStatus_ID).Name_En : GetSeqStatus(oneSpe.SequenceStatus_ID).Name_Ar}}</span></h6>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm" *ngIf="oneSpe.NextSequence_ID"><span class="badge"
-                        [ngStyle]="{'background-color':GetSeqStatus(oneSpe.NextSequence_ID).ColorCode}">{{LangCode === "us-en" ?
-                        GetSeqStatus(oneSpe.NextSequence_ID).Name_En : GetSeqStatus(oneSpe.NextSequence_ID).Name_Ar}}</span></h6>
+                </td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.NextSequence_ID"><span class="badge"
+                          [ngStyle]="{'background-color':GetSeqStatus(oneSpe.NextSequence_ID).ColorCode}">{{LangCode === "us-en" ?
+                          GetSeqStatus(oneSpe.NextSequence_ID).Name_En : GetSeqStatus(oneSpe.NextSequence_ID).Name_Ar}}</span></h6>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm" *ngIf="oneSpe.PreviousSequence_ID"><span class="badge"
-                        [ngStyle]="{'background-color': GetSeqStatus(oneSpe.PreviousSequence_ID).ColorCode}">{{LangCode === "us-en" ?
-                        GetSeqStatus(oneSpe.PreviousSequence_ID).Name_En : GetSeqStatus(oneSpe.PreviousSequence_ID).Name_Ar}}</span></h6>
+                </td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.PreviousSequence_ID"><span class="badge"
+                          [ngStyle]="{'background-color': GetSeqStatus(oneSpe.PreviousSequence_ID).ColorCode}">{{LangCode === "us-en" ?
+                          GetSeqStatus(oneSpe.PreviousSequence_ID).Name_En : GetSeqStatus(oneSpe.PreviousSequence_ID).Name_Ar}}</span></h6>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm" *ngIf="oneSpe.OptionalSequence_ID"><span class="badge"
-                        [ngStyle]="{'background-color': oneSpe.OptionalSequence_ID != null ? GetSeqStatus(oneSpe.OptionalSequence_ID).ColorCode : ''}">{{LangCode
-                        === "us-en" && oneSpe.OptionalSequence_ID != null ?
-                        GetSeqStatus(oneSpe.OptionalSequence_ID).Name_En : GetSeqStatus(oneSpe.OptionalSequence_ID).Name_Ar}}</span></h6>
+                </td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.OptionalSequence_ID"><span class="badge"
+                          [ngStyle]="{'background-color': oneSpe.OptionalSequence_ID != null ? GetSeqStatus(oneSpe.OptionalSequence_ID).ColorCode : ''}">{{LangCode
+                          === "us-en" && oneSpe.OptionalSequence_ID != null ?
+                          GetSeqStatus(oneSpe.OptionalSequence_ID).Name_En : GetSeqStatus(oneSpe.OptionalSequence_ID).Name_Ar}}</span></h6>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm" *ngIf="oneSpe.EmailTemplate_ID">{{LangCode === "us-en" && oneSpe.EmailTemplate_ID
-                      != null ? GetEmailTemplate(oneSpe.EmailTemplate_ID).Name_En : GetEmailTemplate(oneSpe.EmailTemplate_ID).Name_Ar}}
-                    </h6>
+                </td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm" *ngIf="oneSpe.EmailTemplate_ID">{{LangCode === "us-en" && oneSpe.EmailTemplate_ID
+                        != null ? GetEmailTemplate(oneSpe.EmailTemplate_ID).Name_En : GetEmailTemplate(oneSpe.EmailTemplate_ID).Name_Ar}}
+                      </h6>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <span class="badge badge-dot me-4">
-                  <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
-                  <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
-                </span>
-              </td>
-              <td class="text-sm">
-                <a routerLink="/CreateSequence/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
-                  data-bs-original-title="Preview product">
-                  <i class="fas fa-user-edit text-secondary"></i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+                <td>
+                  <span class="badge badge-dot me-4">
+                    <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
+                    <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
+                  </span>
+                </td>
+                <td class="text-sm">
+                  <a routerLink="/CreateSequence/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
+                    data-bs-original-title="Preview product">
+                    <i class="fas fa-user-edit text-secondary"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-      </div>
-
-      <div class="row justify-content-md-center mb-2">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-          <!-- Pagination area -->
-          <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5"
-            [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="Previous" nextLabel="Next"
-            screenReaderPaginationLabel="Pages" screenReaderPageLabel="Page" (pageChange)="page = $event">
-          </pagination-controls>
         </div>
-        <div class="col-lg-4"></div>
-      </div>
 
+        <div class="row justify-content-md-center mb-2">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <!-- Pagination area -->
+            <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5"
+              [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="Previous" nextLabel="Next"
+              screenReaderPaginationLabel="Pages" screenReaderPageLabel="Page" (pageChange)="page = $event">
+            </pagination-controls>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+
+      </div>
     </div>
   </div>
+
 </div>
-
-<footer class="footer pt-3  ">
-  <div class="container-fluid">
-    <div class="row align-items-center justify-content-lg-between">
-      <div class="col-lg-6 mb-lg-0 mb-4">
-        <div class="copyright text-center text-sm text-muted text-lg-start">
-          ©
-          <script>
-            document.write(new Date().getFullYear())
-          </script>,
-          made with <i class="fa fa-heart"></i> by
-          <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-          for a better web.
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-              Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>

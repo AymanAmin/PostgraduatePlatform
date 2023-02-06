@@ -53,6 +53,7 @@ $(document).ready(function () {
   if (document.getElementById('editor3')) {
     var Template_Ar = new Quill('#editor3', {
       theme: 'snow' // Specify theme in configuration
+      , modules: { toolbar: toolbarOptions }
     });
 
     document.getElementsByClassName("Template_Ar")[0].value = Template_Ar.root.innerHTML;
@@ -65,6 +66,7 @@ $(document).ready(function () {
   if (document.getElementById('editor2')) {
     var Template_En = new Quill('#editor2', {
       theme: 'snow' // Specify theme in configuration
+      , modules: { toolbar: toolbarOptions }
     });
 
     document.getElementsByClassName("Template_En")[0].value = Template_En.root.innerHTML;
