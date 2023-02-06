@@ -135,7 +135,7 @@ export class AppComponent {
     localStorage.setItem("IsLogin", "false");
     localStorage.removeItem("Group_Id");
     localStorage.removeItem("Credential_Type");
-    window.location.href = environment.baseUrl + "/#/Login/page";
+    window.location.href = environment.mainRoot + "/#/Login/page";
   }
   onActivate(event: any) {
     window.scroll(0, 0);
@@ -171,10 +171,21 @@ export class AppComponent {
   Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
   Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
-  SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";
+  SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";textDir:any;
   Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;
+  HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;
+  HeaderWarning:any;BodyMassageWarning:any;HeaderDanger:any;BodyMassageDanger:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
+      this.textDir = "TextAlign";
+      this.HeaderSuccess = "Successfully completed";
+      this.BodyMassageSuccess = "Data has been added successfully";
+      this.HeaderInfo = "Updated";
+      this.BodyMassageInfo = "The data has been updated successfully";
+      this.HeaderWarning = "Deleted";
+      this.BodyMassageWarning = "The data has been deleted from the system successfully";
+      this.HeaderDanger = "An error has occured";
+      this.BodyMassageDanger = "An error has occurred in the system, please try again or contact the administration";
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white";
       this.MenuItem = "nav-link-text ms-1";
@@ -231,6 +242,15 @@ export class AppComponent {
       this.StudentAttendance = "Student Attendance";
     }
     else {
+      this.textDir = "TextAlign";
+      this.HeaderSuccess = "تم بنجاح";
+      this.BodyMassageSuccess = "تم اضافة البيانات بنجاح";
+      this.HeaderInfo = "تم التعديل";
+      this.BodyMassageInfo = "تم تعديل البيانات بنجاح";
+      this.HeaderWarning = "تم الحذف";
+      this.BodyMassageWarning = "تم حذف البيانات من النظام بنجاح";
+      this.HeaderDanger = "حدث خطأ";
+      this.BodyMassageDanger = "لقد حدث خطأ في النظام الرجاء المحاولة مره اخرى او التواصل مع الادارة";
       this.username = "ضيف";
       this.mainClass = "main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl-dir";
       this.asideClass = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-end me-3 rotate-caret bg-white rtl-dir";

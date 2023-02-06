@@ -139,6 +139,12 @@ export class ThesisDefenseComponent implements OnInit {
     )
   }
 
+  GetProfileImage(GN_Code: any) {
+    var user = this.StudentList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code);
+    if(user == undefined) return '';
+    return user.Profile;
+  }
+
   fillData(ThesisDefense: any) {
     //console.log(ThesisDefense);
     if (ThesisDefense)
@@ -155,7 +161,8 @@ export class ThesisDefenseComponent implements OnInit {
   }
 
   LoadThesisDefenses() {
-    this.http.get(environment.baseUrl + '/API/Schedule/Get/DefenseList.ashx').subscribe(
+    var GN_Code = localStorage.getItem("GN_Code");
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/DefenseList.ashx?GN_Code='+ GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.ThesisDefenseList = JSON.parse(jsonInfo);
@@ -210,7 +217,6 @@ export class ThesisDefenseComponent implements OnInit {
     )
   }
 
-
   UpdateButtonSpinner(IsLoading: boolean) {
     console.log("spinner: " + IsLoading);
     if (IsLoading) {
@@ -262,7 +268,8 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Select = "Select";
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
     }
-    else{
+    else
+    {
       this.lb_Address =" جدولة أطروحة المناقشة";
       this.lb_AddressD = "إجراءات جدولة أطروحة المناقشة بعد تخرج الماجستير";
       this.lb_week = "الاسبوع";

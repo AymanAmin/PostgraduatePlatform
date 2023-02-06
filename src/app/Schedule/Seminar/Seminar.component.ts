@@ -143,7 +143,8 @@ export class SeminarComponent implements OnInit {
   }
 
   LoadSeminars() {
-    this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarList.ashx').subscribe(
+    var GN_Code = localStorage.getItem("GN_Code");
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/SeminarList.ashx?GN_Code='+ GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SeminarList = JSON.parse(jsonInfo);

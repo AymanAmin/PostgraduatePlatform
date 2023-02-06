@@ -24,5 +24,9 @@
   background: linear-gradient(310deg, #e9ecef 0%, #e9ecef 100%)
 }
 
+.TextAlign{
+  text-align: center !important;
+}
+
 
 
