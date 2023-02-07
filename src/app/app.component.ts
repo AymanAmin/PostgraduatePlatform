@@ -239,7 +239,7 @@ export class AppComponent {
       this.Financial = "Financial";
       this.CreateInvoice = "Create Invoice";
       this.InvoiceList = "Invoice List";
-      this.StudentAttendance = "Student Attendance";
+      this.StudentAttendance = "Attendance";
     }
     else {
       this.textDir = "TextAlign";

@@ -14,12 +14,13 @@ export class AttendanceComponent implements OnInit {
   LangCode: any = "us-en";
   OrderNo: any; Type: any; Date: any; StdName: any; StdEmail: any;
   StdPhone: any; Category: any; Program: any; Speciality: any;
-  StudentInfo: any; ProfileImage: any;StudentAttendanceData : any;
+  StudentInfo: any; ProfileImage: any; StudentAttendanceData: any;
+  CheckIn: number = 0; CheckOut: number = 0;
 
   //Start Pangation and filter
   tatalRecords: any;
-  page:number = 1;
-  searchedKeyword:string = "";
+  page: number = 1;
+  searchedKeyword: string = "";
   //End Pangation and filter
 
   GN_Code: string = this.route.snapshot.params['id'];
@@ -49,15 +50,21 @@ export class AttendanceComponent implements OnInit {
     )
   }
 
-  getStudentAttendance(TS_USERID:any) {
+  getStudentAttendance(TS_USERID: any) {
     this.http.get(environment.baseUrl + '/API/StudentManagment/Attendees/Get/AllAttendees.ashx?TS_USERID=' + TS_USERID).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentAttendanceData = JSON.parse(jsonInfo);
-        this.fillData();
-        console.log(this.StudentAttendanceData);
+        this.CheckIn = 0;
+        for (let i = 0; i < this.StudentAttendanceData.length; i++) {
+          if (this.StudentAttendanceData[i].TS_TIMESTAMP_IN != null)
+            this.CheckIn += 1;
+          if (this.StudentAttendanceData[i].TS_TIMESTAMP_OUT != null)
+            this.CheckOut += 1;
+        }
       }
     )
+
   }
 
   fillData() {
@@ -74,9 +81,9 @@ export class AttendanceComponent implements OnInit {
   }
 
   lb_OrderNo: any; lb_OrderType: any; lb_Category: any; top_class: any;
-  lb_Program: any; lb_Speciality: any;EntryTime:any;CheckoutTime:any;Device:any;
-  StudentManagement: any; StudentAttendance: any;StudentInfoData:any;DeviceType:any;
-  Previous: any;Next:any;
+  lb_Program: any; lb_Speciality: any; EntryTime: any; CheckoutTime: any; Device: any;
+  StudentManagement: any; StudentAttendance: any; StudentInfoData: any; DeviceType: any;
+  Previous: any; Next: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.StudentManagement = "Student Management";

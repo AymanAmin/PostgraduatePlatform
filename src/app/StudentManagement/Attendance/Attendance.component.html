@@ -1,53 +1,60 @@
 <div class="container-fluid">
-  <div class="card-body pt-0">
-    <div class="card card-body mt-4">
-      <div class="row">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <p class="text-sm mb-2">
-                {{lb_OrderType}} <b>{{Type}}</b>
-              </p>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end align-items-center">
-              <i class="far fa-calendar-alt mx-2" aria-hidden="true"></i>
-              <small>{{Date}}</small>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card-body pt-0">
+        <div class="card card-body mt-4">
           <div class="row">
-            <div class="col-2">
-              <img src="{{ProfileImage}}" alt="kal" class="border-radius-lg shadow w-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-sm mb-2">
+                    {{lb_OrderType}} <b>{{Type}}</b>
+                  </p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                  <i class="far fa-calendar-alt mx-2" aria-hidden="true"></i>
+                  <small>{{Date}}</small>
+                </div>
+              </div>
             </div>
-            <div class="col-5 my-auto mt-0">
-              <p class="h6">{{StdName}}</p>
-              <p class="mb-1"><b>{{StdEmail}}</b></p>
-              <span class="badge badge-secondary mx-auto mt-2">{{StdPhone}}</span>
-            </div>
-            <div class="col-md-5">
-              <ul class="list-unstyled mx-auto">
-                <li class="d-flex">
-                  <p class="mb-0">{{lb_Category}}</p>
-                  <p class="h6 {{top_class}}">{{Category}}</p>
-                </li>
-                <li>
-                </li>
-                <li class="d-flex mb-2">
-                  <p class="mb-0">{{lb_Program}}</p>
-                  <span class="badge badge-secondary {{top_class}}">{{Program}}</span>
-                </li>
-                <li>
-                </li>
-                <li class="d-flex">
-                  <p class="mb-0">{{lb_Speciality}}</p>
-                  <span class="badge badge-success {{top_class}}">{{Speciality}}</span>
-                </li>
-              </ul>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src="{{ProfileImage}}" alt="kal" class="border-radius-lg shadow w-100">
+                </div>
+                <div class="col-md-5 my-auto mt-0">
+                  <p class="h6">{{StdName}}</p>
+                  <p class="mb-1"><b>{{StdEmail}}</b></p>
+                  <span class="badge badge-secondary mx-auto mt-2">{{StdPhone}}</span>
+                </div>
+                <div class="col-md-5">
+                  <ul class="list-unstyled mx-auto">
+                    <li class="d-flex">
+                      <p class="mb-0">{{lb_Category}}</p>
+                      <p class="h6 {{top_class}}">{{Category}}</p>
+                    </li>
+                    <li>
+                    </li>
+                    <li class="d-flex mb-2">
+                      <p class="mb-0">{{lb_Program}}</p>
+                      <span class="badge badge-secondary {{top_class}}">{{Program}}</span>
+                    </li>
+                    <li>
+                    </li>
+                    <li class="d-flex">
+                      <p class="mb-0">{{lb_Speciality}}</p>
+                      <span class="badge badge-success {{top_class}}">{{Speciality}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+      <app-AttendanceChart></app-AttendanceChart>
     </div>
   </div>
 
@@ -56,11 +63,12 @@
       <table class="table align-items-center mb-0">
         <thead>
           <tr>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{StudentInfoData}}</th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{DeviceType}}</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{EntryTime}}</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{CheckoutTime}}</th>
-            <th class="text-secondary opacity-7"></th>
+            <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{StudentInfoData}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">
+              {{DeviceType}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{EntryTime}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{CheckoutTime}}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -73,42 +81,37 @@
             <td>
               <div class="d-flex px-2 py-1">
                 <div>
-                  <img src="{{ProfileImage}}"
-                    class="avatar avatar-sm mx-3">
+                  <img src="{{ProfileImage}}" class="avatar avatar-sm mx-3">
                 </div>
                 <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-xs">{{StdName}}</h6>
-                  <p class="text-xs text-secondary mb-0">{{StdEmail}}</p>
+                  <h6 class="mb-0 text-s">{{StdName}}</h6>
+                  <p class="text-s text-secondary mb-0">{{StdEmail}}</p>
                 </div>
               </div>
             </td>
             <td class="text-center">
-              <p class="text-xs font-weight-bold mb-0">{{Device}}</p>
-              <p class="text-xs text-secondary mb-0">{{item.TS_MACHINE_TYPE}}</p>
+              <p class="text-s font-weight-bold mb-0">{{Device}}</p>
+              <p class="text-s text-secondary mb-0">{{item.TS_MACHINE_TYPE}}</p>
             </td>
             <td class="align-middle text-center text-sm">
-              <span class="badge badge-success"  style="background-color:#67b108;color:white;">{{item.TS_TIMESTAMP_IN | date:'medium'}}</span>
+              <span class="badge badge-success" style="background-color:#00e396;color:white;">{{item.TS_TIMESTAMP_IN |
+                date:'medium'}}</span>
             </td>
             <td class="align-middle text-center text-sm">
-              <span class="badge badge-danger"  style="background-color:red;color:white;">{{item.TS_TIMESTAMP_OUT | date:'medium'}}</span>
-            </td>
-            <td class="align-middle">
-              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                data-original-title="Edit user">
-                Edit
-              </a>
+              <span class="badge badge-danger" style="background-color:#008ffb;color:white;">{{item.TS_TIMESTAMP_OUT |
+                date:'medium'}}</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="row justify-content-md-center mb-2">
+    <div class="row justify-content-md-center">
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <!-- Pagination area -->
-        <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5"
-          [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="{{Previous}}" nextLabel="{{Next}}"
+        <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5" [directionLinks]="true"
+          [autoHide]="true" [responsive]="true" previousLabel="{{Previous}}" nextLabel="{{Next}}"
           screenReaderPaginationLabel="Pages" screenReaderPageLabel="Page" (pageChange)="page = $event">
         </pagination-controls>
       </div>
@@ -116,4 +119,8 @@
     </div>
 
   </div>
+  <br>
 </div>
+
+<input type="hidden" [(ngModel)]="CheckOut" id="CheckOut">
+<input type="hidden" [(ngModel)]="CheckIn" id="CheckIn">

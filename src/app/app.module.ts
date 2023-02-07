@@ -55,6 +55,7 @@ import { InvoiceCreationComponent } from './Financial/InvoiceCreation/InvoiceCre
 import { InvoiceListComponent } from './Financial/InvoiceList/InvoiceList.component';
 import { ViewInvoiceComponent } from './Financial/ViewInvoice/ViewInvoice.component';
 import { AttendanceComponent } from './StudentManagement/Attendance/Attendance.component';
+import { AttendanceChartComponent } from './StudentManagement/AttendanceChart/AttendanceChart.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -189,7 +190,8 @@ const routerOptions: ExtraOptions = {
     InvoiceCreationComponent,
     InvoiceListComponent,
     ViewInvoiceComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    AttendanceChartComponent
    ],
   imports: [
     BrowserModule,
