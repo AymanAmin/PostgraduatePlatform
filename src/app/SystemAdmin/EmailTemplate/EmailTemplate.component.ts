@@ -27,7 +27,7 @@ export class EmailTemplateComponent implements OnInit {
   lb_Info: any; lb_InfoD: any; lb_EngName: any; lb_ArName: any;
   lb_TemplateAr: any; lb_TemplateArD: any; lb_TemplateEn: any; lb_TemplateEnD: any;
   lb_IsActive: any; lb_IsActiveD: any;
-  lb_Save_Change: any; lb_Cancel: any;
+  lb_Save_Change: any; lb_Cancel: any;textEnd:any;textEndEn:any;
 
   lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;
   lb_Status: any; lb_Id: any; lb_Search: any; lb_SearchD: any;
@@ -36,7 +36,7 @@ export class EmailTemplateComponent implements OnInit {
   tatalRecords: any;
   page: number = 1;
   searchedKeyword: string = "";
-  PerPage: number = 5;
+  PerPage: number = 1;
 
   Template_Ar_Data: any = "";
   Template_En_Data: any = "";
@@ -51,7 +51,6 @@ export class EmailTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
-    this.loadJsFile("assets/js/Multi-choice.js");
     this.getEmailTemplateList();
     this.GetLabelName(this.LangCode);
 
@@ -78,6 +77,7 @@ export class EmailTemplateComponent implements OnInit {
           this.SpeList[index].Template_Ar = decodeURIComponent(atob(oneItem.Template_Ar));
           this.SpeList[index].Template_En = decodeURIComponent(atob(oneItem.Template_En));
         });
+        this.loadJsFile("assets/js/Multi-choice.js");
       }
     )
   }
@@ -216,6 +216,8 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_TemplateArD = "A brief summary does not exceed 400 letter from the template";
       this.lb_TemplateEn = "Template English";
       this.lb_TemplateEnD = "A brief summary does not exceed 400 letter from the template";
+      this.textEnd = "text-start";
+      this.textEndEn = "text-end";
     }
     else {
       this.lb_Info = "بيانات قالب البريد الإلكتروني";
@@ -238,6 +240,8 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_TemplateEn = "القالب إنجليزي";
       this.lb_TemplateEnD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
       this.lb_Loading = "جاري التحميل";
+      this.textEnd = "text-start";
+      this.textEndEn = "text-end";
     }
   }
 

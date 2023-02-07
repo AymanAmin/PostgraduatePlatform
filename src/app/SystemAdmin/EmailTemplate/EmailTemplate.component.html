@@ -7,34 +7,41 @@
           <p class="text-sm mb-0">{{lb_InfoD}}</p>
           <hr class="horizontal dark my-3">
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-md-6">
               <label for="va_EmpName" class="form-label">{{lb_ArName}}</label>
               <input type="text" class="form-control" placeholder="{{lb_ArName}}" formControlName="Name_Ar">
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-md-6">
               <label for="va_EmpName" class="form-label">{{lb_EngName}}</label>
               <input type="text" class="form-control" placeholder="{{lb_EngName}}" formControlName="Name_En">
             </div>
 
           </div>
-          <label class="mt-4">{{lb_TemplateAr}}</label>
-          <input type="hidden" class="form-control Template_Ar" id="Template_Ar" formControlName="Template_Ar" />
-          <p class="form-text text-muted text-xs ms-1">
-            {{lb_TemplateArD}}
-          </p>
-          <div id="editor3" [innerHTML]="Template_Ar_Data">
-            <!-- Data -->
+          <div class="row">
+            <div class="col-md-6">
+              <label class="mt-4">{{lb_TemplateAr}}</label>
+              <input type="hidden" class="form-control Template_Ar" id="Template_Ar" formControlName="Template_Ar" />
+              <p class="form-text text-muted text-xs ms-1">
+                {{lb_TemplateArD}}
+              </p>
+              <div id="editor3" [innerHTML]="Template_Ar_Data">
+                <!-- Data -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="mt-4">{{lb_TemplateEn}}</label>
+              <input type="hidden" class="form-control Template_En" id="Template_En" formControlName="Template_En" />
+              <p class="form-text text-muted text-xs ms-1">
+                {{lb_TemplateEnD}}
+              </p>
+              <div id="editor2" [innerHTML]="Template_En_Data">
+                <!-- Data -->
+              </div>
+            </div>
           </div>
-          <label class="mt-4">{{lb_TemplateEn}}</label>
-          <input type="hidden" class="form-control Template_En" id="Template_En" formControlName="Template_En" />
-          <p class="form-text text-muted text-xs ms-1">
-            {{lb_TemplateEnD}}
-          </p>
-          <div id="editor2" [innerHTML]="Template_En_Data">
-            <!-- Data -->
-          </div>
-          <div class="row mt-4">
-            <div class="col-12 col-md-6">
+
+          <div class="row" style="margin-top: 250px;">
+            <div class="col-md-6">
               <div class="form-group">
                 <label>
                   {{lb_IsActive}}
@@ -65,7 +72,6 @@
 
   <div class="row my-4">
     <div class="col-12">
-
       <div class="card">
         <h6 class="px-3 pt-3">{{lb_Search}}</h6>
         <p class="text-sm px-3">{{lb_SearchD}}</p>
@@ -73,80 +79,97 @@
           <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
           <input type="text" class="form-control" placeholder="Type here..." [(ngModel)]="searchedKeyword">
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center mb-0">
-            <thead>
-              <tr>
+      </div>
 
-                
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_TemplateAr}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_TemplateEn}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Action}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let oneSpe of SpeList | filter: searchedKeyword |
-              paginate: {id: 'listing_pagination',
-              itemsPerPage: PerPage,
-              currentPage: page,
-              totalItems: tatalRecords
-          }">
-                
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.Name_Ar}}</h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{oneSpe.Name_En}}</h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm" [innerHTML]="oneSpe.Template_Ar"></h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm" [innerHTML]="oneSpe.Template_En"></h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <span class="badge badge-dot me-4">
+      <!-- Email Card -->
+      <div class="row" *ngFor="let oneSpe of SpeList | filter: searchedKeyword |
+      paginate: {id: 'listing_pagination',
+      itemsPerPage: PerPage,
+      currentPage: page,
+      totalItems: tatalRecords}">
+
+        <!-- Arabic -->
+        <div class="col-md-6 mt-3" style="direction:rtl;text-align: right;">
+          <div class="card h-100">
+            <div class="card-header p-4">
+              <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                  <h6 class="mb-0">الايميل بالعربي</h6>
+                </div>
+                <div class="col-md-4 {{textEnd}}">
+                  <a routerLink="/EmailTemplate/list/{{oneSpe.GN_Code}}">
+                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                      aria-hidden="true" aria-label="Edit Profile" data-bs-original-title="Edit Profile"></i><span
+                      class="sr-only">الاسم بالعربي</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <p class="text-sm px-3" [innerHTML]="oneSpe.Template_Ar">
+              </p>
+              <hr class="horizontal gray-light my-4">
+              <ul class="list-group">
+                <li class="list-group-item border-0"><strong class="text-dark">اسم النموذج : </strong>
+                  &nbsp; {{oneSpe.Name_Ar}}</li>
+                <li class="list-group-item border-0"><strong class="text-dark">الحالة : </strong>
+                  <span class="badge badge-dot mx-4">
                     <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
                     <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
                   </span>
-                </td>
-                <td class="text-sm">
-                  <a routerLink="/EmailTemplate/list/{{oneSpe.GN_Code}}" data-bs-toggle="tooltip"
-                    data-bs-original-title="Preview product">
-                    <i class="fas fa-user-edit text-secondary"></i>
-                  </a>
-                  <!-- <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                    <i class="fas fa-user-edit text-secondary"></i>
-                  </a>
-                  <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                    <i class="fas fa-trash text-secondary"></i>
-                  </a> -->
-                </td>
-              </tr>
-            </tbody>
-          </table>
 
+                </li>
+              </ul>
+            </div>
+
+          </div>
         </div>
+        <!-- Arabic -->
 
+        <!-- English -->
+        <div class="col-md-6 mt-3" style="direction:ltr;text-align: left;">
+          <div class="card h-100">
+            <div class="card-header p-4">
+              <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                  <h6 class="mb-0">English Template</h6>
+                </div>
+                <div class="col-md-4 {{textEndEn}}">
+                  <a routerLink="/EmailTemplate/list/{{oneSpe.GN_Code}}">
+                    <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                      aria-hidden="true" aria-label="Edit Profile" data-bs-original-title="Edit Profile"></i><span
+                      class="sr-only">{{lb_TemplateEn}}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <p class="text-sm px-3" [innerHTML]="oneSpe.Template_En">
+              </p>
+              <hr class="horizontal gray-light my-4">
+              <ul class="list-group">
+                <li class="list-group-item border-0"><strong class="text-dark">Template Name:</strong>
+                  &nbsp; {{oneSpe.Name_En}}</li>
+                <li class="list-group-item border-0"> <strong class="text-dark">Status:</strong>
+                  <span class="badge badge-dot mx-4">
+                    <i class="{{oneSpe.IsActive ? 'bg-info' : 'bg-warning'}} mx-2"></i>
+                    <span class="text-dark text-xs">{{oneSpe.IsActive ? lb_Active : lb_InActive}}</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <!-- English -->
+
+      </div>
+      <!-- Email Card -->
+
+      <!-- Paging -->
+      <div class="card mt-3 pt-3">
         <div class="row justify-content-md-center mb-2">
           <div class="col-lg-4"></div>
           <div class="col-lg-4">
@@ -158,10 +181,9 @@
           </div>
           <div class="col-lg-4"></div>
         </div>
-
       </div>
+      <!-- Paging -->
+
     </div>
   </div>
-
-  
 </div>

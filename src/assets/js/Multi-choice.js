@@ -76,7 +76,7 @@ $(document).ready(function () {
     });
   }
 
-  // Data Tabel 
+  // Data Tabel
 
   const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
     searchable: true,
