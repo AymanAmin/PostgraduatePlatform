@@ -27,6 +27,7 @@ export class ApplicationFormComponent implements OnInit {
   //BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.LangCode = localStorage.getItem("LangCode");
     if(this.LangCode == "en-us" || this.LangCode == "us-en")
     this.titleService.setTitle("Addational Info");
       else
@@ -81,21 +82,21 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   fillData(ApplicationData: any) {
-    //console.log(ApplicationData);
+    console.log(ApplicationData);
     if (ApplicationData) {
       this.ApplicationForm.patchValue({
       FirstName_Ar: ApplicationData.FirstName_Ar,
       FatherName_Ar: ApplicationData.FatherName_Ar,
       GrandFatherName_Ar: ApplicationData.GrandFatherName_Ar,
       FamilyName_Ar: ApplicationData.FamilyName_Ar,
-      DateOfBirth: ApplicationData.DateOfBirth,
+      DateOfBirth: this.convertDate(ApplicationData.DateOfBirth),
       PlaceOfBirth: ApplicationData.PlaceOfBirth,
       MaritalStatus: ApplicationData.MaritalStatus,
       City: ApplicationData.City,
       ZipCode: ApplicationData.ZipCode,
       Address: ApplicationData.Address,
-      IssueDate: ApplicationData.CardIssueDate,
-      ExpiryDate: ApplicationData.CardExpiryDate,
+      IssueDate:this.convertDate(ApplicationData.CardIssueDate) ,
+      ExpiryDate: this.convertDate(ApplicationData.CardExpiryDate),
       CardNational_ID: ApplicationData.CardNational_ID,
       Student_No: ApplicationData.Student_No
       });
@@ -171,7 +172,19 @@ export class ApplicationFormComponent implements OnInit {
   }
 
 
+  convertDate(FullDate:any){
+    if(FullDate){
+      let dateTime = FullDate.split("T");
+      let date = dateTime[0].split("-");
+      var year = date[0];
+      var month = date[1];
+      var day = date[2];
+      return year+'-'+month+'-'+day;
+    }else{
+           return FullDate;
+    }
 
+  }
 
   // Label Data
   lb_FormTitle:any;lb_Details:any;lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;

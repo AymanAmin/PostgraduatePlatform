@@ -12,12 +12,12 @@ new Chart(ctx10, {
   type: "polarArea",
   data: {
     labels: [
-      'Requset Leave',
-      'Recommendation Letter',
-      'Certificate Request',
-      'Model PG-T1',
-      'Model PG-T2',
-      'Model PG-T3'
+      document.getElementById("nRequsetLeave").innerText,
+      document.getElementById("nReferenceLetter").innerText,
+      document.getElementById("nRequestCertificate").innerText,
+      document.getElementById("nModelPGT1").innerText,
+      document.getElementById("nModelPGT2").innerText,
+      document.getElementById("nModelPGT3").innerText
     ],
     datasets: [{
       label: 'My First Dataset',

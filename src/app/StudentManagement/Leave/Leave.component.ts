@@ -29,6 +29,7 @@ export class LeaveComponent implements OnInit {
   BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.LangCode = localStorage.getItem("LangCode");
     if(this.LangCode == "en-us" || this.LangCode == "us-en")
        this.titleService.setTitle("Leave");
       else
@@ -122,7 +123,7 @@ export class LeaveComponent implements OnInit {
           }
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
-          this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+          this.router.navigateByUrl('/StudentLeave/View/'+ response);
           this.UpdateButtonSpinner(false);
           document.getElementById("btnInfo")?.click();
         }

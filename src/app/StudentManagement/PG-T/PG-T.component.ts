@@ -31,7 +31,8 @@ export class PGTComponent implements OnInit {
   BriefSummary_Data:any = "";  FormCode:string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    if(this.LangCode == "en-us" || this.LangCode == "us-en")
+    this.LangCode = localStorage.getItem("LangCode");
+  if(this.LangCode == "en-us" || this.LangCode == "us-en")
     this.titleService.setTitle("PG-R");
    else
      this.titleService.setTitle("PG-R");
@@ -112,7 +113,8 @@ export class PGTComponent implements OnInit {
           }
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
-          this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+         // this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
+         this.router.navigateByUrl('/PGT'+this.PG_R_Type+'/View/'+ response);
           this.UpdateButtonSpinner(false);
           document.getElementById("btnInfo")?.click();
         }

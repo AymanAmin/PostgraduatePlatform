@@ -104,7 +104,7 @@ const appRoutes: Routes = [
   { path: 'StudentAttachment/add/:id', component: StudentAttachmentComponent, data: { title: 'Student Attachment' } },
   { path: 'RecommendationLetter/add/:id', component: RecommendationLetterComponent, data: { title: 'Recommendation Letter' } },
   { path: 'ReferenceAndCertificates/add/:id', component: ReferenceAndCertificatesComponent, data: { title: 'Reference And Certificates' } },
-  { path: 'PGT1/add/:PG_R_Type/:id', component: PGTComponent, data: { title: 'PG-T1' } },
+  { path: 'PGT1/add/:PG_R_Type/:id', component: PGTComponent, data: { title: 'PG-1' } },
   { path: 'PGT2/add/:PG_R_Type/:id', component: PGTComponent, data: { title: 'PG-T2' } },
   { path: 'PGT3/add/:PG_R_Type/:id', component: PGTComponent, data: { title: 'PG-T3' } },
   { path: 'PGT1/add/:PG_R_Type', component: PGTComponent, data: { title: 'PG-T1' } },

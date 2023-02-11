@@ -68,9 +68,9 @@ export class HomeComponent implements OnInit {
       this.lb_LetterRec = "Recommendation Letter";
       this.lb_ReferenceLetter = "Reference Letter";
       this.lb_RequestCertificate = "Certificate Request";
-      this.lb_ModelPGT1 = "Model PG-T1";
-      this.lb_ModelPGT2 = "Model PG-T2";
-      this.lb_ModelPGT3 = "Model PG-T3";
+      this.lb_ModelPGT1 = "Model PG-R1";
+      this.lb_ModelPGT2 = "Model PG-R2";
+      this.lb_ModelPGT3 = "Model PG-R3";
     }
     else{
       this.textstart = "text-end";
@@ -87,9 +87,9 @@ export class HomeComponent implements OnInit {
       this.lb_LetterRec = "خطاب توصية";
       this.lb_ReferenceLetter = "خطاب مرجعية";
       this.lb_RequestCertificate = "طلب شهادة";
-      this.lb_ModelPGT1 = "نموذج PG-T1";
-      this.lb_ModelPGT2 = "نموذج PG-T2";
-      this.lb_ModelPGT3 = "نموذج PG-T3";
+      this.lb_ModelPGT1 = "نموذج PG-R1";
+      this.lb_ModelPGT2 = "نموذج PG-R2";
+      this.lb_ModelPGT3 = "نموذج PG-R3";
     }
   }
 
