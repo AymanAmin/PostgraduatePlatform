@@ -64,10 +64,15 @@ export class ApplicationFormComponent implements OnInit {
       IssueDate: new FormControl(null, [Validators.required]),
       ExpiryDate: new FormControl(null, [Validators.required]),
       MaritalStatus: new FormControl(null, [Validators.required]),
+      University: new FormControl(null, [Validators.required]),
+      GPA: new FormControl(null, [Validators.required]),
+      ExamTestKSAHealthSpecialties: new FormControl(null, [Validators.required]),
+      EnglishTestScore : new FormControl(null, [Validators.required]),
       City: new FormControl(null, [Validators.required]),
       ZipCode: new FormControl(null, [Validators.required]),
       Address: new FormControl(null, [Validators.required]),
       Student_No : new FormControl(null, [Validators.required]),
+
     });
   }
 
@@ -92,6 +97,10 @@ export class ApplicationFormComponent implements OnInit {
       DateOfBirth: this.convertDate(ApplicationData.DateOfBirth),
       PlaceOfBirth: ApplicationData.PlaceOfBirth,
       MaritalStatus: ApplicationData.MaritalStatus,
+      University: ApplicationData.University,
+      GPA: ApplicationData.GPA,
+      ExamTestKSAHealthSpecialties:ApplicationData.ExamTestKSAHealthSpecialties,
+      EnglishTestScore : ApplicationData.EnglishTestScore,
       City: ApplicationData.City,
       ZipCode: ApplicationData.ZipCode,
       Address: ApplicationData.Address,
@@ -116,6 +125,12 @@ export class ApplicationFormComponent implements OnInit {
     formData.append("DateOfBirth", this.ApplicationForm.get('DateOfBirth')?.value);
     formData.append("PlaceOfBirth", this.ApplicationForm.get('PlaceOfBirth')?.value);
     formData.append("MaritalStatus", this.ApplicationForm.get('MaritalStatus')?.value);
+
+    formData.append("University", this.ApplicationForm.get('University')?.value);
+    formData.append("GPA", this.ApplicationForm.get('GPA')?.value);
+    formData.append("ExamTestKSAHealthSpecialties", this.ApplicationForm.get('ExamTestKSAHealthSpecialties')?.value);
+    formData.append("EnglishTestScore", this.ApplicationForm.get('EnglishTestScore')?.value);
+
     formData.append("City", this.ApplicationForm.get('City')?.value);
     formData.append("ZipCode", this.ApplicationForm.get('ZipCode')?.value);
     formData.append("Address", this.ApplicationForm.get('Address')?.value);
@@ -190,6 +205,7 @@ export class ApplicationFormComponent implements OnInit {
   lb_FormTitle:any;lb_Details:any;lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
   lb_DateOfBirth:any;lb_PlaceOfBirth:any;lb_NationalIdNo:any;lb_IssueDate:any;
   lb_ExpiryDate:any;lb_MaritalStatus:any;MaritalStatusList:any;lb_Address:any;
+  lb_University:any;lb_GPA:any;lb_HealthSpecialties:any;lb_EnglishTestScore:any;
   lb_City:any;lb_ZipCode:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;lb_Student_No:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -205,6 +221,12 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_IssueDate="Issue Date";
       this.lb_ExpiryDate="Expiry Date";
       this.lb_MaritalStatus="Marital Status";
+
+      this.lb_University="University";
+      this.lb_GPA="GPA";
+      this.lb_HealthSpecialties="Examination score of the Saudi Commission for Health Specialties";
+      this.lb_EnglishTestScore="English Test Score";
+
       this.MaritalStatusList = [{ "Id": 1, "Name": "Single" },{ "Id": 2, "Name": "Married" }];
       this.lb_City="City";
       this.lb_ZipCode="Zip Code";
@@ -222,11 +244,17 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_GrandFatherName_Ar = "(عربي)إسم الجد";
       this.lb_FamilyName_Ar = "(عربي)إسم العائلة";
       this.lb_DateOfBirth ="(عربي)تاريخ الميلاد";
-      this.lb_PlaceOfBirth="(عربي)مكان الميلاد"
+      this.lb_PlaceOfBirth="(عربي)مكان الميلاد";
       this.lb_NationalIdNo="رقم بطاقة الهوية الشخصية السعودية";
       this.lb_IssueDate="تاريخ الإصدار";
       this.lb_ExpiryDate="تاريخ انتهاء الصلاحية";
       this.lb_MaritalStatus="الحالة الاجتماعية";
+
+      this.lb_University="الجامعة";
+      this.lb_GPA="المعدل التراكمي";
+      this.lb_HealthSpecialties=" درجة اختبار الهيئة السعودية للتخصصات الصحية";
+      this.lb_EnglishTestScore="درجة اختبار اللغة الإنجليزية";
+
       this.MaritalStatusList = [{ "Id": 1, "Name": "أعذب" },{ "Id": 2, "Name": "متزوج" }];
       this.lb_City="المدينة";
       this.lb_ZipCode="الرمز البريدي";

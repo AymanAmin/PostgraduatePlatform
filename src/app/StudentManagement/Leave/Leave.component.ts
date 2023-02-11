@@ -161,9 +161,41 @@ export class LeaveComponent implements OnInit {
     });
   }
 
+  onFileChange(files: FileList, Type: string) {
+    var GN_Code = localStorage.getItem("GN_Code");
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      var file = reader.result as string;
+      var formData: any = new FormData();
+      formData.append("GN_Code", GN_Code);
+      formData.append('file', file);
+      formData.append('Type', Type);
+      formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+
+      this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
+        (response) => {
+          if (response != "0") {
+            this.IsShowMessageUpdate = true;
+            this.IsShowMessageError = false;
+            var jsonInfo = JSON.stringify(response);
+            let MainInfoData = JSON.parse(jsonInfo);
+            console.log(MainInfoData);
+            //this.ProfileImg = response;
+          }
+          else {
+            this.IsShowMessageUpdate = false;
+            this.IsShowMessageError = true;
+          }
+        },
+        (error) => console.log(error)
+      );
+    };
+  }
+
   // Label Data
   lb_FormTitle:any;lb_Details:any;lb_Program:any;ProgramList:any;lb_Speciality:any;SpecialityList:any;
-  lb_Type:any;TypeList:any;lb_Reason:any;lb_From:any;lb_To:any;
+  lb_Type:any;TypeList:any;lb_Reason:any;lb_From:any;lb_To:any;lb_Medical_Excuse:any;
   lb_NoOfDaysLeave:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -176,6 +208,7 @@ export class LeaveComponent implements OnInit {
       this.lb_To="To";
       this.lb_NoOfDaysLeave="NO Of Days Leave";
       this.lb_Reason="Reason";
+      this.lb_Medical_Excuse="Medical Excuse";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
@@ -190,6 +223,7 @@ export class LeaveComponent implements OnInit {
       this.lb_To="الي";
       this.lb_NoOfDaysLeave="عدد أيام الإجازة";
       this.lb_Reason="السبب";
+      this.lb_Medical_Excuse="العذر الطبي";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";

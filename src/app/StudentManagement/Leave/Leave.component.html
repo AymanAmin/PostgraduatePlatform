@@ -50,6 +50,12 @@
                 </select>
               </div>
             </div>
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Medical_Excuse}}</label>
+              <div class="input-group">
+                <input (change)="onFileChange($any($event).target.files,'Medical Excuse')" id="Medical_Excuse" name="Medical_Excuse" class="form-control" type="file" required="required">
+              </div>
+            </div>
             <label class="mt-4">{{lb_Reason}}</label>
             <input type="hidden" class="form-control BriefSummary" id="BriefSummary" formControlName="BriefSummary"  />
 
