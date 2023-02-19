@@ -61,7 +61,7 @@ export class RequestHeaderComponent implements OnInit {
       this.lb_Category = "Category";
       this.top_class = "ms-auto"
       this.lb_Program = "Program";
-      this.lb_Speciality = "Speciality";
+      this.lb_Speciality = "College";
     }
     else{
       this.lb_OrderNo = "رقم الطلب";
@@ -69,7 +69,7 @@ export class RequestHeaderComponent implements OnInit {
       this.lb_Category = "التصنيف";
       this.top_class = "me-auto";
       this.lb_Program = "البرنامج";
-      this.lb_Speciality = "التخصص";
+      this.lb_Speciality = "الكلية";
     }
   }
 

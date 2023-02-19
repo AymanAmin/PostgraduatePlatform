@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ListSpecializationsComponent implements OnInit {
 
-  LangCode: any = "us-en"; 
+  LangCode: any = "us-en";
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
@@ -41,9 +41,9 @@ export class ListSpecializationsComponent implements OnInit {
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
     if (this.LangCode == "en-us" || this.LangCode == "us-en")
-      this.titleService.setTitle("List Specializations");
+      this.titleService.setTitle("List Colleges");
     else
-      this.titleService.setTitle("قائمة بالتخصصات");
+      this.titleService.setTitle("قائمة الكليات");
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class ListSpecializationsComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         this.SpeList = JSON.parse(jsonInfo);
       }
-    ) 
+    )
   }
 
   public loadJsFile(url: any) {
@@ -168,12 +168,12 @@ export class ListSpecializationsComponent implements OnInit {
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_Info = "Specialization Info";
-      this.lb_InfoD = "Please fill all details for the specialization";
+      this.lb_Info = "College Info";
+      this.lb_InfoD = "Please fill all details for the College";
       this.lb_EngName = "English Name";
       this.lb_ArName = "Arabic Name";
       this.lb_IsActive = "Is Active ?";
-      this.lb_IsActiveD = "If it is open, this means that the specialization's account works";
+      this.lb_IsActiveD = "If it is open, this means that the College's account works";
       this.lb_Save_Change = "Save Change";
       this.lb_Cancel = "Cancel";
       this.lb_Active = "Active";
@@ -186,19 +186,19 @@ export class ListSpecializationsComponent implements OnInit {
       this.lb_Loading = "Loading";
     }
     else {
-      this.lb_Info = "بيانات التخصص";
-      this.lb_InfoD = "الرجاء تعبئة جميع بيانات التخصص";
+      this.lb_Info = "بيانات الكلية";
+      this.lb_InfoD = "الرجاء تعبئة جميع بيانات الكلية";
       this.lb_EngName = "الإسم إنجليزي";
       this.lb_ArName = "الإسم عربي";
       this.lb_IsActive = "هل نشط ؟";
-      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه التخصص يعمل";
+      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه الكلية تعمل";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
       this.lb_Active = "نشط";
       this.lb_InActive = "غير نشط";
       this.lb_Status = "الحالة";
-      this.lb_Id = "رقم التخصص";
-      this.lb_Search = "قائمة بالتخصصات";
+      this.lb_Id = "رقم الكلية";
+      this.lb_Search = "قائمة بالكليات";
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "عملية";
       this.lb_Loading = "جاري التحميل";

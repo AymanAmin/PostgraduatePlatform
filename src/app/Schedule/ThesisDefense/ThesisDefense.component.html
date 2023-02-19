@@ -38,21 +38,20 @@
             </select>
           </div>
           <div class="col-12 col-md-4">
-            <label class="form-label">{{lb_Examiner}}</label>
-            <select class="form-control" name="Examiner" formControlName="Examiner_GN_Code">
-              <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.GN_Code}}" *ngFor="let item of UserList">{{(LangCode == "us-en" || LangCode ==
-                "en-us")?item.Name_En:item.Name_Ar}}</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-4">
             <label class="form-label">{{lb_RoomNo}}</label>
             <select class="form-control" name="RoomNo" formControlName="RoomNo_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
               <option value="{{item.key}}" *ngFor="let item of RoomList">{{item.value}}</option>
             </select>
           </div>
-          <div class="col-12 col-md-8">
+          <div class="col-12 col-md-12">
+            <label class="form-label">{{lb_Examiner}}</label>
+            <select class="form-control choices-multiple" name="Examiner"  name="choices-multiple-remove-button" formControlName="Examiner_GN_Code"
+              multiple>
+              <option value="{{item.GN_Code}}" *ngFor="let item of StaffList">{{LangCode =='en-us' || LangCode == 'us-en'?item.NameEn:item.NameAr}}</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-12">
             <label for="va_Title" class="form-label">{{lb_Title}}</label>
             <input type="text" class="form-control" formControlName="Title">
           </div>
@@ -131,7 +130,7 @@
                     </span>
                   </td>
                   <td class="align-middle text-center">
-                    <p class="text-secondary mb-0 text-sm">{{GetEmpName(item.Examiner_GN_Code)}}</p>
+                    <p class="text-secondary mb-0 text-sm" [innerHTML]="GetExaminerName(item.Examiner_GN_Code)"></p>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-dark text-xs">{{item.Date | date}}</span>

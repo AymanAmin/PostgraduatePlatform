@@ -30,6 +30,7 @@ export class ThesisDefenseComponent implements OnInit {
   //End Pangation and filter
 
   UserList:any;
+  StaffList:any;
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Thesis Defense Info");
@@ -48,6 +49,7 @@ export class ThesisDefenseComponent implements OnInit {
     this.getUserList();
     this.getStudentList();
     this.getSpecialtyList();
+    this.getStaffList();
     this.Id = this.route.snapshot.params['id'];
     if (this.Id)
         this.getThesisDefenseData(this.Id);
@@ -90,6 +92,18 @@ export class ThesisDefenseComponent implements OnInit {
     )
   }
 
+  getStaffList(){
+    this.StaffList = [];
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/StaffManagment/Get/AllStaffs.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StaffList = JSON.parse(jsonInfo);
+        this.loadJsFile("assets/js/Multi-choice.js");
+        //console.log(this.StaffList);
+      }
+    )
+  }
+
   getSpecialtyList(){
     this.http.get(environment.baseUrl + '/API/SystemAdmin/SpecializationManagment/Get/SpecializationList.ashx').subscribe(
       data => {
@@ -101,6 +115,7 @@ export class ThesisDefenseComponent implements OnInit {
   }
 
   UpdateRoute(Id:string){
+    //this.getStaffList();
     this.getThesisDefenseData(Id);
     this.router.navigate(['/Schedule/ThesisDefense/info/' + Id]);
   }
@@ -112,6 +127,21 @@ export class ThesisDefenseComponent implements OnInit {
     if (this.LangCode == "us-en" || this.LangCode == "en-us")
       name = user.Name_En;
     return name;
+  }
+
+  GetExaminerName(GN_Codes: any) {
+    var names = "";
+    var GN_Code_List = GN_Codes.split(",");
+    for (let i = 0; i < GN_Code_List.length; i++) {
+      var user = this.StaffList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code_List[i]);
+      if (user == undefined) continue;
+      if(i > 0)
+      names +="</br>";
+      names += user.NameAr;
+      if (this.LangCode == "us-en" || this.LangCode == "en-us")
+        names += user.NameEn;
+    }
+    return names;
   }
 
   GetStudentName(GN_Code: any) {
@@ -147,6 +177,12 @@ export class ThesisDefenseComponent implements OnInit {
 
   fillData(ThesisDefense: any) {
     //console.log(ThesisDefense);
+    var Examiner_List = ThesisDefense.Examiner_GN_Code.split(",");
+    var list = [];
+    for(let i = 0; i < Examiner_List.length; i ++){
+      list.push(Examiner_List[i]);
+      console.log(Examiner_List[i]);
+    }
     if (ThesisDefense)
       this.ThesisDefenseForm.patchValue({
         Week: ThesisDefense.Week,
@@ -155,7 +191,7 @@ export class ThesisDefenseComponent implements OnInit {
         Student_GN_Code: ThesisDefense.Student_GN_Code,
         Supervisor_GN_Code: ThesisDefense.Supervisor_GN_Code,
         Title: ThesisDefense.Title,
-        Examiner_GN_Code: ThesisDefense.Examiner_GN_Code,
+        Examiner_GN_Code: list,
         RoomNo_GN_Code: ThesisDefense.RoomNo_GN_Code,
       });
   }
@@ -238,6 +274,13 @@ export class ThesisDefenseComponent implements OnInit {
     return year+'-'+month+'-'+day;
   }
 
+  public loadJsFile(url: any) {
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(node);
+  }
+
   lb_Address:any;lb_AddressD:any;lb_Student:any;lb_Title:any;lb_Examiner:any;lb_Cancel:any;
   lb_week:any;lb_date:any;lb_Specialty:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
   lb_ListOfThesisDefense:any;lb_NumberOfList:any;lb_Search:any;lb_Edit:any;lb_Delete:any;lb_Entries:any;
@@ -250,7 +293,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_AddressD = "Procedures for scheduling a defense thesis after master's graduation";
       this.lb_week = "Defense Week";
       this.lb_date = "Defense Date";
-      this.lb_Specialty = "Specialty";
+      this.lb_Specialty = "Collage";
       this.lb_Student = "Student";
       this.lb_Supervisor = "Supervisor";
       this.lb_Title = "Title";
@@ -274,7 +317,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_AddressD = "إجراءات جدولة أطروحة المناقشة بعد تخرج الماجستير";
       this.lb_week = "الاسبوع";
       this.lb_date = "التاريخ";
-      this.lb_Specialty = "التخصص";
+      this.lb_Specialty = "الكلية";
       this.lb_Student = "الطالب";
       this.lb_Supervisor = "المشرف";
       this.lb_Title = "العنوان";

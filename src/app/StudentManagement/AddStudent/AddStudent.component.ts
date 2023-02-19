@@ -214,7 +214,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_Category = "Applicant Category";
       this.CategoryList = [{ "GN_Code": 1, "Name": "Are you an employee of Ministry Health ?" },{ "GN_Code": 2, "Name": "Are you an employee of Armed Forces Medical Servicee ?" },{ "GN_Code": 3, "Name": "Are employed else where or unemployed ?" }];
       this.lb_Program = "Program";
-      this.lb_Speciality = "Speciality";
+      this.lb_Speciality = "Collage";
       this.lb_Phone="Phone";
       this.lb_FristName_En = "Frist Name(Engilsh)";
       this.lb_FatherName_En = "Father Name(Engilsh)";
@@ -240,7 +240,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_Category = "نوع التقديم";
       this.CategoryList = [{ "GN_Code": 1, "Name": "هل انت موظف في وزارة الصحة ؟" },{ "GN_Code": 2, "Name": "هل انت موظف بالخدمات الطبية للقوات المسلحة ؟" },{ "GN_Code": 3, "Name": "هل انت موظف في قطاع اخر و غير موظف ؟" }];
       this.lb_Program = "البرنامج";
-      this.lb_Speciality = "التخصص";
+      this.lb_Speciality = "الكلية";
       this.lb_Phone="رقم الجوال";
       this.lb_FristName_En = "الأسم الأول (إنجليزي)";
       this.lb_FatherName_En = "إسم الأب (إنجليزي)";

@@ -10,6 +10,7 @@
         <div class="d-flex flex-column col-md-7">
           <h6 class="mb-0 text-sm">{{item.EmpName}}</h6>
           <p class="mb-0 text-sm">{{item.Note}}</p>
+          <a *ngIf="item.Attachment != null" target="_blank" href="{{item.Attachment}}" class="mb-0 text-sm"><i class="fa fa-paperclip mx-2" aria-hidden="true"></i>{{lb_Attachment_View}}</a>
         </div>
         <div class="btn btn-link px-3 text-center col-md-3">
           <span class="badge badge-success text-white" style="font-size: 10px;"
@@ -17,15 +18,21 @@
         </div>
       </div>
     </div>
-    <div class="d-flex mt-4" *ngIf="btnList.NextBtn != null || btnList.OptionBtn != null || btnList.PrevBtn != null">
-      <div class="flex-shrink-0">
-        <img alt="Image placeholder" class="avatar rounded-circle mx-3" src="../../../assets/img/Profile.jpg">
+    <div class="row d-flex mt-4" *ngIf="btnList.NextBtn != null || btnList.OptionBtn != null || btnList.PrevBtn != null">
+      <div class="col-md-12">
+        <div class="flex-grow-1 my-auto">
+          <form>
+            <textarea class="form-control" [(ngModel)]="Note" name="Note" placeholder="{{lb_Comment}}"
+              rows="3"></textarea>
+          </form>
+        </div>
       </div>
-      <div class="flex-grow-1 my-auto">
-        <form>
-          <textarea class="form-control" [(ngModel)]="Note" name="Note" placeholder="{{lb_Comment}}"
-            rows="3"></textarea>
-        </form>
+      <div class="col-md-6">
+        <label class="form-label">{{lb_Attachment}}</label>
+        <div class="input-group">
+          <input (change)="onFileChange($any($event).target.files,'Medical Excuse')" id="Attachment" name="Attachment"
+            class="form-control" type="file" required="required">
+        </div>
       </div>
     </div>
 
@@ -37,6 +44,5 @@
       <input type="button" *ngIf="btnList.PrevBtn != null" value="{{btnList.PrevBtn}}" (click)="UpdateStatus(-1)"
         class="btn bg-gradient-danger mb-0 mx-2">
     </div>
-
   </div>
 </div>

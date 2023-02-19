@@ -93,7 +93,7 @@ export class AttendanceComponent implements OnInit {
       this.lb_Category = "Category";
       this.top_class = "ms-auto"
       this.lb_Program = "Program";
-      this.lb_Speciality = "Speciality";
+      this.lb_Speciality = "College";
       this.StudentInfoData = "Student Info";
       this.DeviceType = "Device Type";
       this.EntryTime = "Entry Time";
@@ -110,7 +110,7 @@ export class AttendanceComponent implements OnInit {
       this.lb_Category = "التصنيف";
       this.top_class = "me-auto";
       this.lb_Program = "البرنامج";
-      this.lb_Speciality = "التخصص";
+      this.lb_Speciality = "الكلية";
       this.StudentInfoData = "بيانات الطالب";
       this.DeviceType = "نوع الجهاز";
       this.EntryTime = "وقت الدخول";

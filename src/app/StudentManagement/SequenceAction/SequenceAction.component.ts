@@ -15,7 +15,7 @@ export class SequenceActionComponent implements OnInit {
   Emp_GN_Code:any;
   @Input() FormCode:string = "";
   GN_Code: string = this.route.snapshot.params['id'];
-  SequenceList:any;btnList:any;
+  SequenceList:any;btnList:any;file:any;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
@@ -59,9 +59,10 @@ export class SequenceActionComponent implements OnInit {
       (response) => {
         if (response != "0") {
           this.Note = "";
+          this.uploadFile(response,'Sequence_File')
           document.getElementById("btnInfo")?.click();
           this.getSequenceList();
-          this. getBtnList();
+          this.getBtnList();
         }
         else
         {
@@ -75,8 +76,38 @@ export class SequenceActionComponent implements OnInit {
     )
   }
 
-  lb_Approve_btn: any; lb_Reject_btn: any; lb_Trackorder: any; top_class: any;
-  SequenceName:any;SequenceD:any;lb_Sequence:any;lb_Optional_btn:any;lb_Comment:any;
+  uploadFile(GN_Code:any,Type:any){
+    if(this.file == null && this.file == undefined)
+      return;
+
+    var formData: any = new FormData();
+    formData.append("GN_Code", GN_Code);
+    formData.append('file', this.file);
+    formData.append('Type', Type);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+
+    this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          var jsonInfo = JSON.stringify(response);
+          //let MainInfoData = JSON.parse(jsonInfo);
+          //console.log(MainInfoData);
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  onFileChange(files: FileList, Type: string) {
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      this.file = reader.result as string;
+    };
+  }
+
+  lb_Approve_btn: any; lb_Reject_btn: any; lb_Trackorder: any; top_class: any;lb_Attachment:any;
+  SequenceName:any;SequenceD:any;lb_Sequence:any;lb_Optional_btn:any;lb_Comment:any;lb_Attachment_View:any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -87,6 +118,8 @@ export class SequenceActionComponent implements OnInit {
       this.top_class = "ms-auto";
       this.lb_Optional_btn = "Optional";
       this.lb_Comment = "Write your comment";
+      this.lb_Attachment = "Attachment";
+      this.lb_Attachment_View = "View Attachment";
     }
     else{
       this.lb_Sequence = "تتبع التسلسل";
@@ -96,6 +129,8 @@ export class SequenceActionComponent implements OnInit {
       this.top_class = "me-auto";
       this.lb_Optional_btn = "إختياري";
       this.lb_Comment = "اكتب تعليقك هنا";
+      this.lb_Attachment = "مستند مرفق";
+      this.lb_Attachment_View = "عرض المرفق";
     }
   }
 

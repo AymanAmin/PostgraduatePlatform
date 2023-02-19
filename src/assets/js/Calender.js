@@ -7,9 +7,9 @@ function CallCalendar() {
     setTimeout(CallCalendar, 500);
   }
   let resultData = JSON.parse(jsonInfo);
-
   var ScheduleEvent = '[';
   for (i = 0; i < resultData.length; i++) {
+  //console.log("resultData[" + i +"] : " + formatDate(resultData[i].start));
     if (i != 0)
       ScheduleEvent += ',';
 
@@ -18,8 +18,8 @@ function CallCalendar() {
     ScheduleEvent += '{';
     ScheduleEvent += '"id": "' + link + '",';
     ScheduleEvent += '"title": "' + resultData[i].title + '",';
-    ScheduleEvent += '"start": "' + formatDate(resultData[i].start) + "T" + resultData[i].start.split("T")[1] + '",';
-    ScheduleEvent += '"end": "' + formatDate(resultData[i].end) + "T" + resultData[i].end.split("T")[1] + '",';
+    ScheduleEvent += '"start": "' + formatDate(resultData[i].start.split("T")[0]) + "T" + resultData[i].start.split("T")[1] + '",';
+    ScheduleEvent += '"end": "' + formatDate(resultData[i].end.split("T")[0]) + "T" + resultData[i].end.split("T")[1] + '",';
     ScheduleEvent += '"className": "' + resultData[i].className + '' + '"';
     ScheduleEvent += '}';
   }

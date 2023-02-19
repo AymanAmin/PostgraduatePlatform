@@ -200,7 +200,7 @@ export class AppComponent {
       this.StudentMangment = "Student Mangment";
       this.StudentRequest = "Requests";
       this.SystemAdmin = "System Admin";
-      this.Specializations = "Specializations";
+      this.Specializations = "Colleges";
       this.Departments = "Departments";
       this.Programs = "Programs";
       this.TypesLeave = "Types Leave";
@@ -266,7 +266,7 @@ export class AppComponent {
       this.StudentMangment = "إدارة الطلاب";
       this.SystemAdmin = "إدارة النظام";
       this.StudentRequest = "الطلبات";
-      this.Specializations = "التخصصات";
+      this.Specializations = "الكليات";
       this.Departments = "الاقسام";
       this.Programs = "البرامج";
       this.TypesLeave = "نوع المغادرة";

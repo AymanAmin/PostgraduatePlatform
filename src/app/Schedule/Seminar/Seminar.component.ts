@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SeminarComponent implements OnInit {
   LangCode:any = "us-en";
-  SeminarList:any;
+  SeminarList:any;StaffList:any;
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
@@ -42,13 +42,13 @@ export class SeminarComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.loadJsFile("assets/js/MyScript.js");
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
     this.getUserList();
     this.getStudentList();
+    this.getStaffList();
     this.Id = this.route.snapshot.params['id'];
       if (this.Id)
         this.getSeminarData(this.Id);
@@ -86,7 +86,18 @@ export class SeminarComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
-        console.log(this.StudentList);
+        //console.log(this.StudentList);
+      }
+    )
+  }
+
+  getStaffList(){
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/StaffManagment/Get/AllStaffs.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.StaffList = JSON.parse(jsonInfo);
+        this.loadJsFile("assets/js/Multi-choice.js");
+        //console.log(this.StaffList);
       }
     )
   }
@@ -113,8 +124,10 @@ export class SeminarComponent implements OnInit {
   }
 
   UpdateRoute(Id:string){
+    this.CreateForm();
     this.getSeminarData(Id);
     this.router.navigate(['/Schedule/Seminar/info/' + Id]);
+    //window.location.replace(environment.mainRoot+"#/Schedule/Seminar/info/" + Id);
   }
 
   getSeminarData(Id:any) {
@@ -127,8 +140,28 @@ export class SeminarComponent implements OnInit {
     )
   }
 
+  GetExaminerName(GN_Codes: any) {
+    var names = "";
+    var GN_Code_List = GN_Codes.split(",");
+    for (let i = 0; i < GN_Code_List.length; i++) {
+      var user = this.StaffList.find((x: { GN_Code: string; }) => x.GN_Code === GN_Code_List[i]);
+      if (user == undefined) continue;
+      if(i > 0)
+      names +="</br>";
+      names += user.NameAr;
+      if (this.LangCode == "us-en" || this.LangCode == "en-us")
+        names += user.NameEn;
+    }
+    return names;
+  }
+
   fillData(Seminar: any) {
-    console.log(Seminar);
+    //console.log(Seminar);
+    var Examiner_List = Seminar.Examiner_GN_Code.split(",");
+    var list = [];
+    for(let i = 0; i < Examiner_List.length; i ++){
+      list.push(Examiner_List[i]);
+    }
     if (Seminar)
       this.SeminarForm.patchValue({
         Week: Seminar.Week,
@@ -137,7 +170,7 @@ export class SeminarComponent implements OnInit {
         Student_GN_Code: Seminar.Student_GN_Code,
         Supervisor_GN_Code: Seminar.Supervisor_GN_Code,
         Title: Seminar.Title,
-        Examiner_GN_Code: Seminar.Examiner_GN_Code,
+        Examiner_GN_Code: list,
         RoomNoGN_Code: Seminar.RoomNoGN_Code,
       });
   }
@@ -217,6 +250,13 @@ export class SeminarComponent implements OnInit {
     var month = date[1];
     var day = date[2];
     return year+'-'+month+'-'+day;
+  }
+
+  public loadJsFile(url: any) {
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('body')[0].appendChild(node);
   }
 
   lb_Address:any;lb_AddressD:any;lb_Student:any;lb_Title:any;lb_Examiner:any;lb_Cancel:any;

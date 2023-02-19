@@ -179,7 +179,7 @@ export class StudentListComponent implements OnInit {
       this.lb_UserBreifD = "All requests come by registering students from an external registration screen, and student accounts are approved from this screen.";
       this.lb_AddStd = "Add Std";
       this.lb_Name = "Name";
-      this.lb_Specialization = "Specialization";
+      this.lb_Specialization = "Collage";
       this.lb_Status = "Status";
       this.lb_Email = "Email";
       this.lb_Date = "Last Login";
@@ -200,7 +200,7 @@ export class StudentListComponent implements OnInit {
       this.lb_UserBreifD = "جميع الطلبات تاتي عن طريق تسجيل الطلاب من شاشة تسجيل خارجية ، ويتم الموافقة علي حسابات الطلاب من هذه الشاشه.";
       this.lb_AddStd = "إضافة موظف";
       this.lb_Name = "الاسم";
-      this.lb_Specialization = "التخصص";
+      this.lb_Specialization = "الكلية";
       this.lb_Status = "الحالة";
       this.lb_Email = "الايميل";
       this.lb_Date = "تاريخ  الدخول";
