@@ -21,6 +21,7 @@ export class ThesisDefenseComponent implements OnInit {
 
   btn_spinner:any;
   btn_status:boolean = false;
+  IsUpdate:boolean = true;
 
   //Start Pangation and filter
   tatalRecords: any;
@@ -51,10 +52,13 @@ export class ThesisDefenseComponent implements OnInit {
     this.getSpecialtyList();
     this.getStaffList();
     this.Id = this.route.snapshot.params['id'];
-    if (this.Id)
+    if (this.Id){
         this.getThesisDefenseData(this.Id);
-      else
+    }
+      else{
         this.Id = "0";
+      }
+      this.Id == "0" ? this.IsUpdate = false:this.IsUpdate = true;
 
     this.LoadThesisDefenses();
   }
