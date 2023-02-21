@@ -32,6 +32,7 @@ export class StudentListComponent implements OnInit {
   //End Pangation and filter
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.LangCode = localStorage.getItem("LangCode");
     if (this.LangCode == "en-us" || this.LangCode == "us-en")
       this.titleService.setTitle("Student List");
     else

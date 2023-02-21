@@ -42,7 +42,7 @@ export class SequenceActionComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
-        console.log(this.btnList);
+        //console.log(this.btnList);
       }
     )
   }
@@ -61,8 +61,6 @@ export class SequenceActionComponent implements OnInit {
           this.Note = "";
           this.uploadFile(response,'Sequence_File')
           document.getElementById("btnInfo")?.click();
-          this.getSequenceList();
-          this.getBtnList();
         }
         else
         {
@@ -89,9 +87,10 @@ export class SequenceActionComponent implements OnInit {
     this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
-          var jsonInfo = JSON.stringify(response);
+          //var jsonInfo = JSON.stringify(response);
           //let MainInfoData = JSON.parse(jsonInfo);
-          //console.log(MainInfoData);
+          this.getSequenceList();
+          this.getBtnList();
         }
       },
       (error) => console.log(error)
@@ -118,7 +117,7 @@ export class SequenceActionComponent implements OnInit {
       this.top_class = "ms-auto";
       this.lb_Optional_btn = "Optional";
       this.lb_Comment = "Write your comment";
-      this.lb_Attachment = "Attachment";
+      //this.lb_Attachment = "Attachment";
       this.lb_Attachment_View = "View Attachment";
     }
     else{
@@ -129,7 +128,7 @@ export class SequenceActionComponent implements OnInit {
       this.top_class = "me-auto";
       this.lb_Optional_btn = "إختياري";
       this.lb_Comment = "اكتب تعليقك هنا";
-      this.lb_Attachment = "مستند مرفق";
+      //this.lb_Attachment = "مستند مرفق";
       this.lb_Attachment_View = "عرض المرفق";
     }
   }

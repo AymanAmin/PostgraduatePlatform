@@ -80,7 +80,7 @@ export class AttendanceComponent implements OnInit {
     this.ProfileImage = this.StudentInfo.ProfileImage;
   }
 
-  lb_OrderNo: any; lb_OrderType: any; lb_Category: any; top_class: any;
+  lb_OrderNo: any; lb_OrderType: any; lb_University: any; top_class: any;
   lb_Program: any; lb_Speciality: any; EntryTime: any; CheckoutTime: any; Device: any;
   StudentManagement: any; StudentAttendance: any; StudentInfoData: any; DeviceType: any;
   Previous: any; Next: any;
@@ -90,7 +90,7 @@ export class AttendanceComponent implements OnInit {
       this.StudentAttendance = "Student Attendance";
       this.lb_OrderNo = "Order No";
       this.lb_OrderType = "Order Type";
-      this.lb_Category = "Category";
+      this.lb_University = "University";
       this.top_class = "ms-auto"
       this.lb_Program = "Program";
       this.lb_Speciality = "College";
@@ -107,7 +107,7 @@ export class AttendanceComponent implements OnInit {
       this.StudentAttendance = "الحضور";
       this.lb_OrderNo = "رقم الطلب";
       this.lb_OrderType = "نوع الطلب";
-      this.lb_Category = "التصنيف";
+      this.lb_University = "الجامعة";
       this.top_class = "me-auto";
       this.lb_Program = "البرنامج";
       this.lb_Speciality = "الكلية";

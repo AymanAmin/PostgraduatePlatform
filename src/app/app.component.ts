@@ -230,9 +230,9 @@ export class AppComponent {
       this.StudentLeave="Leave Request";
       this.RecommendationLetter="Recommendation Letter";
       this.Reference_Certificates="Reference And Certificates";
-      this.PG_T1="PG_R1";
-      this.PG_T2="PG_R2";
-      this.PG_T3="PG_R3";
+      this.PG_T1="PG_R1 Model";
+      this.PG_T2="PG_R2 Model";
+      this.PG_T3="PG_R3 Model";
       this.Permission="Permission";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
       this.ViewSequence = "View Sequence";
@@ -296,9 +296,9 @@ export class AppComponent {
       this.StudentLeave="طلب إجازة";
       this.RecommendationLetter="طالب توصية";
       this.Reference_Certificates="المراجع والشهادات";
-      this.PG_T1="PG_R1";
-      this.PG_T2="PG_R2";
-      this.PG_T3="PG_R3";
+      this.PG_T1="نموذج PG_R1";
+      this.PG_T2="نموذج PG_R2";
+      this.PG_T3="نموذج PG_R3";
       this.Permission="الصلاحيات";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
       this.ViewSequence = "عرض التسلسل";
