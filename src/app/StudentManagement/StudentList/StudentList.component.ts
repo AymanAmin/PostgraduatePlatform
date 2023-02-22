@@ -43,7 +43,7 @@ export class StudentListComponent implements OnInit {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.UpdateButtonSpinner(false);
-    this.getStudentList();
+    this.getStudentList();//save change
   }
 
   getStudentList() {
