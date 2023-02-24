@@ -174,7 +174,7 @@ export class AppComponent {
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";textDir:any;
   Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;
   HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;
-  HeaderWarning:any;BodyMassageWarning:any;HeaderDanger:any;BodyMassageDanger:any;
+  HeaderWarning: any; BodyMassageWarning: any; HeaderDanger: any; BodyMassageDanger: any; Staff: any; LectureSchedule: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.textDir = "TextAlign";
@@ -240,6 +240,9 @@ export class AppComponent {
       this.CreateInvoice = "Create Invoice";
       this.InvoiceList = "Invoice List";
       this.StudentAttendance = "Attendance";
+      this.Staff = "Staff";
+      this.LectureSchedule = "Lectures Schedule";
+
     }
     else {
       this.textDir = "TextAlign";
@@ -305,7 +308,9 @@ export class AppComponent {
       this.Financial = "المالية ";
       this.CreateInvoice = "إنشاء فاتورة";
       this.InvoiceList = "قائمة الفواتير";
-      this.StudentAttendance = "الحضور"
+      this.StudentAttendance = "الحضور";
+      this.Staff = "المشرفين";
+      this.LectureSchedule = "جدول المحاضرات";
     }
   }
 

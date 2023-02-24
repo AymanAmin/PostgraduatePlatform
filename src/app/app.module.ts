@@ -56,6 +56,8 @@ import { InvoiceListComponent } from './Financial/InvoiceList/InvoiceList.compon
 import { ViewInvoiceComponent } from './Financial/ViewInvoice/ViewInvoice.component';
 import { AttendanceComponent } from './StudentManagement/Attendance/Attendance.component';
 import { AttendanceChartComponent } from './StudentManagement/AttendanceChart/AttendanceChart.component';
+import { ListStaffComponent } from './SystemAdmin/ListStaff/ListStaff.component';
+import { LectureScheduleComponent } from './SystemAdmin/LectureSchedule/LectureSchedule.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -76,6 +78,10 @@ const appRoutes: Routes = [
   { path: 'College/list/:id', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
   { path: 'Department/list', component: ListDepartmentComponent, data: { title: 'Departments' } },
   { path: 'Department/list/:id', component: ListDepartmentComponent, data: { title: 'Departments' } },
+  { path: 'Staff/list', component: ListStaffComponent, data: { title: 'Staffs' } },
+  { path: 'Staff/list/:id', component: ListStaffComponent, data: { title: 'Staffs' } },
+  { path: 'LectureSchedule/list', component: LectureScheduleComponent, data: { title: 'Lectures Schedule' } },
+  { path: 'LectureSchedule/list/:id', component: LectureScheduleComponent, data: { title: 'Lectures Schedule' } },
   { path: 'Program/list', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'Program/list/:id', component: ListProgramComponent, data: { title: 'Programs' } },
   { path: 'TypeLeave/list', component: TypeLeaveComponent, data: { title: 'Types Leave' } },
@@ -191,7 +197,9 @@ const routerOptions: ExtraOptions = {
     InvoiceListComponent,
     ViewInvoiceComponent,
     AttendanceComponent,
-    AttendanceChartComponent
+    AttendanceChartComponent,
+    ListStaffComponent,
+    LectureScheduleComponent,
    ],
   imports: [
     BrowserModule,

@@ -419,10 +419,10 @@
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3003')">
                 <a class="nav-link " routerLinkActive="active" routerLink="College/list">
-                  <span class="sidenav-mini-icon"> SP </span>
+                 <span class="sidenav-mini-icon"> SP </span>
                   <span class="sidenav-normal"> {{Specializations}} </span>
                 </a>
-              </li>
+              </li> 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3007')">
                 <a class="nav-link " routerLinkActive="active" routerLink="Department/list">
                   <span class="sidenav-mini-icon"> DP </span>
@@ -445,6 +445,18 @@
                 <a class="nav-link " routerLinkActive="active" routerLink="EmailTemplate/list">
                   <span class="sidenav-mini-icon"> ET </span>
                   <span class="sidenav-normal"> {{EmailTemplate}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3041')">
+                <a class="nav-link " routerLinkActive="active" routerLink="Staff/list">
+                  <span class="sidenav-mini-icon"> SF </span>
+                  <span class="sidenav-normal"> {{Staff}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3045')">
+                <a class="nav-link " routerLinkActive="active" routerLink="LectureSchedule/list">
+                  <span class="sidenav-mini-icon"> LS </span>
+                  <span class="sidenav-normal"> {{LectureSchedule}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3039')">
