@@ -59,14 +59,19 @@
   </div>
 
   <div class="card card-body mt-3">
+    <div class="input-group mt-3">
+      <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+      <input type="text" class="form-control search-input" placeholder="{{lb_TypeHere}}" [(ngModel)]="searchedKeyword">
+    </div>
     <div class="table-responsive">
       <table class="table align-items-center mb-0">
         <thead>
           <tr>
             <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{StudentInfoData}}</th>
-            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">{{Day}}</th>
-            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">{{IsLate}}</th>
-            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">{{DeviceType}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{Day}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{IsLate}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{DeviceType}}</th>
+            <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{lb_Date}}</th>
             <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{EntryTime}}</th>
             <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">{{CheckoutTime}}
             </th>
@@ -94,19 +99,21 @@
               <p class="text-s text-secondary mb-0">{{item.Day}}</p>
             </td>
             <td class="text-center">
-              <p class="text-s text-secondary mb-0">{{item.IsLate}}</p>
+                <span class="badge badge-dark" [ngStyle]="{'background-color': item.Color}" style="color:white;"><i class="fs-5 {{item.Icon}}" aria-hidden="true"></i></span>
             </td>
             <td class="text-center">
-              <p class="text-s font-weight-bold mb-0">{{Device}}</p>
-              <p class="text-s text-secondary mb-0">{{item.TS_MACHINE_TYPE}}</p>
+              <p class="text-s text-secondary font-weight-bold mb-0">{{item.TS_MACHINE_TYPE}}</p>
             </td>
             <td class="align-middle text-center text-sm">
-              <span class="badge badge-success" style="background-color:#00e396;color:white;">{{item.TS_TIMESTAMP_IN |
-                date:'medium'}}</span>
+              <span class="badge badge-dark" style="background-color:black;color:white;">{{item.TS_TIMESTAMP_Date}}</span>
             </td>
             <td class="align-middle text-center text-sm">
-              <span class="badge badge-danger" style="background-color:#008ffb;color:white;">{{item.TS_TIMESTAMP_OUT |
-                date:'medium'}}</span>
+              <span class="badge badge-success fs-6" style="background-color:transparent;color:#00e396;">{{item.TS_TIMESTAMP_IN |
+                date:'shortTime'}}</span>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <span class="badge badge-danger fs-6" style="background-color:transparent;color:#008ffb;">{{item.TS_TIMESTAMP_OUT |
+                date:'shortTime'}}</span>
             </td>
           </tr>
         </tbody>

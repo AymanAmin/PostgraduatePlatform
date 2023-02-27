@@ -84,7 +84,7 @@ export class AttendanceComponent implements OnInit {
   lb_OrderNo: any; lb_OrderType: any; lb_University: any; top_class: any;
   lb_Program: any; lb_Speciality: any; EntryTime: any; CheckoutTime: any; Device: any;
   StudentManagement: any; StudentAttendance: any; StudentInfoData: any; DeviceType: any;
-  Previous: any; Next: any;Day:any;Specialization:any;IsLate:any;
+  Previous: any; Next: any;Day:any;Specialization:any;IsLate:any;lb_Date:any;lb_TypeHere:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.StudentManagement = "Student Management";
@@ -104,7 +104,9 @@ export class AttendanceComponent implements OnInit {
       this.Next = "Next";
       this.Day = "Day";
       this.Specialization = "Specialization";
-      this.IsLate = "Delay Duration";
+      this.IsLate = "Status";
+      this.lb_Date = "Date";
+      this.lb_TypeHere = "Search here ...";
     }
     else {
       this.StudentManagement = "إدارة الطلاب";
@@ -124,7 +126,9 @@ export class AttendanceComponent implements OnInit {
       this.Next = "التالي";
       this.Day = "اليوم";
       this.Specialization = "التخصص";
-      this.IsLate = "مدة التاخير";
+      this.IsLate = "الحالة";
+      this.lb_Date = "التاريخ";
+      this.lb_TypeHere = "إبحث هنا ...";
     }
   }
 }
