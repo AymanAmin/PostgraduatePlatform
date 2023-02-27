@@ -51,10 +51,11 @@ export class AttendanceComponent implements OnInit {
   }
 
   getStudentAttendance(TS_USERID: any) {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/Attendees/Get/AllAttendees.ashx?TS_USERID=' + TS_USERID).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/Attendees/Get/AllAttendees.ashx?GN_Code=' + this.GN_Code + '&LangCode='+this.LangCode+'&TS_USERID=' + TS_USERID).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentAttendanceData = JSON.parse(jsonInfo);
+        console.log(this.StudentAttendanceData);
         this.CheckIn = 0;
         for (let i = 0; i < this.StudentAttendanceData.length; i++) {
           if (this.StudentAttendanceData[i].TS_TIMESTAMP_IN != null)
@@ -83,7 +84,7 @@ export class AttendanceComponent implements OnInit {
   lb_OrderNo: any; lb_OrderType: any; lb_University: any; top_class: any;
   lb_Program: any; lb_Speciality: any; EntryTime: any; CheckoutTime: any; Device: any;
   StudentManagement: any; StudentAttendance: any; StudentInfoData: any; DeviceType: any;
-  Previous: any; Next: any;
+  Previous: any; Next: any;Day:any;Specialization:any;IsLate:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.StudentManagement = "Student Management";
@@ -101,6 +102,9 @@ export class AttendanceComponent implements OnInit {
       this.Device = "Device";
       this.Previous = "Previous";
       this.Next = "Next";
+      this.Day = "Day";
+      this.Specialization = "Specialization";
+      this.IsLate = "Delay Duration";
     }
     else {
       this.StudentManagement = "إدارة الطلاب";
@@ -118,6 +122,9 @@ export class AttendanceComponent implements OnInit {
       this.Device = "جهاز";
       this.Previous = "السابق";
       this.Next = "التالي";
+      this.Day = "اليوم";
+      this.Specialization = "التخصص";
+      this.IsLate = "مدة التاخير";
     }
   }
 }

@@ -29,6 +29,7 @@ export class LectureScheduleComponent implements OnInit {
   lb_IsActive: any; lb_IsActiveD: any;
   lb_Save_Change: any; lb_Cancel: any;
   lb_From_Time: any; lb_To_Time: any;
+  lb_From_Date: any; lb_To_Date: any;
 
   lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;
   lb_Status: any; lb_Id: any; lb_Search: any; lb_SearchD: any; lb_Select: any;
@@ -78,6 +79,7 @@ export class LectureScheduleComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SpeList = JSON.parse(jsonInfo);
+        console.log(this.SpeList);
       }
     )
   }
@@ -127,6 +129,8 @@ export class LectureScheduleComponent implements OnInit {
       Name_En: new FormControl(null, [Validators.required]),
       From_Time: new FormControl(null, [Validators.required]),
       To_Time: new FormControl(null, [Validators.required]),
+      From_Date: new FormControl(null, [Validators.required]),
+      To_Date: new FormControl(null, [Validators.required]),
       Specialization_GN_Code: new FormControl(null, [Validators.required]),
       Level_Id: new FormControl(null, [Validators.required]),
       Day_Id: new FormControl(null, [Validators.required]),
@@ -152,6 +156,8 @@ export class LectureScheduleComponent implements OnInit {
         Name_En: MainInfoData.LectureNameEn,
         From_Time: MainInfoData.From_Time,
         To_Time: MainInfoData.To_Time,
+        From_Date: this.convertDate(MainInfoData.fromDate),
+        To_Date: this.convertDate(MainInfoData.toDate),
         Specialization_GN_Code: MainInfoData.Specialization_GN_Code,
         Level_Id: MainInfoData.Level_Id,
         Day_Id: MainInfoData.Day_Id,
@@ -168,6 +174,8 @@ export class LectureScheduleComponent implements OnInit {
     formData.append("Name_En", this.LectureScheduleForm.get('Name_En')?.value);
     formData.append("From_Time", this.LectureScheduleForm.get('From_Time')?.value);
     formData.append("To_Time", this.LectureScheduleForm.get('To_Time')?.value);
+    formData.append("From_Date", this.LectureScheduleForm.get('From_Date')?.value);
+    formData.append("To_Date", this.LectureScheduleForm.get('To_Date')?.value);
     formData.append("Specialization_GN_Code", this.LectureScheduleForm.get('Specialization_GN_Code')?.value);
     formData.append("Level_Id", this.LectureScheduleForm.get('Level_Id')?.value);
     formData.append("Day_Id", this.LectureScheduleForm.get('Day_Id')?.value);
@@ -214,6 +222,16 @@ export class LectureScheduleComponent implements OnInit {
     }
   }
 
+  convertDate(FullDate:any){
+    let dateTime = FullDate.split("T");
+    let date = dateTime[0].split("-");
+    var year = date[0];
+    var month = date[1];
+    var day = date[2];
+    return year+'-'+month+'-'+day;
+  }
+
+
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_Info = "Lectures Schedule Info";
@@ -221,6 +239,8 @@ export class LectureScheduleComponent implements OnInit {
       this.lb_EngName = "English Name";
       this.lb_ArName = "Arabic Name";
       this.lb_From_Time = "From Time";
+      this.lb_From_Date = "From Date";
+      this.lb_To_Date = "To Date";
       this.lb_To_Time = "To Time";
       this.lb_IsActive = "Is Active ?";
       this.lb_IsActiveD = "If it is open, this means that the Lecture Schedule's account works";
@@ -245,6 +265,8 @@ export class LectureScheduleComponent implements OnInit {
       this.lb_EngName = "الإسم إنجليزي";
       this.lb_ArName = "الإسم عربي";
       this.lb_From_Time = "الوقت من";
+      this.lb_From_Date = "من تاريخ";
+      this.lb_To_Date = "الي تاريخ";
       this.lb_To_Time = "الوقت الي";
       this.lb_IsActive = "هل نشط ؟";
       this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه المحاضرة تعمل";

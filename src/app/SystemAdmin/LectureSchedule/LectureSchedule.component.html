@@ -11,7 +11,7 @@
               <label class="form-label">{{lb_Specialization}}</label>
               <select class="form-control" name="choices-language" formControlName="Specialization_GN_Code">
                 <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-                <option value="{{oneSpe.Id}}" *ngFor="let oneSpe of SpecializationList">{{LangCode === "us-en" ? oneSpe.Name_En : oneSpe.Name_Ar}}</option>
+                <option value="{{oneSpe.GN_Code}}" *ngFor="let oneSpe of SpecializationList">{{LangCode === "us-en" ? oneSpe.Name_En : oneSpe.Name_Ar}}</option>
               </select>
             </div>
             <div class="col-12 col-md-4">
@@ -53,7 +53,15 @@
               <label for="va_To_Time" class="form-label">{{lb_To_Time}}</label>
               <input type="time" class="form-control" placeholder="{{lb_To_Time}}" formControlName="To_Time">
             </div>
-          
+            <div class="col-12 col-md-6">
+              <label for="va_From_Time" class="form-label">{{lb_From_Date}}</label>
+              <input type="date" class="form-control" placeholder="{{lb_From_Date}}" formControlName="From_Date">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="va_To_Time" class="form-label">{{lb_To_Date}}</label>
+              <input type="date" class="form-control" placeholder="{{lb_To_Date}}" formControlName="To_Date">
+            </div>
+
           </div>
           <div class="row mt-4">
             <div class="col-12 col-md-6">
@@ -65,7 +73,7 @@
                   {{lb_IsActiveD}}
                 </p>
                 <div class="form-check form-switch ms-1">
-                  
+
                 <input class="form-check-input" type="checkbox" (change)="ActiveValue($event.target)" formControlName="IsActive" value="true" />
                   <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
@@ -98,7 +106,7 @@
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Specialization}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Level}}</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Day}}</th> 
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Day}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_From_Time}}</th>
@@ -126,7 +134,7 @@
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm">{{LangCode === "us-en" ? oneSpe.OneLevel.NameEn :
-                        oneSpe.OneSpecialization.NameAr}}
+                        oneSpe.OneLevel.NameAr}}
                       </h6>
                     </div>
                   </div>
@@ -135,7 +143,7 @@
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm">{{LangCode === "us-en" ? oneSpe.OneDay.NameEn :
-                        oneSpe.OneSpecialization.NameAr}}
+                        oneSpe.OneDay.NameAr}}
                       </h6>
                     </div>
                   </div>
@@ -206,5 +214,5 @@
     </div>
   </div>
 
-  
+
 </div>
