@@ -37,7 +37,7 @@ export class ShowCalendarComponent implements OnInit {
   }
 
   GetAllScheduleData() {
-    this.http.get(environment.baseUrl + '/API/Schedule/Get/GetAllSchedule.ashx').subscribe(
+    this.http.get(environment.baseUrl + '/API/Schedule/Get/GetAllSchedule.ashx?LangCode='+ this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         this.CalendarData = jsonInfo;
@@ -48,16 +48,17 @@ export class ShowCalendarComponent implements OnInit {
 
   ThisColor: any;Seminar:any;Defanse:any;lb_GoTo:any;lb_Close:any;
   StudentName: any; StartDate: any; EndDate: any;EndTime:any; StartTime:any;
-  lb_Title: any;lb_DataInfo :any;
+  lb_Title: any;lb_DataInfo :any;Lecture:any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       //this.ThisColor = "This color represents";
       this.Seminar = "Seminar";
       this.Defanse = "Defanse";
+      this.Lecture = "Lecture";
       this.lb_GoTo = "Go To";
       this.lb_Close = "Close";
-      this.StudentName = "Student Name";
+      this.StudentName = "Name";
       this.StartDate = "Start Date";
       this.EndDate = "End Date";
       this.StartTime = "Start Time";
@@ -69,9 +70,10 @@ export class ShowCalendarComponent implements OnInit {
       //this.ThisColor = "هذا اللون يمثل";
       this.Seminar = "سمنار";
       this.Defanse = "مناقشة";
+      this.Lecture = "محاضرة";
       this.lb_GoTo = "ذهاب الي";
       this.lb_Close = "إغلاق";
-      this.StudentName = "إسم الطالب";
+      this.StudentName = "الإسم";
       this.StartDate = "من تاريخ";
       this.EndDate = "الي تاريخ";
       this.StartTime = "من الساعة";
