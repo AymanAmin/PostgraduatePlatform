@@ -238,7 +238,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_FormTitle="بيانات الطالب";
       this.lb_Details = "الرجاء تعبئة جميع بيانات الطالب";
       this.lb_Category = "نوع التقديم";
-      this.CategoryList = [{ "GN_Code": 1, "Name": "هل انت موظف في وزارة الصحة ؟" },{ "GN_Code": 2, "Name": "هل انت موظف بالخدمات الطبية للقوات المسلحة ؟" },{ "GN_Code": 3, "Name": "هل انت موظف في قطاع اخر و غير موظف ؟" }];
+      this.CategoryList = [{ "GN_Code": 1, "Name": "هل انت موظف في وزارة الصحة ؟" },{ "GN_Code": 2, "Name": "هل انت موظف بالخدمات الطبية للقوات المسلحة ؟" },{ "GN_Code": 3, "Name": "هل انت موظف في قطاع اخر أو غير موظف ؟" }];
       this.lb_Program = "البرنامج";
       this.lb_Speciality = "الكلية";
       this.lb_Phone="رقم الجوال";

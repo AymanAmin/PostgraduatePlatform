@@ -37,8 +37,10 @@ import { SeminarComponent } from './Schedule/Seminar/Seminar.component';
 import { PGTComponent } from './StudentManagement/PG-T/PG-T.component';
 import { StudentAttachmentComponent } from './StudentManagement/StudentAttachment/StudentAttachment.component';
 import { RegistrationStudentComponent } from './RegistrationStudent/RegistrationStudent.component';
+import { RecommendationLetterOutComponent} from './StudentManagement/RecommendationLetterOut/RecommendationLetterOut.component';
 import { ViewRequestComponent } from './OrdersManagement/ViewRequest/ViewRequest.component';
 import { ViewApplicationFormComponent } from './StudentManagement/ViewApplicationForm/ViewApplicationForm.component';
+import { ViewStudentInfoComponent } from './StudentManagement/ViewStudentInfo/ViewStudentInfo.component';
 import { ViewStudentLeaveComponent } from './StudentManagement/ViewStudentLeave/ViewStudentLeave.component';
 import { ViewPGT1Component } from './StudentManagement/ViewPGT1/ViewPGT1.component';
 import { ViewPGT2Component } from './StudentManagement/ViewPGT2/ViewPGT2.component';
@@ -98,6 +100,8 @@ const appRoutes: Routes = [
   { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Update Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
+  { path: 'StudentManagement/RecommendationLetter/:id', component: RecommendationLetterOutComponent, data: { title: 'Recommendation Lettert' } },
+  { path: 'StudentManagement/RecommendationLetter', component: RecommendationLetterOutComponent, data: { title: 'Recommendation Lettert' } },
 
   { path: 'ApplicationForm/add/:id', component: ApplicationFormComponent, data: { title: 'Application Form' } },
   { path: 'Leave/add/:id', component: LeaveComponent, data: { title: 'Leave' } },
@@ -121,6 +125,7 @@ const appRoutes: Routes = [
   { path: 'PGT3/add', component: PGTComponent, data: { title: 'PG-T3' } },
 
   { path: 'ApplicationForm/View/:id', component: ViewApplicationFormComponent, data: { title: 'View Application Form' } },
+  { path: 'StudentInfo/View/:id', component: ViewStudentInfoComponent, data: { title: 'View Student Info' } },
   { path: 'StudentLeave/View/:id', component: ViewStudentLeaveComponent, data: { title: 'View Student Leave' } },
   { path: 'ReferenceAndCertificates/View/:id', component: ViewReferenceAndCertificatesComponent, data: { title: 'View Reference And Certificates' } },
   { path: 'ClearanceForm/View/:id', component: ViewClearanceFormComponent, data: { title: 'View Clearance Form' } },
@@ -191,7 +196,9 @@ const routerOptions: ExtraOptions = {
     InvoiceListComponent,
     ViewInvoiceComponent,
     AttendanceComponent,
-    AttendanceChartComponent
+    AttendanceChartComponent,
+    ViewStudentInfoComponent,
+    RecommendationLetterOutComponent
    ],
   imports: [
     BrowserModule,

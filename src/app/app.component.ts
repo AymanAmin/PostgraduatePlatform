@@ -55,8 +55,7 @@ export class AppComponent {
 
   ngOnInit() {
     //Login Check
-    if(localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false")
-        this.router.navigate(['/Login/page']);
+
 
         // Get Username
         this.getProfileInfo();
@@ -81,10 +80,16 @@ export class AppComponent {
     //Page name in navbar
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
-        if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration") {
+        if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration" || val.snapshot.url[1].path === "RecommendationLetter") {
           this.IsAdminPage = false;
         }
-        else { this.IsAdminPage = true; }
+        else {
+          if(localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false"){
+            this.router.navigate(['/Login/page']);
+          }
+
+          this.IsAdminPage = true;
+        }
       }
     });
     this.LangCode = localStorage.getItem('LangCode');

@@ -8,9 +8,25 @@
             <div class="col-md-6">
               <label class="form-label">{{lb_FacultyMember}}</label>
               <div class="input-group">
-                <select class="form-control" name="choices-gender" id="choices-facultymember" formControlName="FacultyMember_GN_Code">
-                  <option value="{{facultymember.GN_Code}}" *ngFor="let facultymember of FacultyMemberList">{{LangCode === "us-en" ? facultymember.Name_En : facultymember.Name_Ar}}</option>
+                <select class="form-control" (change)="OnchangeOther($any($event).target.value)" name="choices-gender" id="choices-facultymember" formControlName="FacultyMember_GN_Code">
+                  <option value="{{facultymember.GN_Code}}" *ngFor="let facultymember of FacultyMemberList">{{LangCode === "us-en" ? facultymember.NameEn : facultymember.NameAr}}</option>
                 </select>
+              </div>
+            </div>
+
+            <div class="col-md-6" ></div>
+
+            <div class="col-md-6" id="OtherFacultyMemberName"  style="display: none;" >
+              <label class="form-label">{{lb_FacultyMember}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="Otherfacultymember_Name" formControlName="Otherfacultymember_Name" />
+              </div>
+            </div>
+
+            <div class="col-md-6" id="OtherFacultyMemberEmail"  style="display: none;">
+              <label class="form-label">{{lb_Email}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="OtherFacultyMemberEmail" formControlName="OtherFacultyMemberEmail" />
               </div>
             </div>
 

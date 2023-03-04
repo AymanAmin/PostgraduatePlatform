@@ -1,0 +1,17 @@
+hr {
+  margin: 0.5rem 0 !important
+}
+
+.card .card-body {
+  font-family: "Open Sans";
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+:lang(ar) .blockquote {
+  border-right: 3px solid #6c757d;
+  border-left: 0px solid #6c757d !important;
+}
+
+:lang(ar) .list-group {
+  padding-right: 0px !important;
+}
