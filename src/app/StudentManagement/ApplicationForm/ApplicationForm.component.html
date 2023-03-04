@@ -118,8 +118,8 @@
           <div class="col-md-4">
             <label class="form-label">{{lb_Level}}</label>
             <div class="input-group">
-              <select class="form-control" name="choices-Level" formControlName="Level_id">
-                <option value="{{Level.id}}" *ngFor="let Level of LevelList">{{LangCode === "us-en" ? Level.NameEn : Level.NameAr}}</option>
+              <select class="form-control" id="Level_Id" name="Level_Id" formControlName="Level_Id">
+                <option value="{{Level.Id}}" *ngFor="let Level of LevelList">{{LangCode === "us-en" ? Level.NameEn : Level.NameAr}}</option>
               </select>
             </div>
           </div>

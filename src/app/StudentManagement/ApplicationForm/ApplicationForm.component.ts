@@ -73,7 +73,7 @@ export class ApplicationFormComponent implements OnInit {
       ZipCode: new FormControl(null, [Validators.required]),
       Address: new FormControl(null, [Validators.required]),
       Student_No : new FormControl(null, [Validators.required]),
-
+      Level_Id: new FormControl(null),
     });
   }
 
@@ -108,7 +108,8 @@ export class ApplicationFormComponent implements OnInit {
       IssueDate:this.convertDate(ApplicationData.CardIssueDate) ,
       ExpiryDate: this.convertDate(ApplicationData.CardExpiryDate),
       CardNational_ID: ApplicationData.CardNational_ID,
-      Student_No: ApplicationData.Student_No
+      Student_No: ApplicationData.Student_No,
+      Level_Id: ApplicationData.Level_Id
       });
     }
   }
@@ -139,7 +140,7 @@ export class ApplicationFormComponent implements OnInit {
     formData.append("ExpiryDate", this.ApplicationForm.get('ExpiryDate')?.value);
     formData.append("CardNational_ID", this.ApplicationForm.get('CardNational_ID')?.value);
     formData.append("Student_No", this.ApplicationForm.get('Student_No')?.value);
-    formData.append("Level_id", this.ApplicationForm.get('Level_id')?.value);
+    formData.append("Level_Id", this.ApplicationForm.get('Level_Id')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("FormType", "ApplicationForm");
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentInfo/Set/StudentInfo.ashx', formData).subscribe(
@@ -271,7 +272,7 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   getLevel() {
-    this.http.get(environment.baseUrl + '/API/SystemAdmin/TypeLeaveManagment/Get/TypeLeaveList.ashx').subscribe(
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/LevelManagment/Get/LevelList.ashx').subscribe(
         data => {
           var jsonInfo = JSON.stringify(data);
           this.LevelList = JSON.parse(jsonInfo);
