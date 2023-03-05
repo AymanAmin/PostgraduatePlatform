@@ -172,7 +172,7 @@ export class AppComponent {
   Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
   Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";textDir:any;
-  Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;
+  Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;LectureAttendance:any;
   HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;
   HeaderWarning: any; BodyMassageWarning: any; HeaderDanger: any; BodyMassageDanger: any; Staff: any; LectureSchedule: any;
   GetLabelName(LangCode: any) {
@@ -242,6 +242,7 @@ export class AppComponent {
       this.StudentAttendance = "Attendance";
       this.Staff = "Staff";
       this.LectureSchedule = "Lectures Schedule";
+      this.LectureAttendance = "Lecture Attendance";
 
     }
     else {
@@ -311,6 +312,7 @@ export class AppComponent {
       this.StudentAttendance = "الحضور";
       this.Staff = "المشرفين";
       this.LectureSchedule = "جدول المحاضرات";
+      this.LectureAttendance = "حضور المحاضرات";
     }
   }
 

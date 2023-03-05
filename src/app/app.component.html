@@ -190,6 +190,14 @@
                 </a>
               </li>
 
+
+              <li class="nav-item " onclick="toggleSidenav()">
+                <a class="nav-link " routerLink="Student/Local_Attendance" routerLinkActive="active">
+                  <span class="sidenav-mini-icon"> LA </span>
+                  <span class="sidenav-normal"> {{LectureAttendance}} </span>
+                </a>
+              </li>
+
             </ul>
           </div>
         </li>
@@ -287,7 +295,7 @@
               </li>
               <li class="nav-item " onclick="toggleSidenav()">
                 <a class="nav-link " routerLink="Student/Attendance/{{Std_GN_Code}}" routerLinkActive="active">
-                  <span class="sidenav-mini-icon"> L </span>
+                  <span class="sidenav-mini-icon"> SA </span>
                   <span class="sidenav-normal"> {{StudentAttendance}} </span>
                 </a>
               </li>
@@ -422,7 +430,7 @@
                  <span class="sidenav-mini-icon"> SP </span>
                   <span class="sidenav-normal"> {{Specializations}} </span>
                 </a>
-              </li> 
+              </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3007')">
                 <a class="nav-link " routerLinkActive="active" routerLink="Department/list">
                   <span class="sidenav-mini-icon"> DP </span>

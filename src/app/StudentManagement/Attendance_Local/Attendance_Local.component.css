@@ -1,0 +1,4 @@
+.form-switch .form-check-input:checked {
+  border-color: #2cd32c !important;
+  background-color: #2cd32c !important;
+}

@@ -167,7 +167,7 @@ export class StudentListComponent implements OnInit {
     };
   }
 
-  lb_UsersActive: any; lb_UsersInActive: any;
+  lb_UsersActive: any; lb_UsersInActive: any;Type_here:any;
   lb_UserBreif: any; lb_UserBreifD: any; lb_AddStd: any;
   lb_Name: any; lb_Specialization: any; lb_Status: any; lb_Email: any;
   lb_Date: any; lb_Id: any; lb_Search: any; lb_SearchD: any; lb_Action: any;
@@ -193,6 +193,7 @@ export class StudentListComponent implements OnInit {
       this.lb_Upload_Student = "Upload Xlsx";
       this.lb_Save_Change = "Upload File";
       this.lb_Loading = "Uploading ....";
+      this.Type_here = "Type here...";
     }
     else {
       this.lb_UsersActive = "النشطين";
@@ -214,6 +215,7 @@ export class StudentListComponent implements OnInit {
       this.lb_Upload_Student = "تحميل ملف الاكسل";
       this.lb_Save_Change = "تحميل الملف";
       this.lb_Loading = "جاري التحميل ....";
+      this.Type_here = "إبحث هنا ...";
     }
   }
 

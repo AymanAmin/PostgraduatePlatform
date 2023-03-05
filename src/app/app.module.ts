@@ -58,6 +58,7 @@ import { AttendanceComponent } from './StudentManagement/Attendance/Attendance.c
 import { AttendanceChartComponent } from './StudentManagement/AttendanceChart/AttendanceChart.component';
 import { ListStaffComponent } from './SystemAdmin/ListStaff/ListStaff.component';
 import { LectureScheduleComponent } from './SystemAdmin/LectureSchedule/LectureSchedule.component';
+import { Attendance_LocalComponent } from './StudentManagement/Attendance_Local/Attendance_Local.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
   { path: 'Student/view', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Student/view/:id', component: StudentComponent, data: { title: 'Student' } },
   { path: 'Student/Attendance/:id', component: AttendanceComponent, data: { title: 'Student Attendance' } },
+  { path: 'Student/Local_Attendance', component: Attendance_LocalComponent, data: { title: 'Student Attendance' } },
   { path: 'Order/list', component: ListOrderComponent, data: { title: 'List Order' } },
   { path: 'Order/view/:id', component: ViewRequestComponent, data: { title: 'View Order' } },
   { path: 'College/list', component: ListSpecializationsComponent, data: { title: 'Specializations' } },
@@ -200,6 +202,7 @@ const routerOptions: ExtraOptions = {
     AttendanceChartComponent,
     ListStaffComponent,
     LectureScheduleComponent,
+    Attendance_LocalComponent
    ],
   imports: [
     BrowserModule,

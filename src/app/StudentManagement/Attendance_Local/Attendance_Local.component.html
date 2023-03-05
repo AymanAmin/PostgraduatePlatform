@@ -1,0 +1,120 @@
+<div class="container-fluid mb-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-body pt-0">
+        <div class="card card-body mt-4">
+          <div class="row">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">{{lb_Specialization}}</label>
+                  <select class="form-control" (change)="getLevel($event)">
+                    <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                    <option *ngFor="let item of SpecialityList" value="{{item.GN_Code}}">{{LangCode =='en-us' || LangCode == 'us-en'?item.Name_En:item.Name_Ar}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{lb_Level}}</label>
+                  <select class="form-control" (change)="getDays($event)">
+                    <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                    <option *ngFor="let item of LevelList" value="{{item.Id}}">{{LangCode =='en-us' || LangCode == 'us-en'?item.NameEn:item.NameAr}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{lb_Day}}</label>
+                  <select class="form-control" (change)="getLectures($event)">
+                    <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                    <option *ngFor="let item of DayList" value="{{item.Id}}">{{LangCode =='en-us' || LangCode == 'us-en'?item.NameEn:item.NameAr}}</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label class="form-label">{{lb_Lecture}}</label>
+                  <select class="form-control" (change)="GetDates($event)">
+                    <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                    <option *ngFor="let item of LectureList" value="{{item.GN_Code}}">{{LangCode =='en-us' || LangCode == 'us-en'?item.LectureNameEn:item.LectureNameAr}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">{{lb_Dates}}</label>
+                  <select class="form-control" (change)="getStudentList($event)">
+                    <option [ngValue]="null" selected> - {{lb_Select}} -</option>
+                    <option *ngFor="let item of DateList" value="{{item.date | date:'mediumDate'}}">{{item.date | date:'MM/dd/yyyy'}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-12">
+      <div class="card" style="margin-bottom: 15px;">
+        <h6 class="px-3 pt-3">{{lb_Search}}</h6>
+        <p class="text-sm px-3">{{lb_SearchD}}</p>
+        <div class="input-group px-3 pe-3 pb-3 pt-2">
+          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" placeholder="{{Type_here}}"  [(ngModel)]="searchedKeyword">
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Name}}</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">{{lb_Specialization}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Email}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let std of StudentList | filter: searchedKeyword |
+              paginate: {id: 'listing_pagination',
+              itemsPerPage: 10,
+              currentPage: page,
+              totalItems: tatalRecords
+          }">
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="{{std.Profile}}" class="avatar avatar-sm mx-3" alt="avatar image">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><a routerLink="../../ApplicationForm/View/{{std.Id}}" id="{{std.Id}}" >{{std.Name  | slice:0:20}}</a></h6>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p class="text-sm text-secondary mb-0">{{std.Specialization}}</p>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-secondary mb-0 text-sm">{{std.Email}}</p>
+                </td>
+                <td class="text-center">
+                  <span class="text-center"><div class="form-check form-switch ms-1">
+                    <input type="checkbox" class="form-check-input" value="true" (change)="TakeAttend(std.GN_Code,false,std.AttendId)" *ngIf="std.IsPresent" checked/>
+                    <input type="checkbox" class="form-check-input" value="false" (change)="TakeAttend(std.GN_Code,true,std.AttendId)" *ngIf="!std.IsPresent" /></div>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="row justify-content-md-center mb-2">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <!-- Pagination area -->
+            <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5" [directionLinks]="true" [autoHide]="true"
+              [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pages"
+              screenReaderPageLabel="Page" (pageChange)="page = $event"></pagination-controls>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
