@@ -60,6 +60,8 @@ export class RecommendationLetterComponent implements OnInit {
   CreateForm() {
     this.RecommendationLetter = new FormGroup({
       FacultyMember_GN_Code: new FormControl(null, [Validators.required]),
+      Otherfacultymember_Name: new FormControl(null),
+      OtherFacultyMemberEmail: new FormControl(null),
       BriefSummary: new FormControl(null),
     });
   }
@@ -81,6 +83,8 @@ export class RecommendationLetterComponent implements OnInit {
     if (RecommendationLetterData) {
       this.RecommendationLetter.patchValue({
       FacultyMember_GN_Code: RecommendationLetterData.FacultyMember_GN_Code,
+      Otherfacultymember_Name: RecommendationLetterData.Otherfacultymember_Name,
+      OtherFacultyMemberEmail: RecommendationLetterData.OtherFacultyMemberEmail,
       BriefSummary : RecommendationLetterData.Letter
       });
     }
@@ -96,6 +100,8 @@ export class RecommendationLetterComponent implements OnInit {
 
     formData.append("GN_Code", this.GN_Code);
     formData.append("Student_GN_Code", this.Student_GN_Code);
+    formData.append("Otherfacultymember_Name",this.RecommendationLetter.get('Otherfacultymember_Name')?.value);
+    formData.append("OtherFacultyMemberEmail",this.RecommendationLetter.get('OtherFacultyMemberEmail')?.value);
     formData.append("FacultyMember_GN_Code", this.RecommendationLetter.get('FacultyMember_GN_Code')?.value);
     formData.append("Letter", BriefSummary);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
@@ -150,22 +156,25 @@ export class RecommendationLetterComponent implements OnInit {
 
   // Label Data
       lb_FormTitle:any;lb_Details:any;lb_FacultyMember:any; FacultyMemberList:any;
-      lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+      lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;Other:any;lb_Email:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle="Recommendation Letter";
       this.lb_Details = "Please fill all details for the Recommendation Letter Requst";
       this.lb_FacultyMember="Faculty Member";
       this.lb_Letter="Letter";
+      this.Other="Other";
+      this.lb_Email="Email";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
-    }
-    else {
+    }else {
       this.lb_FormTitle="بيانات طلب توصية";
       this.lb_Details = "الرجاء تعبئة جميع بيانات طلب توصية";
       this.lb_FacultyMember="عضو هيئة التدريس";
       this.lb_Letter="الخطاب";
+      this.Other="أخرى";
+      this.lb_Email="البريد الإلكتروني";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
@@ -173,12 +182,25 @@ export class RecommendationLetterComponent implements OnInit {
   }
 
   getFacultyMember() {
-    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/StaffManagment/Get/AllStaffs.ashx').subscribe(
         data => {
           var jsonInfo = JSON.stringify(data);
           this.FacultyMemberList = JSON.parse(jsonInfo);
         }
       )
+  }
+
+  OnchangeOther(Othervalue:any){
+    const OtherFacultyMemberName = document.getElementById('OtherFacultyMemberName');
+    const OtherFacultyMemberEmail = document.getElementById('OtherFacultyMemberEmail');
+    if(Othervalue==1){
+      if(OtherFacultyMemberName!=null)OtherFacultyMemberName.style.display = 'block';
+      if(OtherFacultyMemberEmail!=null)OtherFacultyMemberEmail.style.display = 'block';
+    }else{
+      if(OtherFacultyMemberName!=null)OtherFacultyMemberName.style.display = 'none';
+      if(OtherFacultyMemberEmail!=null)OtherFacultyMemberEmail.style.display = 'none';
+    }
+
   }
 
 }

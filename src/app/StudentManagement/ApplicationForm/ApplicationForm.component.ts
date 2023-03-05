@@ -23,7 +23,7 @@ export class ApplicationFormComponent implements OnInit {
   ApplicationForm: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: any =localStorage.getItem("GN_Code"); //this.route.snapshot.params['id'];
-
+  LevelList:any;
   //BriefSummary_Data:any = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -39,6 +39,7 @@ export class ApplicationFormComponent implements OnInit {
     this.loadJsFile("assets/js/Multi-choice.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
+    this.getLevel();
     if(this.GN_Code)
       this.getData();
 
@@ -72,7 +73,7 @@ export class ApplicationFormComponent implements OnInit {
       ZipCode: new FormControl(null, [Validators.required]),
       Address: new FormControl(null, [Validators.required]),
       Student_No : new FormControl(null, [Validators.required]),
-
+      Level_Id: new FormControl(null),
     });
   }
 
@@ -107,7 +108,8 @@ export class ApplicationFormComponent implements OnInit {
       IssueDate:this.convertDate(ApplicationData.CardIssueDate) ,
       ExpiryDate: this.convertDate(ApplicationData.CardExpiryDate),
       CardNational_ID: ApplicationData.CardNational_ID,
-      Student_No: ApplicationData.Student_No
+      Student_No: ApplicationData.Student_No,
+      Level_Id: ApplicationData.Level_Id
       });
     }
   }
@@ -138,6 +140,7 @@ export class ApplicationFormComponent implements OnInit {
     formData.append("ExpiryDate", this.ApplicationForm.get('ExpiryDate')?.value);
     formData.append("CardNational_ID", this.ApplicationForm.get('CardNational_ID')?.value);
     formData.append("Student_No", this.ApplicationForm.get('Student_No')?.value);
+    formData.append("Level_Id", this.ApplicationForm.get('Level_Id')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("FormType", "ApplicationForm");
     this.http.post(environment.baseUrl + '/API/StudentManagment/StudentInfo/Set/StudentInfo.ashx', formData).subscribe(
@@ -205,7 +208,7 @@ export class ApplicationFormComponent implements OnInit {
   lb_FormTitle:any;lb_Details:any;lb_FristName_Ar:any;lb_FatherName_Ar:any;lb_GrandFatherName_Ar:any;lb_FamilyName_Ar:any;
   lb_DateOfBirth:any;lb_PlaceOfBirth:any;lb_NationalIdNo:any;lb_IssueDate:any;
   lb_ExpiryDate:any;lb_MaritalStatus:any;MaritalStatusList:any;lb_Address:any;
-  lb_University:any;lb_GPA:any;lb_HealthSpecialties:any;lb_EnglishTestScore:any;
+  lb_University:any;lb_GPA:any;lb_HealthSpecialties:any;lb_EnglishTestScore:any;lb_Level:any;
   lb_City:any;lb_ZipCode:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;lb_Student_No:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -232,6 +235,7 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_ZipCode="Zip Code";
       this.lb_Address="Address";
       this.lb_Student_No="Student No";
+      this.lb_Level="Academic level";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
@@ -260,10 +264,20 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_ZipCode="الرمز البريدي";
       this.lb_Address="العنوان";
       this.lb_Student_No="رقم الطالب";
+      this.lb_Level="المستوى الدراسي";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
     }
+  }
+
+  getLevel() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/LevelManagment/Get/LevelList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.LevelList = JSON.parse(jsonInfo);
+        }
+      )
   }
 
 }

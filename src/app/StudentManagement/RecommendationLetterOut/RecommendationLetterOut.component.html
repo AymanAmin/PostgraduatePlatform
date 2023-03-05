@@ -1,0 +1,75 @@
+<main class="main-content  mt-0">
+  <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../../../assets/img/curved-images/curved9.jpg');">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto">
+          <h1 class="text-white mb-2 mt-5">{{lb_Welcome}}</h1>
+          <p class="text-lead text-white">{{lb_WelcomeD}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mb-5">
+    <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+      <div class="col-xl-10 col-lg-10 col-md-10 mx-auto">
+        <div class="card z-index-0 mb-5">
+          <div class="card-header text-center">
+            <h5>{{lb_FormTitle}}</h5>
+          </div>
+          <div class="card-body  mb-4">
+            <form class="card card-body" [formGroup]="RecommendationLetter" (ngSubmit)="OnSubmit(false)">
+              <h6>{{lb_FormTitle}}</h6>
+              <p class="text-sm mb-0">{{lb_Details}}</p>
+              <hr class="horizontal dark my-3">
+
+
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <label class="form-label">{{lb_Attachment}}</label>
+                  <div class="input-group">
+                    <input (change)="onFileChange($any($event).target.files,'Recommendation Letter')" id="Medical_Excuse" name="Medical_Excuse" class="form-control" type="file" required="required">
+                  </div>
+                </div>
+                <div class="col-md-6" ></div>
+                <div class="col-md-12" >
+                  <label class="form-label">{{lb_Note}}</label>
+                  <textarea name="Note" formControlName="Note" class="form-control" type="text" required="required" >
+
+                  </textarea>
+                </div>
+
+                <div class="row">
+                  <div class="text-center col-sm-2 col-2"></div>
+                  <div class="text-center col-sm-8 col-8">
+                    <button type="submit" [disabled]="!(RecommendationLetter.valid && btn_status)" class="btn bg-gradient-info w-100 my-4 mb-2"><span [innerHTML]="btn_spinner"></span></button>
+                  </div>
+                  <div class="text-center col-sm-2 col-2"></div>
+                </div>
+                <div class="mb-2 position-relative text-center">
+                  <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+                    or
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="text-center col-sm-2 col-2"></div>
+                  <div class="text-center col-sm-8 col-8">
+                    <button type="button" class="btn bg-gradient-dark w-100 mt-2 mb-4" (click)="routerEvent()">{{lb_Signin}}</button>
+                  </div>
+                </div>
+                </div>
+            <div class="alert alert-danger" role="alert" *ngIf="IsShowMessageError">
+              <span class="alert-icon"><i class="ni ni-notification-70"></i>{{" "}}</span>
+              <span class="alert-text"><strong>{{lb_Error}}!</strong> {{lb_ErrorD}}!</span>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="IsShowMessageUpdate">
+              <span class="alert-icon"><i class="ni ni-like-2"></i>{{" "}}</span>
+              <span class="alert-text"><strong>{{lb_Success}}!</strong> {{lb_SuccessD}}!</span>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,163 @@
+<div class="container-fluid">
+  <div class="card-body pt-0">
+    <div class="card card-body mt-4">
+     <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle}} </h6>
+     <hr class="horizontal dark my-3">
+     <div class="row">
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_studentName_En}} </b>{{StudentName_En}} </p>
+      </div>
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_studentName_Ar}} </b> {{StudentName_Ar}}</p>
+      </div>
+
+      <hr class="horizontal dark">
+
+      <div class="col-4">
+        <p class="mb-1"><b>{{lb_Gender}} </b> {{Gender_Name}}</p>
+      </div>
+      <div class="col-4">
+        <p class="mb-1"><b>{{lb_Phone}} </b> {{Phone}}</p>
+      </div>
+      <div class="col-4">
+        <p class="mb-1"><b>{{lb_Email}} </b> {{Email}}</p>
+      </div>
+
+      <hr class="horizontal dark">
+
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_Citizenship}} </b> {{Nationality_Name}}</p>
+      </div>
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_Speciality}} </b>{{Speciality_Name}}</p>
+      </div>
+
+      <hr class="horizontal dark">
+
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_Category}} </b> {{ApplicantCategory_Name}}</p>
+      </div>
+      <div class="col-6">
+        <p class="mb-1"><b>{{lb_Program}} </b> {{Program_Name}}</p>
+      </div>
+
+    </div>
+
+    </div>
+
+    <div class="card card-body mt-4">
+      <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle2}} </h6>
+      <hr class="horizontal dark my-3">
+      <div class="row">
+
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_Student_No}} </b> {{Student_No}}</p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_University}} </b> {{University}}</p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_GPA}} </b>{{GPA}}</p>
+        </div>
+
+
+        <hr class="horizontal dark">
+
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_MaritalStatus}} </b> {{MaritalStatus}}</p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_DateOfBirth}} </b>{{DateOfBirth}} </p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_PlaceOfBirth}} </b> {{PlaceOfBirth}}</p>
+        </div>
+
+        <hr class="horizontal dark">
+
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_NationalIdNo}} </b> {{NationalNo}}</p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_IssueDate}} </b> {{IssueDate}}</p>
+        </div>
+        <div class="col-4">
+          <p class="mb-1"><b>{{lb_ExpiryDate}} </b> {{ExpiryDate}}</p>
+        </div>
+
+        <hr class="horizontal dark">
+
+        <div class="col-6">
+          <p class="mb-1"><b>{{lb_City}} </b>{{City}}</p>
+        </div>
+        <div class="col-6">
+          <p class="mb-1"><b>{{lb_EnglishTestScore}} </b> {{EnglishTestScore}}</p>
+        </div>
+
+        <hr class="horizontal dark">
+
+        <div class="col-12">
+          <p class="mb-1"><b>{{lb_HealthSpecialties}} </b> {{ExamTestKSAHealthSpecialties}}</p>
+        </div>
+
+        <hr class="horizontal dark">
+
+        <div class="d-flex">
+          <figure>
+            <blockquote class="blockquote">
+              <p class="px-2"><b>{{Address}}</b>, {{Address}}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer ps-3">
+              {{lb_ZipCode}} <cite title="Source Title">{{ZipCode}} </cite>
+            </figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="card card-body mt-4">
+      <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle3}} </h6>
+      <hr class="horizontal dark my-3">
+        <div class="input-group px-3 pe-3 pb-3 pt-2">
+          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true" ></i></span>
+          <input type="text" class="form-control" placeholder="Type here..."  [(ngModel)]="searchedKeyword" >
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Attachment_Name}}</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let StudentAttachment of StudentAttachmentList | filter: searchedKeyword |
+              paginate: {id: 'listing_pagination',
+              itemsPerPage: PerPage,
+              currentPage: page,
+              totalItems: tatalRecords
+             }">
+             <td>
+              <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 text-sm">{{StudentAttachment.Type}}</h6>
+                </div>
+              </div>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-sm">
+                <a href="{{StudentAttachment.FilePath}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </span>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+   </div>
+   </div>
+

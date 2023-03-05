@@ -26,7 +26,7 @@ export class LeaveComponent implements OnInit {
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
   Student_GN_Code : any =localStorage.getItem("GN_Code"); //this.route.snapshot.params['Student_GN_Code'];
-  BriefSummary_Data:any = "";
+  BriefSummary_Data:any = "";file:any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
@@ -121,6 +121,7 @@ export class LeaveComponent implements OnInit {
             localStorage.removeItem("IsLogin");
             window.location.reload();
           }
+          this.uploadFile(response,'Medical Excuse');
           this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
           this.router.navigateByUrl('/StudentLeave/View/'+ response);
@@ -161,35 +162,31 @@ export class LeaveComponent implements OnInit {
     });
   }
 
+  uploadFile(GN_Code:any,Type:any){
+    if(this.file == null && this.file == undefined)
+      return;
+
+    var formData: any = new FormData();
+    formData.append("GN_Code", GN_Code);
+    formData.append('file', this.file);
+    formData.append('Type', Type);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+
+    this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+
   onFileChange(files: FileList, Type: string) {
-    var GN_Code = localStorage.getItem("GN_Code");
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = () => {
-      var file = reader.result as string;
-      var formData: any = new FormData();
-      formData.append("GN_Code", GN_Code);
-      formData.append('file', file);
-      formData.append('Type', Type);
-      formData.append("CreatedBy", localStorage.getItem("GN_Code"));
-
-      this.http.post(environment.baseUrl + '/API/FileManagment/Set/UploadFile.ashx', formData).subscribe(
-        (response) => {
-          if (response != "0") {
-            this.IsShowMessageUpdate = true;
-            this.IsShowMessageError = false;
-            var jsonInfo = JSON.stringify(response);
-            let MainInfoData = JSON.parse(jsonInfo);
-            console.log(MainInfoData);
-            //this.ProfileImg = response;
-          }
-          else {
-            this.IsShowMessageUpdate = false;
-            this.IsShowMessageError = true;
-          }
-        },
-        (error) => console.log(error)
-      );
+      this.file = reader.result as string;
     };
   }
 

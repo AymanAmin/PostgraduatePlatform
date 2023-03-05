@@ -126,13 +126,13 @@ export class RegistrationStudentComponent implements OnInit {
             localStorage.removeItem("IsLogin");
             window.location.reload();
           }
-          this.IsShowMessageUpdate = true; 
+          this.IsShowMessageUpdate = true;
           this.IsShowMessageError = false;
           this.CreateForm();
           // localStorage.setItem("IsLogin", "true");
           // window.location.href = "http://localhost:4200/";
           // this.router.navigate([this.router.url.replace(this.GN_Code, '') + '/' + response]);
-          
+
           this.UpdateButtonSpinner(false);
           document.getElementById("btnSuccess")?.click();
         }

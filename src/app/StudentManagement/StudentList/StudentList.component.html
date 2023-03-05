@@ -112,7 +112,7 @@
                       <img src="{{std.Profile}}" class="avatar avatar-sm mx-3" alt="avatar image">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><a routerLink="../../ApplicationForm/View/{{std.Id}}" id="{{std.Id}}" >{{std.Name  | slice:0:20}}</a></h6>
+                      <h6 class="mb-0 text-sm"><a routerLink="../../StudentInfo/View/{{std.GN_Code}}" id="{{std.GN_Code}}" >{{std.Name  | slice:0:20}}</a></h6>
                     </div>
                   </div>
                 </td>
@@ -127,6 +127,9 @@
                 </td>
                 <td class="align-middle text-center text-sm">
                   <p class="text-secondary mb-0 text-sm">{{std.Email}}</p>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-sm"><a routerLink="../../StudentInfo/View/{{std.Id}}" id="{{std.Id}}" >#{{std.Id}}</a></span>
                 </td>
                 <td class="text-center">
                   <span class="text-center">

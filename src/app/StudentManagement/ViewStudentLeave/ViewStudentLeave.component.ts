@@ -19,6 +19,8 @@ export class ViewStudentLeaveComponent implements OnInit {
   DateTo: string = "";
   DateFrom: string = "";
   Reason: string = "";
+  AttachmentPatch: any;
+  AttachmentName: string = "";
 
   FormCode:string = "1001";
 
@@ -33,6 +35,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.getData();
+    this.getAttachment();
     this.GetLabelName(this.LangCode);
   }
 
@@ -42,6 +45,15 @@ export class ViewStudentLeaveComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
         this.GetOrderInfo(MainInfoData);
+      }
+    )
+  }
+
+  getAttachment() {
+    this.http.get(environment.baseUrl + '/API/FileManagment/Get/GetLastFile.ashx?GN_Code=' + this.GN_Code).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.AttachmentPatch = JSON.parse(jsonInfo);
       }
     )
   }
@@ -59,7 +71,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   lb_Program: any; lb_Category: any; lb_Speciality: any; lb_LeaveDetails: any; lb_TypeLeave: any;
   lb_DayOfLeave: any; lb_DateFrom: any; lb_DateTo: any; lb_Reason: any; lb_Sequence: any; lb_Approve: any;
-  lb_Reject: any; lb_Trackorder: any; top_class: any;
+  lb_Reject: any; lb_Trackorder: any; top_class: any; lb_Medical_Excuse: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -80,7 +92,8 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Approve = "Approve";
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
-      this.top_class = "ms-auto"
+      this.top_class = "ms-auto";
+      this.lb_Medical_Excuse="Medical Excuse: ";
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -101,6 +114,7 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Approve = "قبول";
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
+      this.lb_Medical_Excuse = "العذر الطبي: ";
       this.top_class = "me-auto"
     }
   }

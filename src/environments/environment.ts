@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   mainRoot: "http://localhost:4200/",
-  // mainRoot: "http://www.postgraduate.riyadh.edu.sa:8081/",
-  //baseUrl: "http://localhost:49854/",
-  baseUrl: "http://www.postgraduate.riyadh.edu.sa:8081/",
+  //mainRoot: "http://www.postgraduate.riyadh.edu.sa:8081/",
+  baseUrl: "http://localhost:49854/",
+ // baseUrl: "http://www.postgraduate.riyadh.edu.sa:8081/",
+
   Group_Permission :[]
 };
 
