@@ -128,12 +128,9 @@
                 <td class="align-middle text-center text-sm">
                   <p class="text-secondary mb-0 text-sm">{{std.Email}}</p>
                 </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-sm"><a routerLink="../../StudentInfo/View/{{std.Id}}" id="{{std.Id}}" >#{{std.Id}}</a></span>
-                </td>
                 <td class="text-center">
                   <span class="text-center">
-                  <a routerLink="../../Student/Attendance//{{std.GN_Code}}" id="{{std.GN_Code}}" >
+                  <a routerLink="../../Student/Attendance/{{std.GN_Code}}" id="{{std.GN_Code}}" >
                     <i class="fa fa-calendar fs-5 text-info" aria-hidden="true"></i></a>
                 </span>
                 <span (click)="UpdateStatus(true,std.GN_Code)" class="text-center mx-2">

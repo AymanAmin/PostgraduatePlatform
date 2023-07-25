@@ -12,6 +12,7 @@ export class SequenceTrackingComponent implements OnInit {
   LangCode: any = "us-en";
   Track:any;TrackDate:any;
   SequenceList:any;
+  SeqStatusList:any;
   @Input() FormCode:string = "";
 
   GN_Code: string = this.route.snapshot.params['id'];
@@ -21,6 +22,7 @@ export class SequenceTrackingComponent implements OnInit {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.getSequenceList();
+    this.getSeqStatus();
   }
 
   getSequenceList(){
@@ -33,14 +35,26 @@ export class SequenceTrackingComponent implements OnInit {
     )
   }
 
-  lb_Trackorder:any;
+
+  getSeqStatus() {
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ListOfNextApproval.ashx?FormCode='+this.FormCode+'&GN_Code='+ this.GN_Code+'&LangCode='+this.LangCode).subscribe(
+      data => {
+         var jsonInfo = JSON.stringify(data);
+        this.SeqStatusList = JSON.parse(jsonInfo);
+      }
+    )
+  }
+
+  lb_Trackorder:any;lb_NextApproval:any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_Trackorder = "Track Order";
+      this.lb_NextApproval = "Next approval";
     }
     else{
       this.lb_Trackorder = "تتبع الطلب";
+      this.lb_NextApproval = "الموافقات المتبقية";
     }
   }
 }

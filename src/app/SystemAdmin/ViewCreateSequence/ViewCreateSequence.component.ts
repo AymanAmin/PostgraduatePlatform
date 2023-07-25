@@ -28,7 +28,7 @@ export class ViewCreateSequenceComponent implements OnInit {
   tatalRecords: any;
   page: number = 1;
   searchedKeyword: string = "";
-  PerPage: number = 10;
+  PerPage: number = 100;
   SeqModelList: any;
   SeqStatusList: any;
   EmailTemplateList: any;
@@ -88,7 +88,7 @@ export class ViewCreateSequenceComponent implements OnInit {
   GetSeqModel(seqModelId: number) {
     var SeqModel = this.SeqModelList.find((x: { Id: number; }) => x.Id === seqModelId);
     if (SeqModel == undefined) return '';
-    return SeqModel; 
+    return SeqModel;
   }
 
   GetSeqStatus(seqStatusId: number) {

@@ -40,6 +40,7 @@ export class ViewStudentInfoComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
+        //console.log(MainInfoData);
         this.GetOrderInfo(MainInfoData);
       }
 
@@ -49,7 +50,7 @@ export class ViewStudentInfoComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentAttachmentList = JSON.parse(jsonInfo);
-        console.log(this.StudentAttachmentList );
+        //console.log(this.StudentAttachmentList );
       }
 
     )

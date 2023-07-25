@@ -26,6 +26,7 @@ export class AddEmployeeComponent implements OnInit {
   BriefSummary_Data:any = "";
   DepartmentList:any;ListDep:any;
   GroupPermissionList:any;
+  ProgramList: any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
@@ -38,6 +39,7 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
+    this.getProgram();
     this.getDepartmentList();
     this.getGroupPermissionList();
     this.CreateForm();
@@ -73,6 +75,7 @@ export class AddEmployeeComponent implements OnInit {
       BriefSummary: new FormControl(null),
       GroupId: new FormControl(null, [Validators.required]),
       Department: new FormControl(null, [Validators.required]),
+      Program_GN_Code: new FormControl(null, [Validators.required]),
       IsActive: new FormControl(false)
     });
   }
@@ -96,6 +99,7 @@ export class AddEmployeeComponent implements OnInit {
     }
 
     if (EmployeeData) {
+      console.log(EmployeeData);
       this.IsActive = EmployeeData.Credential.IsActive;
       this.EmployeeForm.patchValue({
         Name_Ar: EmployeeData.Name_Ar,
@@ -110,6 +114,7 @@ export class AddEmployeeComponent implements OnInit {
         PasswordConfirm: EmployeeData.Credential.Password,
         BriefSummary: EmployeeData.BriefSummary,
         Department: list,
+        Program_GN_Code: EmployeeData.Program_GN_Code,
         GroupId: EmployeeData.GroupId,
         IsActive: EmployeeData.Credential.IsActive
       });
@@ -142,6 +147,7 @@ export class AddEmployeeComponent implements OnInit {
     formData.append("BriefSummary", BriefSummary);
     formData.append("UILanguage", this.EmployeeForm.get('UILanguage')?.value);
     formData.append("Department", this.EmployeeForm.get('Department')?.value);
+    formData.append("Program_GN_Code", this.EmployeeForm.get('Program_GN_Code')?.value);
     formData.append("GroupId", this.EmployeeForm.get('GroupId')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("Type", 1);
@@ -208,11 +214,20 @@ export class AddEmployeeComponent implements OnInit {
     )
   }
 
+  getProgram() {
+    this.http.get(environment.baseUrl + '/API/SystemAdmin/ProgramManagment/Get/ProgramList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ProgramList = JSON.parse(jsonInfo);
+        }
+      )
+  }
+
 
   // Label Data
   lb_EmpInfo: any; lb_EmpDetails: any; lb_EmpName: any; lb_EmpNameEn: any; lb_EmpPhone: any;
-  lb_EmpEmail: any; lb_EmpGender: any; lb_EmpSection: any; lb_JobTitle: any;
-  lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;
+  lb_EmpEmail: any; lb_EmpGender: any; lb_EmpSection: any; lb_JobTitle: any;lb_Program:any;
+  lb_EmpIsActive: any; lb_EmpIsActiveD: any; lb_EmpBrief: any; lb_EmpBriefD: any;lb_All_Program:any;
   lb_EmpUserName: any; lb_EmpPassword: any; lb_EmpCPassword: any; lb_Language: any;
   lb_Save_Change: any; lb_Cancel: any;Erorr_username: any;lb_Loading:any;lb_Select:any;
   GenderList: any;lb_EmpPermission:any;
@@ -242,6 +257,8 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Loading = "Loading";
       this.lb_Select = "- Select - ";
       this.lb_EmpPermission = "Group Permissions";
+      this.lb_Program = "Program";
+      this.lb_All_Program = "All Program";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
     }
     else {
@@ -267,6 +284,8 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_Loading = "جاري التحميل";
       this.lb_Select = " - اختر - ";
       this.lb_EmpPermission = "مجموعة الصلاحيات";
+      this.lb_Program = "البرنامج";
+      this.lb_All_Program = "كل البرامج";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
     }
   }

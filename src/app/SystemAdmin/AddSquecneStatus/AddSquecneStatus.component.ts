@@ -21,7 +21,7 @@ export class AddSquecneStatusComponent implements OnInit {
   btn_status: boolean = false;
 
   SequenceStatusForm: FormGroup = new FormGroup({});
-  IsReady: boolean = false; IsActive: boolean = false;
+  IsReady: boolean = false; IsActive: boolean = false;IsEnd: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
 
   // Label Data
@@ -30,7 +30,7 @@ export class AddSquecneStatusComponent implements OnInit {
   lb_Save_Change: any; lb_Cancel: any;
   lb_Color: any; lb_Icon: any;
 
-  lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;
+  lb_Active: any; lb_InActive: any; lb_Action: any; lb_Loading: any;lb_IsEnd:any;
   lb_Status: any; lb_Id: any; lb_Search: any; lb_SearchD: any;
 
   SpeList: any;
@@ -95,6 +95,10 @@ export class AddSquecneStatusComponent implements OnInit {
     this.IsActive = IsActive.checked;
   }
 
+  EndValue(IsEnd: any) {
+    this.IsEnd = IsEnd.checked;
+  }
+
   CreateForm() {
     this.SequenceStatusForm = new FormGroup({
       Name_Ar: new FormControl('', [Validators.required]),
@@ -103,6 +107,7 @@ export class AddSquecneStatusComponent implements OnInit {
       Caption_En: new FormControl(null, [Validators.required]),
       ColorCode: new FormControl(''),
       IconCode: new FormControl(null, [Validators.required]),
+      IsEnd: new FormControl(false),
       IsActive: new FormControl(false)
     });
   }
@@ -127,6 +132,7 @@ export class AddSquecneStatusComponent implements OnInit {
         Caption_En: MainInfoData.Caption_En,
         ColorCode: MainInfoData.ColorCode,
         IconCode: MainInfoData.IconCode,
+        IsEnd: MainInfoData.IsEnd,
         IsActive: MainInfoData.IsActive
       });
     }
@@ -143,6 +149,7 @@ export class AddSquecneStatusComponent implements OnInit {
     formData.append("ColorCode", this.SequenceStatusForm.get('ColorCode')?.value);
     formData.append("IconCode", this.SequenceStatusForm.get('IconCode')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+    formData.append("IsEnd", this.IsEnd);
     formData.append("IsActive", this.IsActive);
     formData.append("IsDeleted", IsDeleted);
 
@@ -207,6 +214,7 @@ export class AddSquecneStatusComponent implements OnInit {
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Action";
       this.lb_Loading = "Loading";
+      this.lb_IsEnd = "Is End Status";
     }
     else {
       this.lb_Info = "بيانات  حالات التسلسلات";
@@ -229,6 +237,7 @@ export class AddSquecneStatusComponent implements OnInit {
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "عملية";
       this.lb_Loading = "جاري التحميل";
+      this.lb_IsEnd = "هل تعتبر نهاية";
     }
   }
 

@@ -38,19 +38,25 @@
                 <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_RequestCertificate)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR1)">
+            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_Clearnce)">
+              <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                <h6 class="text-primary text-gradient mb-0">{{lb_Clearnce}}</h6>
+                <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_Clearnce)}}</h4>
+              </div>
+            </div>
+            <div class="col-lg-2 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR1)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR1}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR1)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR2)">
+            <div class="col-lg-2 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR2)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR2}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR2)}}</h4>
               </div>
             </div>
-            <div class="col-lg-3 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR3)">
+            <div class="col-lg-2 col-6 text-center mb-3 clickable" (click)="SearchForKeyword(lb_ModelPGR3)">
               <div class="border-dashed border-1 border-secondary border-radius-md py-3">
                 <h6 class="text-primary text-gradient mb-0">{{lb_ModelPGR3}}</h6>
                 <h4 class="font-weight-bolder"><span class="small"> </span>{{GetRequestNo(lb_ModelPGR3)}}</h4>
@@ -70,11 +76,17 @@
             <table class="table align-items-center mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_StudentInfo}}</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">{{lb_OrderType}}</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Date}}</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Status}}</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_OrderID}}</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_StudentInfo}}
+                  </th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">{{lb_OrderType}}
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    {{lb_Date}}</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    {{lb_Status}}</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                    {{lb_Action}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,6 +96,12 @@
                 currentPage: page,
                 totalItems: tatalRecords
             }">
+                  <td class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">
+                      <span class="mb-0 text-sm">{{record.RequestID}}
+                    </span>
+                    </p>
+                  </td>
                   <td>
                     <div class="d-flex px-3 py-1">
                       <div>
@@ -91,7 +109,8 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">{{record.Student_Name}}</h6>
-                        <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">{{lb_Email}}</span> {{record.Student_Email}}</p>
+                        <p class="text-sm font-weight-bold text-secondary mb-0"><span
+                            class="text-success">{{lb_Email}}</span> {{record.Student_Email}}</p>
                       </div>
                     </div>
                   </td>
@@ -100,17 +119,22 @@
                   </td>
                   <td class="align-middle text-end">
                     <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                      <p class="text-sm font-weight-bold mb-0"><span class="badge badge-dark text-white">{{record.Request_Date}}</span></p>
+                      <p class="text-sm font-weight-bold mb-0"><span
+                          class="badge badge-dark text-white">{{record.Request_Date | date:'shortDate'}}</span></p>
                     </div>
                   </td>
                   <td class="align-middle text-center text-sm">
                     <p class="text-sm font-weight-bold mb-0">
-                      <i style="font-size: 14px;" [ngStyle]="{'color':record.Request_StatusColor}" class="{{record.Request_StatusIcon}} mx-2" aria-hidden="true"></i>
-                      <span [ngStyle]="{'color':record.Request_StatusColor}">{{record.Request_StatusName}}</span></p>
+                      <i style="font-size: 14px;" [ngStyle]="{'color':record.Request_StatusColor}"
+                        class="{{record.Request_StatusIcon}} mx-2" aria-hidden="true"></i>
+                      <span [ngStyle]="{'color':record.Request_StatusColor}">{{record.Request_StatusName}}</span>
+                    </p>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="btn btn-icon-only mb-0 mx-2 btn-sm align-items-center justify-content-center" style="font-size: x-small;">
-                      <a routerLink="{{record.Request_URL}}"><i style="font-size: 14px;" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <span class="btn btn-icon-only mb-0 mx-2 btn-sm align-items-center justify-content-center"
+                      style="font-size: x-small;">
+                      <a routerLink="{{record.Request_URL}}"><i style="font-size: 14px;" class="fa fa-eye"
+                          aria-hidden="true"></i></a>
                     </span>
                   </td>
                 </tr>
@@ -121,9 +145,10 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
               <!-- Pagination area -->
-              <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5" [directionLinks]="true" [autoHide]="true"
-                [responsive]="true" previousLabel="{{lb_Previous}}" nextLabel="{{lb_Next}}" screenReaderPaginationLabel="Pages"
-                screenReaderPageLabel="Page" (pageChange)="page = $event"></pagination-controls>
+              <pagination-controls class="dataTable-pagination" id='listing_pagination' [maxSize]="5"
+                [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="{{lb_Previous}}"
+                nextLabel="{{lb_Next}}" screenReaderPaginationLabel="Pages" screenReaderPageLabel="Page"
+                (pageChange)="page = $event"></pagination-controls>
             </div>
             <div class="col-lg-4"></div>
           </div>

@@ -18,6 +18,7 @@ export class ThesisDefenseComponent implements OnInit {
   IsShowMessageError: boolean = false;
   ThesisDefenseForm:FormGroup = new FormGroup({});
   Id: string = this.route.snapshot.params['id'];
+  URL_Root:string = "";
 
   btn_spinner:any;
   btn_status:boolean = false;
@@ -30,7 +31,7 @@ export class ThesisDefenseComponent implements OnInit {
   PerPage:number = 5;
   //End Pangation and filter
 
-  UserList:any;
+  UserList:any;ActiveStudents:any;
   StaffList:any;
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -40,6 +41,8 @@ export class ThesisDefenseComponent implements OnInit {
       this.titleService.setTitle("Thesis Defense Info");
       else
       this.titleService.setTitle("بيانات المناقشة");
+
+      this.URL_Root = this.router.url;
   }
 
   ngOnInit() {
@@ -59,6 +62,9 @@ export class ThesisDefenseComponent implements OnInit {
         this.Id = "0";
       }
       this.Id == "0" ? this.IsUpdate = false:this.IsUpdate = true;
+
+      this.URL_Root != "/Schedule/ThesisDefense/info" ? this.IsUpdate = true:this.IsUpdate = false;
+      console.log(this.URL_Root);
 
     this.LoadThesisDefenses();
   }
@@ -91,6 +97,7 @@ export class ThesisDefenseComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
+        this.ActiveStudents = this.StudentList.filter((x: { IsActive  : boolean; }) => x.IsActive == true);
         //console.log(this.StudentList);
       }
     )
@@ -121,7 +128,7 @@ export class ThesisDefenseComponent implements OnInit {
   UpdateRoute(Id:string){
     //this.getStaffList();
     this.getThesisDefenseData(Id);
-    this.router.navigate(['/Schedule/ThesisDefense/info/' + Id]);
+    this.router.navigate(['/Schedule/ThesisDefense/update/' + Id]);
   }
 
   GetEmpName(GN_Code: any) {
@@ -239,6 +246,7 @@ export class ThesisDefenseComponent implements OnInit {
           this.UpdateButtonSpinner(false);
           this.LoadThesisDefenses();
           document.getElementById("btnInfo")?.click();
+          this.router.navigate(['/Schedule/ThesisDefense/update/' + response]);
         }
         else {
           this.IsShowMessageUpdate = false;
@@ -285,7 +293,7 @@ export class ThesisDefenseComponent implements OnInit {
     document.getElementsByTagName('body')[0].appendChild(node);
   }
 
-  lb_Address:any;lb_AddressD:any;lb_Student:any;lb_Title:any;lb_Examiner:any;lb_Cancel:any;
+  lb_Address:any;lb_AddressD:any;lb_Student:any;lb_Title:any;lb_Examiner:any;lb_Cancel:any;lb_New:any;
   lb_week:any;lb_date:any;lb_Specialty:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
   lb_ListOfThesisDefense:any;lb_NumberOfList:any;lb_Search:any;lb_Edit:any;lb_Delete:any;lb_Entries:any;
 
@@ -303,7 +311,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Title = "Title";
       this.lb_Examiner = "Examiner";
       this.lb_RoomNo = "Room No";
-      this.lb_Cancel = "Cancel";
+      this.lb_Cancel = "Back";
       this.lb_Save_Change = "Save";
       this.lb_ListOfThesisDefense = "List Of Thesis Defense";
       this.lb_NumberOfList = "Show";
@@ -313,6 +321,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Delete = "Delete";
       this.lb_Loading = "Loading";
       this.lb_Select = "Select";
+      this.lb_New = "New";
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
     }
     else
@@ -327,7 +336,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Title = "العنوان";
       this.lb_Examiner = "الممتحن";
       this.lb_RoomNo = "رقم القاعة";
-      this.lb_Cancel = "إلغاء";
+      this.lb_Cancel = "رجوع";
       this.lb_Save_Change = "حفظ";
       this.lb_ListOfThesisDefense = "قائمة مناقشات البحث";
       this.lb_NumberOfList = "سطر";
@@ -337,6 +346,7 @@ export class ThesisDefenseComponent implements OnInit {
       this.lb_Delete = "حذف";
       this.lb_Loading = "جاري المعالجة";
       this.lb_Select = "اختر";
+      this.lb_New = "جديد";
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
     }
   }

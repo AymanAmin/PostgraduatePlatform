@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="card-body pt-0">
+    <div class="card card-body mt-4">
+      <div class="row">
+        <div class="col-md-12 text-center" *ngIf="NewRequest">
+          <input type="button" class="btn btn-success" [value]="lb_CreateRequest" style="width: 250px;" (click)="CreateRequest(0)" />
+        </div>
+        <div class="col-md-12 text-center pb-2" *ngIf="ActiveUpdate">
+          <input type="text" class="form-control" [(ngModel)]="Note">
+        </div>
+        <div style="display: none;" class="col-md-12 pt-3" *ngIf="ActiveUpdate">
+          <div class="input-group">
+            <input (change)="onFileChange($any($event).target.files,'Sequence_File')" id="Attachment" name="Attachment"
+              class="form-control" type="file" required="required">
+          </div>
+        </div>
+        <div class="col-md-12 text-center  pt-3" *ngIf="ActiveUpdate">
+          <input type="button" class="btn btn-info" [value]="lb_UpdateRequest" style="width: 250px;" (click)="CreateRequest(1)" />
+        </div>
+        <div class="col-md-12 text-center" *ngIf="!NewRequest && !ActiveUpdate">
+          <h5 style="color: gray; padding: 15px;">{{lb_Message}} <a routerLink="../../Order/list">({{lb_ViewRequest}})</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

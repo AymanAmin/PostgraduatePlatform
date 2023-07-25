@@ -103,7 +103,8 @@ export class Attendance_LocalComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
-         console.log(this.StudentList);
+        this.StudentList = this.StudentList.filter((x: { IsActive  : boolean; }) => x.IsActive == true);
+        //console.log(this.StudentList);
       }
     )
   }
@@ -124,7 +125,8 @@ export class Attendance_LocalComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
-         console.log(this.StudentList);
+        this.StudentList = this.StudentList.filter((x: { IsActive  : boolean; }) => x.IsActive == true);
+        //console.log(this.StudentList);
       }
     )
   }

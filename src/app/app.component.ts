@@ -178,7 +178,7 @@ export class AppComponent {
   Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
   SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";textDir:any;
   Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;LectureAttendance:any;
-  HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;
+  HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;Clearnce:any;
   HeaderWarning: any; BodyMassageWarning: any; HeaderDanger: any; BodyMassageDanger: any; Staff: any; LectureSchedule: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -220,8 +220,8 @@ export class AppComponent {
       this.Students = "Students";
       this.Orders = "Orders";
       this.ShowSchedule = "Show Schedule";
-      this.AddSeminar = "Add Seminar";
-      this.AddDefense = "Add Defense";
+      this.AddSeminar = "Seminars";
+      this.AddDefense = "Thesis Defense";
       this.Schedule = "Schedule";
       this.AddEmployee = "Employee Info";
       this.ListEmployee = "List Employee";
@@ -248,6 +248,7 @@ export class AppComponent {
       this.Staff = "Staff";
       this.LectureSchedule = "Lectures Schedule";
       this.LectureAttendance = "Lecture Attendance";
+      this.Clearnce = "Clearnce";
 
     }
     else {
@@ -290,8 +291,8 @@ export class AppComponent {
       this.Students = "الطلاب";
       this.Orders = "الطلبات";
       this.ShowSchedule = "عرض التقويم";
-      this.AddSeminar = "إضافة ندوة";
-      this.AddDefense = "إضافة مناقشة";
+      this.AddSeminar = "الندوات";
+      this.AddDefense = "المناقشات";
       this.Schedule = "التقويم";
       this.AddEmployee = "بيانات الموظف";
       this.ListEmployee = "قائمة الموظفين";
@@ -318,6 +319,7 @@ export class AppComponent {
       this.Staff = "المشرفين";
       this.LectureSchedule = "جدول المحاضرات";
       this.LectureAttendance = "حضور المحاضرات";
+      this.Clearnce = "إخلاء طرف";
     }
   }
 

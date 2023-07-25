@@ -29,9 +29,10 @@ export class SeminarComponent implements OnInit {
   page:number = 1;
   searchedKeyword:string = "";
   PerPage:number = 5;
+  URL_Root:string = "";
   //End Pangation and filter
 
-  UserList:any;
+  UserList:any;ActiveStudents:any;
 
   constructor(private titleService:Title,private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
@@ -39,6 +40,8 @@ export class SeminarComponent implements OnInit {
       this.titleService.setTitle("Seminar Info");
       else
       this.titleService.setTitle("بيانات السنمار");
+
+      this.URL_Root = this.router.url;
   }
 
 
@@ -58,7 +61,10 @@ export class SeminarComponent implements OnInit {
         this.Id = "0";
       }
 
+      console.log(this.URL_Root);
       this.Id == "0" ? this.IsUpdate = false:this.IsUpdate = true;
+
+      this.URL_Root != "/Schedule/Seminar/info" ? this.IsUpdate = true:this.IsUpdate = false;
 
     this.LoadSeminars();
   }
@@ -91,6 +97,7 @@ export class SeminarComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.StudentList = JSON.parse(jsonInfo);
+        this.ActiveStudents = this.StudentList.filter((x: { IsActive  : boolean; }) => x.IsActive == true);
         //console.log(this.StudentList);
       }
     )
@@ -131,7 +138,7 @@ export class SeminarComponent implements OnInit {
   UpdateRoute(Id:string){
     this.CreateForm();
     this.getSeminarData(Id);
-    this.router.navigate(['/Schedule/Seminar/info/' + Id]);
+    this.router.navigate(['/Schedule/Seminar/update/' + Id]);
     //window.location.replace(environment.mainRoot+"#/Schedule/Seminar/info/" + Id);
   }
 
@@ -218,6 +225,7 @@ export class SeminarComponent implements OnInit {
           this.UpdateButtonSpinner(false);
           this.LoadSeminars();
           document.getElementById("btnInfo")?.click();
+          this.router.navigate(['/Schedule/Seminar/update/' + response]);
         }
         else {
           this.IsShowMessageUpdate = false;
@@ -268,7 +276,7 @@ export class SeminarComponent implements OnInit {
   lb_week:any;lb_date:any;lb_Time:any;lb_Supervisor:any;lb_RoomNo:any;lb_Save_Change:any;
 
   StudentList:any;RoomList:any;ExaminerList:any;SpecialtyList:any;lb_Loading:any;lb_Search:any;
-  lb_Entries:any;lb_NumberOfList:any;lb_ListOfSeminar:any;lb_Select:any;
+  lb_Entries:any;lb_NumberOfList:any;lb_ListOfSeminar:any;lb_Select:any;lb_New:any;
 
   GetLabelName(LangCode:any){
     if(LangCode == "us-en"){
@@ -282,7 +290,7 @@ export class SeminarComponent implements OnInit {
       this.lb_Title = "Title";
       this.lb_Examiner = "Examiner";
       this.lb_RoomNo = "Room No";
-      this.lb_Cancel = "Cancel";
+      this.lb_Cancel = "Back";
       this.lb_Save_Change = "Save";
       this.lb_Loading = "Loading";
       this.lb_NumberOfList = "Show";
@@ -290,6 +298,7 @@ export class SeminarComponent implements OnInit {
       this.lb_Search = "Search here";
       this.lb_Select = "Select";
       this.lb_ListOfSeminar = "List Of Seminars";
+      this.lb_New = "New";
       this.RoomList = [{"key":1,"value":"Room 1"},{"key":2,"value":"Room 2"}];
       this.SpecialtyList = [{"key":1,"value":"Dentistry"},{"key":2,"value":"Pharmacy"}];
     }
@@ -304,7 +313,7 @@ export class SeminarComponent implements OnInit {
       this.lb_Title = "العنوان";
       this.lb_Examiner = "الممتحن";
       this.lb_RoomNo = "رقم القاعة";
-      this.lb_Cancel = "إلغاء";
+      this.lb_Cancel = "رجوع";
       this.lb_Save_Change = "حفظ";
       this.lb_Loading = "جاري المعالجة";
       this.lb_NumberOfList = "عرض";
@@ -312,6 +321,7 @@ export class SeminarComponent implements OnInit {
       this.lb_Search = "ابحث هنا";
       this.lb_Select = "اختر";
       this.lb_ListOfSeminar = "قائمة الندوات";
+      this.lb_New = "جديد";
       this.RoomList = [{"key":1,"value":"قاعة 1"},{"key":2,"value":"قاعة 2"}];
       this.SpecialtyList = [{"key":1,"value":"اسنان"},{"key":2,"value":"صيدلة"}];
     }

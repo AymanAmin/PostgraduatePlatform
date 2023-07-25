@@ -61,6 +61,7 @@ import { AttendanceChartComponent } from './StudentManagement/AttendanceChart/At
 import { ListStaffComponent } from './SystemAdmin/ListStaff/ListStaff.component';
 import { LectureScheduleComponent } from './SystemAdmin/LectureSchedule/LectureSchedule.component';
 import { Attendance_LocalComponent } from './StudentManagement/Attendance_Local/Attendance_Local.component';
+import { ClearnceFormComponent } from './StudentManagement/ClearnceForm/ClearnceForm.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'الصفحة الرئيسية' } },
@@ -103,9 +104,11 @@ const appRoutes: Routes = [
   { path: 'SequenceForm/list/:id', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
   { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
-  { path: 'Schedule/ThesisDefense/info/:id', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/add', component: ThesisDefenseComponent, data: { title: 'Add Thesis Defense' } },
+  { path: 'Schedule/ThesisDefense/update/:id', component: ThesisDefenseComponent, data: { title: 'Update Thesis Defense' } },
   { path: 'Schedule/Seminar/info', component: SeminarComponent, data: { title: 'Add Seminar' } },
-  { path: 'Schedule/Seminar/info/:id', component: SeminarComponent, data: { title: 'Update Seminar' } },
+  { path: 'Schedule/Seminar/add', component: SeminarComponent, data: { title: 'Add Seminar' } },
+  { path: 'Schedule/Seminar/update/:id', component: SeminarComponent, data: { title: 'Update Seminar' } },
   { path: 'Schedule/Show', component: ShowCalendarComponent, data: { title: 'View Calendar' } },
   { path: 'Student/Registration', component: RegistrationStudentComponent, data: { title: 'Registration Student' } },
   { path: 'StudentManagement/RecommendationLetter/:id', component: RecommendationLetterOutComponent, data: { title: 'Recommendation Lettert' } },
@@ -145,6 +148,8 @@ const appRoutes: Routes = [
   { path: 'Financial/InvoiceCreation', component: InvoiceCreationComponent, data: { title: 'Invoice Creation' } },
   { path: 'Financial/InvoiceList', component: InvoiceListComponent, data: { title: 'Invoice List' } },
   { path: 'Financial/ViewInvoice/:id', component: ViewInvoiceComponent, data: { title: 'View Invoice' } },
+  { path: 'Clearnce/add', component: ClearnceFormComponent, data: { title: 'New Clearnce' } },
+  { path: 'Clearnce/update/:id', component: ClearnceFormComponent, data: { title: 'update Clearnce' } },
   { path: '**', component: NotFoundComponent ,data: { title: 'Not Found' }}
 ]
 
@@ -209,7 +214,8 @@ const routerOptions: ExtraOptions = {
     RecommendationLetterOutComponent,
     ListStaffComponent,
     LectureScheduleComponent,
-    Attendance_LocalComponent
+    Attendance_LocalComponent,
+    ClearnceFormComponent
    ],
   imports: [
     BrowserModule,

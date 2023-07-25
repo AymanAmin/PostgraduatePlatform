@@ -81,12 +81,6 @@
                   <span class="sidenav-normal"> {{ListEmployee}} </span>
                 </a>
               </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1005')">
-                <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
-                  <span class="sidenav-mini-icon"> L </span>
-                  <span class="sidenav-normal"> {{ListStudents}} </span>
-                </a>
-              </li>
             </ul>
           </div>
         </li>
@@ -182,7 +176,6 @@
                 </a>
               </li>
 
-
               <li class="nav-item " onclick="toggleSidenav()">
                 <a class="nav-link " routerLinkActive="active" routerLink="Schedule/Show">
                   <span class="sidenav-mini-icon"> VS </span>
@@ -190,8 +183,7 @@
                 </a>
               </li>
 
-
-              <li class="nav-item " onclick="toggleSidenav()">
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1011')">
                 <a class="nav-link " routerLink="Student/Local_Attendance" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> LA </span>
                   <span class="sidenav-normal"> {{LectureAttendance}} </span>
@@ -299,6 +291,12 @@
                   <span class="sidenav-normal"> {{StudentAttendance}} </span>
                 </a>
               </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1005')">
+                <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
+                  <span class="sidenav-mini-icon"> L </span>
+                  <span class="sidenav-normal"> {{ListStudents}} </span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
@@ -358,6 +356,13 @@
                 </a>
               </li>
 
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2013')">
+                <a class="nav-link " routerLinkActive="active" routerLink="Clearnce/add">
+                  <span class="sidenav-mini-icon"> A </span>
+                  <span class="sidenav-normal"> {{Clearnce}} </span>
+                </a>
+              </li>
+
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2007')">
                 <a class="nav-link " routerLinkActive="active" routerLink="PGT1/add/1">
                   <span class="sidenav-mini-icon"> A </span>
@@ -378,12 +383,14 @@
                   <span class="sidenav-normal"> {{PG_T3}} </span>
                 </a>
               </li>
+
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2010')">
                 <a class="nav-link " routerLink="Order/list" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> {{ListOrders}} </span>
                 </a>
               </li>
+
             </ul>
           </div>
 

@@ -32,7 +32,7 @@ export class RequestHeaderComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         this.StudentInfo = JSON.parse(jsonInfo);
         this.fillData();
-        console.log(this.StudentInfo);
+        //console.log(this.StudentInfo);
       }
     )
   }

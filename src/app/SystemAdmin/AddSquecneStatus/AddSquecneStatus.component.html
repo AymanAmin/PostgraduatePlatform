@@ -40,6 +40,24 @@
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label>
+                  {{lb_IsEnd}}
+                </label>
+                <p class="form-text text-muted text-xs ms-1">
+                  {{lb_IsEnd}}
+                </p>
+                <div class="form-check form-switch ms-1">
+
+                  <input class="form-check-input" type="checkbox" (change)="EndValue($event.target)"
+                    formControlName="IsEnd" value="true" />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label>
                   {{lb_IsActive}}
                 </label>
                 <p class="form-text text-muted text-xs ms-1">
@@ -81,7 +99,7 @@
             <thead>
               <tr>
 
-                
+
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArCaption}}</th>
@@ -99,7 +117,7 @@
               currentPage: page,
               totalItems: tatalRecords
           }">
-                
+
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
@@ -182,5 +200,5 @@
     </div>
   </div>
 
-  
+
 </div>

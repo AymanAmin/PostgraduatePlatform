@@ -1,43 +1,46 @@
 <div class="container-fluid">
   <div class="card-body pt-0">
     <div class="card card-body mt-4">
-     <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle}} </h6>
+      <a routerLink="../../../Student/add/{{GN_Code}}">
+     <h6>
+       <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle}} </h6>
+      </a>
      <hr class="horizontal dark my-3">
      <div class="row">
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_studentName_En}} </b>{{StudentName_En}} </p>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_studentName_Ar}} </b> {{StudentName_Ar}}</p>
       </div>
 
       <hr class="horizontal dark">
 
-      <div class="col-4">
+      <div class="col-md-3">
         <p class="mb-1"><b>{{lb_Gender}} </b> {{Gender_Name}}</p>
       </div>
-      <div class="col-4">
+      <div class="col-md-3">
         <p class="mb-1"><b>{{lb_Phone}} </b> {{Phone}}</p>
       </div>
-      <div class="col-4">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_Email}} </b> {{Email}}</p>
       </div>
 
       <hr class="horizontal dark">
 
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_Citizenship}} </b> {{Nationality_Name}}</p>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_Speciality}} </b>{{Speciality_Name}}</p>
       </div>
 
       <hr class="horizontal dark">
 
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_Category}} </b> {{ApplicantCategory_Name}}</p>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <p class="mb-1"><b>{{lb_Program}} </b> {{Program_Name}}</p>
       </div>
 
@@ -46,57 +49,59 @@
     </div>
 
     <div class="card card-body mt-4">
+      <a routerLink="../../../ApplicationForm/add/{{GN_Code}}">
       <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle2}} </h6>
+    </a>
       <hr class="horizontal dark my-3">
       <div class="row">
 
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_Student_No}} </b> {{Student_No}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_University}} </b> {{University}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_GPA}} </b>{{GPA}}</p>
         </div>
 
 
         <hr class="horizontal dark">
 
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_MaritalStatus}} </b> {{MaritalStatus}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_DateOfBirth}} </b>{{DateOfBirth}} </p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_PlaceOfBirth}} </b> {{PlaceOfBirth}}</p>
         </div>
 
         <hr class="horizontal dark">
 
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_NationalIdNo}} </b> {{NationalNo}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_IssueDate}} </b> {{IssueDate}}</p>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <p class="mb-1"><b>{{lb_ExpiryDate}} </b> {{ExpiryDate}}</p>
         </div>
 
         <hr class="horizontal dark">
 
-        <div class="col-6">
+        <div class="col-md-6">
           <p class="mb-1"><b>{{lb_City}} </b>{{City}}</p>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <p class="mb-1"><b>{{lb_EnglishTestScore}} </b> {{EnglishTestScore}}</p>
         </div>
 
         <hr class="horizontal dark">
 
-        <div class="col-12">
+        <div class="col-md-12">
           <p class="mb-1"><b>{{lb_HealthSpecialties}} </b> {{ExamTestKSAHealthSpecialties}}</p>
         </div>
 

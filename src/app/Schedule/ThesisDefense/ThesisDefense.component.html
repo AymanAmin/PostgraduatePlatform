@@ -26,7 +26,7 @@
             <label class="form-label">{{lb_Student}}</label>
             <select class="form-control multi_cho" name="Student" formControlName="Student_GN_Code">
               <option [ngValue]="null" selected> - {{lb_Select}} -</option>
-              <option value="{{item.GN_Code}}" *ngFor="let item of StudentList">{{item.Name}}</option>
+              <option value="{{item.GN_Code}}" *ngFor="let item of ActiveStudents">{{item.Name}}</option>
             </select>
           </div>
           <div class="col-12 col-md-4">
@@ -60,9 +60,11 @@
 
         <div class="d-flex justify-content-end mt-4">
           <a type="button" routerLink="/Schedule/ThesisDefense/info" name="button"
-            class="btn btn-light m-0">{{lb_Cancel}}</a>
+            class="btn btn-danger m-0">{{lb_Cancel}}</a>
+          <a type="button" routerLink="/Schedule/ThesisDefense/add" name="button"
+            class="btn btn-light m-0 mx-2">{{lb_New}}</a>
           <button type="submit" name="button" [disabled]="!(ThesisDefenseForm.valid && btn_status)"
-            class="btn bg-gradient-success m-0 mx-2"><span [innerHTML]="btn_spinner"></span></button>
+            class="btn bg-gradient-success m-0"><span [innerHTML]="btn_spinner"></span></button>
         </div>
       </form>
     </div>
@@ -137,7 +139,7 @@
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary text-sm mx-auto">
-                      <a  href="#/Schedule/ThesisDefense/info/{{item.Id}}" style="cursor: pointer;" >
+                      <a  href="#/Schedule/ThesisDefense/update/{{item.Id}}" style="cursor: pointer;" >
                         <i class="fa fa-edit fs-5 mt-3 mx-2" aria-hidden="true"></i>
                       </a>
                     </span>

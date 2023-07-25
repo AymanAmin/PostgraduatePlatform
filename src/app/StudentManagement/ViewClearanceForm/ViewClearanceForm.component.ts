@@ -16,7 +16,7 @@ export class ViewClearanceFormComponent implements OnInit {
   OrderTo: string = "";
   OrderDetails: any;
   OrderType: string = "";
-  FormCode: string = "1004";
+  FormCode: string = "1005";
   TrackDate4: string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -34,25 +34,16 @@ export class ViewClearanceFormComponent implements OnInit {
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Get/ReferenceCertificateInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
+    /*this.http.get(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Get/ReferenceCertificateInfo.ashx?GN_Code=' + this.GN_Code).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
         this.GetOrderInfo(MainInfoData);
       }
-    )
+    )*/
+
   }
 
-  GetOrderInfo(MainInfoData: any) {
-    if (MainInfoData) {
-      // this.OrderTo = MainInfoData.requestLeave.NoOfDays;
-      // this.OrderType = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
-      this.OrderDetails = MainInfoData.Letter;
-    }
-    // this.OrderType = "Recommendation Letter";
-    // this.OrderTo = "Dear Ms./Mr. [Recommender Name],";
-    // this.OrderDetails = "I hope you’re well. I’m in the process of applying to [school or company name] and want to ask if you feel comfortable writing a strong letter of recommendation on my behalf.<br> <br>I thoroughly enjoyed my time as [your relationship to the recommender]. As my [teacher/counselor/manager], I believe you could honestly and effectively vouch for my [list of skills or qualifications] I’ve demonstrated during our time together. <br>I appreciate you considering my request. The deadline for submitting the letter is [date]. I’ve attached an updated version of my [resume/brag sheet], as well as the [job posting/admission requirements] and details on how to submit the letter. If you need any additional information, don’t hesitate to contact me.<br><br>Thank you for your time and support.<br>Sincerely,";
-  }
 
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   GetLabelName(LangCode: any) {
@@ -62,6 +53,7 @@ export class ViewClearanceFormComponent implements OnInit {
       this.lb_OrderNo = "Request No: ";
       this.lb_OrderDate = "Request Date: ";
       this.lb_OrderType = "Request Type: ";
+      this.OrderDetails = "The request represents a form of clearnce";
     }
     else {
       this.lb_date = "تاريخ الطلب : ";
@@ -69,6 +61,7 @@ export class ViewClearanceFormComponent implements OnInit {
       this.lb_OrderNo = "رقم الطلب";
       this.lb_OrderDate = "تاريخ الطلب";
       this.lb_OrderType = "نوع الطلب";
+      this.OrderDetails = "الطلب يمثل نموذج اخلاء طرف";
     }
   }
 
