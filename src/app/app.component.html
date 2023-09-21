@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link {{dashboard_Active}}" routerLink="/">
+          <a class="{{nav_link}} {{dashboard_Active}}" routerLink="/">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center  me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@
           <h6 class="{{CatMenuItem}}">{{Employees}}</h6>
         </li>
         <li class="nav-item" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
-          <a data-bs-toggle="collapse" href="#emoloyees" class="nav-link {{emp_Active}}" aria-controls="pagesExamples"
+          <a data-bs-toggle="collapse" href="#emoloyees" class="{{nav_link}} {{emp_Active}}" aria-controls="pagesExamples"
             role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -70,13 +70,13 @@
             *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1003')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Employee/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Employee/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{AddEmployee}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1010')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Employee/list">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Employee/list">
                   <span class="sidenav-mini-icon"> LE </span>
                   <span class="sidenav-normal"> {{ListEmployee}} </span>
                 </a>
@@ -89,7 +89,7 @@
           <h6 class="{{CatMenuItem}}">{{Financial}}</h6>
         </li>
         <li class="nav-item" *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')" style="display: none;">
-          <a data-bs-toggle="collapse" href="#financial" class="nav-link {{Financial_Active}}"
+          <a data-bs-toggle="collapse" href="#financial" class="{{nav_link}} {{Financial_Active}}"
             aria-controls="pagesExamples" role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -118,13 +118,13 @@
             *ngIf="IsRoleEixed('1003') || IsRoleEixed('1010')">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1003')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Financial/InvoiceCreation">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Financial/InvoiceCreation">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{CreateInvoice}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1010')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Financial/InvoiceList">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Financial/InvoiceList">
                   <span class="sidenav-mini-icon"> LE </span>
                   <span class="sidenav-normal"> {{InvoiceList}} </span>
                 </a>
@@ -134,7 +134,7 @@
         </li>
 
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#Schedule" class="nav-link {{schedule_Active}}" aria-controls="Schedule"
+          <a data-bs-toggle="collapse" href="#Schedule" class="{{nav_link}} {{schedule_Active}}" aria-controls="Schedule"
             role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -163,28 +163,28 @@
             <ul class="nav ms-4 ps-3">
 
               <li class="nav-item " onclick="toggleSidenav()">
-                <a class="nav-link " routerLinkActive="active" routerLink="Schedule/ThesisDefense/info">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Schedule/ThesisDefense/info">
                   <span class="sidenav-mini-icon"> AD </span>
                   <span class="sidenav-normal"> {{AddDefense}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()">
-                <a class="nav-link " routerLinkActive="active" routerLink="Schedule/Seminar/info">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Schedule/Seminar/info">
                   <span class="sidenav-mini-icon"> AS </span>
                   <span class="sidenav-normal"> {{AddSeminar}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()">
-                <a class="nav-link " routerLinkActive="active" routerLink="Schedule/Show">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Schedule/Show">
                   <span class="sidenav-mini-icon"> VS </span>
                   <span class="sidenav-normal"> {{ShowSchedule }}</span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1011')">
-                <a class="nav-link " routerLink="Student/Local_Attendance" routerLinkActive="active">
+                <a class="{{nav_link}} " routerLink="Student/Local_Attendance" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> LA </span>
                   <span class="sidenav-normal"> {{LectureAttendance}} </span>
                 </a>
@@ -195,7 +195,7 @@
         </li>
         <li class="nav-item" style="display: none;"
           *ngIf="IsRoleEixed('2001') && IsRoleEixed('2002')&&IsRoleEixed('2003')&&IsRoleEixed('2004') && IsRoleEixed('2005') && IsRoleEixed('2006')&& IsRoleEixed('2007')&& IsRoleEixed('2008')&& IsRoleEixed('2009')&& IsRoleEixed('2010')">
-          <a data-bs-toggle="collapse" href="#Student" class="nav-link " routerLinkActive="active"
+          <a data-bs-toggle="collapse" href="#Student" class="{{nav_link}} " routerLinkActive="active"
             aria-controls="ecommerceExamples" role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -223,7 +223,7 @@
           <div class="collapse " routerLinkActive="show" id="Student">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()">
-                <a class="nav-link " routerLink="Student/view" routerLinkActive="active">
+                <a class="{{nav_link}} " routerLink="Student/view" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal">{{Profile}}</span>
                 </a>
@@ -237,7 +237,7 @@
           <h6 class="{{CatMenuItem}}">{{StudentMangment}}</h6>
         </li>
         <li class="nav-item" *ngIf="IsRoleEixed('2001') || IsRoleEixed('2002')||IsRoleEixed('2003')">
-          <a data-bs-toggle="collapse" href="#StudentMangment" class="nav-link" aria-controls="Specialization"
+          <a data-bs-toggle="collapse" href="#StudentMangment" class="{{nav_link}}" aria-controls="Specialization"
             role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -268,31 +268,31 @@
           <div class="collapse " routerLinkActive="show" id="StudentMangment">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2001')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Student/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Student/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{Studentinformation}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2002')">
-                <a class="nav-link " routerLinkActive="active" routerLink="StudentAttachment/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="StudentAttachment/add">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> {{StudentAttachment}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2003')">
-                <a class="nav-link " routerLinkActive="active" routerLink="ApplicationForm/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="ApplicationForm/add">
                   <span class="sidenav-mini-icon"> O </span>
                   <span class="sidenav-normal"> {{ApplicationForm}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()">
-                <a class="nav-link " routerLink="Student/Attendance/{{Std_GN_Code}}" routerLinkActive="active">
+                <a class="{{nav_link}} " routerLink="Student/Attendance/{{Std_GN_Code}}" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> SA </span>
                   <span class="sidenav-normal"> {{StudentAttendance}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('1005')">
-                <a class="nav-link " routerLink="Student/list" routerLinkActive="active">
+                <a class="{{nav_link}} " routerLink="Student/list" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> {{ListStudents}} </span>
                 </a>
@@ -302,7 +302,7 @@
         </li>
         <li class="nav-item"
           *ngIf="IsRoleEixed('2004') ||IsRoleEixed('2005') ||IsRoleEixed('2006')||IsRoleEixed('2007')||IsRoleEixed('2008') ||IsRoleEixed('2009')||IsRoleEixed('2010')">
-          <a data-bs-toggle="collapse" href="#StudentRequest" class="nav-link" aria-controls="StudentRequest"
+          <a data-bs-toggle="collapse" href="#StudentRequest" class="{{nav_link}}" aria-controls="StudentRequest"
             role="button" aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -334,58 +334,58 @@
             <span class="{{MenuItem}}">{{StudentRequest}}</span>
           </a>
           <div class="collapse " routerLinkActive="show" id="StudentRequest">
-            <ul class="nav mx-4 ps-3">
+            <ul class="nav ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2004')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Leave/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Leave/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{StudentLeave}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2005')">
-                <a class="nav-link " routerLinkActive="active" routerLink="RecommendationLetter/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="RecommendationLetter/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{RecommendationLetter}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2006')">
-                <a class="nav-link " routerLinkActive="active" routerLink="ReferenceAndCertificates/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="ReferenceAndCertificates/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{Reference_Certificates}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2013')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Clearnce/add">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Clearnce/add">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{Clearnce}} </span>
                 </a>
               </li>
 
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2009')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="PGT3/add/3">
+                  <span class="sidenav-mini-icon"> A </span>
+                  <span class="sidenav-normal"> {{PG_T3}} </span>
+                </a>
+              </li>
+
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2007')">
-                <a class="nav-link " routerLinkActive="active" routerLink="PGT1/add/1">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="PGT1/add/1">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{PG_T1}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2008')">
-                <a class="nav-link " routerLinkActive="active" routerLink="PGT2/add/2">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="PGT2/add/2">
                   <span class="sidenav-mini-icon"> A </span>
                   <span class="sidenav-normal"> {{PG_T2}} </span>
                 </a>
               </li>
 
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2009')">
-                <a class="nav-link " routerLinkActive="active" routerLink="PGT3/add/3">
-                  <span class="sidenav-mini-icon"> A </span>
-                  <span class="sidenav-normal"> {{PG_T3}} </span>
-                </a>
-              </li>
-
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('2010')">
-                <a class="nav-link " routerLink="Order/list" routerLinkActive="active">
+                <a class="{{nav_link}} " routerLink="Order/list" routerLinkActive="active">
                   <span class="sidenav-mini-icon"> L </span>
                   <span class="sidenav-normal"> {{ListOrders}} </span>
                 </a>
@@ -401,91 +401,8 @@
           <h6 class="{{CatMenuItem}}">{{SystemAdmin}}</h6>
         </li>
         <li class="nav-item"
-          *ngIf="IsRoleEixed('3003') || IsRoleEixed('3007') || IsRoleEixed('3011') || IsRoleEixed('3015') || IsRoleEixed('3019') || IsRoleEixed('3039')">
-          <a data-bs-toggle="collapse" href="#Specialization" class="nav-link" aria-controls="Specialization"
-            role="button" aria-expanded="false">
-            <div
-              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-              <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>{{SystemAdmin}}</title>
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <g transform="translate(1716.000000, 291.000000)">
-                      <g transform="translate(304.000000, 151.000000)">
-                        <polygon class="color-background" opacity="0.596981957"
-                          points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667">
-                        </polygon>
-                        <path class="color-background"
-                          d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z"
-                          opacity="0.596981957"></path>
-                        <path class="color-background"
-                          d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z">
-                        </path>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-            </div>
-            <span class="{{MenuItem}}">{{SystemAdmin}}</span>
-          </a>
-          <div class="collapse " routerLinkActive="show" id="Specialization">
-            <ul class="nav ms-4 ps-3">
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3003')">
-                <a class="nav-link " routerLinkActive="active" routerLink="College/list">
-                 <span class="sidenav-mini-icon"> SP </span>
-                  <span class="sidenav-normal"> {{Specializations}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3007')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Department/list">
-                  <span class="sidenav-mini-icon"> DP </span>
-                  <span class="sidenav-normal"> {{Departments}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3011')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Program/list">
-                  <span class="sidenav-mini-icon"> PM </span>
-                  <span class="sidenav-normal"> {{Programs}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3015')">
-                <a class="nav-link " routerLinkActive="active" routerLink="TypeLeave/list">
-                  <span class="sidenav-mini-icon"> TL </span>
-                  <span class="sidenav-normal"> {{TypesLeave}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3019')">
-                <a class="nav-link " routerLinkActive="active" routerLink="EmailTemplate/list">
-                  <span class="sidenav-mini-icon"> ET </span>
-                  <span class="sidenav-normal"> {{EmailTemplate}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3041')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Staff/list">
-                  <span class="sidenav-mini-icon"> SF </span>
-                  <span class="sidenav-normal"> {{Staff}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3045')">
-                <a class="nav-link " routerLinkActive="active" routerLink="LectureSchedule/list">
-                  <span class="sidenav-mini-icon"> LS </span>
-                  <span class="sidenav-normal"> {{LectureSchedule}} </span>
-                </a>
-              </li>
-              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3039')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Permission/add">
-                  <span class="sidenav-mini-icon"> PM </span>
-                  <span class="sidenav-normal"> {{Permission}} </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item"
           *ngIf="IsRoleEixed('3023') || IsRoleEixed('3027') || IsRoleEixed('3031') || IsRoleEixed('3035')">
-          <a data-bs-toggle="collapse" href="#Sequence" class="nav-link" aria-controls="Sequence" role="button"
+          <a data-bs-toggle="collapse" href="#Sequence" class="{{nav_link}}" aria-controls="Sequence" role="button"
             aria-expanded="false">
             <div
               class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -519,34 +436,34 @@
           <div class="collapse " routerLinkActive="show" id="Sequence">
             <ul class="nav ms-4 ps-3">
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3023')">
-                <a class="nav-link " routerLinkActive="active" routerLink="Sequence/list">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Sequence/list">
                   <span class="sidenav-mini-icon"> SM </span>
                   <span class="sidenav-normal"> {{ListSequenceModel}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3031')">
-                <a class="nav-link " routerLinkActive="active" routerLink="CreateSequence/list">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="CreateSequence/list">
                   <span class="sidenav-mini-icon"> CS </span>
                   <span class="sidenav-normal"> {{CreateSequence}} </span>
                 </a>
               </li>
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3031')">
-                <a class="nav-link " routerLinkActive="active" routerLink="ViewSequence/list">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="ViewSequence/list">
                   <span class="sidenav-mini-icon"> VS </span>
                   <span class="sidenav-normal"> {{ViewSequence}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3035')">
-                <a class="nav-link " routerLinkActive="active" routerLink="SequenceForm/list/">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="SequenceForm/list/">
                   <span class="sidenav-mini-icon">SF </span>
                   <span class="sidenav-normal"> {{SequenceForm}} </span>
                 </a>
               </li>
 
               <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3027')">
-                <a class="nav-link " routerLinkActive="active" routerLink="SequenceStatus/list">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="SequenceStatus/list">
                   <span class="sidenav-mini-icon"> SS </span>
                   <span class="sidenav-normal"> {{ListSequenceStatus}} </span>
                 </a>
@@ -554,6 +471,89 @@
             </ul>
           </div>
 
+        </li>
+        <li class="nav-item"
+          *ngIf="IsRoleEixed('3003') || IsRoleEixed('3007') || IsRoleEixed('3011') || IsRoleEixed('3015') || IsRoleEixed('3019') || IsRoleEixed('3039')">
+          <a data-bs-toggle="collapse" href="#Specialization" class="{{nav_link}}" aria-controls="Specialization"
+            role="button" aria-expanded="false">
+            <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+              <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>{{SystemAdmin}}</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g transform="translate(304.000000, 151.000000)">
+                        <polygon class="color-background" opacity="0.596981957"
+                          points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667">
+                        </polygon>
+                        <path class="color-background"
+                          d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z"
+                          opacity="0.596981957"></path>
+                        <path class="color-background"
+                          d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z">
+                        </path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="{{MenuItem}}">{{SystemAdmin}}</span>
+          </a>
+          <div class="collapse " routerLinkActive="show" id="Specialization">
+            <ul class="nav ms-4 ps-3">
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3003')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="College/list">
+                 <span class="sidenav-mini-icon"> SP </span>
+                  <span class="sidenav-normal"> {{Specializations}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3007')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Department/list">
+                  <span class="sidenav-mini-icon"> DP </span>
+                  <span class="sidenav-normal"> {{Departments}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3011')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Program/list">
+                  <span class="sidenav-mini-icon"> PM </span>
+                  <span class="sidenav-normal"> {{Programs}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3015')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="TypeLeave/list">
+                  <span class="sidenav-mini-icon"> TL </span>
+                  <span class="sidenav-normal"> {{TypesLeave}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3019')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="EmailTemplate/list">
+                  <span class="sidenav-mini-icon"> ET </span>
+                  <span class="sidenav-normal"> {{EmailTemplate}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3041')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Staff/list">
+                  <span class="sidenav-mini-icon"> SF </span>
+                  <span class="sidenav-normal"> {{Staff}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3045')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="LectureSchedule/list">
+                  <span class="sidenav-mini-icon"> LS </span>
+                  <span class="sidenav-normal"> {{LectureSchedule}} </span>
+                </a>
+              </li>
+              <li class="nav-item " onclick="toggleSidenav()" *ngIf="IsRoleEixed('3039')">
+                <a class="{{nav_link}} " routerLinkActive="active" routerLink="Permission/add">
+                  <span class="sidenav-mini-icon"> PM </span>
+                  <span class="sidenav-normal"> {{Permission}} </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
@@ -611,7 +611,7 @@
 
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none mx-5" onclick="menuAction()">
-          <a href="javascript:;" class="nav-link text-body p-0">
+          <a href="javascript:;" class="{{nav_link}} text-body p-0">
             <div class="sidenav-toggler-inner">
               <i class="sidenav-toggler-line"></i>
               <i class="sidenav-toggler-line"></i>
@@ -625,13 +625,13 @@
           </div>
           <ul class="{{loginClass}}">
             <li class="nav-item d-flex align-items-center">
-              <a routerLink="Employee/profile" class="nav-link text-body font-weight-bold px-0">
+              <a routerLink="Employee/profile" class="{{nav_link}} text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1 mx-2"></i>
                 <span class="d-sm-inline d-none"> {{ username }}</span>
               </a>
             </li>
             <li class="nav-item d-xl-none px-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav" onclick="toggleSidenav()">
+              <a href="javascript:;" class="{{nav_link}} text-body p-0" id="iconNavbarSidenav" onclick="toggleSidenav()">
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line"></i>
                   <i class="sidenav-toggler-line"></i>
@@ -640,19 +640,19 @@
               </a>
             </li>
             <li class="nav-item px-2 d-flex align-items-center">
-              <a class="nav-link text-body p-0" (click)="logoutEvent()">
+              <a class="{{nav_link}} text-body p-0" (click)="logoutEvent()">
                 <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
 
             <li class="nav-item px-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" (click)="UpdateLanguage()">
+              <a href="javascript:;" class="{{nav_link}} text-body p-0" (click)="UpdateLanguage()">
                 <i class="fa fa-globe fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
 
             <li class="nav-item dropdown px-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+              <a href="javascript:;" class="{{nav_link}} text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>

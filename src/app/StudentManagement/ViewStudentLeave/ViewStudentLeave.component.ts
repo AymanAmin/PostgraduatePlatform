@@ -54,6 +54,8 @@ export class ViewStudentLeaveComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.AttachmentPatch = JSON.parse(jsonInfo);
+        if(this.AttachmentPatch == 0)
+          this.AttachmentPatchView = null;
       }
     )
   }
@@ -71,7 +73,7 @@ export class ViewStudentLeaveComponent implements OnInit {
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   lb_Program: any; lb_Category: any; lb_Speciality: any; lb_LeaveDetails: any; lb_TypeLeave: any;
   lb_DayOfLeave: any; lb_DateFrom: any; lb_DateTo: any; lb_Reason: any; lb_Sequence: any; lb_Approve: any;
-  lb_Reject: any; lb_Trackorder: any; top_class: any; lb_Medical_Excuse: any;
+  lb_Reject: any; lb_Trackorder: any; top_class: any; lb_Medical_Excuse: any;AttachmentPatchView:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -93,7 +95,8 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
       this.top_class = "ms-auto";
-      this.lb_Medical_Excuse="Medical Excuse: ";
+      this.lb_Medical_Excuse="Attachment: ";
+      this.AttachmentPatchView = "View Attachment";
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -114,8 +117,9 @@ export class ViewStudentLeaveComponent implements OnInit {
       this.lb_Approve = "قبول";
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
-      this.lb_Medical_Excuse = "العذر الطبي: ";
+      this.lb_Medical_Excuse = "المرفق: ";
       this.top_class = "me-auto"
+      this.AttachmentPatchView = "عرض المرفق";
     }
   }
 

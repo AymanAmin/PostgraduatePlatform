@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ListOrderComponent implements OnInit {
   LangCode:any = "us-en";
-  OrderList:any;
+  OrderList:any;list_num:any = 0 ;list = [];
 
   //Start Pangation and filter
   // npm install ngx-pagination --save
@@ -42,6 +42,7 @@ export class ListOrderComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.OrderList = JSON.parse(jsonInfo);
+        this.SearchForKeyword('');
         //console.log(this.OrderList);
       }
     )
@@ -49,17 +50,23 @@ export class ListOrderComponent implements OnInit {
 
   GetRequestNo(Request_Type:string){
     //console.log(Request_Type);
-    var list = [];
-    if(Request_Type != 'All')
-        list = this.OrderList?.filter((x: { Request_Type: string; }) => x.Request_Type === Request_Type);
-      else
-        list = this.OrderList;
 
-    return list?.length;
+    if(Request_Type != 'All')
+        this.list = this.OrderList?.filter((x: { Request_Type: string; }) => x.Request_Type === Request_Type);
+      else
+        this.list = this.OrderList;
+    return this.list?.length;
   }
 
   SearchForKeyword(Type:any){
     this.searchedKeyword = Type;
+    this.page = 1;
+
+    if(Type != '')
+      this.list_num = this.OrderList?.filter((x: { Request_Type: string; }) => x.Request_Type === Type).length;
+    else
+      this.list_num = this.OrderList.length;
+    console.log(this.list_num);
   }
 
   lb_OrderList:any;lb_OrderListD:any;lb_VacationRequests:any;lb_LetterRec:any;lb_AllRequest:any;

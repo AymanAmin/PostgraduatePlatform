@@ -22,6 +22,7 @@ export class ApplicationFormComponent implements OnInit {
 
   ApplicationForm: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
+  StudentID:any = this.route.snapshot.params['id'];
   GN_Code: any =localStorage.getItem("GN_Code"); //this.route.snapshot.params['id'];
   LevelList:any;
   //BriefSummary_Data:any = "";
@@ -32,6 +33,9 @@ export class ApplicationFormComponent implements OnInit {
     this.titleService.setTitle("Addational Info");
       else
       this.titleService.setTitle("بيانات إضافية");
+
+      if(this.StudentID != null)
+        this.GN_Code = this.StudentID;
   }
 
   ngOnInit() {
@@ -220,13 +224,13 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_FamilyName_Ar = "Family Name(Arabic)";
       this.lb_DateOfBirth ="Date Of Birth";
       this.lb_PlaceOfBirth="Place Of Birth";
-      this.lb_NationalIdNo="Saudi Personal Id Card(Number)";
+      this.lb_NationalIdNo= "Identity/Iqama Card(Number)";
       this.lb_IssueDate="Issue Date";
       this.lb_ExpiryDate="Expiry Date";
       this.lb_MaritalStatus="Marital Status";
 
       this.lb_University="University";
-      this.lb_GPA="GPA";
+      this.lb_GPA="Previous GPA";
       this.lb_HealthSpecialties="Examination score of the Saudi Commission for Health Specialties";
       this.lb_EnglishTestScore="English Test Score";
 
@@ -249,17 +253,17 @@ export class ApplicationFormComponent implements OnInit {
       this.lb_FamilyName_Ar = "(عربي)إسم العائلة";
       this.lb_DateOfBirth ="(عربي)تاريخ الميلاد";
       this.lb_PlaceOfBirth="(عربي)مكان الميلاد";
-      this.lb_NationalIdNo="رقم بطاقة الهوية الشخصية السعودية";
+      this.lb_NationalIdNo="رقم بطاقة الهوية/الإقامة";
       this.lb_IssueDate="تاريخ الإصدار";
       this.lb_ExpiryDate="تاريخ انتهاء الصلاحية";
       this.lb_MaritalStatus="الحالة الاجتماعية";
 
       this.lb_University="الجامعة";
-      this.lb_GPA="المعدل التراكمي";
+      this.lb_GPA="المعدل التراكمي السابق";
       this.lb_HealthSpecialties=" درجة اختبار الهيئة السعودية للتخصصات الصحية";
       this.lb_EnglishTestScore="درجة اختبار اللغة الإنجليزية";
 
-      this.MaritalStatusList = [{ "Id": 1, "Name": "أعذب" },{ "Id": 2, "Name": "متزوج" }];
+      this.MaritalStatusList = [{ "Id": 1, "Name": "أعزب" },{ "Id": 2, "Name": "متزوج" }];
       this.lb_City="المدينة";
       this.lb_ZipCode="الرمز البريدي";
       this.lb_Address="العنوان";

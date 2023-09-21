@@ -28,6 +28,11 @@
   text-align: center !important;
 }
 
+.nav-link-arabic:before {
+  right: -18px !important;
+  left: unset !important;
+}
+
 
 
 

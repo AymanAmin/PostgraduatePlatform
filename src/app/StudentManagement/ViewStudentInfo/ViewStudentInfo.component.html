@@ -2,56 +2,58 @@
   <div class="card-body pt-0">
     <div class="card card-body mt-4">
       <a routerLink="../../../Student/add/{{GN_Code}}">
-     <h6>
-       <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle}} </h6>
+        <h6>
+          <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle}}
+        </h6>
       </a>
-     <hr class="horizontal dark my-3">
-     <div class="row">
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_studentName_En}} </b>{{StudentName_En}} </p>
-      </div>
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_studentName_Ar}} </b> {{StudentName_Ar}}</p>
-      </div>
+      <hr class="horizontal dark my-3">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_studentName_En}} </b>{{StudentName_En}} </p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_studentName_Ar}} </b> {{StudentName_Ar}}</p>
+        </div>
 
-      <hr class="horizontal dark">
+        <hr class="horizontal dark">
 
-      <div class="col-md-3">
-        <p class="mb-1"><b>{{lb_Gender}} </b> {{Gender_Name}}</p>
-      </div>
-      <div class="col-md-3">
-        <p class="mb-1"><b>{{lb_Phone}} </b> {{Phone}}</p>
-      </div>
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_Email}} </b> {{Email}}</p>
-      </div>
+        <div class="col-md-3">
+          <p class="mb-1"><b>{{lb_Gender}} </b> {{Gender_Name}}</p>
+        </div>
+        <div class="col-md-3">
+          <p class="mb-1"><b>{{lb_Phone}} </b> {{Phone}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_Email}} </b> {{Email}}</p>
+        </div>
 
-      <hr class="horizontal dark">
+        <hr class="horizontal dark">
 
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_Citizenship}} </b> {{Nationality_Name}}</p>
-      </div>
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_Speciality}} </b>{{Speciality_Name}}</p>
-      </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_Citizenship}} </b> {{Nationality_Name}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_Speciality}} </b>{{Speciality_Name}}</p>
+        </div>
 
-      <hr class="horizontal dark">
+        <hr class="horizontal dark">
 
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_Category}} </b> {{ApplicantCategory_Name}}</p>
-      </div>
-      <div class="col-md-6">
-        <p class="mb-1"><b>{{lb_Program}} </b> {{Program_Name}}</p>
-      </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_Category}} </b> {{ApplicantCategory_Name}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-1"><b>{{lb_Program}} </b> {{Program_Name}}</p>
+        </div>
 
-    </div>
+      </div>
 
     </div>
 
     <div class="card card-body mt-4">
       <a routerLink="../../../ApplicationForm/add/{{GN_Code}}">
-      <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle2}} </h6>
-    </a>
+        <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle2}}
+        </h6>
+      </a>
       <hr class="horizontal dark my-3">
       <div class="row">
 
@@ -69,7 +71,7 @@
         <hr class="horizontal dark">
 
         <div class="col-md-4">
-          <p class="mb-1"><b>{{lb_MaritalStatus}} </b> {{MaritalStatus}}</p>
+          <p class="mb-1"><b>{{lb_MaritalStatus}} </b> {{MaritalStatusList[MaritalStatus].Name}}</p>
         </div>
         <div class="col-md-4">
           <p class="mb-1"><b>{{lb_DateOfBirth}} </b>{{DateOfBirth}} </p>
@@ -123,46 +125,30 @@
 
 
     <div class="card card-body mt-4">
-      <h6> <i class="ni ni-single-02 text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle3}} </h6>
+      <h6> <i class="fa fa-file text-dark text-gradient opacity-10 h4" aria-hidden="true"></i> {{lb_FormTitle3}}
+      </h6>
       <hr class="horizontal dark my-3">
-        <div class="input-group px-3 pe-3 pb-3 pt-2">
-          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true" ></i></span>
-          <input type="text" class="form-control" placeholder="Type here..."  [(ngModel)]="searchedKeyword" >
+      <div class="row">
+        <div class="col-md-12 pb-2">
+          <input type="text" class="form-control" placeholder="Type here..." [(ngModel)]="searchedKeyword">
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center mb-0">
-            <thead>
-              <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Attachment_Name}}</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_Action}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let StudentAttachment of StudentAttachmentList | filter: searchedKeyword |
+        <div class="col-md-3" *ngFor="let StudentAttachment of StudentAttachmentList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
               itemsPerPage: PerPage,
               currentPage: page,
               totalItems: tatalRecords
              }">
-             <td>
-              <div class="d-flex px-2 py-1">
-                <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-sm">{{StudentAttachment.Type}}</h6>
-                </div>
-              </div>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-sm">
-                <a href="{{StudentAttachment.FilePath}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-              </span>
-            </td>
-          </tr>
-            </tbody>
-          </table>
+             <div class="row pt-2">
+          <div class="col-md-12">
+            <h6> <a href="{{StudentAttachment.FilePath}}" target="_blank"><i class="fa fa-files-o" aria-hidden="true"></i> {{StudentAttachment.Type}}</a> </h6>
+          </div>
+          <div class="col-md-2 text-center">
+
+          </div>
         </div>
-
+        </div>
       </div>
-
-   </div>
-   </div>
-
+    </div>
+  </div>
+</div>
+<br/>

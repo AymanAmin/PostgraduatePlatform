@@ -190,6 +190,25 @@ export class LeaveComponent implements OnInit {
     };
   }
 
+  DateDifference() {
+    // To set two dates to two variables
+    if (this.Leave.get('FromDate')?.value != "" && this.Leave.get('ToDate')?.value != "") {
+      var date1 = new Date(this.Leave.get('FromDate')?.value);
+      var date2 = new Date(this.Leave.get('ToDate')?.value);
+
+      // To calculate the time difference of two dates
+      var Difference_In_Time = date2.getTime() - date1.getTime();
+
+      // To calculate the no. of days between two dates
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+      if (Difference_In_Days > 0)
+        this.Leave.patchValue({
+          NoOfDays: Difference_In_Days,
+        });
+    }
+  }
+
   // Label Data
   lb_FormTitle:any;lb_Details:any;lb_Program:any;ProgramList:any;lb_Speciality:any;SpecialityList:any;
   lb_Type:any;TypeList:any;lb_Reason:any;lb_From:any;lb_To:any;lb_Medical_Excuse:any;
@@ -205,7 +224,7 @@ export class LeaveComponent implements OnInit {
       this.lb_To="To";
       this.lb_NoOfDaysLeave="NO Of Days Leave";
       this.lb_Reason="Reason";
-      this.lb_Medical_Excuse="Medical Excuse";
+      this.lb_Medical_Excuse="Attachment";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
@@ -220,7 +239,7 @@ export class LeaveComponent implements OnInit {
       this.lb_To="الي";
       this.lb_NoOfDaysLeave="عدد أيام الإجازة";
       this.lb_Reason="السبب";
-      this.lb_Medical_Excuse="العذر الطبي";
+      this.lb_Medical_Excuse="المرفق";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";

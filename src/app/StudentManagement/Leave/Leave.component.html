@@ -24,14 +24,14 @@
             <div class="col-md-6">
               <label class="form-label">{{lb_From}}</label>
               <div class="input-group">
-                <input  id="from" name="from" formControlName="FromDate" class="form-control datetimepicker" type="date" placeholder=""
+                <input  id="from" name="from" formControlName="FromDate"  (change)="DateDifference()" class="form-control datetimepicker" type="date" placeholder=""
                 required="required" autocomplete="false">
               </div>
             </div>
             <div class="col-md-6">
               <label class="form-label">{{lb_To}}</label>
               <div class="input-group">
-                <input  id="to" name="to" formControlName="ToDate" class="form-control datetimepicker" type="date" placeholder=""
+                <input  id="to" name="to" formControlName="ToDate" (change)="DateDifference()" class="form-control datetimepicker" type="date" placeholder=""
                   required="required" autocomplete="false">
               </div>
             </div>
@@ -39,7 +39,7 @@
               <label class="form-label">{{lb_NoOfDaysLeave}}</label>
               <div class="input-group">
                 <input  id="NoOfDaysLeave" name="NoOfDaysLeave" formControlName="NoOfDays" class="form-control" type="text"
-                  required="required" autocomplete="false">
+                  required="required" autocomplete="false" readonly="readonly">
               </div>
             </div>
             <div class="col-md-6">

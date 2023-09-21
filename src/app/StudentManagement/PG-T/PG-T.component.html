@@ -35,17 +35,49 @@
               </div>
             </div>-->
 
-            <div class="col-sm-12 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_thesis_En}}</label>
               <div class="input-group">
-                <textarea name="thesis_En" formControlName="Thesis_Title_En"  class="form-control"></textarea>
+                <textarea name="thesis_En" formControlName="Thesis_Title_En" style="text-align: left;"  class="form-control"></textarea>
               </div>
             </div>
 
-            <div class="col-sm-12 col-6">
+            <div class="col-md-6">
               <label class="form-label">{{lb_thesis_Ar}}</label>
               <div class="input-group">
-                <textarea name="thesis_Ar" formControlName="Thesis_Title_Ar"  class="form-control"></textarea>
+                <textarea name="thesis_Ar" formControlName="Thesis_Title_Ar" style="text-align: right;" class="form-control"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Supervisor}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="supervisor">
+                  <option value="{{receiver.GN_Code}}" *ngFor="let receiver of ReceiverList">{{LangCode === "us-en" ? receiver.Name_En : receiver.Name_Ar}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Date}}</label>
+              <div class="input-group">
+                <input type="text" name="supervisor_date" formControlName="supervisor_date"  class="form-control" readonly />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{{lb_CO_Supervisor}}</label>
+              <div class="input-group">
+                <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="co_supervisor">
+                  <option value="{{receiver.GN_Code}}" *ngFor="let receiver of ReceiverList">{{LangCode === "us-en" ? receiver.Name_En : receiver.Name_Ar}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Date}}</label>
+              <div class="input-group">
+                <input type="text" name="co_supervisor_date" formControlName="co_supervisor_date" class="form-control" readonly />
               </div>
             </div>
         </div>

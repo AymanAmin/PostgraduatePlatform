@@ -29,9 +29,9 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
     if(this.LangCode == "en-us" || this.LangCode == "us-en")
-      this.titleService.setTitle("Reference And Certificates");
+      this.titleService.setTitle("Reference letters and certificates");
   else
-       this.titleService.setTitle("المرجعية و الشهادات");
+       this.titleService.setTitle("خطابات مرجعية وشهادات");
   }
 
   ngOnInit() {
@@ -149,8 +149,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   lb_FormTitle:any;lb_Details:any; lb_Receiver:any; ReceiverList:any;lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_FormTitle="Reference And Certificates";
-      this.lb_Details = "Please fill all details for the Reference And Certificates Requst";
+      this.lb_FormTitle="Reference letters and certificates";
+      this.lb_Details = "Please fill all details for the Reference letters and certificates Requst";
       this.lb_Receiver="Receiver";
       this.lb_Letter="Letter";
       this.lb_Cancel = "Cancel";
@@ -158,8 +158,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
-      this.lb_FormTitle="بيانات طلب مرجعية و شهادات";
-      this.lb_Details = "الرجاء تعبئة جميع بيانات طلب مرجعية و شهادات";
+      this.lb_FormTitle="بيانات طلب خطابات مرجعية وشهادات";
+      this.lb_Details = "الرجاء تعبئة جميع بيانات طلب خطابات مرجعية وشهادات";
       this.lb_Receiver="الجهه المرسل الية";
       this.lb_Letter="الخطاب";
       this.lb_Cancel = "إلغاء";

@@ -90,6 +90,9 @@
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td colspan="6" class="text-center text-secondary pt-3" *ngIf="list_num == 0">لا يوجد طلبات</td>
+                </tr>
                 <tr *ngFor="let record of OrderList | filter: searchedKeyword |
                 paginate: {id: 'listing_pagination',
                 itemsPerPage: 10,

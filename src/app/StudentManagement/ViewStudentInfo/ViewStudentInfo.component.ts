@@ -142,17 +142,15 @@ export class ViewStudentInfoComponent implements OnInit {
       this.lb_Phone="Phone : ";
       this.lb_Email="Email : ";
       this.lb_Citizenship = "Citizen Ship : ";
-      this.lb_NationalIdNo="National Id No : ";
+      this.lb_NationalIdNo="Identity/Iqama Card(Number) : ";
       this.lb_Gender="Gender : ";
-
       this.lb_DateOfBirth ="Date Of Birth : ";
       this.lb_PlaceOfBirth="Place Of Birth : ";
-      this.lb_NationalIdNo="Saudi Personal Id Card(Number) : ";
       this.lb_IssueDate="Issue Date : ";
       this.lb_ExpiryDate="Expiry Date : ";
       this.lb_MaritalStatus="Marital Status : ";
-      this.lb_University="University : ";
-      this.lb_GPA="GPA : ";
+      this.lb_University="Previous University : ";
+      this.lb_GPA="Previous GPA : ";
       this.lb_HealthSpecialties="Examination score of the Saudi Commission for Health Specialties : ";
       this.lb_EnglishTestScore="English Test Score : ";
       this.lb_City="City : ";
@@ -162,6 +160,7 @@ export class ViewStudentInfoComponent implements OnInit {
       this.top_class = "ms-auto";
       this.lb_Attachment_Name="Attachment Name";
       this.lb_Action= "View";
+      this.MaritalStatusList = [{ "Id": 1, "Name": "Single" },{ "Id": 2, "Name": "Married" }];
     }
     else {
       this.lb_FormTitle3="المرفقات";
@@ -177,17 +176,15 @@ export class ViewStudentInfoComponent implements OnInit {
       this.lb_Phone="رقم الجوال : ";
       this.lb_Email="البريد الإلكتروني : ";
       this.lb_Citizenship = "الجنسية : ";
-      this.lb_NationalIdNo="رقم الهوية : ";
+      this.lb_NationalIdNo="رقم الهوية/الإقامة : ";
       this.lb_Gender="الجنس : ";
-
       this.lb_DateOfBirth ="تاريخ الميلاد (عربي) : ";
       this.lb_PlaceOfBirth="مكان الميلاد (عربي) : ";
-      this.lb_NationalIdNo="رقم بطاقة الهوية الشخصية السعودية : ";
       this.lb_IssueDate="تاريخ الإصدار : ";
       this.lb_ExpiryDate="تاريخ انتهاء الصلاحية : ";
       this.lb_MaritalStatus="الحالة الاجتماعية : ";
-      this.lb_University="الجامعة : ";
-      this.lb_GPA="المعدل التراكمي : ";
+      this.lb_University="الجامعة السابقة: ";
+      this.lb_GPA="المعدل التراكمي السابق: ";
       this.lb_HealthSpecialties=" درجة اختبار الهيئة السعودية للتخصصات الصحية : ";
       this.lb_EnglishTestScore="درجة اختبار اللغة الإنجليزية : ";
       this.lb_City="المدينة : ";
@@ -198,6 +195,7 @@ export class ViewStudentInfoComponent implements OnInit {
       this.lb_Attachment_Name="إسم المرفق";
       this.lb_Action= "عرض";
       this.top_class = "me-auto";
+      this.MaritalStatusList = [{ "Id": 1, "Name": "أعزب" },{ "Id": 2, "Name": "متزوج" }];
 
 
     }

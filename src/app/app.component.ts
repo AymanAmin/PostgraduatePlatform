@@ -19,10 +19,9 @@ export class AppComponent {
   username: string = "guset";
   LangCode: any = "en-us";
   emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
-  student_Active: any;Financial_Active:any;
-  PermissionList:any;
-  Std_GN_Code:any;
-
+  student_Active: any; Financial_Active: any;
+  PermissionList: any;
+  Std_GN_Code: any;
 
   constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     router.events.subscribe(val => {
@@ -47,7 +46,7 @@ export class AppComponent {
         this.emp_Active = "active";
       else if (myArray[1] == "Student")
         this.student_Active = "active";
-        else if (myArray[1] == "Financial")
+      else if (myArray[1] == "Financial")
         this.Financial_Active = "active";
     });
 
@@ -55,10 +54,8 @@ export class AppComponent {
 
   ngOnInit() {
     //Login Check
-
-
-        // Get Username
-        this.getProfileInfo();
+    // Get Username
+    this.getProfileInfo();
 
     var Path = window.location.pathname;
     const myArray = Path.split("/");
@@ -70,36 +67,42 @@ export class AppComponent {
       this.schedule_Active = "active";
     else if (myArray[1] == "Order")
       this.order_Active = "active";
-      else if (myArray[1] == "Order")
+    else if (myArray[1] == "Order")
       this.emp_Active = "active";
-      else if (myArray[1] == "Student")
+    else if (myArray[1] == "Student")
       this.student_Active = "active";
-      else if (myArray[1] == "Order")
+    else if (myArray[1] == "Order")
       this.emp_Active = "active";
 
     //Page name in navbar
     this.router.events.subscribe((val) => {
       if (val instanceof ActivationEnd) {
-        if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration" || val.snapshot.url[1].path === "RecommendationLetter") {
-          this.IsAdminPage = false;
+        try {
+          if (val.snapshot.url[0].path === "Login" || val.snapshot.url[1].path === "Registration" || val.snapshot.url[1].path === "RecommendationLetter") {
+            this.IsAdminPage = false;
+          }
+          else {
+            if (localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false") {
+              this.router.navigate(['/Login/page']);
+            }
+            this.IsAdminPage = true;
+          }
         }
-        else {
-          if(localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false"){
+        catch (err) {
+          if (localStorage.getItem("IsLogin") == null || localStorage.getItem("IsLogin") === "false") {
             this.router.navigate(['/Login/page']);
           }
-
-          this.IsAdminPage = true;
         }
       }
     });
     this.LangCode = localStorage.getItem('LangCode');
-    this.GetLabelName(this.LangCode)
+    this.GetLabelName(this.LangCode);
 
     var GN_Code = localStorage.getItem("GN_Code");
 
     this.Std_GN_Code = localStorage.getItem("GN_Code");
 
-      this.getPermissionInfo();
+    this.getPermissionInfo();
   }
 
   getProfileInfo() {
@@ -126,14 +129,13 @@ export class AppComponent {
     )
   }
 
-  IsRoleEixed(PermissionCode:any) {
+  IsRoleEixed(PermissionCode: any) {
     this.PermissionList = environment.Group_Permission;
     var result = this.PermissionList.find((x: { PemissionRole_Code: string; }) => x.PemissionRole_Code == PermissionCode);
-    if(result == undefined) return false;
+    if (result == undefined) return false;
 
-   return result;
+    return result;
   }
-
 
   logoutEvent() {
     localStorage.removeItem("GN_Code");
@@ -142,6 +144,7 @@ export class AppComponent {
     localStorage.removeItem("Credential_Type");
     window.location.href = environment.mainRoot + "/#/Login/page";
   }
+
   onActivate(event: any) {
     window.scroll(0, 0);
   }
@@ -162,23 +165,23 @@ export class AppComponent {
   }
 
   asideClass: any = "sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white";
-  MenuItem:any = "nav-link-text ms-1";breadcrumbClass:any = "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5";
-  navClass:any = "navbar-custome navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
-  CatMenuItem:any = "ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6";
-  navbarClass:any = "collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4";
-  mainClass:any = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
-  CatMainMenu:any = "nav-item mt-3";
-  loginClass:any = "justify-content-end navbar-nav";
-  Dashboard:any = "Dashboard";Employees:any = "Employees";
-  StudentMangment:any;StudentRequest:any;SystemAdmin:any;Specializations:any;Departments:any;Programs:any;TypesLeave:any;
-  EmailTemplate:any;Sequence:any;ListSequenceModel:any;ListSequenceStatus:any;CreateSequence:any;
-  Needhelp:any;PleaseSendEmail:any;Students:any;Orders:any;ShowSchedule:any;AddSeminar:any;AddDefense:any;
-  Schedule:any;AddEmployee:any;ListEmployee:any;AddOrders:any;ListOrders:any;Profile:any;ListStudents:any;
-  Studentinformation:any;StudentAttachment:any;ApplicationForm:any;StudentLeave:any;RecommendationLetter:any;
-  Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence:any;
-  SequenceForm:any;Class_Massege:any = "position-fixed top-2 end-2 z-index-sticky";textDir:any;
-  Financial:any;CreateInvoice:any;InvoiceList:any;StudentAttendance:any;LectureAttendance:any;
-  HeaderSuccess:any;BodyMassageSuccess:any;HeaderInfo:any;BodyMassageInfo:any;Clearnce:any;
+  MenuItem: any = "nav-link-text ms-1"; breadcrumbClass: any = "breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5";
+  navClass: any = "navbar-custome navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky bg-white";
+  CatMenuItem: any = "ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6";
+  navbarClass: any = "collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4";
+  mainClass: any = "main-content position-relative max-height-vh-100 h-100 border-radius-lg";
+  CatMainMenu: any = "nav-item mt-3";
+  loginClass: any = "justify-content-end navbar-nav";
+  Dashboard: any = "Dashboard"; Employees: any = "Employees";
+  StudentMangment: any; StudentRequest: any; SystemAdmin: any; Specializations: any; Departments: any; Programs: any; TypesLeave: any;
+  EmailTemplate: any; Sequence: any; ListSequenceModel: any; ListSequenceStatus: any; CreateSequence: any;
+  Needhelp: any; PleaseSendEmail: any; Students: any; Orders: any; ShowSchedule: any; AddSeminar: any; AddDefense: any;
+  Schedule: any; AddEmployee: any; ListEmployee: any; AddOrders: any; ListOrders: any; Profile: any; ListStudents: any;
+  Studentinformation: any; StudentAttachment: any; ApplicationForm: any; StudentLeave: any; RecommendationLetter: any;
+  Reference_Certificates: any; PG_T1: any; PG_T2: any; PG_T3: any; Permission: any; ViewSequence: any;
+  SequenceForm: any; Class_Massege: any = "position-fixed top-2 end-2 z-index-sticky"; textDir: any;
+  Financial: any; CreateInvoice: any; InvoiceList: any; StudentAttendance: any; LectureAttendance: any;
+  HeaderSuccess: any; BodyMassageSuccess: any; HeaderInfo: any; BodyMassageInfo: any; Clearnce: any; nav_link: any;
   HeaderWarning: any; BodyMassageWarning: any; HeaderDanger: any; BodyMassageDanger: any; Staff: any; LectureSchedule: any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -218,27 +221,27 @@ export class AppComponent {
       this.Needhelp = "Need help?";
       this.PleaseSendEmail = "Please Send Email";
       this.Students = "Students";
-      this.Orders = "Orders";
+      this.Orders = "Requests";
       this.ShowSchedule = "Show Schedule";
       this.AddSeminar = "Seminars";
       this.AddDefense = "Thesis Defense";
       this.Schedule = "Schedule";
       this.AddEmployee = "Employee Info";
       this.ListEmployee = "List Employee";
-      this.AddOrders = "Add Orders";
-      this.ListOrders = "List Orders";
+      this.AddOrders = "Add Requests";
+      this.ListOrders = "Previous Requests";
       this.Profile = "Profile";
       this.ListStudents = "List Students";
-      this.Studentinformation="Student Information";
-      this.StudentAttachment="Student Attachment";
-      this.ApplicationForm="Addational Info";
-      this.StudentLeave="Leave Request";
-      this.RecommendationLetter="Recommendation Letter";
-      this.Reference_Certificates="Reference And Certificates";
-      this.PG_T1="PG_R1 Model";
-      this.PG_T2="PG_R2 Model";
-      this.PG_T3="PG_R3 Model";
-      this.Permission="Permission";
+      this.Studentinformation = "Student Information";
+      this.StudentAttachment = "Student Attachment";
+      this.ApplicationForm = "Addational Info";
+      this.StudentLeave = "Leave Request";
+      this.RecommendationLetter = "Recommendation Letter";
+      this.Reference_Certificates = "Reference letters and certificates";
+      this.PG_T1 = "Master Thesis Defense";
+      this.PG_T2 = "Master Degree Granting";
+      this.PG_T3 = "Master Thesis Proposal";
+      this.Permission = "Permission";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
       this.ViewSequence = "View Sequence";
       this.Financial = "Financial";
@@ -249,7 +252,7 @@ export class AppComponent {
       this.LectureSchedule = "Lectures Schedule";
       this.LectureAttendance = "Lecture Attendance";
       this.Clearnce = "Clearnce";
-
+      this.nav_link = "nav-link";
     }
     else {
       this.textDir = "TextAlign";
@@ -297,19 +300,19 @@ export class AppComponent {
       this.AddEmployee = "بيانات الموظف";
       this.ListEmployee = "قائمة الموظفين";
       this.AddOrders = "إضافة طلب";
-      this.ListOrders = "عرض الطلبات";
+      this.ListOrders = "الطلبات السابقة ";
       this.Profile = "صفحتي الشخصية";
       this.ListStudents = "قائمة الطلاب";
-      this.Studentinformation="بيانات الأساسية";
-      this.StudentAttachment="المرفقات";
-      this.ApplicationForm="بيانات إضافية";
-      this.StudentLeave="طلب إجازة";
-      this.RecommendationLetter="طالب توصية";
-      this.Reference_Certificates="المراجع والشهادات";
-      this.PG_T1="نموذج PG_R1";
-      this.PG_T2="نموذج PG_R2";
-      this.PG_T3="نموذج PG_R3";
-      this.Permission="الصلاحيات";
+      this.Studentinformation = "بيانات الأساسية";
+      this.StudentAttachment = "المرفقات";
+      this.ApplicationForm = "بيانات إضافية";
+      this.StudentLeave = "طلب إجازة";
+      this.RecommendationLetter = "خطاب توصية";
+      this.Reference_Certificates = "خطابات مرجعية وشهادات";
+      this.PG_T1 = "طلب مناقشة رسالة";
+      this.PG_T2 = "طلب منح درجة الماجستير";
+      this.PG_T3 = "طلب مقترح رساله";
+      this.Permission = "الصلاحيات";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";
       this.ViewSequence = "عرض التسلسل";
       this.Financial = "المالية ";
@@ -320,8 +323,8 @@ export class AppComponent {
       this.LectureSchedule = "جدول المحاضرات";
       this.LectureAttendance = "حضور المحاضرات";
       this.Clearnce = "إخلاء طرف";
+      this.nav_link = "nav-link nav-link-arabic";
     }
   }
-
 }
 

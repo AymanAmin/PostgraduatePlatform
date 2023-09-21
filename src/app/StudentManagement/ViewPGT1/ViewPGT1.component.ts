@@ -16,20 +16,23 @@ export class ViewPGT1Component implements OnInit {
 
   Supervisor: string = "";
   COSupervisor: string = ""
-  DateTo: string = "";
-  DateFrom: string = "";
+  SupervisorDate: string = "";
+  COSupervisorDate: string = "";
   ThesisArabic: string = "";
   ThesisEnglish: string = "";
   PG_T_Type: string = "PG_R1";
   FormCode: string = "1002";
-  
+  PageName = "";
+
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View PG-R");
     this.LangCode = localStorage.getItem("LangCode");
     if (this.LangCode == "en-us" || this.LangCode == "us-en")
-      this.titleService.setTitle("View PG-R");
+      this.PageName = "Master Thesis Defense";
     else
-      this.titleService.setTitle("PG-R عرض");
+      this.PageName = "طلب مناقشة رسالة";
+
+      this.titleService.setTitle(this.PageName);
   }
 
   ngOnInit() {
@@ -52,18 +55,20 @@ export class ViewPGT1Component implements OnInit {
     if (MainInfoData) {
       // this.Supervisor = MainInfoData.;
       // this.COSupervisor = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
-      // this.DateTo = new Date(MainInfoData.requestLeave.ToDate).toLocaleDateString();
-      // this.DateFrom = new Date(MainInfoData.requestLeave.FromDate).toLocaleDateString();;
       this.PG_T_Type = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
       this.ThesisEnglish = MainInfoData.Thesis_Title_En;
-      this.ThesisArabic = MainInfoData.Thesis_Title_Ar
+      this.ThesisArabic = MainInfoData.Thesis_Title_Ar;
+      this.Supervisor = MainInfoData.SupervisorName;
+      this.COSupervisor = MainInfoData.Co_SupervisorName;
+      this.SupervisorDate = MainInfoData.SupervisorDate;
+      this.COSupervisorDate = MainInfoData.Co_SupervisorDate;
     }
   }
 
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
   lb_Program: any; lb_Category: any; lb_Speciality: any; lb_PGTDetails: any; lb_COSupervisor: any;
   lb_Supervisor: any; lb_DateFrom: any; lb_DateTo: any; lb_ThesisEnglish: any; lb_ThesisArabic: any; lb_Sequence: any;
-  lb_Approve: any; lb_Reject: any; lb_Trackorder: any; top_class: any;
+  lb_Approve: any; lb_Reject: any; lb_Trackorder: any; top_class: any;lb_SupervisorAndCoSupervisor:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -86,6 +91,7 @@ export class ViewPGT1Component implements OnInit {
       this.lb_Reject = "Reject";
       this.lb_Trackorder = "Track Order";
       this.top_class = "ms-auto"
+      this.lb_SupervisorAndCoSupervisor = "Approval of supervisor and Co-supervisor";
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -108,6 +114,7 @@ export class ViewPGT1Component implements OnInit {
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
       this.top_class = "me-auto"
+      this.lb_SupervisorAndCoSupervisor = "موافقة المشرف والمساعد";
     }
   }
 

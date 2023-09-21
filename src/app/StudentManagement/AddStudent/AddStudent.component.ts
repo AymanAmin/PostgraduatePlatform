@@ -228,7 +228,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_RetypeEmail="Retype Email";
       this.lb_Citizenship = "Citizen Ship";
       this.GenderList = [{ "Id": 1, "Name": "Female" }, { "Id": 2, "Name": "Male" }];
-      this.lb_NationalIdNo="National Id No";
+      this.lb_NationalIdNo= "Identity/Iqama Card(Number)";
       this.lb_Gender="Gender";
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
@@ -254,7 +254,7 @@ export class AddStudentComponent implements OnInit {
       this.lb_RetypeEmail="إعادة البريد الإلكتروني";
       this.lb_Citizenship = "الجنسية";
       this.GenderList = [{ "Id": 1, "Name": "انثى" }, { "Id": 2, "Name": "ذكر" }];
-      this.lb_NationalIdNo="رقم الهوية";
+      this.lb_NationalIdNo="رقم الهوية/الإقامة";
       this.lb_Gender="الجنس";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";

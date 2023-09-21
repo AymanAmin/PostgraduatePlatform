@@ -9,7 +9,7 @@ function CallCalendar() {
   let resultData = JSON.parse(jsonInfo);
   var ScheduleEvent = '[';
   for (i = 0; i < resultData.length; i++) {
-  //console.log("resultData[" + i +"] : " + formatDate(resultData[i].start));
+    //console.log("resultData[" + i +"] : " + formatDate(resultData[i].start));
     if (i != 0)
       ScheduleEvent += ',';
 
@@ -37,15 +37,16 @@ function CallCalendar() {
   RenderCalender(data, LangCode, formatDate(today))
 }
 
+
 function RenderCalender(data, LangCode, today) {
-  //console.log(data);
+  console.log(screen.width);
   var calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
     initialView: "dayGridMonth",
     themeSystem: 'Litera',
     headerToolbar: {
-      start: 'today prev,next',
+      start: screen.width < 1000 ? 'prev,next' : 'today prev,next',
       center: 'title',
-      end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      end: screen.width < 1000 ? 'dayGridMonth,listWeek' : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     locale: LangCode,
     selectable: true,
@@ -108,42 +109,53 @@ function RenderCalender(data, LangCode, today) {
 
   if (LangCode == "ar-sa") {
     document.getElementById("calendar").classList = 'calendar fc fc-media-screen fc-direction-rtl fc-theme-standard fc-liquid-hack';
-    document.getElementsByClassName("fc-listWeek-button")[0].innerText = "قائمة الاجتماعات";
-    document.getElementsByClassName("fc-listWeek-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-timeGridDay-button")[0].innerText = "بالساعات";
-    document.getElementsByClassName("fc-timeGridDay-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-timeGridWeek-button")[0].innerText = "الاسبوع";
-    document.getElementsByClassName("fc-timeGridWeek-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-dayGridMonth-button")[0].innerText = "الشهر";
-    document.getElementsByClassName("fc-dayGridMonth-button")[0].addEventListener("click", UpdateLang);
+    try {
+      document.getElementsByClassName("fc-next-button")[0].innerHTML = '<i class="fa fa-arrow-left" aria-hidden="true"></i>';
+      document.getElementsByClassName("fc-next-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-today-button")[0].innerText = "اليوم";
-    document.getElementsByClassName("fc-today-button")[0].addEventListener("click", UpdateLang);
+      document.getElementsByClassName("fc-prev-button")[0].innerHTML = '<i class="fa fa-arrow-right" aria-hidden="true"></i>';
+      document.getElementsByClassName("fc-prev-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-next-button")[0].innerHTML = '<i class="fa fa-arrow-left" aria-hidden="true"></i>';
-    document.getElementsByClassName("fc-next-button")[0].addEventListener("click", UpdateLang);
 
-    document.getElementsByClassName("fc-prev-button")[0].innerHTML = '<i class="fa fa-arrow-right" aria-hidden="true"></i>';
-    document.getElementsByClassName("fc-prev-button")[0].addEventListener("click", UpdateLang);
+      document.getElementsByClassName("fc-dayGridMonth-button")[0].innerText = "الشهر";
+      document.getElementsByClassName("fc-dayGridMonth-button")[0].addEventListener("click", UpdateLang);
 
+      document.getElementsByClassName("fc-listWeek-button")[0].innerText = "قائمة الاجتماعات";
+      document.getElementsByClassName("fc-listWeek-button")[0].addEventListener("click", UpdateLang);
+
+      document.getElementsByClassName("fc-timeGridDay-button")[0].innerText = "بالساعات";
+      document.getElementsByClassName("fc-timeGridDay-button")[0].addEventListener("click", UpdateLang);
+
+      document.getElementsByClassName("fc-timeGridWeek-button")[0].innerText = "الاسبوع";
+      document.getElementsByClassName("fc-timeGridWeek-button")[0].addEventListener("click", UpdateLang);
+
+      document.getElementsByClassName("fc-today-button")[0].innerText = "اليوم";
+      document.getElementsByClassName("fc-today-button")[0].addEventListener("click", UpdateLang);
+    }
+    catch (err) {
+      console.log("mobile View");
+    }
   }
 }
 
 function UpdateLang() {
 
-}
+  try {
+    document.getElementsByClassName("fc-next-button")[0].innerHTML = '<i class="fa fa-arrow-left" aria-hidden="true"></i>';
+    document.getElementsByClassName("fc-prev-button")[0].innerHTML = '<i class="fa fa-arrow-right" aria-hidden="true"></i>';
 
-function UpdateLang() {
-  document.getElementsByClassName("fc-listWeek-button")[0].innerText = "قائمة الاجتماعات";
-  document.getElementsByClassName("fc-timeGridDay-button")[0].innerText = "بالساعات";
-  document.getElementsByClassName("fc-timeGridWeek-button")[0].innerText = "الاسبوع";
-  document.getElementsByClassName("fc-dayGridMonth-button")[0].innerText = "الشهر";
-  document.getElementsByClassName("fc-today-button")[0].innerText = "اليوم";
-  document.getElementsByClassName("fc-next-button")[0].innerHTML = '<i class="fa fa-arrow-left" aria-hidden="true"></i>';
-  document.getElementsByClassName("fc-prev-button")[0].innerHTML = '<i class="fa fa-arrow-right" aria-hidden="true"></i>';
+    document.getElementsByClassName("fc-dayGridMonth-button")[0].innerText = "الشهر";
+    document.getElementsByClassName("fc-listWeek-button")[0].innerText = "قائمة الاجتماعات";
+    document.getElementsByClassName("fc-timeGridDay-button")[0].innerText = "بالساعات";
+    document.getElementsByClassName("fc-timeGridWeek-button")[0].innerText = "الاسبوع";
+    document.getElementsByClassName("fc-today-button")[0].innerText = "اليوم";
+  }
+  catch (err) {
+    console.log("mobile View");
+  }
 }
 
 function pad(d) {

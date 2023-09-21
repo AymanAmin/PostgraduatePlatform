@@ -91,7 +91,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   fillData(EmployeeData: any) {
-    this.BriefSummary_Data = decodeURIComponent(atob(EmployeeData.BriefSummary));
+    this.BriefSummary_Data = this.decodeHTMLEntities(decodeURIComponent(EmployeeData.BriefSummary));
     var list = [];
     for(let i = 0; i < EmployeeData.Department.length; i ++){
       //console.log(EmployeeData.Department[i].Department_Id);
@@ -127,12 +127,22 @@ export class AddEmployeeComponent implements OnInit {
     return Obj != null ? "selected": "";
   }
 
+   encodeHTMLEntities(rawStr:any) {
+    return rawStr.replace(/[\u00A0-\u9999<>\&]/g, ((i: string) => `&#${i.charCodeAt(0)};`));
+  }
+
+  decodeHTMLEntities(rawStr:any) {
+    return rawStr.replace(/&#(\d+);/g, ((match:any, dec:any) => `${String.fromCharCode(dec)}`));
+  }
+
   OnSubmit(IsDeleted:boolean) {
     this.UpdateButtonSpinner(true);
 
     var div = document.getElementById('BriefSummary');
     var data = div?.getAttribute("value");
-    var BriefSummary = btoa(encodeURIComponent(data || ""));
+    var BriefSummary =  encodeURIComponent(this.encodeHTMLEntities(data || ""));
+    console.log(BriefSummary);
+    //return;
     var formData: any = new FormData();
     formData.append("GN_Code", this.GN_Code);
     formData.append("Name_Ar", this.EmployeeForm.get('Name_Ar')?.value);
@@ -277,7 +287,7 @@ export class AddEmployeeComponent implements OnInit {
       this.lb_EmpUserName = "إسم الدخول";
       this.lb_EmpPassword = "كلمة المرور";
       this.lb_EmpCPassword = "تأكيد كلمة المرور";
-      this.lb_Language = "اللغة الشاشات";
+      this.lb_Language = "لغة النظام";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
       this.Erorr_username = "الرجاء التحقق من طول كلمة المرور.";

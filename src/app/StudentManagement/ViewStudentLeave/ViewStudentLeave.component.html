@@ -39,11 +39,11 @@
               </div>
 
               <hr class="horizontal dark">
-              <div class="row">
+              <div class="row" *ngIf="AttachmentPatch">
                 <div class="col-6">
-                  <a href="{{AttachmentPatch.FilePath}}" target="_blank">
+                  <a href="{{AttachmentPatch?.FilePath}}" target="_blank">
                     <p class="mb-1">{{lb_Medical_Excuse}} <i class="far fa-file-pdf mx-2" aria-hidden="true"></i>
-                      <b><small>{{AttachmentPatch.FileName}}</small></b>
+                      <b><small>{{AttachmentPatchView}}</small></b>
                     </p>
                   </a>
                 </div>

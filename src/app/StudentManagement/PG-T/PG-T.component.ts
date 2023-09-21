@@ -29,13 +29,28 @@ export class PGTComponent implements OnInit {
   Student_GN_Code : any =localStorage.getItem("GN_Code");
   PG_R_Type:number = this.route.snapshot.params['PG_R_Type'];
   BriefSummary_Data:any = "";  FormCode:string = "";
+  ReceiverList:any;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.LangCode = localStorage.getItem("LangCode");
-  if(this.LangCode == "en-us" || this.LangCode == "us-en")
-    this.titleService.setTitle("PG-R");
-   else
-     this.titleService.setTitle("PG-R");
+    if (this.LangCode == "en-us" || this.LangCode == "us-en") {
+      if (this.PG_R_Type == 1)
+        this.lb_FormTitle = "Master Thesis Defense";
+      if (this.PG_R_Type == 2)
+        this.lb_FormTitle = "Master Degree Granting";
+      if (this.PG_R_Type == 3)
+        this.lb_FormTitle = "Master Thesis Proposal";
+    }
+    else {
+      if (this.PG_R_Type == 1)
+        this.lb_FormTitle = "طلب مناقشة رسالة";
+      if (this.PG_R_Type == 2)
+        this.lb_FormTitle = "طلب منح درجة الماجستير";
+      if (this.PG_R_Type == 3)
+        this.lb_FormTitle = "طلب مقترح رساله";
+    }
+
+    this.titleService.setTitle(this.lb_FormTitle);
   }
 
   ngOnInit() {
@@ -45,6 +60,7 @@ export class PGTComponent implements OnInit {
     this.CreateForm();
     this.getProgram();
     this.getDepartment();
+    this.getReceiver();
     if(this.GN_Code)
       this.getData();
 
@@ -53,10 +69,10 @@ export class PGTComponent implements OnInit {
 
   CreateForm() {
     this.PGR = new FormGroup({
-
-
       Thesis_Title_En: new FormControl(null, [Validators.required]),
       Thesis_Title_Ar: new FormControl(null, [Validators.required]),
+      supervisor: new FormControl(null),
+      co_supervisor: new FormControl(null),
       /* college_GN_Code: new FormControl(null, [Validators.required]),
       department_GN_Code: new FormControl(null, [Validators.required]),
       program_GN_Code: new FormControl(null, [Validators.required]),
@@ -104,6 +120,9 @@ export class PGTComponent implements OnInit {
     formData.append("Thesis_Title_Ar", this.PGR.get('Thesis_Title_Ar')?.value);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
+    formData.append("supervisor", this.PGR.get('supervisor')?.value);
+    formData.append("co_supervisor", this.PGR.get('co_supervisor')?.value);
+
     this.http.post(environment.baseUrl + '/API/StudentManagment/PG_R/Set/PG_R_Info.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {
@@ -142,7 +161,14 @@ export class PGTComponent implements OnInit {
     }
   }
 
-
+  getReceiver() {
+    this.http.get(environment.baseUrl + '/API/EmployeeManagment/Get/EmployeeList.ashx').subscribe(
+        data => {
+          var jsonInfo = JSON.stringify(data);
+          this.ReceiverList = JSON.parse(jsonInfo);
+        }
+      )
+  }
 
 
   // Label Data
@@ -151,7 +177,12 @@ export class PGTComponent implements OnInit {
   lb_Supervisor:any;lb_CO_Supervisor:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_FormTitle="PG-R"+this.PG_R_Type;
+      if(this.PG_R_Type == 1)
+        this.lb_FormTitle="Master Thesis Defense";
+      if(this.PG_R_Type == 2)
+        this.lb_FormTitle="Master Degree Granting";
+      if(this.PG_R_Type == 3)
+        this.lb_FormTitle="Master Thesis Proposal";
       this.lb_Details = "Please fill all details for the PG-R";
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
@@ -167,15 +198,21 @@ export class PGTComponent implements OnInit {
       this.lb_SaveChange = "Save Change";
     }
     else {
-      this.lb_FormTitle="PG-R"+this.PG_R_Type;
+      if(this.PG_R_Type == 1)
+        this.lb_FormTitle="طلب مناقشة رسالة";
+      if(this.PG_R_Type == 2)
+        this.lb_FormTitle="طلب منح درجة الماجستير";
+      if(this.PG_R_Type == 3)
+        this.lb_FormTitle="طلب مقترح رساله";
+
       this.lb_Details = "لرجاء تعبئة جميع بيانات (PG-T)";
       this.lb_College="الكلية";
       this.CollegeList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Department="القسم";
       this.lb_Program="البرنامج";
       this.lb_Date="التاريخ";
-      this.lb_thesis_En="(انجليزي)الأطروحة";
-      this.lb_thesis_Ar="الأطروحة(عربي)";
+      this.lb_thesis_En="الأطروحة (انجليزي)";
+      this.lb_thesis_Ar="الأطروحة (عربي)";
       this.lb_Supervisor="المشرف";
       this.lb_CO_Supervisor="المشرف المشترك";
       this.lb_Cancel = "إلغاء";

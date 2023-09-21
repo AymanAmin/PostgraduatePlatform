@@ -74,8 +74,9 @@ export class EmailTemplateComponent implements OnInit {
         var jsonInfo = JSON.stringify(data);
         this.SpeList = JSON.parse(jsonInfo);
         this.SpeList.forEach((oneItem: any, index: any) => {
-          this.SpeList[index].Template_Ar = decodeURIComponent(atob(oneItem.Template_Ar));
-          this.SpeList[index].Template_En = decodeURIComponent(atob(oneItem.Template_En));
+          console.log(this.decodeHTMLEntities(atob(oneItem.Template_Ar)));
+          this.SpeList[index].Template_Ar = this.decodeHTMLEntities(atob(oneItem.Template_Ar));
+          this.SpeList[index].Template_En = this.decodeHTMLEntities(atob(oneItem.Template_En));
         });
         this.loadJsFile("assets/js/Multi-choice.js");
       }
@@ -118,8 +119,8 @@ export class EmailTemplateComponent implements OnInit {
   }
 
   fillData(MainInfoData: any) {
-    this.Template_Ar_Data = decodeURIComponent(atob(MainInfoData.Template_Ar));
-    this.Template_En_Data = decodeURIComponent(atob(MainInfoData.Template_En));
+    this.Template_Ar_Data = this.decodeHTMLEntities(atob(MainInfoData.Template_Ar));
+    this.Template_En_Data = this.decodeHTMLEntities(atob(MainInfoData.Template_En));
     if (MainInfoData) {
       this.IsActive = MainInfoData.IsActive;
       this.EmailTemplateForm.patchValue({
@@ -136,7 +137,7 @@ export class EmailTemplateComponent implements OnInit {
     this.UpdateButtonSpinner(true);
     var div = document.getElementById('Template_Ar');
     var data = div?.getAttribute("value");
-    var Template_Ar = btoa(encodeURIComponent(data || ""));
+    var Template_Ar = btoa(this.encodeHTMLEntities(data || ""));
 
     console.log('---------------------------------------------')
     console.log(div)
@@ -144,8 +145,7 @@ export class EmailTemplateComponent implements OnInit {
 
     var div1 = document.getElementById('Template_En');
     var data1 = div1?.getAttribute("value");
-    var Template_En = btoa(encodeURIComponent(data1 || ""));
-
+    var Template_En = btoa(this.encodeHTMLEntities(data1 || ""));
     var formData: any = new FormData();
     formData.append("GN_Code", this.GN_Code);
     formData.append("Name_Ar", this.EmailTemplateForm.get('Name_Ar')?.value);
@@ -194,6 +194,14 @@ export class EmailTemplateComponent implements OnInit {
     }
   }
 
+  encodeHTMLEntities(rawStr:any) {
+    return rawStr.replace(/[\u00A0-\u9999<>\&]/g, ((i: string) => `&#${i.charCodeAt(0)};`));
+  }
+
+  decodeHTMLEntities(rawStr:any) {
+    return rawStr.replace(/&#(\d+);/g, ((match:any, dec:any) => `${String.fromCharCode(dec)}`));
+  }
+
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_Info = "Email Template Info";
@@ -212,8 +220,8 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_SearchD = "You can search for any field in the table by typing here";
       this.lb_Action = "Action";
       this.lb_Loading = "Loading";
-      this.lb_TemplateAr = "Template Arabic";
-      this.lb_TemplateArD = "A brief summary does not exceed 400 letter from the template";
+      this.lb_TemplateAr = "القالب عربي";
+      this.lb_TemplateArD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
       this.lb_TemplateEn = "Template English";
       this.lb_TemplateEnD = "A brief summary does not exceed 400 letter from the template";
       this.textEnd = "text-start";
@@ -237,8 +245,8 @@ export class EmailTemplateComponent implements OnInit {
       this.lb_Action = "عملية";
       this.lb_TemplateAr = "القالب عربي";
       this.lb_TemplateArD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
-      this.lb_TemplateEn = "القالب إنجليزي";
-      this.lb_TemplateEnD = "ملخص موجز لا يتجاوز 400 خطاب من القالب";
+      this.lb_TemplateEn = "Template English";
+      this.lb_TemplateEnD = "A brief summary does not exceed 400 letter from the template";
       this.lb_Loading = "جاري التحميل";
       this.textEnd = "text-start";
       this.textEndEn = "text-end";

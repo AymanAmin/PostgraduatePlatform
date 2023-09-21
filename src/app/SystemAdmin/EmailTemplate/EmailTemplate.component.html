@@ -24,16 +24,23 @@
               <p class="form-text text-muted text-xs ms-1">
                 {{lb_TemplateArD}}
               </p>
+              <p class="form-text text-muted text-xs ms-1" style="color: rgb(179, 178, 178);">
+                [اسم_الطالب] [اسم_الموظف] [التاريخ] [التعليق]
+              </p>
               <div id="editor3" [innerHTML]="Template_Ar_Data">
                 <!-- Data -->
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" dir="ltr" sty="direction:ltr">
               <label class="mt-4">{{lb_TemplateEn}}</label>
               <input type="hidden" class="form-control Template_En" id="Template_En" formControlName="Template_En" />
               <p class="form-text text-muted text-xs ms-1">
                 {{lb_TemplateEnD}}
               </p>
+              <p class="form-text text-muted text-xs ms-1" style="color: rgb(179, 178, 178);">
+                [studentName] [employeeName] [DateNow] [Note]
+              </p>
+
               <div id="editor2" [innerHTML]="Template_En_Data">
                 <!-- Data -->
               </div>
