@@ -14,14 +14,21 @@ export class ViewPGT2Component implements OnInit {
   LangCode: any = "us-en";
   GN_Code: string = this.route.snapshot.params['id'];
 
-  Supervisor: string = "";
-  COSupervisor: string = ""
-  SupervisorDate: string = "";
-  COSupervisorDate: string = "";
+  Supervisor: string = " - ";
+  COSupervisor: string = " - "
+  SupervisorDate: string = " - " ;
+  SupervisorStatus: string = "";
+  SupervisorStatusID : any = 0;
+  COSupervisorDate: string = " - ";
+  Co_SupervisorStatus: string = "";
+  Co_SupervisorStatusID : any = 0;
   ThesisArabic: string = "";
   ThesisEnglish: string = "";
   PG_T_Type: string = "PG_R1";
-  FormCode: string = "1002";
+  FormCode: string = "1002-2";PageName: string = "";
+  IsSuperVisorApproved:boolean = true;
+  IsCOSuperVisorApproved:boolean = true;
+  IsSuperVisor_COSuperVisor_Approved:boolean = true;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View PG-R");
@@ -39,7 +46,7 @@ export class ViewPGT2Component implements OnInit {
   }
 
   getData() {
-    this.http.get(environment.baseUrl + '/API/StudentManagment/PG_R/Get/PG_R_Info.ashx?GN_Code=' + this.GN_Code).subscribe(
+    this.http.get(environment.baseUrl + '/API/StudentManagment/PG_R/Get/PG_R_Info.ashx?GN_Code=' + this.GN_Code + '&LangCode='+this.LangCode).subscribe(
       data => {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
@@ -50,16 +57,51 @@ export class ViewPGT2Component implements OnInit {
 
   GetOrderInfo(MainInfoData: any) {
     if (MainInfoData) {
-      // this.Supervisor = MainInfoData.;
-      // this.COSupervisor = this.LangCode === "us-en" ? MainInfoData.typeLeave.Name_En : MainInfoData.typeLeave.Name_Ar;
       this.PG_T_Type = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
       this.ThesisEnglish = MainInfoData.Thesis_Title_En;
       this.ThesisArabic = MainInfoData.Thesis_Title_Ar;
       this.Supervisor = MainInfoData.SupervisorName;
       this.COSupervisor = MainInfoData.Co_SupervisorName;
-      this.SupervisorDate = MainInfoData.SupervisorDate;
-      this.COSupervisorDate = MainInfoData.Co_SupervisorDate;
+      this.SupervisorDate = (MainInfoData.SupervisorDate == null)? "  " :MainInfoData.SupervisorDate;
+      this.COSupervisorDate = (MainInfoData.Co_SupervisorDate == null)? "  " :MainInfoData.Co_SupervisorDate;
+      this.SupervisorStatus = MainInfoData.SupervisorStatus;
+      this.SupervisorStatusID = MainInfoData.SupervisorType;
+      this.Co_SupervisorStatus = MainInfoData.Co_SupervisorStatus;
+      this.Co_SupervisorStatusID = MainInfoData.Co_SupervisorType;
+      this.Check_SuperVisor_COSuperVisor_Approval(MainInfoData);
     }
+  }
+
+  Check_SuperVisor_COSuperVisor_Approval(MainInfoData: any){
+    if(MainInfoData.SupervisorName != null && MainInfoData.SupervisorDate == null){
+      if(localStorage.getItem("GN_Code") == MainInfoData.SupervisorGN_Code)
+        this.IsSuperVisorApproved = false;
+
+        this.IsSuperVisor_COSuperVisor_Approved = false;
+    }
+
+    if(MainInfoData.Co_SupervisorName != null && MainInfoData.Co_SupervisorDate == null){
+      if(localStorage.getItem("GN_Code") == MainInfoData.Co_SupervisorGN_Code)
+        this.IsCOSuperVisorApproved = false;
+
+        this.IsSuperVisor_COSuperVisor_Approved = false;
+    }
+  }
+
+  Supervisor_Approve(Type:any){
+    var formData: any = new FormData();
+    formData.append("GN_Code", this.GN_Code);
+    formData.append("Type", Type);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+    this.http.post(environment.baseUrl + '/API/RequestManagment/Set/Supervisors_Approval.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          window.location.reload();
+        }
+      },
+        (error) => {
+          console.log(error);
+        });
   }
 
   lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
@@ -100,7 +142,7 @@ export class ViewPGT2Component implements OnInit {
       this.lb_Program = "البرنامج: ";
       this.lb_Speciality = "التخصص: ";
       this.lb_PGTDetails = "تفاصيل"
-      this.lb_COSupervisor = "مشرف مشارك: ";
+      this.lb_COSupervisor = "المشرف المساعد: ";
       this.lb_Supervisor = "المشرف: ";
       this.lb_DateFrom = "تاريخ: ";
       this.lb_DateTo = "تاريخ: ";

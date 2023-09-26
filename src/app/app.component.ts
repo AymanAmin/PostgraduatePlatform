@@ -238,9 +238,9 @@ export class AppComponent {
       this.StudentLeave = "Leave Request";
       this.RecommendationLetter = "Recommendation Letter";
       this.Reference_Certificates = "Reference letters and certificates";
-      this.PG_T1 = "Master Thesis Defense";
-      this.PG_T2 = "Master Degree Granting";
-      this.PG_T3 = "Master Thesis Proposal";
+      this.PG_T1 = "Thesis Defense Request";
+      this.PG_T2 = "Degree Granting Request";
+      this.PG_T3 = "Thesis Proposal Request";
       this.Permission = "Permission";
       this.Class_Massege = "position-fixed top-2 end-2 z-index-sticky";
       this.ViewSequence = "View Sequence";
@@ -251,7 +251,7 @@ export class AppComponent {
       this.Staff = "Staff";
       this.LectureSchedule = "Lectures Schedule";
       this.LectureAttendance = "Lecture Attendance";
-      this.Clearnce = "Clearnce";
+      this.Clearnce = "Clearnce Request";
       this.nav_link = "nav-link";
     }
     else {
@@ -310,7 +310,7 @@ export class AppComponent {
       this.RecommendationLetter = "خطاب توصية";
       this.Reference_Certificates = "خطابات مرجعية وشهادات";
       this.PG_T1 = "طلب مناقشة رسالة";
-      this.PG_T2 = "طلب منح درجة الماجستير";
+      this.PG_T2 = "طلب منح الدرجة العلمية";
       this.PG_T3 = "طلب مقترح رساله";
       this.Permission = "الصلاحيات";
       this.Class_Massege = "position-fixed top-2 start-2 z-index-sticky";

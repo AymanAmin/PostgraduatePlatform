@@ -35,17 +35,17 @@ export class PGTComponent implements OnInit {
     this.LangCode = localStorage.getItem("LangCode");
     if (this.LangCode == "en-us" || this.LangCode == "us-en") {
       if (this.PG_R_Type == 1)
-        this.lb_FormTitle = "Master Thesis Defense";
+        this.lb_FormTitle = "Thesis Defense Request";
       if (this.PG_R_Type == 2)
-        this.lb_FormTitle = "Master Degree Granting";
+        this.lb_FormTitle = "Degree Granting Request";
       if (this.PG_R_Type == 3)
-        this.lb_FormTitle = "Master Thesis Proposal";
+        this.lb_FormTitle = "Thesis Proposal Request";
     }
     else {
       if (this.PG_R_Type == 1)
         this.lb_FormTitle = "طلب مناقشة رسالة";
       if (this.PG_R_Type == 2)
-        this.lb_FormTitle = "طلب منح درجة الماجستير";
+        this.lb_FormTitle = "طلب منح الدرجة العلمية";
       if (this.PG_R_Type == 3)
         this.lb_FormTitle = "طلب مقترح رساله";
     }
@@ -178,19 +178,19 @@ export class PGTComponent implements OnInit {
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       if(this.PG_R_Type == 1)
-        this.lb_FormTitle="Master Thesis Defense";
+        this.lb_FormTitle="Thesis Defense Request";
       if(this.PG_R_Type == 2)
-        this.lb_FormTitle="Master Degree Granting";
+        this.lb_FormTitle="Degree Granting Request";
       if(this.PG_R_Type == 3)
-        this.lb_FormTitle="Master Thesis Proposal";
-      this.lb_Details = "Please fill all details for the PG-R";
+        this.lb_FormTitle="Thesis Proposal Request";
+      this.lb_Details = "Please fill all details for the " + this.lb_FormTitle;
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
       this.lb_Department="Department";
       this.lb_Program="Program";
       this.lb_Date="Date";
-      this.lb_thesis_En="Thesis(English)";
-      this.lb_thesis_Ar="Thesis(Arabic)";
+      this.lb_thesis_En="THESIS TITLE (English)";
+      this.lb_thesis_Ar="THESIS TITLE (Arabic)";
       this.lb_Supervisor="Supervisor";
       this.lb_CO_Supervisor="CO-Supervisor";
       this.lb_Cancel = "Cancel";
@@ -201,18 +201,18 @@ export class PGTComponent implements OnInit {
       if(this.PG_R_Type == 1)
         this.lb_FormTitle="طلب مناقشة رسالة";
       if(this.PG_R_Type == 2)
-        this.lb_FormTitle="طلب منح درجة الماجستير";
+        this.lb_FormTitle="طلب منح الدرجة العلمية";
       if(this.PG_R_Type == 3)
         this.lb_FormTitle="طلب مقترح رساله";
 
-      this.lb_Details = "لرجاء تعبئة جميع بيانات (PG-T)";
+      this.lb_Details = "لرجاء تعبئة جميع بيانات " + this.lb_FormTitle;
       this.lb_College="الكلية";
       this.CollegeList = [{ "Id": 1, "Name": "إختر" }];
       this.lb_Department="القسم";
       this.lb_Program="البرنامج";
       this.lb_Date="التاريخ";
-      this.lb_thesis_En="الأطروحة (انجليزي)";
-      this.lb_thesis_Ar="الأطروحة (عربي)";
+      this.lb_thesis_En="عنوان الرسالة (انجليزي)";
+      this.lb_thesis_Ar="عنوان الرسالة (عربي)";
       this.lb_Supervisor="المشرف";
       this.lb_CO_Supervisor="المشرف المشترك";
       this.lb_Cancel = "إلغاء";
