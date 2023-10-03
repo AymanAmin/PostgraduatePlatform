@@ -111,6 +111,8 @@ export class CreateSequenceComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SeqModelList = JSON.parse(jsonInfo);
+        this.SeqModelList = this.SeqModelList. filter(function(item: { IsActive: boolean; }){ return item.IsActive == true; })
+        //console.log(this.SeqModelList);
       }
     )
   }
@@ -193,7 +195,7 @@ export class CreateSequenceComponent implements OnInit {
       for (let i = 0; i < MainInfoData.Employee_Sequence.length; i++) {
         list.push("" + MainInfoData.Employee_Sequence[i].Emp_GN_Code);
       }
-      console.log(list);
+      //console.log(list);
       this.IsActive = MainInfoData.Sequence.IsActive;
       this.SequenceForm.patchValue({
         SequenceModel_ID: MainInfoData.Sequence.SequenceModel_ID,

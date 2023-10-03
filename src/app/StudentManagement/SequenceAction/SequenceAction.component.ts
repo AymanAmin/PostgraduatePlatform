@@ -47,6 +47,7 @@ export class SequenceActionComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
+        console.log(this.btnList);
       }
     )
   }

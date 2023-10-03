@@ -113,7 +113,9 @@ export class AppComponent {
         var jsonInfo = JSON.stringify(data);
         let ProfileInfoData = JSON.parse(jsonInfo);
         if (ProfileInfoData != null) {
+          console.log(ProfileInfoData);
           this.username = ProfileInfoData.Name;
+          this.LangCode = localStorage.getItem('LangCode');
         }
       }
     )

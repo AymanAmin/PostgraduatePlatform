@@ -64,6 +64,7 @@ export class ViewCreateSequenceComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SeqStatusList = JSON.parse(jsonInfo);
+        //console.log(this.SequenceList);
       }
     )
   }
@@ -89,6 +90,12 @@ export class ViewCreateSequenceComponent implements OnInit {
     var SeqModel = this.SeqModelList.find((x: { Id: number; }) => x.Id === seqModelId);
     if (SeqModel == undefined) return '';
     return SeqModel;
+  }
+
+  SeqModelIsActive(seqModelId: number) {
+    var SeqModel = this.SeqModelList.find((x: { Id: number; IsActive: boolean}) => x.Id === seqModelId && x.IsActive == true);
+    if (SeqModel == undefined) return false;
+    return true;
   }
 
   GetSeqStatus(seqStatusId: number) {

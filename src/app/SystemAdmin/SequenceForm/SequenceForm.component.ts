@@ -86,6 +86,7 @@ export class SequenceFormComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.SpeList = JSON.parse(jsonInfo);
+        console.log(this.SpeList);
       }
     )
   }

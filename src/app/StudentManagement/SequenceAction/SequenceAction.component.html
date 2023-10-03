@@ -46,11 +46,11 @@
       </div>
       <div class="col-lg-12 col-md-12 my-auto text-center mt-5 mb-4" *ngIf="btnActive">
         <input type="button" *ngIf="btnList?.NextBtn != null" value="{{btnList?.NextBtn}}" (click)="UpdateStatus(1)"
-          class="btn bg-gradient-success mb-0 mx-2">
+          class="btn mb-0 mx-2" style="color:white;" [ngStyle]="{'background-color':btnList.NextBtn_ColorCode}">
         <input type="button" *ngIf="btnList?.OptionBtn != null" value="{{btnList?.OptionBtn}}" (click)="UpdateStatus(0)"
-          class="btn bg-gradient-info mb-0 mx-2">
+          class="btn mb-0 mx-2" style="color:white;" [ngStyle]="{'background-color':btnList.OptionBtn_ColorCode}">
         <input type="button" *ngIf="btnList?.PrevBtn != null" value="{{btnList?.PrevBtn}}" (click)="UpdateStatus(-1)"
-          class="btn bg-gradient-danger mb-0 mx-2">
+          class="btn mb-0 mx-2" style="color:white;" [ngStyle]="{'background-color':btnList.PrevBtn_ColorCode}">
       </div>
     </div>
 

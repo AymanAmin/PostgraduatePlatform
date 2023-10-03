@@ -8,8 +8,8 @@
                 currentPage: page,
                 totalItems: tatalRecords
             }">
-          <h5 class="mx-4 mt-4">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>
-          <table class="table align-items-center mb-0">
+          <h5 class="mx-4 mt-4" *ngIf="SeqModelIsActive(SequenceModelList[0].SequenceModel_ID)">{{LangCode === "us-en" ? GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_En : GetSeqModel(SequenceModelList[0].SequenceModel_ID).Name_Ar}}</h5>
+          <table class="table align-items-center mb-0" *ngIf="SeqModelIsActive(SequenceModelList[0].SequenceModel_ID)">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_SequenceStatus}}
@@ -35,8 +35,8 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm"><span class="badge"
-                          [ngStyle]="{'background-color':GetSeqStatus(oneSpe.SequenceStatus_ID).ColorCode}">{{LangCode === "us-en" ?
+                      <h6 class="mb-0 text-sm"><span class="badge" style="color:black;border:2px solid;font-size: 12px;"
+                          [ngStyle]="{'border-color':GetSeqStatus(oneSpe.SequenceStatus_ID).ColorCode}">{{LangCode === "us-en" ?
                           GetSeqStatus(oneSpe.SequenceStatus_ID).Name_En : GetSeqStatus(oneSpe.SequenceStatus_ID).Name_Ar}}</span></h6>
                     </div>
                   </div>
