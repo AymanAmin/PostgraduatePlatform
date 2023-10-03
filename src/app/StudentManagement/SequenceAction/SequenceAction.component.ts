@@ -17,10 +17,15 @@ export class SequenceActionComponent implements OnInit {
   GN_Code: string = this.route.snapshot.params['id'];
   SequenceList: any; btnList: any; file: any;
   btnActive:boolean = true;
+  ApproveDate:any;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
+    var date = new Date();
+    //2023-09-28
+    this.ApproveDate  = ( date.getFullYear() + '-' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '-' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())));
+    console.log(this.ApproveDate);
     this.LangCode = localStorage.getItem("LangCode");
     this.Emp_GN_Code = localStorage.getItem("GN_Code");
     this.GetLabelName(this.LangCode);
@@ -54,6 +59,7 @@ export class SequenceActionComponent implements OnInit {
     formData.append("Note", this.Note);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("Type", Type);
+    formData.append("ApproveDate", this.ApproveDate);
 
     this.http.post(environment.baseUrl + '/API/RequestManagment/Set/UpdateStatus.ashx', formData).subscribe(
       (response) => {

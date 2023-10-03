@@ -14,6 +14,15 @@
                 </div>
               </div>
 
+              <div class="col-md-6">
+                <label class="form-label">{{lb_RequestType}}</label>
+                <div class="input-group">
+                  <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="R_R_C_Type_Id">
+                    <option value="{{R_R_C.Id}}" *ngFor="let R_R_C of R_R_C_TList">{{LangCode === "us-en" ? R_R_C.NameEn : R_R_C.NameAr}}</option>
+                  </select>
+                </div>
+              </div>
+
               <label class="mt-4">{{lb_Letter}}</label>
             <input type="hidden" class="form-control BriefSummary" id="BriefSummary" formControlName="BriefSummary"  />
 

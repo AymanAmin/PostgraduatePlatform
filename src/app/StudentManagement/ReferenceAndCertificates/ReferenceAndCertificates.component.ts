@@ -19,6 +19,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
 
   btn_spinner:any;
   btn_status:boolean = false;
+  R_R_C_TList:any;
 
   ReferenceAndCertificates: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
@@ -41,6 +42,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.getReceiver();
+    this.getR_R_C_Type();
     if(this.GN_Code)
       this.getData();
 
@@ -58,6 +60,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   CreateForm() {
     this.ReferenceAndCertificates = new FormGroup({
       Receiver_GN_Code: new FormControl(null, [Validators.required]),
+      R_R_C_Type_Id: new FormControl(null, [Validators.required]),
       BriefSummary: new FormControl(null),
     });
   }
@@ -78,7 +81,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     this.BriefSummary_Data = decodeURIComponent(atob(ReferenceAndCertificatesData.Letter));
     if (ReferenceAndCertificatesData) {
       this.ReferenceAndCertificates.patchValue({
-      Receiver_GN_Code: ReferenceAndCertificatesData.Receiver_GN_Code,
+      Receiver_GN_Code: ReferenceAndCertificatesData.R_R_C_Type_Id,
+      R_R_C_Type_Id: ReferenceAndCertificatesData.R_R_C_Type_Id,
       BriefSummary: ReferenceAndCertificatesData.Letter
       });
     }
@@ -95,6 +99,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
     formData.append("GN_Code", this.GN_Code);
     formData.append("Student_GN_Code", this.Student_GN_Code);
     formData.append("Receiver_GN_Code", this.ReferenceAndCertificates.get('Receiver_GN_Code')?.value);
+    formData.append("R_R_C_Type_Id", this.ReferenceAndCertificates.get('R_R_C_Type_Id')?.value);
     formData.append("Letter", BriefSummary);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
 
@@ -146,7 +151,8 @@ export class ReferenceAndCertificatesComponent implements OnInit {
   }
 
   // Label Data
-  lb_FormTitle:any;lb_Details:any; lb_Receiver:any; ReceiverList:any;lb_Letter:any;lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;
+  lb_FormTitle:any;lb_Details:any; lb_Receiver:any; ReceiverList:any;lb_Letter:any;
+  lb_SaveChange:any;lb_Cancel: any;lb_Loading:any;lb_RequestType:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_FormTitle="Reference letters and certificates";
@@ -156,6 +162,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_Cancel = "Cancel";
       this.lb_Loading = "Loading";
       this.lb_SaveChange = "Save Change";
+      this.lb_RequestType = "Request Type";
     }
     else {
       this.lb_FormTitle="بيانات طلب خطابات مرجعية وشهادات";
@@ -165,6 +172,7 @@ export class ReferenceAndCertificatesComponent implements OnInit {
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";
+      this.lb_RequestType = "نوع الطلب";
     }
   }
 
@@ -175,6 +183,14 @@ export class ReferenceAndCertificatesComponent implements OnInit {
           this.ReceiverList = JSON.parse(jsonInfo);
         }
       )
+  }
+  getR_R_C_Type() {
+    this.http.get(environment.baseUrl + '/API/StudentManagment/ReferenceCertificate/Get/R_R_C_Type.ashx').subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.R_R_C_TList = JSON.parse(jsonInfo);
+      }
+    )
   }
 
 }

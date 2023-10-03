@@ -76,6 +76,7 @@ export class ListStaffComponent implements OnInit {
     )
   }
 
+
   public loadJsFile(url: any) {
 
     let node = document.createElement('script');
@@ -195,21 +196,21 @@ export class ListStaffComponent implements OnInit {
       this.lb_Loading = "Loading";
     }
     else {
-      this.lb_Info = "بيانات الكلية";
-      this.lb_InfoD = "الرجاء تعبئة جميع بيانات الكلية";
+      this.lb_Info = "بيانات المشرف";
+      this.lb_InfoD = "الرجاء تعبئة جميع بيانات المشرف";
       this.lb_EngName = "الإسم إنجليزي";
       this.lb_ArName = "الإسم عربي";
       this.lb_Phone = "رقم الجوال";
       this.lb_Email = "البريد الإلكتروني";
       this.lb_IsActive = "هل نشط ؟";
-      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه الكلية تعمل";
+      this.lb_IsActiveD = "اذا كانت مفتوحة هذا يعني انه المشرف نشط";
       this.lb_Save_Change = "حفظ التعديلات";
       this.lb_Cancel = "إلغاء";
       this.lb_Active = "نشط";
       this.lb_InActive = "غير نشط";
       this.lb_Status = "الحالة";
-      this.lb_Id = "رقم الكلية";
-      this.lb_Search = "قائمة بالكليات";
+      this.lb_Id = "رقم المشرف";
+      this.lb_Search = "قائمة بالمشرفين";
       this.lb_SearchD = "يمكنك البحث بأي خانة موجوده في الجدول عن طريق الكتابة";
       this.lb_Action = "عملية";
       this.lb_Loading = "جاري التحميل";

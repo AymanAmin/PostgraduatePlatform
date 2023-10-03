@@ -16,6 +16,7 @@ li,
 th,
 td,
 input,
+label,
 span {
   font-family: 'Tajawal', sans-serif !important;
   /*font-size: small !important;*/

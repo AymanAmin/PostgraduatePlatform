@@ -52,6 +52,10 @@
                 </div>
               </div>
               <hr class="horizontal dark">
+              <div class="row" *ngIf="!IsCOSuperVisorApproved || !IsSuperVisorApproved">
+                <input type="text" [(ngModel)]="Reason" placeholder="{{lb_Reason}}" class="form-control" />
+              </div>
+              <hr class="horizontal dark">
             </div>
             <div class="d-flex">
               <h6 style="text-align: justify;" style="direction: ltr;">
@@ -76,6 +80,44 @@
                   <p class="px-2" style="text-align: justify;" style="direction: rtl;">{{ThesisArabic}}</p>
                 </blockquote>
               </figure>
+            </div>
+          </div>
+          <div class="row pb-3">
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Examiner_1_Name}}</label>
+              <div class="">
+                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_1_Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Examiner_2_Name}}</label>
+              <div class="">
+                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_2_Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Examiner_3_Name}}</label>
+              <div class="">
+                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_3_Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Examiner_4_Name}}</label>
+              <div class="">
+                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_4_Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">{{lb_Examiner_5_Name}}</label>
+              <div class="">
+                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_5_Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"></label>
+              <div class="">
+                <button (click)="SaveExaminer()" *ngIf="IsDepartmentStep" class="btn btn-success w-100">{{lb_Save}}</button>
+              </div>
             </div>
           </div>
           <!-- Start Sequence Action -->

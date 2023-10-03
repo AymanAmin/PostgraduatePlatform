@@ -62,7 +62,7 @@
             <thead>
               <tr>
 
-                
+
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{lb_ArName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_EngName}}</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{lb_Status}}</th>
@@ -72,11 +72,11 @@
             <tbody>
               <tr *ngFor="let oneSpe of SpeList | filter: searchedKeyword |
               paginate: {id: 'listing_pagination',
-              itemsPerPage: PerPage,
+              itemsPerPage: 10,
               currentPage: page,
               totalItems: tatalRecords
           }">
-                
+
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
@@ -131,5 +131,5 @@
     </div>
   </div>
 
-  
+
 </div>

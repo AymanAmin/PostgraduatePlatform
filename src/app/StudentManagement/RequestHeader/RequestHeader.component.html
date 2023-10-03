@@ -1,23 +1,23 @@
 <div class="card-body">
   <div class="d-flex justify-content-between align-items-center px-2">
-    <div>
-      <p class="text-sm mb-2 mt-2">
+    <div class="row">
+      <p class="col-md-12 text-sm mb-2 mt-2">
         {{lb_OrderNo}} <b>{{OrderNo}}</b>
       </p>
-      <p class="text-sm mb-2">
+      <p class="col-md-12 text-sm mb-2">
         {{lb_OrderType}} <b>{{Type}}</b>
       </p>
     </div>
-    <div class="col-md-6 d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center">
       <i class="far fa-calendar-alt mx-2" aria-hidden="true"></i>
       <small>{{Date}}</small>
     </div>
   </div>
   <div class="row p-2">
-    <div class="col-2">
+    <div class="col-md-2">
       <img src="{{ProfileImage}}" alt="kal" class="border-radius-lg shadow w-100">
     </div>
-    <div class="col-5 my-auto mt-0">
+    <div class="col-md-5 my-auto mt-0">
       <p class="h6">{{StdName}}</p>
       <p class="mb-1"><b>{{StdEmail}}</b></p>
       <span class="badge badge-secondary ms-auto mt-2">{{StdPhone}}</span>

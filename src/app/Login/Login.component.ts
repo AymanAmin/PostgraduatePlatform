@@ -33,24 +33,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
+    if(this.LangCode == null){
+      localStorage.setItem("LangCode","us-en");
+      this.LangCode = localStorage.getItem("LangCode");
+    }
     // this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
     this.UpdateButtonSpinner(false);
   }
 
-  // public loadJsFile(url: any) {
 
-  //   let node = document.createElement('script');
-  //   node.src = url;
-  //   node.type = 'text/javascript';
-  //   document.getElementsByTagName('body')[0].appendChild(node);
-  // }
   loginEvent() {
     this.UpdateButtonSpinner(true);
     var formData: any = new FormData();
     formData.append("UserName", this.UserForm.get('UserName')?.value);
     formData.append("Password", this.UserForm.get('Password')?.value);
+
     this.http.post(environment.baseUrl + '/API/UserLogin/Get/UserLogin.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {

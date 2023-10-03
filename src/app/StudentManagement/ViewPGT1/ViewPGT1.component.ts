@@ -27,9 +27,15 @@ export class ViewPGT1Component implements OnInit {
   PG_T_Type: string = "PG_R1";
   FormCode: string = "1002-1";
   PageName: string = "";
+  Reason : string = "";
   IsSuperVisorApproved:boolean = true;
   IsCOSuperVisorApproved:boolean = true;
   IsSuperVisor_COSuperVisor_Approved:boolean = true;
+  IsDepartmentStep: boolean = true;
+
+  Examiner_1_Name:string = ""; Examiner_4_Name:string = "";
+  Examiner_2_Name:string = ""; Examiner_5_Name:string = "";
+  Examiner_3_Name:string = "";
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View PG-R");
@@ -45,6 +51,7 @@ export class ViewPGT1Component implements OnInit {
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
     this.getData();
+    this.GetExaminer();
     this.GetLabelName(this.LangCode);
   }
 
@@ -59,7 +66,7 @@ export class ViewPGT1Component implements OnInit {
   }
 
   GetOrderInfo(MainInfoData: any) {
-    console.log(MainInfoData);
+    //console.log(MainInfoData);
     if (MainInfoData) {
       this.PG_T_Type = this.LangCode === "us-en" ? MainInfoData.Name_En : MainInfoData.Name_Ar;
       this.ThesisEnglish = MainInfoData.Thesis_Title_En;
@@ -73,6 +80,11 @@ export class ViewPGT1Component implements OnInit {
       this.Co_SupervisorStatus = MainInfoData.Co_SupervisorStatus;
       this.Co_SupervisorStatusID = MainInfoData.Co_SupervisorType;
       this.Check_SuperVisor_COSuperVisor_Approval(MainInfoData);
+
+      if(MainInfoData.Status_GN_Name == "موافقة المشرفين")
+        this.IsDepartmentStep = true;
+      else
+        this.IsDepartmentStep = false;
     }
   }
 
@@ -96,6 +108,7 @@ export class ViewPGT1Component implements OnInit {
     var formData: any = new FormData();
     formData.append("GN_Code", this.GN_Code);
     formData.append("Type", Type);
+    formData.append("Reason", this.Reason);
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     this.http.post(environment.baseUrl + '/API/RequestManagment/Set/Supervisors_Approval.ashx', formData).subscribe(
       (response) => {
@@ -108,10 +121,46 @@ export class ViewPGT1Component implements OnInit {
         });
   }
 
-  lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;
-  lb_Program: any; lb_Category: any; lb_Speciality: any; lb_PGTDetails: any; lb_COSupervisor: any;
+  GetExaminer(){
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ExaminersName.ashx?GN_Code=' + this.GN_Code + '&LangCode='+this.LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        let Examiners = JSON.parse(jsonInfo);
+        console.log(Examiners.Examiner_1_Name);
+        this.Examiner_1_Name = Examiners.Examiner_1_Name;
+        this.Examiner_2_Name = Examiners.Examiner_2_Name;
+        this.Examiner_3_Name = Examiners.Examiner_3_Name;
+        this.Examiner_4_Name = Examiners.Examiner_4_Name;
+        this.Examiner_5_Name = Examiners.Examiner_5_Name;
+      }
+    )
+  }
+
+  SaveExaminer(){
+    var formData: any = new FormData();
+    formData.append("GN_Code", this.GN_Code);
+    formData.append("Examiner_1_Name", this.Examiner_1_Name);
+    formData.append("Examiner_2_Name", this.Examiner_2_Name);
+    formData.append("Examiner_3_Name", this.Examiner_3_Name);
+    formData.append("Examiner_4_Name", this.Examiner_4_Name);
+    formData.append("Examiner_5_Name", this.Examiner_5_Name);
+    formData.append("CreatedBy", localStorage.getItem("GN_Code"));
+    this.http.post(environment.baseUrl + '/API/RequestManagment/Set/ExaminersName.ashx', formData).subscribe(
+      (response) => {
+        if (response != "0") {
+          window.location.reload();
+        }
+      },
+        (error) => {
+          console.log(error);
+        });
+  }
+
+  lb_date: any; lb_OrderDetails: any; lb_OrderNo: any; lb_OrderDate: any; lb_OrderType: any;lb_Reason:any;
+  lb_Program: any; lb_Category: any; lb_Speciality: any; lb_PGTDetails: any; lb_COSupervisor: any;lb_Save:any;
   lb_Supervisor: any; lb_DateFrom: any; lb_DateTo: any; lb_ThesisEnglish: any; lb_ThesisArabic: any; lb_Sequence: any;
   lb_Approve: any; lb_Reject: any; lb_Trackorder: any; top_class: any;lb_SupervisorAndCoSupervisor:any;
+  lb_Examiner_1_Name:any;lb_Examiner_2_Name:any;lb_Examiner_3_Name:any;lb_Examiner_4_Name:any;lb_Examiner_5_Name:any;
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
       this.lb_date = "Date: ";
@@ -135,6 +184,13 @@ export class ViewPGT1Component implements OnInit {
       this.lb_Trackorder = "Track Order";
       this.top_class = "ms-auto"
       this.lb_SupervisorAndCoSupervisor = "Approval of supervisor and Co-supervisor";
+      this.lb_Reason = "Reject Reason";
+      this.lb_Save = "Save";
+      this.lb_Examiner_1_Name = "Examiner 1 Name";
+      this.lb_Examiner_2_Name = "Examiner 2 Name";
+      this.lb_Examiner_3_Name = "Examiner 3 Name";
+      this.lb_Examiner_4_Name = "Examiner 4 Name (if applicable)";
+      this.lb_Examiner_5_Name = "Examiner 5 Name (if applicable)";
     }
     else {
       this.lb_date = "التاريخ: ";
@@ -158,7 +214,13 @@ export class ViewPGT1Component implements OnInit {
       this.lb_Trackorder = "تتبع الطلب";
       this.top_class = "me-auto"
       this.lb_SupervisorAndCoSupervisor = "موافقة المشرف والمساعد";
+      this.lb_Reason = "سبب الرفض";
+      this.lb_Save = "حفظ";
+      this.lb_Examiner_1_Name = "اسم الممتحن الاول";
+      this.lb_Examiner_2_Name = "اسم الممتحن الثاني";
+      this.lb_Examiner_3_Name = "اسم الممتحن الثالث";
+      this.lb_Examiner_4_Name = "اسم الممتحن الرابع (إن وجد)";
+      this.lb_Examiner_5_Name = "اسم الممتحن الخامس (إن وجد)";
     }
   }
-
 }
