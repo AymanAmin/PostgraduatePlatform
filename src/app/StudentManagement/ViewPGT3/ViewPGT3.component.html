@@ -14,41 +14,36 @@
               </h6>
             </div>
             <div class="container p-3">
-              <div class="row">
+              <div class="row" *ngIf="!IsDepartmentApproval">
+                <div class="col-md-6">
+                  <label class="form-label">{{lb_Supervisor}}</label>
+                  <div class="input-group">
+                    <select class="form-control" name="choices-gender" id="choices-Receiver" (change)="SetSupervisor()" [(ngModel)]="supervisor">
+                      <option value="{{receiver.GN_Code}}" *ngFor="let receiver of ReceiverList">{{LangCode === "us-en" ?
+                        receiver.Name_En : receiver.Name_Ar}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">{{lb_CO_Supervisor}}</label>
+                  <div class="input-group">
+                    <select class="form-control" name="choices-gender" id="choices-Receiver" (change)="SetSupervisor()" [(ngModel)]="co_supervisor">
+                      <option value="{{receiver.GN_Code}}" *ngFor="let receiver of ReceiverList">{{LangCode === "us-en" ?
+                        receiver.Name_En : receiver.Name_Ar}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="IsDepartmentApproval">
                 <div class="col-md-6">
                   <p class="mb-1">{{lb_Supervisor}} <b>{{Supervisor}}</b></p>
                 </div>
-                <div class="col-md-6" *ngIf="IsSuperVisorApproved">
-                  <p class="mb-1">{{lb_DateFrom}} <i class="far fa-calendar-alt mx-2" aria-hidden="true"></i>
-                    <b><small>{{SupervisorDate}}</small></b>
-                    <span *ngIf="SupervisorStatusID == 1" class="badge badge-success mx-3">{{SupervisorStatus}}</span>
-                    <span *ngIf="SupervisorStatusID == 0" class="badge badge-danger mx-3">{{SupervisorStatus}}</span>
-                  </p>
-                </div>
-                <div class="col-md-3" *ngIf="!IsSuperVisorApproved">
-                  <button class="btn btn-sm btn-success" (click)="Supervisor_Approve(1)">{{lb_Approve}}</button>
-                </div>
-                <div class="col-md-3" *ngIf="!IsSuperVisorApproved">
-                  <button class="btn btn-sm btn-danger" (click)="Supervisor_Approve(0)">{{lb_Reject}}</button>
-                </div>
               </div>
               <hr class="horizontal dark">
-              <div class="row">
+              <div class="row" *ngIf="IsDepartmentApproval">
                 <div class="col-md-6">
                   <p class="mb-1">{{lb_COSupervisor}} <b>{{COSupervisor}}</b></p>
-                </div>
-                <div class="col-md-6" *ngIf="IsCOSuperVisorApproved">
-                  <p class="mb-1">{{lb_DateTo}} <i class="far fa-calendar-alt mx-2" aria-hidden="true"></i>
-                    <b><small>{{COSupervisorDate}}</small></b>
-                    <span *ngIf="Co_SupervisorStatusID == 1" class="badge badge-success mx-3">{{Co_SupervisorStatus}}</span>
-                    <span *ngIf="Co_SupervisorStatusID == 0" class="badge badge-danger mx-3">{{Co_SupervisorStatus}}</span>
-                  </p>
-                </div>
-                <div class="col-md-3" *ngIf="!IsCOSuperVisorApproved">
-                  <button class="btn btn-sm btn-success" (click)="Supervisor_Approve(1)">{{lb_Approve}}</button>
-                </div>
-                <div class="col-md-3" *ngIf="!IsCOSuperVisorApproved">
-                  <button class="btn btn-sm btn-danger" (click)="Supervisor_Approve(0)">{{lb_Reject}}</button>
                 </div>
               </div>
               <hr class="horizontal dark">
@@ -79,7 +74,7 @@
             </div>
           </div>
           <!-- Start Sequence Action -->
-          <app-SequenceAction *ngIf="IsSuperVisor_COSuperVisor_Approved" [FormCode]='FormCode'></app-SequenceAction>
+          <app-SequenceAction [FormCode]='FormCode'></app-SequenceAction>
           <!-- End Sequence Action -->
         </div>
       </div>

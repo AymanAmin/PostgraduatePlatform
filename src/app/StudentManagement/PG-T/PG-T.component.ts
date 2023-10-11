@@ -23,6 +23,8 @@ export class PGTComponent implements OnInit {
   btn_spinner:any;
   btn_status:boolean = false;
 
+  Not_PG_T3: boolean = true;
+
   PGR: FormGroup = new FormGroup({});
   IsReady: boolean = false; IsActive: boolean = false;
   GN_Code: string = this.route.snapshot.params['id'];
@@ -55,6 +57,9 @@ export class PGTComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.PG_R_Type == 3)
+      this.Not_PG_T3 = false;
+
     this.LangCode = localStorage.getItem("LangCode");
     this.GetLabelName(this.LangCode);
     this.CreateForm();
@@ -71,7 +76,7 @@ export class PGTComponent implements OnInit {
     this.PGR = new FormGroup({
       Thesis_Title_En: new FormControl(null, [Validators.required]),
       Thesis_Title_Ar: new FormControl(null, [Validators.required]),
-      supervisor: new FormControl(null,[Validators.required]),
+      supervisor: new FormControl(null, this.Not_PG_T3 ? [Validators.required] : null),
       co_supervisor: new FormControl(null),
     });
   }
@@ -90,10 +95,8 @@ export class PGTComponent implements OnInit {
     //console.log(PGRData);
     if (PGRData) {
       this.PGR.patchValue({
-
         Thesis_Title_En: PGRData.Thesis_Title_En,
         Thesis_Title_Ar: PGRData.Thesis_Title_Ar
-
       });
     }
   }
@@ -176,6 +179,7 @@ export class PGTComponent implements OnInit {
         this.lb_FormTitle="Degree Granting Request";
       if(this.PG_R_Type == 3)
         this.lb_FormTitle="Thesis Proposal Request";
+
       this.lb_Details = "Please fill all details for the " + this.lb_FormTitle;
       this.lb_College="College";
       this.CollegeList = [{ "Id": 1, "Name": "Select" }];
@@ -207,7 +211,7 @@ export class PGTComponent implements OnInit {
       this.lb_thesis_En="عنوان الرسالة (انجليزي)";
       this.lb_thesis_Ar="عنوان الرسالة (عربي)";
       this.lb_Supervisor="المشرف";
-      this.lb_CO_Supervisor="المشرف المشترك";
+      this.lb_CO_Supervisor="المشرف المساعد";
       this.lb_Cancel = "إلغاء";
       this.lb_Loading = "جاري التحميل";
       this.lb_SaveChange = "حفظ";

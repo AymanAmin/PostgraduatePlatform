@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="Not_PG_T3">
           <label class="form-label">{{lb_Supervisor}}</label>
           <div class="input-group">
             <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="supervisor">
@@ -31,14 +31,14 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <!--<div class="col-md-6">
           <label class="form-label">{{lb_Date}}</label>
           <div class="input-group">
             <input type="text" name="supervisor_date" formControlName="supervisor_date" class="form-control" readonly />
           </div>
-        </div>
+        </div>-->
 
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="Not_PG_T3">
           <label class="form-label">{{lb_CO_Supervisor}}</label>
           <div class="input-group">
             <select class="form-control" name="choices-gender" id="choices-Receiver" formControlName="co_supervisor">
@@ -48,13 +48,13 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <!--<div class="col-md-6">
           <label class="form-label">{{lb_Date}}</label>
           <div class="input-group">
             <input type="text" name="co_supervisor_date" formControlName="co_supervisor_date" class="form-control"
               readonly />
           </div>
-        </div>
+        </div>-->
       </div>
 
       <div class="row">

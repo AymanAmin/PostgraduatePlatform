@@ -82,23 +82,23 @@
               </figure>
             </div>
           </div>
-          <div class="row pb-3">
+          <div class="row pb-3" *ngIf="IsSuperVisor_COSuperVisor_Approved">
             <div class="col-md-6">
               <label class="form-label">{{lb_Examiner_1_Name}}</label>
               <div class="">
-                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_1_Name" />
+                <input type="text" (keyup)="update_btn_SaveExaminer()" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_1_Name" />
               </div>
             </div>
             <div class="col-md-6">
               <label class="form-label">{{lb_Examiner_2_Name}}</label>
               <div class="">
-                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_2_Name" />
+                <input type="text" (keyup)="update_btn_SaveExaminer()"  [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_2_Name" />
               </div>
             </div>
             <div class="col-md-6">
               <label class="form-label">{{lb_Examiner_3_Name}}</label>
               <div class="">
-                <input type="text" [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_3_Name" />
+                <input type="text" (keyup)="update_btn_SaveExaminer()"  [disabled]="!IsDepartmentStep" class="form-control" [(ngModel)]="Examiner_3_Name" />
               </div>
             </div>
             <div class="col-md-6">
@@ -116,7 +116,7 @@
             <div class="col-md-6">
               <label class="form-label"></label>
               <div class="">
-                <button (click)="SaveExaminer()" *ngIf="IsDepartmentStep" class="btn btn-success w-100">{{lb_Save}}</button>
+                <button (click)="SaveExaminer()" [disabled]="!btn_SaveExaminer" *ngIf="IsDepartmentStep" class="btn btn-success w-100">{{lb_Save}}</button>
               </div>
             </div>
           </div>

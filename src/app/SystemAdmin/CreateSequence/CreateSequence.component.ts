@@ -224,7 +224,7 @@ export class CreateSequenceComponent implements OnInit {
     formData.append("CreatedBy", localStorage.getItem("GN_Code"));
     formData.append("IsActive", this.IsActive);
     formData.append("IsDeleted", IsDeleted);
-
+console.log(this.SequenceForm.get('EmployeeList')?.value);
     this.http.post(environment.baseUrl + '/API/SequencesManagment/SequencesCreationManagment/Set/SequencesCreationInfo.ashx', formData).subscribe(
       (response) => {
         if (response != "0") {

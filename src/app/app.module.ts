@@ -103,6 +103,7 @@ const appRoutes: Routes = [
   { path: 'SequenceForm/list', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'SequenceForm/list/:id', component: SequenceFormComponent, data: { title: 'Sequence Form' } },
   { path: 'Login/page', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'Login/page/:id', component: LoginComponent, data: { title: 'Login' } },
   { path: 'Schedule/ThesisDefense/info', component: ThesisDefenseComponent, data: { title: 'Thesis Defense' } },
   { path: 'Schedule/ThesisDefense/add', component: ThesisDefenseComponent, data: { title: 'Add Thesis Defense' } },
   { path: 'Schedule/ThesisDefense/update/:id', component: ThesisDefenseComponent, data: { title: 'Update Thesis Defense' } },

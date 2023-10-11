@@ -16,7 +16,7 @@ var toolbarOptions = [
   ['clean']                                         // remove formatting button
 ];
 
-function reloadChoices(){
+function reloadChoices() {
   if (document.getElementsByClassName('choices-multiple')) {
     var elementList = document.getElementsByClassName('choices-multiple');
     for (let i = 0; i < elementList.length; i++) {
@@ -43,11 +43,13 @@ $(document).ready(function () {
       , modules: { toolbar: toolbarOptions }
     });
 
-    document.getElementsByClassName("BriefSummary")[0].value = BriefSummary.root.innerHTML;
+    if (document.getElementsByClassName("BriefSummary")) {
+      document.getElementsByClassName("BriefSummary")[0].value = BriefSummary.root.innerHTML;
 
-    BriefSummary.on('text-change', function (delta, source) {
+      BriefSummary.on('text-change', function (delta, source) {
         document.getElementsByClassName("BriefSummary")[0].value = BriefSummary.root.innerHTML;
-    });
+      });
+    }
   }
 
   if (document.getElementById('editor3')) {
@@ -56,11 +58,13 @@ $(document).ready(function () {
       , modules: { toolbar: toolbarOptions }
     });
 
-    document.getElementsByClassName("Template_Ar")[0].value = Template_Ar.root.innerHTML;
-
-    Template_Ar.on('text-change', function (delta, source) {
+    if (document.getElementsByClassName("Template_Ar")) {
       document.getElementsByClassName("Template_Ar")[0].value = Template_Ar.root.innerHTML;
-    });
+
+      Template_Ar.on('text-change', function (delta, source) {
+        document.getElementsByClassName("Template_Ar")[0].value = Template_Ar.root.innerHTML;
+      });
+    }
   }
 
   if (document.getElementById('editor2')) {
@@ -69,20 +73,24 @@ $(document).ready(function () {
       , modules: { toolbar: toolbarOptions }
     });
 
-    document.getElementsByClassName("Template_En")[0].value = Template_En.root.innerHTML;
-
-    Template_En.on('text-change', function (delta, source) {
+    if (document.getElementsByClassName("Template_En")) {
       document.getElementsByClassName("Template_En")[0].value = Template_En.root.innerHTML;
-    });
+
+      Template_En.on('text-change', function (delta, source) {
+        document.getElementsByClassName("Template_En")[0].value = Template_En.root.innerHTML;
+      });
+    }
   }
 
   // Data Tabel
 
-  const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-    searchable: true,
-    fixedHeight: false,
-    perPageSelect: false
-  });
+  if (document.getElementsByClassName("datatable-search")) {
+    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+      searchable: true,
+      fixedHeight: false,
+      perPageSelect: false
+    });
+  }
 
   document.querySelectorAll(".export").forEach(function (el) {
     el.addEventListener("click", function (e) {

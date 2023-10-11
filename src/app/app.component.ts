@@ -18,24 +18,29 @@ export class AppComponent {
   CurrentParentPage: any = "";
   username: string = "guset";
   LangCode: any = "en-us";
-  emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;
+  emp_Active: any; schedule_Active: any; dashboard_Active: any; order_Active: any;College_Active:any;
+  OrderList_Active:any;
   student_Active: any; Financial_Active: any;
   PermissionList: any;
   Std_GN_Code: any;
+  IsStudent:boolean =false;
 
   constructor(private titleService: Title, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
     router.events.subscribe(val => {
       this.CurrentParentPage = this.titleService.getTitle();
 
-      var Path = window.location.pathname;
+      var Path = window.location.hash;
       const myArray = Path.split("/");
 
       this.dashboard_Active = ""; this.emp_Active = ""; this.schedule_Active = "";
       this.order_Active = ""; this.emp_Active = ""; this.student_Active = "";
-      this.Financial_Active = "";
+      this.Financial_Active = ""; this.OrderList_Active = "";this.College_Active = "";
 
+      console.log(myArray[1]);
       if (myArray[1] == "")
         this.dashboard_Active = "active";
+      else if (Path == "#/Order/list")
+          this.OrderList_Active = "active";
       else if (myArray[1] == "Employee")
         this.emp_Active = "active";
       else if (myArray[1] == "Schedule")
@@ -48,6 +53,8 @@ export class AppComponent {
         this.student_Active = "active";
       else if (myArray[1] == "Financial")
         this.Financial_Active = "active";
+      else if (myArray[1] == "College")
+        this.College_Active = "active";
     });
 
   }
@@ -57,10 +64,13 @@ export class AppComponent {
     // Get Username
     this.getProfileInfo();
 
-    var Path = window.location.pathname;
+    var Path = window.location.hash;
     const myArray = Path.split("/");
+
     if (myArray[1] == "")
       this.dashboard_Active = "active";
+    else if (Path == "#/Order/list")
+      this.OrderList_Active = "active";
     else if (myArray[1] == "Employee")
       this.emp_Active = "active";
     else if (myArray[1] == "Schedule")
@@ -73,6 +83,8 @@ export class AppComponent {
       this.student_Active = "active";
     else if (myArray[1] == "Order")
       this.emp_Active = "active";
+    else if (myArray[1] == "College")
+        this.College_Active = "active";
 
     //Page name in navbar
     this.router.events.subscribe((val) => {
@@ -102,6 +114,10 @@ export class AppComponent {
 
     this.Std_GN_Code = localStorage.getItem("GN_Code");
 
+    if( localStorage.getItem("Credential_Type") == "2"){
+      this.IsStudent = true;
+    }
+
     this.getPermissionInfo();
   }
 
@@ -113,7 +129,7 @@ export class AppComponent {
         var jsonInfo = JSON.stringify(data);
         let ProfileInfoData = JSON.parse(jsonInfo);
         if (ProfileInfoData != null) {
-          console.log(ProfileInfoData);
+          //console.log(ProfileInfoData);
           this.username = ProfileInfoData.Name;
           this.LangCode = localStorage.getItem('LangCode');
         }
@@ -208,7 +224,7 @@ export class AppComponent {
       this.Dashboard = "Dashboard";
       this.Employees = "Employees";
       this.StudentMangment = "Student Mangment";
-      this.StudentRequest = "Requests";
+      this.StudentRequest = "New Requests";
       this.SystemAdmin = "System Admin";
       this.Specializations = "Colleges";
       this.Departments = "Departments";
@@ -280,7 +296,7 @@ export class AppComponent {
       this.Employees = "الموظفين";
       this.StudentMangment = "إدارة الطلاب";
       this.SystemAdmin = "إدارة النظام";
-      this.StudentRequest = "الطلبات";
+      this.StudentRequest = "طلبات جديدة";
       this.Specializations = "الكليات";
       this.Departments = "الاقسام";
       this.Programs = "البرامج";

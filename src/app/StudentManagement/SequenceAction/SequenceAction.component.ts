@@ -47,7 +47,7 @@ export class SequenceActionComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.btnList = JSON.parse(jsonInfo);
-        console.log(this.btnList);
+        //console.log(this.btnList);
       }
     )
   }
@@ -119,7 +119,8 @@ export class SequenceActionComponent implements OnInit {
   }
 
   lb_Approve_btn: any; lb_Reject_btn: any; lb_Trackorder: any; top_class: any; lb_Attachment: any;RestoreBtn:any;
-  SequenceName: any; SequenceD: any; lb_Sequence: any; lb_Optional_btn: any; lb_Comment: any; lb_Attachment_View: any;
+  SequenceName: any; SequenceD: any; lb_Sequence: any; lb_Optional_btn: any; lb_Comment: any;
+  lb_Attachment_View: any;lb_ApproveDate: any;
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
@@ -133,6 +134,7 @@ export class SequenceActionComponent implements OnInit {
       this.lb_Attachment = "Attachment";
       this.lb_Attachment_View = "View Attachment";
       this.RestoreBtn = "Restore";
+      this.lb_ApproveDate = "Approve Date";
     }
     else {
       this.lb_Sequence = "تتبع التسلسل";
@@ -145,6 +147,7 @@ export class SequenceActionComponent implements OnInit {
       this.lb_Attachment = "مستند مرفق";
       this.lb_Attachment_View = "عرض المرفق";
       this.RestoreBtn = "تراجع";
+      this.lb_ApproveDate = "تاريخ الموافقة";
     }
   }
 

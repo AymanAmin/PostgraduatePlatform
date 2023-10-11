@@ -49,11 +49,11 @@ export class SequenceTrackingComponent implements OnInit {
 
   GetLabelName(LangCode: any) {
     if (LangCode == "us-en") {
-      this.lb_Trackorder = "Track Order";
+      this.lb_Trackorder = "Request Status";
       this.lb_NextApproval = "Next approval";
     }
     else{
-      this.lb_Trackorder = "تتبع الطلب";
+      this.lb_Trackorder = "حالة الطلب";
       this.lb_NextApproval = "الموافقات المتبقية";
     }
   }

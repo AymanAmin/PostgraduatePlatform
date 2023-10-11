@@ -36,6 +36,9 @@ export class ViewPGT1Component implements OnInit {
   Examiner_1_Name:string = ""; Examiner_4_Name:string = "";
   Examiner_2_Name:string = ""; Examiner_5_Name:string = "";
   Examiner_3_Name:string = "";
+  btnList:any;
+
+  btn_SaveExaminer:boolean = false;
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("View PG-R");
@@ -50,6 +53,7 @@ export class ViewPGT1Component implements OnInit {
 
   ngOnInit() {
     this.LangCode = localStorage.getItem("LangCode");
+    this.getBtnList();
     this.getData();
     this.GetExaminer();
     this.GetLabelName(this.LangCode);
@@ -61,6 +65,26 @@ export class ViewPGT1Component implements OnInit {
         var jsonInfo = JSON.stringify(data);
         let MainInfoData = JSON.parse(jsonInfo);
         this.GetOrderInfo(MainInfoData);
+      }
+    )
+  }
+
+  update_btn_SaveExaminer(){
+    if(this.Examiner_1_Name.trim() != "" && this.Examiner_2_Name.trim() != "" && this.Examiner_3_Name.trim() != "")
+      this.btn_SaveExaminer = true;
+    else
+    this.btn_SaveExaminer = false;
+  }
+
+  getBtnList() {
+    this.http.get(environment.baseUrl + '/API/RequestManagment/Get/ButtonList.ashx?Emp_GN_Code=' + localStorage.getItem("GN_Code") + '&FormCode=' + this.FormCode + '&GN_Code=' + this.GN_Code + '&LangCode=' + this.LangCode).subscribe(
+      data => {
+        var jsonInfo = JSON.stringify(data);
+        this.btnList = JSON.parse(jsonInfo);
+        if(this.btnList.NextBtn == null && this.btnList.OptionBtn == null && this.btnList.PrevBtn == null ){
+            this.IsDepartmentStep = false;
+        }
+        console.log(this.btnList);
       }
     )
   }
@@ -213,7 +237,7 @@ export class ViewPGT1Component implements OnInit {
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
       this.top_class = "me-auto"
-      this.lb_SupervisorAndCoSupervisor = "موافقة المشرف والمساعد";
+      this.lb_SupervisorAndCoSupervisor = "موافقة المشرف و المشرف المساعد";
       this.lb_Reason = "سبب الرفض";
       this.lb_Save = "حفظ";
       this.lb_Examiner_1_Name = "اسم الممتحن الاول";

@@ -82,9 +82,9 @@ export class ListOrderComponent implements OnInit {
       this.lb_LetterRec = "Recommendation Letter";
       this.lb_ReferenceLetter = "Reference Certificates";
       this.lb_RequestCertificate = "Certificate Request";
-      this.lb_ModelPGR1 = "Model PG-R1";
-      this.lb_ModelPGR2 = "Model PG-R2";
-      this.lb_ModelPGR3 = "Model PG-R3";
+      this.lb_ModelPGR1 = "Thesis Defense";
+      this.lb_ModelPGR2 = "Degree Granting";
+      this.lb_ModelPGR3 = "Thesis Proposal";
       this.lb_Clearnce = "Request Clearnce";
       this.lb_OrderTable = "Request Table";
       this.lb_StudentInfo = "Student Info";
@@ -106,9 +106,9 @@ export class ListOrderComponent implements OnInit {
       this.lb_LetterRec = "خطاب توصية";
       this.lb_ReferenceLetter = "الشهادات المرجعية";
       this.lb_RequestCertificate = "طلب شهادة";
-      this.lb_ModelPGR1 = "نموذج PG-R1";
-      this.lb_ModelPGR2 = "نموذج PG-R2";
-      this.lb_ModelPGR3 = "نموذج PG-R3";
+      this.lb_ModelPGR1 = "مناقشة رسالة";
+      this.lb_ModelPGR2 = "منح الدرجة العلمية";
+      this.lb_ModelPGR3 = "مقترح رساله";
       this.lb_Clearnce = "اخلاء طرف";
       this.lb_OrderTable = "جدول الطلبات";
       this.lb_StudentInfo = "معلومات الطالب";

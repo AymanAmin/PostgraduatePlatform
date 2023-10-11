@@ -68,9 +68,9 @@ export class HomeComponent implements OnInit {
       this.lb_LetterRec = "Recommendation Letter";
       this.lb_ReferenceLetter = "Reference Letter";
       this.lb_RequestCertificate = "Certificate Request";
-      this.lb_ModelPGT1 = "Model PG-R1";
-      this.lb_ModelPGT2 = "Model PG-R2";
-      this.lb_ModelPGT3 = "Model PG-R3";
+      this.lb_ModelPGT1 = "Thesis Defense";
+      this.lb_ModelPGT2 = "Degree Granting";
+      this.lb_ModelPGT3 = "Thesis Proposal";
     }
     else{
       this.textstart = "text-end";
@@ -87,9 +87,9 @@ export class HomeComponent implements OnInit {
       this.lb_LetterRec = "خطاب توصية";
       this.lb_ReferenceLetter = "خطاب مرجعية";
       this.lb_RequestCertificate = "طلب شهادة";
-      this.lb_ModelPGT1 = "نموذج PG-R1";
-      this.lb_ModelPGT2 = "نموذج PG-R2";
-      this.lb_ModelPGT3 = "نموذج PG-R3";
+      this.lb_ModelPGT1 = "مناقشة رسالة";
+      this.lb_ModelPGT2 = "منح الدرجة العلمية";
+      this.lb_ModelPGT3 = "مقترح رساله";
     }
   }
 
@@ -98,6 +98,7 @@ export class HomeComponent implements OnInit {
       data => {
         var jsonInfo = JSON.stringify(data);
         this.OrderList = JSON.parse(jsonInfo);
+        console.log(this.OrderList);
      if(this.OrderList!=null || this.OrderList !=""  || this.OrderList !=undefined){
          this.Count_AllRequest =this.OrderList.length;
         this.Count_RequsetLeave = this.OrderList.filter(function (object :any) {
@@ -110,13 +111,13 @@ export class HomeComponent implements OnInit {
           return object.Request_Type==="Reference Certificates" || object.Request_Type==="الشهادات المرجعية"}).length;
 
          this.Count_ModelPGT1=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R1"||object.Request_Type==="نموذج PG-R1"}).length;
+          return object.Request_Type==="Thesis Defense"||object.Request_Type ==="مناقشة رسالة"}).length;
 
          this.Count_ModelPGT2=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R2" ||object.Request_Type==="نموذج PG-R2"}).length;
+          return object.Request_Type==="Degree Granting" ||object.Request_Type ==="منح الدرجة العلمية"}).length;
 
          this.Count_ModelPGT3=this.OrderList.filter(function (object :any) {
-          return object.Request_Type==="Model PG-R3"||object.Request_Type==="نموذج PG-R3"}).length;
+          return object.Request_Type==="Thesis Proposal"||object.Request_Type==="مقترح رساله"}).length;
 
 
 

@@ -15,6 +15,10 @@
                       <span class="alert-icon"><i class="ni ni-notification-70"></i>{{" "}}</span>
                       <span class="alert-text"><strong>{{lb_Error}}!</strong> {{lb_ErrorD}}!</span>
                     </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="IsGmailMessageError">
+                      <span class="alert-icon"><i class="ni ni-notification-70"></i>{{" "}}</span>
+                      <span class="alert-text"><strong>{{lb_Error}}!</strong> {{lb_ErrorGmail}}!</span>
+                    </div>
                     <label>{{lb_Email}}</label>
                     <div class="mb-3">
                       <input type="text" class="form-control" placeholder="{{lb_Email}}" aria-label="UserName" formControlName="UserName">
@@ -29,8 +33,7 @@
                     </div>
                     <div class="text-center">
                       <button type="submit" [disabled]="!(UserForm.valid && btn_status)" name="button" class="btn bg-gradient-info m-0 mx-2"><span [innerHTML]="btn_spinner"></span></button>
-                      <!-- </div> -->
-                      <!-- <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0" >{{lb_Save_Change}}</button> -->
+                      <a href="{{Gmail_Login}}" class="btn bg-gradient-danger m-0" >{{lb_loginWithGmail}}</a>
                     </div>
                   </form>
                 </div>

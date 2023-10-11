@@ -19,23 +19,41 @@ export class LoginComponent implements OnInit {
   IsShowMessageUpdate: boolean = false;
   IsShowMessageInsert: boolean = false;
   IsShowMessageError: boolean = false;
+  IsGmailMessageError: boolean = false;
   // Label Data
   lb_Info: any; lb_InfoD: any; lb_Email: any; lb_Password: any; lb_Signup: any; lb_Loading: any;
   lb_IsActive: any; lb_Save_Change: any; lb_LoginD: any; lb_Active: any; lb_Registration: any;
-  lb_Error: any; lb_ErrorD: any;
+  lb_Error: any; lb_ErrorD: any; lb_loginWithGmail: any; lb_ErrorGmail: any;
+
+  clientid: string = "117649184280-nhgm1p7kirbt9j5o2159dohgkmjptrc3.apps.googleusercontent.com";
+  redirection_url: string = "http://www.postgraduate.riyadh.edu.sa:8081/Google_Auth.aspx";
+  Gmail_Login: string = "https://accounts.google.com/o/oauth2/v2/auth?scope=openid%20email%20https://www.googleapis.com/auth/userinfo.email&include_granted_scopes=true&redirect_uri=" + this.redirection_url + "&response_type=code&client_id=" + this.clientid;
 
   SeqStatusList: any;
   UserForm: FormGroup = new FormGroup({});
+
+  GN_Code: string = this.route.snapshot.params['id'];
 
   constructor(private titleService: Title, private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.titleService.setTitle("Login Page");
   }
 
   ngOnInit() {
+    if (this.GN_Code == "-1")
+      this.IsGmailMessageError = true;
+    else
+      this.IsGmailMessageError = false;
+    if (this.GN_Code == "0")
+      document.getElementById("btnDanger")?.click();
+    else if (this.GN_Code)
+      this.loginEvent();
+
     this.LangCode = localStorage.getItem("LangCode");
-    if(this.LangCode == null){
-      localStorage.setItem("LangCode","us-en");
+    if (this.LangCode == null) {
+      localStorage.setItem("LangCode", "us-en");
       this.LangCode = localStorage.getItem("LangCode");
+
+
     }
     // this.loadJsFile("assets/js/MyScript.js");
     this.GetLabelName(this.LangCode);
@@ -49,6 +67,7 @@ export class LoginComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("UserName", this.UserForm.get('UserName')?.value);
     formData.append("Password", this.UserForm.get('Password')?.value);
+    formData.append("GN_Code", this.GN_Code);
 
     this.http.post(environment.baseUrl + '/API/UserLogin/Get/UserLogin.ashx', formData).subscribe(
       (response) => {
@@ -71,7 +90,10 @@ export class LoginComponent implements OnInit {
             document.getElementById("btnSuccess")?.click();
           }
           else {
-            this.IsShowMessageError = true;
+            if (this.GN_Code == "-1")
+              this.IsGmailMessageError = true;
+            else
+              this.IsShowMessageError = true;
           }
         }
         else {
@@ -139,6 +161,8 @@ export class LoginComponent implements OnInit {
       this.lb_Loading = "Loading";
       this.lb_Error = "Error";
       this.lb_ErrorD = "Username Or Password Not Found";
+      this.lb_loginWithGmail = "G-Mail";
+      this.lb_ErrorGmail = "This account is not available or there is an error";
     }
     else {
       this.lb_Info = "مرحبا بعودتك";
@@ -152,6 +176,8 @@ export class LoginComponent implements OnInit {
       this.lb_Loading = "جاري التحميل";
       this.lb_Error = "خطأ";
       this.lb_ErrorD = "إسم المستخدم او كلمة المرور غير موجودة";
+      this.lb_loginWithGmail = "G-Mail";
+      this.lb_ErrorGmail = "هذا الحساب غير متوفر او هناك خطأ";
     }
   }
 }

@@ -34,9 +34,9 @@ export class ViewPGT2Component implements OnInit {
     this.titleService.setTitle("View PG-R");
     this.LangCode = localStorage.getItem("LangCode");
     if (this.LangCode == "en-us" || this.LangCode == "us-en")
-      this.titleService.setTitle("Master Thesis Defense");
+      this.titleService.setTitle("Degree Granting Request");
     else
-      this.titleService.setTitle("طلب مناقشة رسالة");
+      this.titleService.setTitle("طلب منح درجة علمية");
   }
 
   ngOnInit() {
@@ -153,7 +153,7 @@ export class ViewPGT2Component implements OnInit {
       this.lb_Reject = "رفض";
       this.lb_Trackorder = "تتبع الطلب";
       this.top_class = "me-auto"
-      this.lb_SupervisorAndCoSupervisor = "موافقة المشرف والمساعد";
+      this.lb_SupervisorAndCoSupervisor = "موافقة المشرف و المشرف المساعد";
     }
   }
 
